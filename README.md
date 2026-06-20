@@ -84,6 +84,20 @@ The set of scopes and the default year list live near the top of
 `deploy/createBaselineTypesPackages.js` (`SCOPES` and `DEFAULT_YEARS`); add `2026`
 or the worker scopes there as needed.
 
+### Versioning notes for maintainers
+
+- `baseline-packages` writes each package's version by querying npm for the
+  current `latest` and bumping the patch (or `0.0.1` if unpublished). So **run
+  `baseline-packages` immediately before `baseline-publish`**, and **don't re-run
+  `baseline-packages` after** the version is baked in — a second run re-queries
+  npm and could bump again past what you intended.
+- All `@baseline-types/dom-<year>` packages share one version line and are
+  released together. Record changes in [`CHANGELOG.md`](./CHANGELOG.md).
+- `baseline-publish` only pushes packages whose `.d.ts` differs from the current
+  npm `latest`, so re-running after a no-op data refresh is safe.
+- Tag each release per package, e.g. `git tag -a "@baseline-types/dom-2024@0.0.2"`,
+  matching the upstream `@types/<pkg>@<version>` tag convention.
+
 ## Keeping in sync with upstream
 
 `main` mirrors `upstream/main`; the fork's work lives on `baseline-filter`.
