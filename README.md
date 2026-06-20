@@ -93,6 +93,21 @@ git checkout main && git fetch upstream && git merge --ff-only upstream/main && 
 git checkout baseline-filter && git merge main   # then rebuild & re-run the year cuts
 ```
 
+## License
+
+Licensed under the [Apache License, Version 2.0](./LICENSE.txt), the same license
+as the upstream project.
+
+This repository is a derivative work of
+[`microsoft/TypeScript-DOM-lib-generator`](https://github.com/microsoft/TypeScript-DOM-lib-generator),
+Copyright © Microsoft Corporation, used under the Apache License 2.0. Modifications
+in this fork — the Baseline-year cut and the `@baseline-types` packaging — are
+Copyright © 2026 uhyo, and are likewise released under the Apache License 2.0. The
+generated `@baseline-types/*` type definitions are derived from the same upstream
+spec data ([`@webref/idl`](https://github.com/w3c/webref) and
+[`@mdn/browser-compat-data`](https://github.com/mdn/browser-compat-data)) as
+`@types/web`.
+
 ---
 
 <a id="upstream-readme"></a>
