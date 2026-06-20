@@ -51,6 +51,36 @@ Notes:
 - A few references that can't be satisfied in a given scope (e.g. an enum whose
   only interface was removed) are degraded to `any`; the build logs each one.
 
+### Publishing `@baseline-types/dom-<year>`
+
+The Baseline-year cuts are published to npm under the
+[`@baseline-types`](https://www.npmjs.com/org/baseline-types) org as drop-in
+replacements for `@types/web` (one package per year):
+
+```sh
+# 1. Generate the cuts (writes baseline-<year>/ at the repo root)
+npm run baseline-years -- 2022 2023 2024 2025
+
+# 2. Build the npm package folders under deploy/generated/
+npm run baseline-packages              # defaults to 2022..2025
+npm run baseline-packages -- 2024      # or a specific year
+
+# 3. Dry-run, then publish (only packages whose .d.ts changed are pushed)
+npm run baseline-publish               # dry run — prints what would publish
+npm run baseline-publish -- --publish  # requires `npm login` to the org
+```
+
+Each package mirrors `@types/web`'s layout (`index.d.ts` + `ts5.5`/`ts5.6`/`ts5.9`
+downlevel folders and `typesVersions`), so consumers swap it in via
+[lib replacement](https://www.typescriptlang.org/tsconfig/#libReplacement):
+
+```sh
+npm install @typescript/lib-dom@npm:@baseline-types/dom-2024 --save-dev
+```
+
+The default year set lives in `DEFAULT_YEARS` in
+`deploy/createBaselineTypesPackages.js`; add `2026` there once that year matures.
+
 
 ## `@types/[lib]` to TypeScript Versions
 

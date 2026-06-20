@@ -25,7 +25,9 @@
     "migrate": "node ./deploy/migrate.js",
     "version": "npm i && node ./src/version.ts",
     "generate": "npm run build && npm run baseline-accept",
-    "baseline-years": "node ./scripts/generate-baseline-years.js"
+    "baseline-years": "node ./scripts/generate-baseline-years.js",
+    "baseline-packages": "node ./deploy/createBaselineTypesPackages.js",
+    "baseline-publish": "node ./deploy/publishBaselineTypesPackages.js"
   },
   "author": {
     "name": "Kagami Sascha Rosylight",
