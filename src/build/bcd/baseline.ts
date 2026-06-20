@@ -143,10 +143,9 @@ export function isNewlyAvailableWithin(
   year: number,
   compatKeys: string[] | undefined,
 ): boolean {
-  // No resolvable BCD entry means we can't prove the item is newer than the
-  // cut-off (e.g. JS builtins like WebAssembly live outside the `api.*` tree,
-  // and webref-only types may be absent from BCD). Only remove on positive
-  // evidence of being too new, so keep when there's nothing to check.
+  // Callers (isSuitable) gate the empty case before reaching here, deferring to
+  // the upstream rule when Baseline has no data. Kept defensive: with nothing to
+  // check there's no positive evidence the item is too new.
   if (!compatKeys || compatKeys.length === 0) {
     return true;
   }

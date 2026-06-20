@@ -39,12 +39,21 @@ function isSuitable(
   const forceAlive = parentKey
     ? forceKeepAlive[parentKey]?.includes(key)
     : !!forceKeepAlive[key];
-  // With a Baseline year cut requested, replace the "2+ engines" rule with a
-  // "Newly available by year N" rule; otherwise keep upstream behavior.
+  // The upstream "supported by 2+ engines" rule.
+  const defaultSupported =
+    !!compat && hasMultipleImplementations(compat.support, prefix);
+  // With a Baseline year cut requested, replace that rule with a "Newly
+  // available by year N" rule -- but only when Baseline has data for the item.
+  // When it doesn't (no resolvable BCD key), defer to the upstream decision
+  // rather than unconditionally keeping: the cut must stay a subset of the full
+  // lib, never adding members the normal build drops (e.g. PerformanceEntry.id,
+  // which has no BCD entry and would otherwise clash with LargestContentfulPaint).
   const supported =
     baselineYear !== null
-      ? isNewlyAvailableWithin(baselineYear, compatKeys)
-      : !!compat && hasMultipleImplementations(compat.support, prefix);
+      ? compatKeys && compatKeys.length > 0
+        ? isNewlyAvailableWithin(baselineYear, compatKeys)
+        : defaultSupported
+      : defaultSupported;
   if (supported) {
     if (baselineYear === null && forceAlive) {
       if (parentKey) {
