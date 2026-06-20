@@ -120,7 +120,11 @@ function mapInterfaceLike(
     if (baselineYear !== null) {
       // BCD rarely has an @@iterator entry; fall back to the iterable method
       // (values()) the same way the compat lookup above does.
-      iteratorCompatKeys = memberCompatKeys(name, iteratorKey, data[iteratorKey]);
+      iteratorCompatKeys = memberCompatKeys(
+        name,
+        iteratorKey,
+        data[iteratorKey],
+      );
       if (!iteratorCompatKeys.length) {
         iteratorCompatKeys = memberCompatKeys(name, "values", data["values"]);
       }

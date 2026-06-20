@@ -221,27 +221,64 @@ export function manuallyReferencedValueTypes(
   manualInputs: unknown[],
 ): Set<string> {
   const text = JSON.stringify(manualInputs);
+  // Keyed by the emitted `.name`, not the record key, since a patch can rename a
+  // type (e.g. enum ClientType -> ClientTypes) and references use the new name.
+  const named = (record: Record<string, { name: string }> | undefined) =>
+    Object.values(record ?? {}).map((value) => value.name);
   const nominal = new Set<string>([
-    ...Object.keys(webidl.interfaces?.interface ?? {}),
-    ...Object.keys(webidl.callbackInterfaces?.interface ?? {}),
-    ...Object.keys(webidl.mixins?.mixin ?? {}),
+    ...named(webidl.interfaces?.interface),
+    ...named(webidl.callbackInterfaces?.interface),
+    ...named(webidl.mixins?.mixin),
   ]);
-  const referenced = new Set<string>();
-  const candidates = [
-    ...Object.keys(webidl.dictionaries?.dictionary ?? {}),
-    ...Object.keys(webidl.enums?.enum ?? {}),
-    ...(webidl.typedefs?.typedef ?? []).map((t) => t.name),
-    ...Object.keys(webidl.callbackFunctions?.callbackFunction ?? {}),
-  ];
-  for (const name of candidates) {
-    if (baseTypeConversionMap.has(name) || nominal.has(name)) {
-      continue;
+  // Value-type definitions, used to close the forced set under its own
+  // references. Callback functions are excluded: they are often scope-specific
+  // (e.g. AudioWorkletProcessorConstructor) and forcing them into every scope
+  // drags their own references (AudioWorkletProcessorImpl) cross-scope.
+  const valueDefs = new Map<string, unknown>();
+  for (const def of Object.values(webidl.dictionaries?.dictionary ?? {})) {
+    valueDefs.set(def.name, def);
+  }
+  for (const def of Object.values(webidl.enums?.enum ?? {})) {
+    valueDefs.set(def.name, def);
+  }
+  for (const def of webidl.typedefs?.typedef ?? []) {
+    valueDefs.set(def.name, def);
+  }
+
+  const forced = new Set<string>();
+  const queue: string[] = [];
+  const add = (name: string) => {
+    if (
+      forced.has(name) ||
+      baseTypeConversionMap.has(name) ||
+      nominal.has(name) ||
+      !valueDefs.has(name)
+    ) {
+      return;
     }
-    if (new RegExp(`\\b${escapeRegExp(name)}\\b`).test(text)) {
-      referenced.add(name);
+    forced.add(name);
+    queue.push(name);
+  };
+
+  // Seed with value types named in the manual inputs, then close over their
+  // own references so a forced type never dangles its parent/member types
+  // (e.g. forcing KeyboardEventInit must also force EventModifierInit).
+  for (const name of valueDefs.keys()) {
+    if (
+      !baseTypeConversionMap.has(name) &&
+      !nominal.has(name) &&
+      new RegExp(`\\b${escapeRegExp(name)}\\b`).test(text)
+    ) {
+      add(name);
     }
   }
-  return referenced;
+  while (queue.length) {
+    const name = queue.shift()!;
+    for (const reference of collectTypeReferences(valueDefs.get(name))) {
+      add(reference);
+    }
+  }
+  return forced;
 }
 
 /**

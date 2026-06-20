@@ -514,7 +514,9 @@ export function emitWebIdl(
       // Degrade it to `any` rather than fail the whole build.
       if (!degradedUnknownTypes.has(objDomType)) {
         degradedUnknownTypes.add(objDomType);
-        console.warn(`Baseline cut: degraded unknown type to any: ${objDomType}`);
+        console.warn(
+          `Baseline cut: degraded unknown type to any: ${objDomType}`,
+        );
       }
       return "any";
     }
