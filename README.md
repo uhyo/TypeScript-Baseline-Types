@@ -1,3 +1,109 @@
+# TypeScript Baseline Types
+
+This is a fork of [`microsoft/TypeScript-DOM-lib-generator`](https://github.com/microsoft/TypeScript-DOM-lib-generator)
+that generates and publishes the [`@baseline-types`](https://www.npmjs.com/org/baseline-types)
+npm packages: DOM type definitions frozen to a given [Web Platform Baseline](https://web.dev/baseline)
+year.
+
+Where `@types/web` always tracks the latest specs, `@baseline-types/dom-<year>`
+gives you the web platform surface that was broadly available by a specific year,
+so you can lint your code against the APIs your users' browsers actually support.
+
+> This fork is **not** intended to be contributed back upstream. It exists to host
+> the `@baseline-types` packages. The original generator's documentation is kept
+> verbatim in the [foldable section at the bottom](#upstream-readme).
+
+## Packages
+
+One package per Baseline year, each a drop-in replacement for `@types/web`:
+
+| Package | Contents |
+| --- | --- |
+| [`@baseline-types/dom-2022`](https://www.npmjs.com/package/@baseline-types/dom-2022) | DOM APIs Baseline "Newly available" by 2022 |
+| [`@baseline-types/dom-2023`](https://www.npmjs.com/package/@baseline-types/dom-2023) | …by 2023 |
+| [`@baseline-types/dom-2024`](https://www.npmjs.com/package/@baseline-types/dom-2024) | …by 2024 |
+| [`@baseline-types/dom-2025`](https://www.npmjs.com/package/@baseline-types/dom-2025) | …by 2025 |
+
+### Usage
+
+Install the year you want to target and swap it in for the built-in DOM lib using
+[lib replacement](https://www.typescriptlang.org/tsconfig/#libReplacement)
+(TypeScript 4.5+):
+
+```sh
+npm install @typescript/lib-dom@npm:@baseline-types/dom-2024 --save-dev
+```
+
+If you are on TypeScript 6.0+, also set [`libReplacement`](https://www.typescriptlang.org/tsconfig/#libReplacement)
+to `true` in your `tsconfig.json`. Each package ships the same `index.d.ts` +
+`ts5.5`/`ts5.6`/`ts5.9` downlevel layout and `typesVersions` as `@types/web`, so no
+other configuration is needed. See a package's own README for the pre-4.5 setup.
+
+## How the Baseline cut works
+
+Setting the `BASELINE_YEAR` environment variable restricts the generated lib to
+APIs that became Baseline **Newly available** (`baseline_low_date` — supported by
+all core browser engines) in that year or earlier, instead of the generator's
+default "supported by 2+ engines" rule. Baseline status is computed with
+[`compute-baseline`](https://www.npmjs.com/package/compute-baseline) from the same
+browser-compat-data the build already uses.
+
+```sh
+BASELINE_YEAR=2024 npm run build   # generated/ holds the Baseline 2024 cut
+```
+
+Notes:
+
+- When `BASELINE_YEAR` is unset the output is byte-identical to a normal build, so
+  the fork stays in sync with upstream behavior.
+- The cut is referentially closed: an older API that references a type which only
+  reached Baseline later (e.g. `ImageBitmapRenderingContext` referencing
+  `ImageBitmap`) keeps that type, so the output is a valid superset of the strict
+  "Baseline ≤ N" set.
+- A few references that can't be satisfied in a given scope (e.g. an enum whose
+  only interface was removed) are degraded to `any`; the build logs each one.
+
+## Building and publishing
+
+```sh
+npm install
+
+# 1. Generate the cuts (writes baseline-<year>/ at the repo root)
+npm run baseline-years -- 2022 2023 2024 2025
+
+# 2. Build the npm package folders under deploy/generated/
+npm run baseline-packages              # defaults to 2022..2025
+npm run baseline-packages -- 2024      # or a specific year
+
+# 3. Dry-run, then publish (only packages whose .d.ts changed are pushed)
+npm run baseline-publish               # dry run — prints what would publish
+npm run baseline-publish -- --publish  # requires `npm login` to the org
+```
+
+The set of scopes and the default year list live near the top of
+`deploy/createBaselineTypesPackages.js` (`SCOPES` and `DEFAULT_YEARS`); add `2026`
+or the worker scopes there as needed.
+
+## Keeping in sync with upstream
+
+`main` mirrors `upstream/main`; the fork's work lives on `baseline-filter`.
+
+```sh
+git checkout main && git fetch upstream && git merge --ff-only upstream/main && git push
+git checkout baseline-filter && git merge main   # then rebuild & re-run the year cuts
+```
+
+---
+
+<a id="upstream-readme"></a>
+<details>
+<summary><strong>Upstream README (microsoft/TypeScript-DOM-lib-generator)</strong></summary>
+
+<br/>
+
+The following is the original generator documentation, kept verbatim for
+reference and to minimize merge conflicts when syncing with upstream.
+
 # TypeScript and JavaScript lib generator
 
 This tool is used to generate the web-based `lib.dom.d.ts` file which is included with TypeScript releases, and as the `@types/web` package.
@@ -27,59 +133,6 @@ To test:
 ```sh
 npm run test
 ```
-
-## Baseline-year cut (experimental)
-
-Setting the `BASELINE_YEAR` environment variable restricts the generated lib to
-APIs that became [Baseline](https://web.dev/baseline) **Newly available** in that
-year or earlier, instead of the default "supported by 2+ engines" rule. Baseline
-status is computed with [`compute-baseline`](https://www.npmjs.com/package/compute-baseline)
-from the same browser-compat-data the build already uses.
-
-```sh
-BASELINE_YEAR=2024 npm run build          # generated/ holds the Baseline 2024 cut
-npm run baseline-years -- 2020 2021 2024  # writes baseline-2020/, baseline-2021/, baseline-2024/
-```
-
-Notes:
-
-- When `BASELINE_YEAR` is unset the output is byte-identical to a normal build.
-- The cut is referentially closed: an older API that references a type which
-  only reached Baseline later (e.g. `ImageBitmapRenderingContext` referencing
-  `ImageBitmap`) keeps that type, so the output is a valid superset of the
-  strict "Baseline ≤ N" set.
-- A few references that can't be satisfied in a given scope (e.g. an enum whose
-  only interface was removed) are degraded to `any`; the build logs each one.
-
-### Publishing `@baseline-types/dom-<year>`
-
-The Baseline-year cuts are published to npm under the
-[`@baseline-types`](https://www.npmjs.com/org/baseline-types) org as drop-in
-replacements for `@types/web` (one package per year):
-
-```sh
-# 1. Generate the cuts (writes baseline-<year>/ at the repo root)
-npm run baseline-years -- 2022 2023 2024 2025
-
-# 2. Build the npm package folders under deploy/generated/
-npm run baseline-packages              # defaults to 2022..2025
-npm run baseline-packages -- 2024      # or a specific year
-
-# 3. Dry-run, then publish (only packages whose .d.ts changed are pushed)
-npm run baseline-publish               # dry run — prints what would publish
-npm run baseline-publish -- --publish  # requires `npm login` to the org
-```
-
-Each package mirrors `@types/web`'s layout (`index.d.ts` + `ts5.5`/`ts5.6`/`ts5.9`
-downlevel folders and `typesVersions`), so consumers swap it in via
-[lib replacement](https://www.typescriptlang.org/tsconfig/#libReplacement):
-
-```sh
-npm install @typescript/lib-dom@npm:@baseline-types/dom-2024 --save-dev
-```
-
-The default year set lives in `DEFAULT_YEARS` in
-`deploy/createBaselineTypesPackages.js`; add `2026` there once that year matures.
 
 
 ## `@types/[lib]` to TypeScript Versions
@@ -142,3 +195,5 @@ If you are familiar with Web IDL, you may also want to check whether the upstrea
 - `patches/*.kdl`: KDL types
 - `comments.json`: comment strings to be embedded in the generated .d.ts files.
 - `deprecatedMessage.json`: the reason why one type is deprecated.
+
+</details>
