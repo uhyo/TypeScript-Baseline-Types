@@ -9,7 +9,11 @@ import {
   getDocsData,
   getRemovalData,
 } from "./build/bcd.ts";
-import { applyReferenceClosure, baselineYear } from "./build/bcd/baseline.ts";
+import {
+  applyReferenceClosure,
+  baselineYear,
+  manuallyReferencedValueTypes,
+} from "./build/bcd/baseline.ts";
 import { getInterfaceElementMergeData } from "./build/webref/elements.ts";
 import { getInterfaceToEventMap } from "./build/webref/events.ts";
 import { getWebidls } from "./build/webref/idl.ts";
@@ -47,8 +51,14 @@ async function emitFlavor(
   webidl: Browser.WebIdl,
   forceKnownTypes: Set<string>,
   options: EmitOptions,
+  extraKnownTypes: Set<string> = new Set(),
 ) {
-  const exposed = getExposedTypes(webidl, options.global, forceKnownTypes);
+  const exposed = getExposedTypes(
+    webidl,
+    options.global,
+    forceKnownTypes,
+    extraKnownTypes,
+  );
   mergeNamesakes(exposed);
   exposed.events = webidl.events;
 
@@ -292,6 +302,17 @@ async function emitDom() {
     },
   ];
 
+  // Baseline cut only: value types reachable only through raw-string manual
+  // overrides, which the per-scope reachability pass can't otherwise see.
+  const baselineKnownTypes =
+    baselineYear !== null
+      ? manuallyReferencedValueTypes(webidl, [
+          addedItems,
+          overriddenItems,
+          patches,
+        ])
+      : new Set<string>();
+
   for (const { outputFolder, compilerBehavior } of emitVariations) {
     // Create output folder
     await fs.mkdir(outputFolder, {
@@ -299,36 +320,61 @@ async function emitDom() {
       recursive: true,
     });
 
-    emitFlavor(webidl, new Set(knownTypes.Window), {
-      name: "dom",
-      global: ["Window"],
-      outputFolder,
-      compilerBehavior,
-    });
-    emitFlavor(webidl, new Set(knownTypes.Worker), {
-      name: "webworker",
-      global: ["Worker", "DedicatedWorker", "SharedWorker", "ServiceWorker"],
-      outputFolder,
-      compilerBehavior,
-    });
-    emitFlavor(webidl, new Set(knownTypes.Worker), {
-      name: "sharedworker",
-      global: ["SharedWorker", "Worker"],
-      outputFolder,
-      compilerBehavior,
-    });
-    emitFlavor(webidl, new Set(knownTypes.Worker), {
-      name: "serviceworker",
-      global: ["ServiceWorker", "Worker"],
-      outputFolder,
-      compilerBehavior,
-    });
-    emitFlavor(webidl, new Set(knownTypes.Worklet), {
-      name: "audioworklet",
-      global: ["AudioWorklet", "Worklet"],
-      outputFolder,
-      compilerBehavior,
-    });
+    emitFlavor(
+      webidl,
+      new Set(knownTypes.Window),
+      {
+        name: "dom",
+        global: ["Window"],
+        outputFolder,
+        compilerBehavior,
+      },
+      baselineKnownTypes,
+    );
+    emitFlavor(
+      webidl,
+      new Set(knownTypes.Worker),
+      {
+        name: "webworker",
+        global: ["Worker", "DedicatedWorker", "SharedWorker", "ServiceWorker"],
+        outputFolder,
+        compilerBehavior,
+      },
+      baselineKnownTypes,
+    );
+    emitFlavor(
+      webidl,
+      new Set(knownTypes.Worker),
+      {
+        name: "sharedworker",
+        global: ["SharedWorker", "Worker"],
+        outputFolder,
+        compilerBehavior,
+      },
+      baselineKnownTypes,
+    );
+    emitFlavor(
+      webidl,
+      new Set(knownTypes.Worker),
+      {
+        name: "serviceworker",
+        global: ["ServiceWorker", "Worker"],
+        outputFolder,
+        compilerBehavior,
+      },
+      baselineKnownTypes,
+    );
+    emitFlavor(
+      webidl,
+      new Set(knownTypes.Worklet),
+      {
+        name: "audioworklet",
+        global: ["AudioWorklet", "Worklet"],
+        outputFolder,
+        compilerBehavior,
+      },
+      baselineKnownTypes,
+    );
   }
 
   function prune(

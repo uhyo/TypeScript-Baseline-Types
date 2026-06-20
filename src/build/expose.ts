@@ -31,6 +31,7 @@ export function getExposedTypes(
   webidl: Browser.WebIdl,
   target: string[],
   forceKnownTypes: Set<string>,
+  extraKnownTypes: Set<string> = new Set(),
 ): Browser.WebIdl {
   const forceKnownTypesLogged = new LoggedSet(forceKnownTypes);
 
@@ -83,6 +84,9 @@ export function getExposedTypes(
         (i) => i,
       ),
     ),
+    // Value types referenced only by raw-string manual overrides, which
+    // followTypeReferences can't see (baseline cut only).
+    ...extraKnownTypes,
   ]);
   const isKnownName = (o: { name: string }) =>
     knownIDLTypes.has(o.name) || forceKnownTypesLogged.has(o.name);
