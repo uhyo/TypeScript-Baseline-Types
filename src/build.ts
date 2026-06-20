@@ -9,6 +9,7 @@ import {
   getDocsData,
   getRemovalData,
 } from "./build/bcd.ts";
+import { applyReferenceClosure, baselineYear } from "./build/bcd/baseline.ts";
 import { getInterfaceElementMergeData } from "./build/webref/elements.ts";
 import { getInterfaceToEventMap } from "./build/webref/events.ts";
 import { getWebidls } from "./build/webref/idl.ts";
@@ -201,7 +202,18 @@ async function emitDom() {
   webidl = merge(webidl, await getInterfaceElementMergeData());
 
   webidl = merge(webidl, getDeprecationData(webidl));
-  webidl = merge(webidl, getRemovalData(webidl));
+  let removalData = getRemovalData(webidl);
+  if (baselineYear !== null) {
+    // Keep the cut referentially closed: don't remove interfaces that surviving
+    // (Baseline <= year) APIs still reference, including types pulled in by the
+    // manual input files that are merged below.
+    removalData = applyReferenceClosure(webidl, removalData, [
+      addedItems,
+      overriddenItems,
+      patches,
+    ]);
+  }
+  webidl = merge(webidl, removalData);
   webidl = merge(webidl, getDocsData(webidl));
   webidl = prune(webidl, removedItems);
   webidl = prune(webidl, removalPatches);

@@ -12,6 +12,9 @@ import {
   arrayBufferViewTypes,
 } from "./helpers.ts";
 import { collectLegacyNamespaceTypes } from "./legacy-namespace.ts";
+import { baselineYear } from "./bcd/baseline.ts";
+
+const degradedUnknownTypes = new Set<string>();
 
 /// Decide which members of a function to emit
 type EmitScope = "StaticOnly" | "InstanceOnly" | "All";
@@ -504,6 +507,17 @@ export function emitWebIdl(
       return objDomType;
     }
 
+    if (baselineYear !== null) {
+      // A Baseline-year cut can drop the interface that anchored a referenced
+      // type (e.g. an enum reachable only through a removed interface), leaving
+      // a kept dictionary/member pointing at a name not emitted in this scope.
+      // Degrade it to `any` rather than fail the whole build.
+      if (!degradedUnknownTypes.has(objDomType)) {
+        degradedUnknownTypes.add(objDomType);
+        console.warn(`Baseline cut: degraded unknown type to any: ${objDomType}`);
+      }
+      return "any";
+    }
     throw new Error("Unknown DOM type: " + objDomType);
   }
 

@@ -288,7 +288,7 @@ export function resolveExposure(
   }
 }
 
-function collectTypeReferences(obj: any): string[] {
+export function collectTypeReferences(obj: any): string[] {
   const collection: string[] = [];
   if (typeof obj !== "object") {
     return collection;

@@ -9,6 +9,7 @@ import {
   arrayToMap,
 } from "./helpers.ts";
 import { isEmptyRecord } from "./utils/record.ts";
+import { baselineYear } from "./bcd/baseline.ts";
 
 class LoggedSet extends Set<string> {
   private unvisited: Set<string>;
@@ -206,6 +207,14 @@ function deepFilterUnexposedTypes(
       if (filtered.length >= 1) {
         param.push({ ...p, type: flattenType(filtered) });
       } else if (!p.optional) {
+        if (baselineYear !== null) {
+          // A Baseline-year cut can leave a kept API with a non-optional
+          // parameter whose type isn't exposed in this scope (e.g. a worker
+          // interface referencing a window-only type). The reference can't be
+          // satisfied here, so degrade the parameter to `any` rather than fail.
+          param.push({ ...p, type: "any" });
+          continue;
+        }
         throw new Error(`A non-optional parameter has unknown type: ${p.type}`);
       } else {
         // safe to skip
