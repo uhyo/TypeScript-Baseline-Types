@@ -28,6 +28,29 @@ To test:
 npm run test
 ```
 
+## Baseline-year cut (experimental)
+
+Setting the `BASELINE_YEAR` environment variable restricts the generated lib to
+APIs that became [Baseline](https://web.dev/baseline) **Newly available** in that
+year or earlier, instead of the default "supported by 2+ engines" rule. Baseline
+status is computed with [`compute-baseline`](https://www.npmjs.com/package/compute-baseline)
+from the same browser-compat-data the build already uses.
+
+```sh
+BASELINE_YEAR=2024 npm run build          # generated/ holds the Baseline 2024 cut
+npm run baseline-years -- 2020 2021 2024  # writes baseline-2020/, baseline-2021/, baseline-2024/
+```
+
+Notes:
+
+- When `BASELINE_YEAR` is unset the output is byte-identical to a normal build.
+- The cut is referentially closed: an older API that references a type which
+  only reached Baseline later (e.g. `ImageBitmapRenderingContext` referencing
+  `ImageBitmap`) keeps that type, so the output is a valid superset of the
+  strict "Baseline ≤ N" set.
+- A few references that can't be satisfied in a given scope (e.g. an enum whose
+  only interface was removed) are degraded to `any`; the build logs each one.
+
 
 ## `@types/[lib]` to TypeScript Versions
 

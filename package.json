@@ -24,7 +24,8 @@
     "ts-changelog": "node ./deploy/versionChangelog.js",
     "migrate": "node ./deploy/migrate.js",
     "version": "npm i && node ./src/version.ts",
-    "generate": "npm run build && npm run baseline-accept"
+    "generate": "npm run build && npm run baseline-accept",
+    "baseline-years": "node ./scripts/generate-baseline-years.js"
   },
   "author": {
     "name": "Kagami Sascha Rosylight",

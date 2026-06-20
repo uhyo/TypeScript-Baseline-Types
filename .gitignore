@@ -285,3 +285,6 @@ inputfiles/browser.webidl.json
 yarn.lock
 TypeScript
 deploy/generated
+
+# Baseline-year cut output (npm run baseline-years)
+baseline-20*/
