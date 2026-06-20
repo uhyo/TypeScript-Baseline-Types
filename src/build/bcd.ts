@@ -7,6 +7,7 @@ import type {
 import { forceKeepAlive } from "./bcd/keep-alive.ts";
 import { mapToBcdCompat } from "./bcd/mapper.ts";
 import { hasStableImplementation } from "./bcd/stable.ts";
+import { baselineYear, isNewlyAvailableWithin } from "./bcd/baseline.ts";
 
 function hasMultipleImplementations(support: SupportBlock, prefix?: string) {
   const hasStableImpl = (
@@ -33,12 +34,19 @@ function isSuitable(
   compat?: CompatStatement,
   parentKey?: string,
   prefix?: string,
+  compatKeys?: string[],
 ) {
   const forceAlive = parentKey
     ? forceKeepAlive[parentKey]?.includes(key)
     : !!forceKeepAlive[key];
-  if (compat && hasMultipleImplementations(compat.support, prefix)) {
-    if (forceAlive) {
+  // With a Baseline year cut requested, replace the "2+ engines" rule with a
+  // "Newly available by year N" rule; otherwise keep upstream behavior.
+  const supported =
+    baselineYear !== null
+      ? isNewlyAvailableWithin(baselineYear, compatKeys)
+      : !!compat && hasMultipleImplementations(compat.support, prefix);
+  if (supported) {
+    if (baselineYear === null && forceAlive) {
       if (parentKey) {
         console.warn(`Redundant forceKeepAlive item: ${parentKey}#${key}`);
       } else if (!forceKeepAlive[key].length) {
@@ -51,14 +59,14 @@ function isSuitable(
 }
 
 export function getRemovalData(webidl: Browser.WebIdl): Browser.WebIdl {
-  return mapToBcdCompat(webidl, ({ key, parentKey, compat, mixin }) => {
+  return mapToBcdCompat(webidl, ({ key, parentKey, compat, mixin, compatKeys }) => {
     // Allow all mixins here, but not their members.
     // Empty mixins created by this will be managed by exposed.ts.
     // (It's better to manage mixins there as mixins can also conditionally be empty by exposure settings)
     if (mixin && !parentKey) {
       return;
     }
-    if (isSuitable(key, compat, parentKey)) {
+    if (isSuitable(key, compat, parentKey, undefined, compatKeys)) {
       return;
     }
     return { exposed: "" };

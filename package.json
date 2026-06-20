@@ -55,6 +55,7 @@
     "@webref/events": "^1.18.6",
     "@webref/idl": "^3.66.2",
     "bcd-idl-mapper": "^3.0.1",
+    "compute-baseline": "^0.4.0",
     "cpx2": "^9.0.0",
     "danger": "^13.0.4",
     "eslint": "^10.0.2",

@@ -9,6 +9,11 @@ import type * as Browser from "../types.ts";
 import { filterMapRecord, isEmptyRecord } from "../utils/record.ts";
 import { mapDefined } from "../helpers.ts";
 import { hasStableImplementation } from "./stable.ts";
+import {
+  baselineYear,
+  interfaceCompatKeys,
+  memberCompatKeys,
+} from "./baseline.ts";
 
 interface DataToMap {
   key: string;
@@ -16,6 +21,9 @@ interface DataToMap {
   webkit?: boolean;
   mixin: boolean;
   parentKey?: string;
+  // Real BCD compat keys for this item, resolved only when a BASELINE_YEAR cut
+  // is requested (undefined otherwise). See baseline.ts.
+  compatKeys?: string[];
 }
 
 function mergeCompatStatements(data?: Identifier): CompatStatement | undefined {
@@ -64,7 +72,12 @@ function mapInterfaceLike(
       ? api[i.legacyNamespace][name]
       : api[name];
   const intCompat = data?.__compat;
-  const mapped = mapper({ key: name, compat: intCompat, mixin: !!i.mixin });
+  const mapped = mapper({
+    key: name,
+    compat: intCompat,
+    mixin: !!i.mixin,
+    compatKeys: baselineYear !== null ? interfaceCompatKeys(name) : undefined,
+  });
   if (!data) {
     if (mapped) {
       return { name: i.name, ...mapped };
@@ -80,6 +93,10 @@ function mapInterfaceLike(
       parentKey: name,
       compat,
       mixin: !!i.mixin,
+      compatKeys:
+        baselineYear !== null
+          ? memberCompatKeys(name, key, data[key])
+          : undefined,
     });
   };
 
@@ -99,11 +116,21 @@ function mapInterfaceLike(
     const iteratorCompat = mergeCompatStatements(
       data[iteratorKey] ?? data["values"],
     );
+    let iteratorCompatKeys: string[] | undefined;
+    if (baselineYear !== null) {
+      // BCD rarely has an @@iterator entry; fall back to the iterable method
+      // (values()) the same way the compat lookup above does.
+      iteratorCompatKeys = memberCompatKeys(name, iteratorKey, data[iteratorKey]);
+      if (!iteratorCompatKeys.length) {
+        iteratorCompatKeys = memberCompatKeys(name, "values", data["values"]);
+      }
+    }
     const iteratorMapped = mapper({
       key: iteratorKey,
       parentKey: name,
       compat: iteratorCompat,
       mixin: !!i.mixin,
+      compatKeys: iteratorCompatKeys,
     });
     if (iteratorMapped !== undefined) {
       result.iterator = iteratorMapped;
