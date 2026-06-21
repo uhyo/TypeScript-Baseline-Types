@@ -1,0 +1,79 @@
+name: Release baseline packages
+
+# Auto-publishes the @baseline-types/dom-<year> packages whenever the tracked
+# baselines/ snapshot changes on the default branch — i.e. when the weekly
+# update PR (or any baselines/ change) is merged. Publishing is idempotent:
+# publishBaselineTypesPackages.js only pushes a package whose .d.ts differs from
+# the current npm `latest`, so a no-op merge republishes nothing.
+on:
+  push:
+    branches: [baseline-filter]
+    paths:
+      - "baselines/**"
+  workflow_dispatch: null
+
+permissions:
+  contents: write # create tags + GitHub Releases
+  id-token: write # OIDC trusted publishing to npm (no token needed)
+
+jobs:
+  release:
+    # Only the canonical repo publishes; forks-of-the-fork stay quiet.
+    if: github.repository == 'uhyo/TypeScript-Baseline-Types'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "lts/*"
+          cache: npm
+
+      - run: npm ci
+
+      # OIDC trusted publishing needs npm >= 11.5.1; the npm bundled with lts/*
+      # may be older, so pin to latest before publishing.
+      - run: npm i -g npm@latest
+
+      # Rebuild the per-year cuts from the tracked baselines/ snapshot, then
+      # assemble the @baseline-types/dom-<year> package folders under
+      # deploy/generated/. Both default to DEFAULT_YEARS, so no year list to
+      # keep in sync here.
+      - run: npm run baseline-years
+      - run: npm run baseline-packages
+
+      # Publish only the packages whose .d.ts changed vs npm `latest`. The
+      # script writes the packages it actually published to $GITHUB_OUTPUT as
+      # `published` (a JSON array; `[]` when nothing changed).
+      #
+      # No npm token: `id-token: write` lets `npm publish` exchange a short-lived
+      # OIDC credential with npm, and provenance is attached automatically. Each
+      # @baseline-types/dom-<year> package must have a trusted publisher
+      # configured in its npm settings pointing at this repo + this workflow
+      # (.github/workflows/release.yml). See the README for the one-time setup.
+      - name: Publish changed packages to npm
+        id: publish
+        run: npm run baseline-publish -- --publish
+
+      # Tag each freshly published package and cut a GitHub Release, matching the
+      # @baseline-types/dom-<year>@<version> convention from the README.
+      - name: Tag and release published packages
+        if: steps.publish.outputs.published != '' && steps.publish.outputs.published != '[]'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISHED: ${{ steps.publish.outputs.published }}
+        run: |
+          echo "$PUBLISHED" | jq -c '.[]' | while read -r pkg; do
+            name=$(echo "$pkg" | jq -r '.name')
+            version=$(echo "$pkg" | jq -r '.version')
+            tag="${name}@${version}"
+            if gh release view "$tag" >/dev/null 2>&1; then
+              echo "Release $tag already exists; skipping."
+              continue
+            fi
+            echo "Creating release $tag"
+            gh release create "$tag" \
+              --target "$GITHUB_SHA" \
+              --title "$tag" \
+              --notes "Automated release of \`${name}@${version}\`. Published to npm: https://www.npmjs.com/package/${name}/v/${version}"
+          done

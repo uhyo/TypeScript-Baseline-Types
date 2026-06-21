@@ -81,8 +81,11 @@ jobs:
             - `baselines/**` — regenerated type definitions (see the diff).
 
             Merging keeps the published `@baseline-types/dom-<year>` packages in sync
-            with the latest browser-compat data. Review the diff, then publish with
-            `npm run baseline-years` → `baseline-packages` → `baseline-publish`.
+            with the latest browser-compat data. Once this PR is merged, the
+            **Release baseline packages** workflow automatically rebuilds the cuts and
+            publishes any `@baseline-types/dom-<year>` package whose types changed
+            (and cuts a GitHub Release per published package). No manual publish step
+            is needed — just review the diff and merge.
           branch: weekly-update
           delete-branch: true
           add-paths: |

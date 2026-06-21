@@ -65,6 +65,21 @@ Notes:
 
 ## Building and publishing
 
+> **Releases are automated.** Merging a change to `baselines/**` on the default
+> branch (e.g. the weekly update PR) triggers the **Release baseline packages**
+> workflow (`.github/workflows/release.yml`), which rebuilds the cuts, publishes
+> any `@baseline-types/dom-<year>` package whose `.d.ts` changed, and cuts a
+> GitHub Release per published package. The steps below are the equivalent manual
+> flow, useful for local dry runs.
+>
+> The workflow publishes via npm's [trusted publishing](https://docs.npmjs.com/trusted-publishers)
+> (OIDC) — no `NPM_TOKEN` secret is stored. One-time setup per package: on
+> npmjs.com, open each `@baseline-types/dom-<year>` package's **Settings →
+> Trusted Publisher**, add a GitHub Actions publisher pointing at
+> `uhyo/TypeScript-Baseline-Types` with workflow `release.yml`. A brand-new
+> package can't be configured until it exists, so publish its first version
+> manually (the manual flow below), then add the trusted publisher.
+
 ```sh
 npm install
 
@@ -95,8 +110,10 @@ or the worker scopes there as needed.
   released together. Record changes in [`CHANGELOG.md`](./CHANGELOG.md).
 - `baseline-publish` only pushes packages whose `.d.ts` differs from the current
   npm `latest`, so re-running after a no-op data refresh is safe.
-- Tag each release per package, e.g. `git tag -a "@baseline-types/dom-2024@0.0.2"`,
-  matching the upstream `@types/<pkg>@<version>` tag convention.
+- The release workflow tags each published package and cuts a matching GitHub
+  Release named `@baseline-types/dom-<year>@<version>` (matching the upstream
+  `@types/<pkg>@<version>` convention). For a manual publish, create the tag
+  yourself, e.g. `git tag -a "@baseline-types/dom-2024@0.0.2"`.
 
 ## Keeping in sync with upstream
 

@@ -1,23 +1,23 @@
 import { execFileSync } from "node:child_process";
 import { cp, mkdir, rm } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
+import { DEFAULT_YEARS } from "../deploy/createBaselineTypesPackages.js";
 
 // Generates a Baseline-year-cut copy of the lib for each given year by running
 // the build with BASELINE_YEAR set and copying generated/ to baseline-<year>/.
 //
 //   node ./scripts/generate-baseline-years.js 2020 2021 2022 2023 2024
 //   npm run baseline-years -- 2024
+//
+// With no years given, falls back to DEFAULT_YEARS (the same default set
+// createBaselineTypesPackages.js / publishBaselineTypesPackages.js use), so the
+// release pipeline can run `npm run baseline-years` with no arguments.
 
 const root = new URL("../", import.meta.url);
 const generated = new URL("generated/", root);
 
-const years = process.argv.slice(2);
-if (years.length === 0) {
-  console.error(
-    "Usage: node ./scripts/generate-baseline-years.js <year> [<year> ...]",
-  );
-  process.exit(1);
-}
+const args = process.argv.slice(2);
+const years = args.length ? args : DEFAULT_YEARS;
 
 for (const year of years) {
   if (!/^\d{4}$/.test(year)) {

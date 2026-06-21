@@ -26,6 +26,8 @@ const generatedDir = new URL("generated/", import.meta.url);
 const packages = baselinePackages(wantedYears);
 
 const uploaded = [];
+/** @type {Array<{name: string, version: string}>} Packages actually published. */
+const published = [];
 
 for (const pkg of packages) {
   const folderName = pkg.name.replace("@", "").replace("/", "-");
@@ -78,6 +80,7 @@ for (const pkg of packages) {
       process.exit(publish.status);
     }
     uploaded.push(`${pkg.name}@${pkgJSON.version}`);
+    published.push({ name: pkg.name, version: pkgJSON.version });
   } else {
     console.log(
       ` - would run: npm publish --access public  (in ${fileURLToPath(packageDir)})`,
@@ -96,6 +99,16 @@ if (uploaded.length) {
   );
 } else {
   console.log("Nothing to publish.");
+}
+
+// When run from CI (e.g. the auto-release workflow), expose the set of packages
+// that were actually published as a step output so a later step can tag them
+// and cut GitHub Releases. Only real publishes are reported, never dry-runs.
+if (process.env.GITHUB_OUTPUT) {
+  fs.appendFileSync(
+    process.env.GITHUB_OUTPUT,
+    `published=${JSON.stringify(published)}\n`,
+  );
 }
 
 /**
