@@ -71,6 +71,14 @@ Notes:
 > any `@baseline-types/dom-<year>` package whose `.d.ts` changed, and cuts a
 > GitHub Release per published package. The steps below are the equivalent manual
 > flow, useful for local dry runs.
+>
+> The workflow publishes via npm's [trusted publishing](https://docs.npmjs.com/trusted-publishers)
+> (OIDC) — no `NPM_TOKEN` secret is stored. One-time setup per package: on
+> npmjs.com, open each `@baseline-types/dom-<year>` package's **Settings →
+> Trusted Publisher**, add a GitHub Actions publisher pointing at
+> `uhyo/TypeScript-Baseline-Types` with workflow `release.yml`. A brand-new
+> package can't be configured until it exists, so publish its first version
+> manually (the manual flow below), then add the trusted publisher.
 
 ```sh
 npm install

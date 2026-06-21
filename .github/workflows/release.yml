@@ -13,7 +13,8 @@ on:
   workflow_dispatch: null
 
 permissions:
-  contents: write
+  contents: write # create tags + GitHub Releases
+  id-token: write # OIDC trusted publishing to npm (no token needed)
 
 jobs:
   release:
@@ -30,6 +31,10 @@ jobs:
 
       - run: npm ci
 
+      # OIDC trusted publishing needs npm >= 11.5.1; the npm bundled with lts/*
+      # may be older, so pin to latest before publishing.
+      - run: npm i -g npm@latest
+
       # Rebuild the per-year cuts from the tracked baselines/ snapshot, then
       # assemble the @baseline-types/dom-<year> package folders under
       # deploy/generated/. Both default to DEFAULT_YEARS, so no year list to
@@ -40,13 +45,15 @@ jobs:
       # Publish only the packages whose .d.ts changed vs npm `latest`. The
       # script writes the packages it actually published to $GITHUB_OUTPUT as
       # `published` (a JSON array; `[]` when nothing changed).
+      #
+      # No npm token: `id-token: write` lets `npm publish` exchange a short-lived
+      # OIDC credential with npm, and provenance is attached automatically. Each
+      # @baseline-types/dom-<year> package must have a trusted publisher
+      # configured in its npm settings pointing at this repo + this workflow
+      # (.github/workflows/release.yml). See the README for the one-time setup.
       - name: Publish changed packages to npm
         id: publish
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
-          npm run baseline-publish -- --publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+        run: npm run baseline-publish -- --publish
 
       # Tag each freshly published package and cut a GitHub Release, matching the
       # @baseline-types/dom-<year>@<version> convention from the README.
