@@ -1,0 +1,91 @@
+name: Weekly update
+
+on:
+  workflow_dispatch: null
+  schedule:
+    # https://crontab.guru/#0_12_*_*_6 — Saturdays at 12:00 UTC
+    - cron: "0 12 * * 6"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    # Don't run on forks-of-the-fork; only the canonical repo opens PRs.
+    if: github.repository == 'uhyo/TypeScript-Baseline-Types'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "lts/*"
+          cache: npm
+
+      - run: npm ci
+
+      # Bump the web spec data (@webref/* and @mdn/*) to its latest versions,
+      # then restore package.json so only package-lock.json records the new
+      # resolved versions. This keeps the caret ranges in package.json stable so
+      # a contributor's local `npm i` doesn't produce a spurious diff.
+      # See: https://github.com/microsoft/TypeScript-DOM-lib-generator/pull/1463
+      - run: npm i -g npm-check-updates
+      - run: ncu -u "@mdn*" "@webref*"
+      - run: npm i
+      - run: git restore package.json
+      - run: npm i
+
+      - name: Refresh MDN metadata
+        run: node scripts/fetch-mdn.js
+
+      # Rebuild the lib from the updated data and re-mirror the tracked
+      # baselines/ snapshot, which src/test.ts compares against generated/ file
+      # for file. generated/ is gitignored, so only baselines/ lands in the PR.
+      - name: Rebuild lib and refresh baselines snapshot
+        run: |
+          npm run build
+          rm -rf baselines
+          cp -r generated baselines
+
+      # The PR is gated on the generated type definitions actually changing.
+      # --porcelain catches modified, added, and deleted baseline files.
+      - name: Detect baseline changes
+        id: baselines
+        run: |
+          if [ -n "$(git status --porcelain -- baselines)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No change in generated type definitions; skipping PR."
+          fi
+
+      # Only open a PR when baselines/ changed, but when it does, carry the
+      # refreshed package-lock.json and inputfiles/mdn.json along so the
+      # update is committed in full.
+      - name: Open a pull request when the generated types change
+        if: steps.baselines.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "🤖 Weekly update: refresh web spec data"
+          title: "🤖 Weekly update: refresh web spec data"
+          body: |
+            Automated weekly refresh of the generated type baselines.
+
+            This PR is opened only because the latest `@webref/*` / `@mdn/*` data
+            changed the generated type definitions. It bundles the full update:
+
+            - `package-lock.json` — bumped `@webref/*` and `@mdn/*`.
+            - `inputfiles/mdn.json` — re-fetched MDN metadata.
+            - `baselines/**` — regenerated type definitions (see the diff).
+
+            Merging keeps the published `@baseline-types/dom-<year>` packages in sync
+            with the latest browser-compat data. Review the diff, then publish with
+            `npm run baseline-years` → `baseline-packages` → `baseline-publish`.
+          branch: weekly-update
+          delete-branch: true
+          add-paths: |
+            package-lock.json
+            inputfiles/mdn.json
+            baselines/**
