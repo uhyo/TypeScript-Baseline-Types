@@ -48,7 +48,23 @@ jobs:
           rm -rf baselines
           cp -r generated baselines
 
-      - name: Open a pull request if anything changed
+      # The PR is gated on the generated type definitions actually changing.
+      # --porcelain catches modified, added, and deleted baseline files.
+      - name: Detect baseline changes
+        id: baselines
+        run: |
+          if [ -n "$(git status --porcelain -- baselines)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No change in generated type definitions; skipping PR."
+          fi
+
+      # Only open a PR when baselines/ changed, but when it does, carry the
+      # refreshed package-lock.json and inputfiles/mdn.json along so the
+      # update is committed in full.
+      - name: Open a pull request when the generated types change
+        if: steps.baselines.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -57,20 +73,19 @@ jobs:
           body: |
             Automated weekly refresh of the generated type baselines.
 
-            `@webref/*` and `@mdn/*` were bumped to their latest versions and the
-            MDN metadata was re-fetched during this run; this PR is opened only
-            because those updates changed the generated `baselines/` type
-            definitions (see the diff).
+            This PR is opened only because the latest `@webref/*` / `@mdn/*` data
+            changed the generated type definitions. It bundles the full update:
+
+            - `package-lock.json` — bumped `@webref/*` and `@mdn/*`.
+            - `inputfiles/mdn.json` — re-fetched MDN metadata.
+            - `baselines/**` — regenerated type definitions (see the diff).
 
             Merging keeps the published `@baseline-types/dom-<year>` packages in sync
             with the latest browser-compat data. Review the diff, then publish with
             `npm run baseline-years` → `baseline-packages` → `baseline-publish`.
           branch: weekly-update
           delete-branch: true
-          # Only open a PR when the regenerated type definitions actually
-          # change. @webref/@mdn bumps and the re-fetched mdn.json are still
-          # applied during the run (they drive the build), but they are not
-          # committed on their own — so a dependency patch or metadata tweak
-          # that doesn't alter the emitted types won't produce a PR.
           add-paths: |
+            package-lock.json
+            inputfiles/mdn.json
             baselines/**
