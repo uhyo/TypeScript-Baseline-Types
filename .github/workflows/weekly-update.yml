@@ -48,8 +48,10 @@ jobs:
           rm -rf baselines
           cp -r generated baselines
 
-      # The PR is gated on the generated type definitions actually changing.
-      # --porcelain catches modified, added, and deleted baseline files.
+      # First gate: skip everything unless the tracked baselines/ snapshot moved.
+      # This is a cheap pre-filter (avoids building four year-cuts for nothing);
+      # the authoritative gate is the per-package check below. --porcelain
+      # catches modified, added, and deleted baseline files.
       - name: Detect baseline changes
         id: baselines
         run: |
@@ -60,32 +62,72 @@ jobs:
             echo "No change in generated type definitions; skipping PR."
           fi
 
-      # Only open a PR when baselines/ changed, but when it does, carry the
-      # refreshed package-lock.json and inputfiles/mdn.json along so the
-      # update is committed in full.
-      - name: Open a pull request when the generated types change
+      # Second gate: the raw baselines/ diff is the full latest cut, so a change
+      # there doesn't mean any published per-year @baseline-types/dom-<year>
+      # package actually changed (e.g. an API newer than the latest packaged year
+      # shows in the latest cut but in no year cut). Reproduce the release
+      # pipeline's dry run — build the per-year cuts and packages, then diff each
+      # one against its npm `latest`. publishBaselineTypesPackages.js (without
+      # --publish) writes the changed packages to $GITHUB_OUTPUT as
+      # `would_publish` (a JSON array; `[]` when no published year cut moved).
+      - name: Compute which packages this update will republish
+        id: affected
         if: steps.baselines.outputs.changed == 'true'
+        run: |
+          npm run baseline-years
+          npm run baseline-packages
+          npm run baseline-publish
+
+      # Make the "changed data, but no package impact" outcome explicit in the
+      # logs — this is the case the package-level gate now suppresses.
+      - name: Note when no published package is affected
+        if: steps.baselines.outputs.changed == 'true' && (steps.affected.outputs.would_publish == '' || steps.affected.outputs.would_publish == '[]')
+        run: echo "Baselines changed but no published @baseline-types/dom-<year> package was affected; skipping PR."
+
+      # Render the PR body, turning the would_publish list into a checklist so the
+      # package-level impact is visible at a glance without reading the diff. Runs
+      # only when at least one package is affected (same gate as the PR step).
+      - name: Render PR body
+        if: steps.affected.outputs.would_publish != '' && steps.affected.outputs.would_publish != '[]'
+        env:
+          WOULD_PUBLISH: ${{ steps.affected.outputs.would_publish }}
+        run: |
+          {
+            echo "Automated weekly refresh of the generated type baselines."
+            echo ""
+            echo "This PR is opened only because the latest \`@webref/*\` / \`@mdn/*\` data"
+            echo "changed at least one published type cut. It bundles the full update:"
+            echo ""
+            echo "- \`package-lock.json\` — bumped \`@webref/*\` and \`@mdn/*\`."
+            echo "- \`inputfiles/mdn.json\` — re-fetched MDN metadata."
+            echo "- \`baselines/**\` — regenerated type definitions (see the diff)."
+            echo ""
+            echo "### Packages this merge will republish"
+            echo ""
+            echo "Computed by diffing each per-year cut against its current npm \`latest\`"
+            echo "(predicted next version shown):"
+            echo ""
+            echo "$WOULD_PUBLISH" | jq -r '.[] | "- [ ] `\(.name)` → `\(.version)`"'
+            echo ""
+            echo "Merging keeps the published \`@baseline-types/dom-<year>\` packages in sync"
+            echo "with the latest browser-compat data. Once this PR is merged, the"
+            echo "**Release baseline packages** workflow automatically rebuilds the cuts and"
+            echo "publishes any \`@baseline-types/dom-<year>\` package whose types changed"
+            echo "(and cuts a GitHub Release per published package). No manual publish step"
+            echo "is needed — just review the diff and merge."
+          } > pr-body.md
+
+      # Open a PR only when at least one published package would change, and when
+      # it does, carry the refreshed package-lock.json and inputfiles/mdn.json
+      # along so the update is committed in full.
+      - name: Open a pull request when a published package changes
+        if: steps.affected.outputs.would_publish != '' && steps.affected.outputs.would_publish != '[]'
         uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "🤖 Weekly update: refresh web spec data"
           title: "🤖 Weekly update: refresh web spec data"
-          body: |
-            Automated weekly refresh of the generated type baselines.
-
-            This PR is opened only because the latest `@webref/*` / `@mdn/*` data
-            changed the generated type definitions. It bundles the full update:
-
-            - `package-lock.json` — bumped `@webref/*` and `@mdn/*`.
-            - `inputfiles/mdn.json` — re-fetched MDN metadata.
-            - `baselines/**` — regenerated type definitions (see the diff).
-
-            Merging keeps the published `@baseline-types/dom-<year>` packages in sync
-            with the latest browser-compat data. Once this PR is merged, the
-            **Release baseline packages** workflow automatically rebuilds the cuts and
-            publishes any `@baseline-types/dom-<year>` package whose types changed
-            (and cuts a GitHub Release per published package). No manual publish step
-            is needed — just review the diff and merge.
+          body-path: pr-body.md
           branch: weekly-update
           delete-branch: true
           add-paths: |

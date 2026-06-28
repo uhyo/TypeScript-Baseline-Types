@@ -288,3 +288,6 @@ deploy/generated
 
 # Baseline-year cut output (npm run baseline-years)
 baseline-20*/
+
+# Rendered weekly-update PR body (CI scratch file)
+pr-body.md

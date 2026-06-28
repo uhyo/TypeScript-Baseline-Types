@@ -28,6 +28,13 @@ const packages = baselinePackages(wantedYears);
 const uploaded = [];
 /** @type {Array<{name: string, version: string}>} Packages actually published. */
 const published = [];
+/**
+ * Every package whose .d.ts differs from npm `latest` — i.e. what *would* be
+ * published. Populated in both dry-run and `--publish` mode so callers (e.g. the
+ * weekly-update workflow) can show the package-level impact before merging.
+ * @type {Array<{name: string, version: string}>}
+ */
+const wouldPublish = [];
 
 for (const pkg of packages) {
   const folderName = pkg.name.replace("@", "").replace("/", "-");
@@ -71,6 +78,8 @@ for (const pkg of packages) {
     continue;
   }
 
+  wouldPublish.push({ name: pkg.name, version: pkgJSON.version });
+
   if (doPublish) {
     const publish = spawnSync("npm", ["publish", "--access", "public"], {
       cwd: fileURLToPath(packageDir),
@@ -101,13 +110,17 @@ if (uploaded.length) {
   console.log("Nothing to publish.");
 }
 
-// When run from CI (e.g. the auto-release workflow), expose the set of packages
-// that were actually published as a step output so a later step can tag them
-// and cut GitHub Releases. Only real publishes are reported, never dry-runs.
+// When run from CI, expose two step outputs:
+//   published     — packages actually published (always [] on a dry-run), used
+//                   by the release workflow to tag + cut GitHub Releases.
+//   would_publish — packages whose .d.ts differs from npm `latest`, populated in
+//                   both modes, used by the weekly-update workflow to show which
+//                   @baseline-types/dom-<year> packages a merge will republish.
 if (process.env.GITHUB_OUTPUT) {
   fs.appendFileSync(
     process.env.GITHUB_OUTPUT,
-    `published=${JSON.stringify(published)}\n`,
+    `published=${JSON.stringify(published)}\n` +
+      `would_publish=${JSON.stringify(wouldPublish)}\n`,
   );
 }
 
