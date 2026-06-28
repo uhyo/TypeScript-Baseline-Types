@@ -60,6 +60,57 @@ jobs:
             echo "No change in generated type definitions; skipping PR."
           fi
 
+      # The raw baselines/ diff is the full latest cut, so it doesn't show which
+      # per-year @baseline-types/dom-<year> packages a merge will actually
+      # republish. Reproduce the release pipeline's dry run here: build the
+      # per-year cuts and packages, then diff each one against its npm `latest`.
+      # publishBaselineTypesPackages.js (without --publish) writes the changed
+      # packages to $GITHUB_OUTPUT as `would_publish` (a JSON array; `[]` when
+      # the data moved but no published year cut was affected).
+      - name: Compute which packages this update will republish
+        id: affected
+        if: steps.baselines.outputs.changed == 'true'
+        run: |
+          npm run baseline-years
+          npm run baseline-packages
+          npm run baseline-publish
+
+      # Render the PR body, turning the would_publish list into a checklist so the
+      # package-level impact is visible at a glance without reading the diff.
+      - name: Render PR body
+        if: steps.baselines.outputs.changed == 'true'
+        env:
+          WOULD_PUBLISH: ${{ steps.affected.outputs.would_publish }}
+        run: |
+          {
+            echo "Automated weekly refresh of the generated type baselines."
+            echo ""
+            echo "This PR is opened only because the latest \`@webref/*\` / \`@mdn/*\` data"
+            echo "changed the generated type definitions. It bundles the full update:"
+            echo ""
+            echo "- \`package-lock.json\` — bumped \`@webref/*\` and \`@mdn/*\`."
+            echo "- \`inputfiles/mdn.json\` — re-fetched MDN metadata."
+            echo "- \`baselines/**\` — regenerated type definitions (see the diff)."
+            echo ""
+            echo "### Packages this merge will republish"
+            echo ""
+            echo "Computed by diffing each per-year cut against its current npm \`latest\`"
+            echo "(predicted next version shown):"
+            echo ""
+            if [ "$(echo "$WOULD_PUBLISH" | jq 'length')" -eq 0 ]; then
+              echo "_None — the data changed but no published \`@baseline-types/dom-<year>\` cut was affected, so the release workflow will publish nothing._"
+            else
+              echo "$WOULD_PUBLISH" | jq -r '.[] | "- [ ] `\(.name)` → `\(.version)`"'
+            fi
+            echo ""
+            echo "Merging keeps the published \`@baseline-types/dom-<year>\` packages in sync"
+            echo "with the latest browser-compat data. Once this PR is merged, the"
+            echo "**Release baseline packages** workflow automatically rebuilds the cuts and"
+            echo "publishes any \`@baseline-types/dom-<year>\` package whose types changed"
+            echo "(and cuts a GitHub Release per published package). No manual publish step"
+            echo "is needed — just review the diff and merge."
+          } > pr-body.md
+
       # Only open a PR when baselines/ changed, but when it does, carry the
       # refreshed package-lock.json and inputfiles/mdn.json along so the
       # update is committed in full.
@@ -70,22 +121,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "🤖 Weekly update: refresh web spec data"
           title: "🤖 Weekly update: refresh web spec data"
-          body: |
-            Automated weekly refresh of the generated type baselines.
-
-            This PR is opened only because the latest `@webref/*` / `@mdn/*` data
-            changed the generated type definitions. It bundles the full update:
-
-            - `package-lock.json` — bumped `@webref/*` and `@mdn/*`.
-            - `inputfiles/mdn.json` — re-fetched MDN metadata.
-            - `baselines/**` — regenerated type definitions (see the diff).
-
-            Merging keeps the published `@baseline-types/dom-<year>` packages in sync
-            with the latest browser-compat data. Once this PR is merged, the
-            **Release baseline packages** workflow automatically rebuilds the cuts and
-            publishes any `@baseline-types/dom-<year>` package whose types changed
-            (and cuts a GitHub Release per published package). No manual publish step
-            is needed — just review the diff and merge.
+          body-path: pr-body.md
           branch: weekly-update
           delete-branch: true
           add-paths: |
