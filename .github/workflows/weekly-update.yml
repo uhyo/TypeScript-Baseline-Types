@@ -130,6 +130,9 @@ jobs:
           body-path: pr-body.md
           branch: weekly-update
           delete-branch: true
+          # Assign the repo owner as a reviewer so an automated PR still triggers a
+          # review-request notification (the bot's own PR-opened event doesn't).
+          reviewers: uhyo
           add-paths: |
             package-lock.json
             inputfiles/mdn.json
