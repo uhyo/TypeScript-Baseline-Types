@@ -6442,7 +6442,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Document/hidden",
     "pageType": "web-api-instance-property",
-    "summary": "The Document.hidden read-only property returns a Boolean\nvalue indicating if the page is considered hidden or not."
+    "summary": "The Document.hidden read-only property returns a Boolean value indicating if the page is considered hidden or not.\nThis can be used to check whether the document is in the background or in a minimized window, or is otherwise not visible to the user."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Document/images",
@@ -40960,6 +40960,11 @@
     "summary": "The column-rule-style CSS property sets the style of the line drawn between columns in a multi-column layout."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-visibility-items",
+    "pageType": "css-property",
+    "summary": "The column-rule-visibility-items CSS property defines whether a column-rule segment is painted in gaps adjacent to empty areas."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-width",
     "pageType": "css-property",
     "summary": "The column-rule-width CSS property sets the width of the line drawn between columns in a multi-column layout."
@@ -42245,6 +42250,11 @@
     "summary": "The row-gap CSS property sets the size of the gap (gutter) between an element's rows."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-visibility-items",
+    "pageType": "css-property",
+    "summary": "The row-rule-visibility-items CSS property defines whether a row-rule segment is painted in gaps adjacent to empty areas."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/ruby-align",
     "pageType": "css-property",
     "summary": "The ruby-align CSS property defines the distribution of the different ruby elements over the base."
@@ -42258,6 +42268,11 @@
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/ruby-position",
     "pageType": "css-property",
     "summary": "The ruby-position CSS property defines the position of a ruby element relative to its base element. It can be positioned over the element (over), under it (under), or between the characters on their right side (inter-character)."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-visibility-items",
+    "pageType": "css-property",
+    "summary": "The rule-visibility-items CSS shorthand property defines whether rule segments are painted in both row and column gaps adjacent to empty areas."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rx",
