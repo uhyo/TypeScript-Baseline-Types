@@ -2,12 +2,13 @@
 
 This is a fork of [`microsoft/TypeScript-DOM-lib-generator`](https://github.com/microsoft/TypeScript-DOM-lib-generator)
 that generates and publishes the [`@baseline-types`](https://www.npmjs.com/org/baseline-types)
-npm packages: DOM type definitions frozen to a given [Web Platform Baseline](https://web.dev/baseline)
-year.
+npm packages: DOM type definitions cut down to a given [Web Platform Baseline](https://web.dev/baseline)
+target — a fixed year, or the moving "Newly available" / "Widely available" state.
 
-Where `@types/web` always tracks the latest specs, `@baseline-types/dom-<year>`
-gives you the web platform surface that was broadly available by a specific year,
-so you can lint your code against the APIs your users' browsers actually support.
+Where `@types/web` always tracks the latest specs, `@baseline-types/dom-*`
+gives you the web platform surface that was broadly available at a chosen Baseline
+target, so you can lint your code against the APIs your users' browsers actually
+support.
 
 > This fork is **not** intended to be contributed back upstream. It exists to host
 > the `@baseline-types` packages. The original generator's documentation is kept
@@ -15,7 +16,9 @@ so you can lint your code against the APIs your users' browsers actually support
 
 ## Packages
 
-One package per Baseline year, each a drop-in replacement for `@types/web`:
+Each package is a drop-in replacement for `@types/web`. The per-year packages are
+frozen to a fixed Baseline year; the two moving packages track the latest Baseline
+state and advance as more APIs qualify:
 
 | Package | Contents |
 | --- | --- |
@@ -23,6 +26,8 @@ One package per Baseline year, each a drop-in replacement for `@types/web`:
 | [`@baseline-types/dom-2023`](https://www.npmjs.com/package/@baseline-types/dom-2023) | …by 2023 |
 | [`@baseline-types/dom-2024`](https://www.npmjs.com/package/@baseline-types/dom-2024) | …by 2024 |
 | [`@baseline-types/dom-2025`](https://www.npmjs.com/package/@baseline-types/dom-2025) | …by 2025 |
+| [`@baseline-types/dom-newly-available`](https://www.npmjs.com/package/@baseline-types/dom-newly-available) | DOM APIs that are *currently* Baseline "Newly available" (moving) |
+| [`@baseline-types/dom-widely-available`](https://www.npmjs.com/package/@baseline-types/dom-widely-available) | DOM APIs that are *currently* Baseline "Widely available" (moving) |
 
 ### Usage
 
@@ -41,25 +46,39 @@ other configuration is needed. See a package's own README for the pre-4.5 setup.
 
 ## How the Baseline cut works
 
-Setting the `BASELINE_YEAR` environment variable restricts the generated lib to
-APIs that became Baseline **Newly available** (`baseline_low_date` — supported by
-all core browser engines) in that year or earlier, instead of the generator's
-default "supported by 2+ engines" rule. Baseline status is computed with
+Setting the `BASELINE_TARGET` environment variable restricts the generated lib to
+the APIs that clear a Baseline bar, instead of the generator's default "supported
+by 2+ engines" rule. Baseline status is computed with
 [`compute-baseline`](https://www.npmjs.com/package/compute-baseline) from the same
-browser-compat-data the build already uses.
+browser-compat-data the build already uses. `BASELINE_TARGET` accepts:
+
+- a **4-digit year** (`2024`) — APIs that became Baseline **Newly available**
+  (`baseline_low_date` — supported by all core browser engines) in that year or
+  earlier. A frozen, reproducible per-year cut.
+- **`newly-available`** — APIs that are *currently* Baseline **Newly available**
+  (status `low` or `high`). A moving cut.
+- **`widely-available`** — APIs that are *currently* Baseline **Widely available**
+  (status `high`, ~30 months after newly available). A moving cut.
 
 ```sh
-BASELINE_YEAR=2024 npm run build   # generated/ holds the Baseline 2024 cut
+BASELINE_TARGET=2024 npm run build              # generated/ holds the Baseline 2024 cut
+BASELINE_TARGET=widely-available npm run build  # the Widely-available moving cut
 ```
 
 Notes:
 
-- When `BASELINE_YEAR` is unset the output is byte-identical to a normal build, so
-  the fork stays in sync with upstream behavior.
-- The cut is referentially closed: an older API that references a type which only
-  reached Baseline later (e.g. `ImageBitmapRenderingContext` referencing
-  `ImageBitmap`) keeps that type, so the output is a valid superset of the strict
-  "Baseline ≤ N" set.
+- When `BASELINE_TARGET` is unset the output is byte-identical to a normal build,
+  so the fork stays in sync with upstream behavior.
+- "Currently" is **not** wall-clock. `compute-baseline` resolves the newly→widely
+  boundary against the `@mdn/browser-compat-data` snapshot's own `__meta.timestamp`,
+  which is pinned by `package-lock.json`. So the moving cuts are deterministic and
+  reproducible: their state only advances when a data bump lands (via the weekly
+  update PR), and the release rebuilds the exact cut that PR previewed.
+- Because `high ⊆ low ⊆ full`, `widely-available` is a subset of `newly-available`,
+  which is a subset of the full lib — the same subset guarantee the year cuts hold.
+- The cut is referentially closed: an API that references a type which is not yet
+  in the cut (e.g. `ImageBitmapRenderingContext` referencing `ImageBitmap`) keeps
+  that type, so the output is a valid superset of the strict Baseline set.
 - A few references that can't be satisfied in a given scope (e.g. an enum whose
   only interface was removed) are degraded to `any`; the build logs each one.
 
@@ -68,13 +87,13 @@ Notes:
 > **Releases are automated.** Merging a change to `baselines/**` on the default
 > branch (e.g. the weekly update PR) triggers the **Release baseline packages**
 > workflow (`.github/workflows/release.yml`), which rebuilds the cuts, publishes
-> any `@baseline-types/dom-<year>` package whose `.d.ts` changed, and cuts a
+> any `@baseline-types/dom-<target>` package whose `.d.ts` changed, and cuts a
 > GitHub Release per published package. The steps below are the equivalent manual
 > flow, useful for local dry runs.
 >
 > The workflow publishes via npm's [trusted publishing](https://docs.npmjs.com/trusted-publishers)
 > (OIDC) — no `NPM_TOKEN` secret is stored. One-time setup per package: on
-> npmjs.com, open each `@baseline-types/dom-<year>` package's **Settings →
+> npmjs.com, open each `@baseline-types/dom-<target>` package's **Settings →
 > Trusted Publisher**, add a GitHub Actions publisher pointing at
 > `uhyo/TypeScript-Baseline-Types` with workflow `release.yml`. A brand-new
 > package can't be configured until it exists, so publish its first version
@@ -83,20 +102,21 @@ Notes:
 ```sh
 npm install
 
-# 1. Generate the cuts (writes baseline-<year>/ at the repo root)
-npm run baseline-years -- 2022 2023 2024 2025
+# 1. Generate the cuts (writes baseline-<target>/ at the repo root)
+npm run baseline-years -- 2022 2023 2024 2025 newly-available widely-available
 
 # 2. Build the npm package folders under deploy/generated/
-npm run baseline-packages              # defaults to 2022..2025
-npm run baseline-packages -- 2024      # or a specific year
+npm run baseline-packages                    # defaults to all targets
+npm run baseline-packages -- 2024            # or a specific target
+npm run baseline-packages -- newly-available # …including a moving one
 
 # 3. Dry-run, then publish (only packages whose .d.ts changed are pushed)
 npm run baseline-publish               # dry run — prints what would publish
 npm run baseline-publish -- --publish  # requires `npm login` to the org
 ```
 
-The set of scopes and the default year list live near the top of
-`deploy/createBaselineTypesPackages.js` (`SCOPES` and `DEFAULT_YEARS`); add `2026`
+The set of scopes and the default target list live near the top of
+`deploy/createBaselineTypesPackages.js` (`SCOPES` and `DEFAULT_TARGETS`); add `2026`
 or the worker scopes there as needed.
 
 ### Versioning notes for maintainers
@@ -106,12 +126,14 @@ or the worker scopes there as needed.
   `baseline-packages` immediately before `baseline-publish`**, and **don't re-run
   `baseline-packages` after** the version is baked in — a second run re-queries
   npm and could bump again past what you intended.
-- All `@baseline-types/dom-<year>` packages share one version line and are
+- All `@baseline-types/dom-<target>` packages share one version line and are
   released together. Record changes in [`CHANGELOG.md`](./CHANGELOG.md).
 - `baseline-publish` only pushes packages whose `.d.ts` differs from the current
-  npm `latest`, so re-running after a no-op data refresh is safe.
+  npm `latest`, so re-running after a no-op data refresh is safe. The moving
+  `newly-available` / `widely-available` packages republish whenever a data bump
+  moves their set, which is more often than the frozen year cuts.
 - The release workflow tags each published package and cuts a matching GitHub
-  Release named `@baseline-types/dom-<year>@<version>` (matching the upstream
+  Release named `@baseline-types/dom-<target>@<version>` (matching the upstream
   `@types/<pkg>@<version>` convention). For a manual publish, create the tag
   yourself, e.g. `git tag -a "@baseline-types/dom-2024@0.0.2"`.
 

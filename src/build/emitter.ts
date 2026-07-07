@@ -12,7 +12,7 @@ import {
   arrayBufferViewTypes,
 } from "./helpers.ts";
 import { collectLegacyNamespaceTypes } from "./legacy-namespace.ts";
-import { baselineYear } from "./bcd/baseline.ts";
+import { isBaselineCut } from "./bcd/baseline.ts";
 
 const degradedUnknownTypes = new Set<string>();
 
@@ -507,8 +507,8 @@ export function emitWebIdl(
       return objDomType;
     }
 
-    if (baselineYear !== null) {
-      // A Baseline-year cut can drop the interface that anchored a referenced
+    if (isBaselineCut) {
+      // A Baseline cut can drop the interface that anchored a referenced
       // type (e.g. an enum reachable only through a removed interface), leaving
       // a kept dictionary/member pointing at a name not emitted in this scope.
       // Degrade it to `any` rather than fail the whole build.

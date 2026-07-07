@@ -1,6 +1,6 @@
 name: Release baseline packages
 
-# Auto-publishes the @baseline-types/dom-<year> packages whenever the tracked
+# Auto-publishes the @baseline-types/dom-<target> packages whenever the tracked
 # baselines/ snapshot changes on the default branch — i.e. when the weekly
 # update PR (or any baselines/ change) is merged. Publishing is idempotent:
 # publishBaselineTypesPackages.js only pushes a package whose .d.ts differs from
@@ -35,10 +35,11 @@ jobs:
       # may be older, so pin to latest before publishing.
       - run: npm i -g npm@latest
 
-      # Rebuild the per-year cuts from the tracked baselines/ snapshot, then
-      # assemble the @baseline-types/dom-<year> package folders under
-      # deploy/generated/. Both default to DEFAULT_YEARS, so no year list to
-      # keep in sync here.
+      # Rebuild the cuts from the tracked baselines/ snapshot, then assemble the
+      # @baseline-types/dom-<target> package folders under deploy/generated/. Both
+      # default to DEFAULT_TARGETS (the per-year cuts plus the moving
+      # newly-available / widely-available cuts), so no target list to keep in
+      # sync here.
       - run: npm run baseline-years
       - run: npm run baseline-packages
 
@@ -48,7 +49,7 @@ jobs:
       #
       # No npm token: `id-token: write` lets `npm publish` exchange a short-lived
       # OIDC credential with npm, and provenance is attached automatically. Each
-      # @baseline-types/dom-<year> package must have a trusted publisher
+      # @baseline-types/dom-<target> package must have a trusted publisher
       # configured in its npm settings pointing at this repo + this workflow
       # (.github/workflows/release.yml). See the README for the one-time setup.
       - name: Publish changed packages to npm
@@ -56,7 +57,7 @@ jobs:
         run: npm run baseline-publish -- --publish
 
       # Tag each freshly published package and cut a GitHub Release, matching the
-      # @baseline-types/dom-<year>@<version> convention from the README.
+      # @baseline-types/dom-<target>@<version> convention from the README.
       - name: Tag and release published packages
         if: steps.publish.outputs.published != '' && steps.publish.outputs.published != '[]'
         env:

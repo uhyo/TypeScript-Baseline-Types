@@ -5,26 +5,57 @@ import { Compat } from "compute-baseline/browser-compat-data";
 import type * as Browser from "../types.ts";
 import { baseTypeConversionMap, collectTypeReferences } from "../helpers.ts";
 
-// Optional "Baseline year" cut-off, controlled by the BASELINE_YEAR env var.
-// When set, the build keeps only APIs that became Baseline "Newly available"
-// (i.e. gained support across the whole core browser set) in that year or
-// earlier, instead of the default "supported by 2+ engines" rule. When unset,
-// the build is identical to upstream and none of the machinery below runs.
-function parseBaselineYear(): number | null {
-  const raw = process.env.BASELINE_YEAR;
+// Optional Baseline cut-off, controlled by the BASELINE_TARGET env var. When set,
+// the build keeps only APIs that meet the target's Baseline bar, instead of the
+// default "supported by 2+ engines" rule. When unset, the build is identical to
+// upstream and none of the machinery below runs.
+//
+// The target is one of:
+//   - a 4-digit year ("2024")  -> APIs that became Baseline "Newly available" in
+//                                  that year or earlier (a frozen, per-year cut).
+//   - "newly-available"        -> APIs that are *currently* Baseline "Newly
+//                                  available" (status low or high) — a moving cut.
+//   - "widely-available"       -> APIs that are *currently* Baseline "Widely
+//                                  available" (status high) — a moving cut.
+//
+// "Currently" is not wall-clock: compute-baseline resolves it from the
+// @mdn/browser-compat-data snapshot's own __meta.timestamp, which is pinned by
+// package-lock.json, so the moving cuts are deterministic and reproducible.
+export type BaselineTarget =
+  | { kind: "year"; year: number }
+  | { kind: "newly" }
+  | { kind: "widely" };
+
+function parseBaselineTarget(): BaselineTarget | null {
+  const raw = process.env.BASELINE_TARGET;
   if (!raw) {
     return null;
   }
-  const year = Number(raw);
-  if (!Number.isInteger(year) || year < 2000 || year > 9999) {
-    throw new Error(
-      `Invalid BASELINE_YEAR: ${JSON.stringify(raw)} (expected a year like 2024)`,
-    );
+  if (raw === "newly-available") {
+    return { kind: "newly" };
   }
-  return year;
+  if (raw === "widely-available") {
+    return { kind: "widely" };
+  }
+  if (/^\d{4}$/.test(raw)) {
+    const year = Number(raw);
+    if (!Number.isInteger(year) || year < 2000 || year > 9999) {
+      throw new Error(
+        `Invalid BASELINE_TARGET: ${JSON.stringify(raw)} (expected a year like 2024)`,
+      );
+    }
+    return { kind: "year", year };
+  }
+  throw new Error(
+    `Invalid BASELINE_TARGET: ${JSON.stringify(raw)} ` +
+      `(expected a year like 2024, "newly-available", or "widely-available")`,
+  );
 }
 
-export const baselineYear: number | null = parseBaselineYear();
+export const baselineTarget: BaselineTarget | null = parseBaselineTarget();
+
+/** True when any Baseline cut is active (year or moving). */
+export const isBaselineCut: boolean = baselineTarget !== null;
 
 // `compute-baseline` resolves the same @mdn/browser-compat-data copy this
 // project already loads (node dedupes the JSON module), so the dates here are
@@ -99,59 +130,82 @@ export function memberCompatKeys(
   return [...keys];
 }
 
-const keyYearCache = new Map<string, number | null>();
+/** The Baseline facts we read for a single BCD key. */
+interface KeyBaseline {
+  /** Baseline "Newly available" year (from baseline_low_date), or null if none. */
+  lowYear: number | null;
+  /** Current Baseline status: "high" (widely), "low" (newly), or false. */
+  baseline: false | "low" | "high";
+}
 
-/** Baseline "Newly available" year for a single BCD key, or null if it has none. */
-function newlyAvailableYear(key: string): number | null {
-  const cached = keyYearCache.get(key);
+const keyBaselineCache = new Map<string, KeyBaseline>();
+
+/**
+ * Baseline facts for a single BCD key. Both the per-year cut (via `lowYear`) and
+ * the moving cuts (via `baseline`) derive from one cached computeBaseline call.
+ * The `baseline` status is resolved against the BCD snapshot's __meta.timestamp,
+ * not wall-clock time, so it is deterministic for a given package-lock.json.
+ */
+function keyBaseline(key: string): KeyBaseline {
+  const cached = keyBaselineCache.get(key);
   if (cached !== undefined) {
     return cached;
   }
-  let year: number | null = null;
+  let result: KeyBaseline;
   try {
     const status = computeBaseline(
       { compatKeys: [key], checkAncestors: true },
       getCompat(),
     );
+    let lowYear: number | null = null;
     if (status.baseline_low_date) {
       // Dates are ISO (`2024-03-05`) but may be ranged (`<=2020-01-01`); grab
       // the first 4-digit year either way.
       const match = status.baseline_low_date.match(/\d{4}/);
       if (match) {
-        year = Number(match[0]);
+        lowYear = Number(match[0]);
       }
     }
+    result = { lowYear, baseline: status.baseline };
   } catch {
-    year = null;
+    result = { lowYear: null, baseline: false };
   }
-  keyYearCache.set(key, year);
-  return year;
+  keyBaselineCache.set(key, result);
+  return result;
 }
 
 /**
- * True if the API is Baseline "Newly available" in `year` or earlier on ANY of
- * its consuming interfaces.
+ * True if the API clears the active Baseline target's bar on ANY of its
+ * consuming interfaces.
  *
  * A mixin member shared across interfaces has one BCD key per interface; keys
  * are combined with OR rather than AND, because the member should survive as
- * long as at least one consuming interface had it by `year`. A later context
- * (such as MathMLElement, which the cut removes anyway) must not drag the whole
- * member out. Since a member can't predate its interface, an early key implies
- * that interface survives too.
+ * long as at least one consuming interface qualifies. A later context (such as
+ * MathMLElement, which the cut removes anyway) must not drag the whole member
+ * out. Since a member can't predate its interface, a qualifying key implies that
+ * interface survives too.
  */
-export function isNewlyAvailableWithin(
-  year: number,
-  compatKeys: string[] | undefined,
-): boolean {
+export function isBaselineSuitable(compatKeys: string[] | undefined): boolean {
   // Callers (isSuitable) gate the empty case before reaching here, deferring to
   // the upstream rule when Baseline has no data. Kept defensive: with nothing to
   // check there's no positive evidence the item is too new.
   if (!compatKeys || compatKeys.length === 0) {
     return true;
   }
+  const target = baselineTarget;
+  if (target === null) {
+    return true;
+  }
   return compatKeys.some((key) => {
-    const keyYear = newlyAvailableYear(key);
-    return keyYear !== null && keyYear <= year;
+    const { lowYear, baseline } = keyBaseline(key);
+    switch (target.kind) {
+      case "year":
+        return lowYear !== null && lowYear <= target.year;
+      case "widely":
+        return baseline === "high";
+      case "newly":
+        return baseline === "low" || baseline === "high";
+    }
   });
 }
 
