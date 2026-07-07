@@ -8,6 +8,14 @@ noted.
 This file tracks the **packages**, not the upstream generator. See the git history
 for changes to the build pipeline itself.
 
+## Versioning scheme change
+
+Starting with the next release, the packages use a **date-based patch version**:
+`1.0.YYYYMMDD` (e.g. `1.0.20260707`). Previously the patch was incremented by one
+on each release (`0.0.1`, `0.0.2`, …). The major and minor are now fixed at `1.0`
+and the patch records the UTC day each data refresh was cut, so the version
+itself tells you how fresh the Baseline data is.
+
 ## 0.0.2
 
 - **Fix: the cut is now a strict subset of the full lib.** Previously, when

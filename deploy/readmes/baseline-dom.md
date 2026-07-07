@@ -63,8 +63,9 @@ Removing `"dom"` lets this package provide the global declarations instead.
 
 This project does not respect semantic versioning — the underlying spec data and
 Baseline computation change over time, and any update could add or remove types.
-The year in the package name is the stable axis; the version only tracks data
-refreshes.
+The year in the package name is the stable axis. The version's patch component is
+the release date (`1.0.YYYYMMDD`, e.g. `1.0.20260707`), so the version simply
+records the day each data refresh was cut.
 
 ## Deploy Metadata
 
