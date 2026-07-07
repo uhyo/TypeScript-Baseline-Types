@@ -1,12 +1,14 @@
 // @ts-check
-// node deploy/publishBaselineTypesPackages.js [--publish] [year ...]
+// node deploy/publishBaselineTypesPackages.js [--publish] [target ...]
 //
-// Publishes the @baseline-types/dom-<year> packages built by
+// Publishes the @baseline-types/dom-<target> packages built by
 // createBaselineTypesPackages.js into deploy/generated/. Dry-run by default:
 // pass --publish to actually run `npm publish --access public`.
 //
-// A package is only (re)published when its .d.ts content differs from the
-// version already on npm, so re-running after a no-op data refresh is safe.
+// A target is a 4-digit year or one of the moving cuts "newly-available" /
+// "widely-available". A package is only (re)published when its .d.ts content
+// differs from the version already on npm, so re-running after a no-op data
+// refresh is safe.
 
 import fs from "fs";
 import path from "path";
@@ -14,16 +16,19 @@ import { spawnSync } from "child_process";
 import { fileURLToPath } from "node:url";
 import {
   baselinePackages,
-  DEFAULT_YEARS,
+  DEFAULT_TARGETS,
 } from "./createBaselineTypesPackages.js";
 
 const args = process.argv.slice(2);
 const doPublish = args.includes("--publish");
-const years = args.filter((a) => /^\d{4}$/.test(a));
-const wantedYears = years.length ? years : DEFAULT_YEARS;
+const targets = args.filter(
+  (a) =>
+    /^\d{4}$/.test(a) || a === "newly-available" || a === "widely-available",
+);
+const wantedTargets = targets.length ? targets : DEFAULT_TARGETS;
 
 const generatedDir = new URL("generated/", import.meta.url);
-const packages = baselinePackages(wantedYears);
+const packages = baselinePackages(wantedTargets);
 
 const uploaded = [];
 /** @type {Array<{name: string, version: string}>} Packages actually published. */

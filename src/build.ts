@@ -11,7 +11,7 @@ import {
 } from "./build/bcd.ts";
 import {
   applyReferenceClosure,
-  baselineYear,
+  isBaselineCut,
   manuallyReferencedValueTypes,
 } from "./build/bcd/baseline.ts";
 import { getInterfaceElementMergeData } from "./build/webref/elements.ts";
@@ -213,10 +213,10 @@ async function emitDom() {
 
   webidl = merge(webidl, getDeprecationData(webidl));
   let removalData = getRemovalData(webidl);
-  if (baselineYear !== null) {
+  if (isBaselineCut) {
     // Keep the cut referentially closed: don't remove interfaces that surviving
-    // (Baseline <= year) APIs still reference, including types pulled in by the
-    // manual input files that are merged below.
+    // APIs still reference, including types pulled in by the manual input files
+    // that are merged below.
     removalData = applyReferenceClosure(webidl, removalData, [
       addedItems,
       overriddenItems,
@@ -304,14 +304,13 @@ async function emitDom() {
 
   // Baseline cut only: value types reachable only through raw-string manual
   // overrides, which the per-scope reachability pass can't otherwise see.
-  const baselineKnownTypes =
-    baselineYear !== null
-      ? manuallyReferencedValueTypes(webidl, [
-          addedItems,
-          overriddenItems,
-          patches,
-        ])
-      : new Set<string>();
+  const baselineKnownTypes = isBaselineCut
+    ? manuallyReferencedValueTypes(webidl, [
+        addedItems,
+        overriddenItems,
+        patches,
+      ])
+    : new Set<string>();
 
   for (const { outputFolder, compilerBehavior } of emitVariations) {
     // Create output folder

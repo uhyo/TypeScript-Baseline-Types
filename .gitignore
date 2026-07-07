@@ -286,8 +286,8 @@ yarn.lock
 TypeScript
 deploy/generated
 
-# Baseline-year cut output (npm run baseline-years)
-baseline-20*/
+# Baseline cut output (npm run baseline-years): per-year and moving cuts
+baseline-*/
 
 # Rendered weekly-update PR body (CI scratch file)
 pr-body.md

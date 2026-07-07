@@ -7,7 +7,7 @@ import type {
 import { forceKeepAlive } from "./bcd/keep-alive.ts";
 import { mapToBcdCompat } from "./bcd/mapper.ts";
 import { hasStableImplementation } from "./bcd/stable.ts";
-import { baselineYear, isNewlyAvailableWithin } from "./bcd/baseline.ts";
+import { isBaselineCut, isBaselineSuitable } from "./bcd/baseline.ts";
 
 function hasMultipleImplementations(support: SupportBlock, prefix?: string) {
   const hasStableImpl = (
@@ -42,20 +42,19 @@ function isSuitable(
   // The upstream "supported by 2+ engines" rule.
   const defaultSupported =
     !!compat && hasMultipleImplementations(compat.support, prefix);
-  // With a Baseline year cut requested, replace that rule with a "Newly
-  // available by year N" rule -- but only when Baseline has data for the item.
-  // When it doesn't (no resolvable BCD key), defer to the upstream decision
-  // rather than unconditionally keeping: the cut must stay a subset of the full
-  // lib, never adding members the normal build drops (e.g. PerformanceEntry.id,
-  // which has no BCD entry and would otherwise clash with LargestContentfulPaint).
-  const supported =
-    baselineYear !== null
-      ? compatKeys && compatKeys.length > 0
-        ? isNewlyAvailableWithin(baselineYear, compatKeys)
-        : defaultSupported
-      : defaultSupported;
+  // With a Baseline cut requested, replace that rule with the target's Baseline
+  // bar -- but only when Baseline has data for the item. When it doesn't (no
+  // resolvable BCD key), defer to the upstream decision rather than
+  // unconditionally keeping: the cut must stay a subset of the full lib, never
+  // adding members the normal build drops (e.g. PerformanceEntry.id, which has
+  // no BCD entry and would otherwise clash with LargestContentfulPaint).
+  const supported = isBaselineCut
+    ? compatKeys && compatKeys.length > 0
+      ? isBaselineSuitable(compatKeys)
+      : defaultSupported
+    : defaultSupported;
   if (supported) {
-    if (baselineYear === null && forceAlive) {
+    if (!isBaselineCut && forceAlive) {
       if (parentKey) {
         console.warn(`Redundant forceKeepAlive item: ${parentKey}#${key}`);
       } else if (!forceKeepAlive[key].length) {

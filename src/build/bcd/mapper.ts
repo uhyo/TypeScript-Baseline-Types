@@ -10,7 +10,7 @@ import { filterMapRecord, isEmptyRecord } from "../utils/record.ts";
 import { mapDefined } from "../helpers.ts";
 import { hasStableImplementation } from "./stable.ts";
 import {
-  baselineYear,
+  isBaselineCut,
   interfaceCompatKeys,
   memberCompatKeys,
 } from "./baseline.ts";
@@ -21,7 +21,7 @@ interface DataToMap {
   webkit?: boolean;
   mixin: boolean;
   parentKey?: string;
-  // Real BCD compat keys for this item, resolved only when a BASELINE_YEAR cut
+  // Real BCD compat keys for this item, resolved only when a BASELINE_TARGET cut
   // is requested (undefined otherwise). See baseline.ts.
   compatKeys?: string[];
 }
@@ -76,7 +76,7 @@ function mapInterfaceLike(
     key: name,
     compat: intCompat,
     mixin: !!i.mixin,
-    compatKeys: baselineYear !== null ? interfaceCompatKeys(name) : undefined,
+    compatKeys: isBaselineCut ? interfaceCompatKeys(name) : undefined,
   });
   if (!data) {
     if (mapped) {
@@ -93,10 +93,9 @@ function mapInterfaceLike(
       parentKey: name,
       compat,
       mixin: !!i.mixin,
-      compatKeys:
-        baselineYear !== null
-          ? memberCompatKeys(name, key, data[key])
-          : undefined,
+      compatKeys: isBaselineCut
+        ? memberCompatKeys(name, key, data[key])
+        : undefined,
     });
   };
 
@@ -117,7 +116,7 @@ function mapInterfaceLike(
       data[iteratorKey] ?? data["values"],
     );
     let iteratorCompatKeys: string[] | undefined;
-    if (baselineYear !== null) {
+    if (isBaselineCut) {
       // BCD rarely has an @@iterator entry; fall back to the iterable method
       // (values()) the same way the compat lookup above does.
       iteratorCompatKeys = memberCompatKeys(

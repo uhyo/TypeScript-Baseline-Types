@@ -63,13 +63,13 @@ jobs:
           fi
 
       # Second gate: the raw baselines/ diff is the full latest cut, so a change
-      # there doesn't mean any published per-year @baseline-types/dom-<year>
+      # there doesn't mean any published @baseline-types/dom-<target>
       # package actually changed (e.g. an API newer than the latest packaged year
       # shows in the latest cut but in no year cut). Reproduce the release
-      # pipeline's dry run — build the per-year cuts and packages, then diff each
-      # one against its npm `latest`. publishBaselineTypesPackages.js (without
+      # pipeline's dry run — build the cuts and packages, then diff each one
+      # against its npm `latest`. publishBaselineTypesPackages.js (without
       # --publish) writes the changed packages to $GITHUB_OUTPUT as
-      # `would_publish` (a JSON array; `[]` when no published year cut moved).
+      # `would_publish` (a JSON array; `[]` when no published cut moved).
       - name: Compute which packages this update will republish
         id: affected
         if: steps.baselines.outputs.changed == 'true'
@@ -82,7 +82,7 @@ jobs:
       # logs — this is the case the package-level gate now suppresses.
       - name: Note when no published package is affected
         if: steps.baselines.outputs.changed == 'true' && (steps.affected.outputs.would_publish == '' || steps.affected.outputs.would_publish == '[]')
-        run: echo "Baselines changed but no published @baseline-types/dom-<year> package was affected; skipping PR."
+        run: echo "Baselines changed but no published @baseline-types/dom-<target> package was affected; skipping PR."
 
       # Render the PR body, turning the would_publish list into a checklist so the
       # package-level impact is visible at a glance without reading the diff. Runs
@@ -104,15 +104,15 @@ jobs:
             echo ""
             echo "### Packages this merge will republish"
             echo ""
-            echo "Computed by diffing each per-year cut against its current npm \`latest\`"
+            echo "Computed by diffing each cut against its current npm \`latest\`"
             echo "(predicted next version shown):"
             echo ""
             echo "$WOULD_PUBLISH" | jq -r '.[] | "- [ ] `\(.name)` → `\(.version)`"'
             echo ""
-            echo "Merging keeps the published \`@baseline-types/dom-<year>\` packages in sync"
+            echo "Merging keeps the published \`@baseline-types/dom-<target>\` packages in sync"
             echo "with the latest browser-compat data. Once this PR is merged, the"
             echo "**Release baseline packages** workflow automatically rebuilds the cuts and"
-            echo "publishes any \`@baseline-types/dom-<year>\` package whose types changed"
+            echo "publishes any \`@baseline-types/dom-<target>\` package whose types changed"
             echo "(and cuts a GitHub Release per published package). No manual publish step"
             echo "is needed — just review the diff and merge."
           } > pr-body.md

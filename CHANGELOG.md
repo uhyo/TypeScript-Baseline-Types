@@ -1,12 +1,25 @@
 # Changelog — `@baseline-types/*`
 
 Release notes for the [`@baseline-types`](https://www.npmjs.com/org/baseline-types)
-packages published from this fork. All `@baseline-types/dom-<year>` packages are
-versioned and released together, so each entry below applies to every year unless
-noted.
+packages published from this fork. All `@baseline-types/dom-<target>` packages are
+versioned and released together, so each entry below applies to every package
+unless noted.
 
 This file tracks the **packages**, not the upstream generator. See the git history
 for changes to the build pipeline itself.
+
+## Unreleased
+
+- **New: moving-target packages `@baseline-types/dom-newly-available` and
+  `@baseline-types/dom-widely-available`.** Alongside the frozen per-year cuts,
+  these two packages track the latest Baseline state and advance as APIs qualify:
+  `dom-newly-available` contains every API that is currently Baseline "Newly
+  available" (status `low` or `high`), and `dom-widely-available` the stricter
+  subset that is currently "Widely available" (status `high`). "Currently" is
+  resolved from the `@mdn/browser-compat-data` snapshot's `__meta.timestamp` (not
+  wall-clock), so the cuts stay deterministic and only move on a data refresh. The
+  build knob generalizes from `BASELINE_YEAR` to `BASELINE_TARGET`, which accepts a
+  year, `newly-available`, or `widely-available`.
 
 ## Versioning scheme change
 
