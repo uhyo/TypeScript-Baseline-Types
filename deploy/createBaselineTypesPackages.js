@@ -8,7 +8,6 @@
 
 import fs from "fs";
 import { fileURLToPath } from "url";
-import semver from "semver";
 import pkg from "prettier";
 import path from "path";
 const { format } = pkg;
@@ -149,26 +148,10 @@ async function updatePackageJSON(pkg, packagePath) {
   packageJSON.homepage =
     "https://github.com/uhyo/TypeScript-Baseline-Types#readme";
 
-  // Bump the patch from the latest version on npm, or default to 0.0.1 for the
-  // first publish of this (scope, year).
-  let version = "0.0.1";
-  try {
-    const npmResponse = await fetch(
-      `https://registry.npmjs.org/${packageJSON.name}`,
-    );
-    const npmPackage = await npmResponse.json();
-    const semverMarkers = npmPackage["dist-tags"].latest.split(".");
-    const bumpedVersion = `${semverMarkers[0]}.${semverMarkers[1]}.${
-      Number(semverMarkers[2]) + 1
-    }`;
-    if (semver.gt(bumpedVersion, version)) {
-      version = bumpedVersion;
-    }
-  } catch {
-    // NOOP: first deploy, leaves version at 0.0.1.
-  }
-
-  packageJSON.version = version;
+  // The patch component is the release date (UTC, YYYYMMDD), so every publish is
+  // stamped with the day it was cut — e.g. 1.0.20260707. The major and minor stay
+  // fixed at 1.0; the date-based patch monotonically increases across releases.
+  packageJSON.version = `1.0.${releaseDatePatch()}`;
 
   fs.writeFileSync(
     pkgJSONPath,
@@ -178,6 +161,19 @@ async function updatePackageJSON(pkg, packagePath) {
   );
 
   return packageJSON;
+}
+
+/**
+ * The release date as a YYYYMMDD patch component (UTC), e.g. "20260707". Used as
+ * the patch segment of the package version so each release is dated.
+ * @returns {string}
+ */
+function releaseDatePatch() {
+  const now = new Date();
+  const yyyy = now.getUTCFullYear();
+  const mm = String(now.getUTCMonth() + 1).padStart(2, "0");
+  const dd = String(now.getUTCDate()).padStart(2, "0");
+  return `${yyyy}${mm}${dd}`;
 }
 
 /**
