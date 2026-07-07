@@ -8,6 +8,7 @@
 
 import fs from "fs";
 import { fileURLToPath } from "url";
+import semver from "semver";
 import pkg from "prettier";
 import path from "path";
 const { format } = pkg;
@@ -151,7 +152,7 @@ async function updatePackageJSON(pkg, packagePath) {
   // The patch component is the release date (UTC, YYYYMMDD), so every publish is
   // stamped with the day it was cut — e.g. 1.0.20260707. The major and minor stay
   // fixed at 1.0; the date-based patch monotonically increases across releases.
-  packageJSON.version = `1.0.${releaseDatePatch()}`;
+  packageJSON.version = await datedVersion(packageJSON.name);
 
   fs.writeFileSync(
     pkgJSONPath,
@@ -161,6 +162,35 @@ async function updatePackageJSON(pkg, packagePath) {
   );
 
   return packageJSON;
+}
+
+/**
+ * The version for today's release: `1.0.<YYYYMMDD>` (UTC), e.g. `1.0.20260707`.
+ *
+ * Guards against a same-day double publish: npm rejects re-publishing an
+ * existing version, so if the dated version is not strictly greater than what is
+ * already on npm (i.e. another release already went out today), the patch is
+ * bumped one past the latest instead — a second same-day cut becomes
+ * `1.0.20260708`. The once-a-day common case keeps the plain dated version.
+ * @param {string} name
+ * @returns {Promise<string>}
+ */
+async function datedVersion(name) {
+  const version = `1.0.${releaseDatePatch()}`;
+  try {
+    const npmResponse = await fetch(`https://registry.npmjs.org/${name}`);
+    const latest = (await npmResponse.json())?.["dist-tags"]?.latest;
+    // Only bump when today's dated version wouldn't be a strict increase, i.e. a
+    // release already happened today (or the patch has drifted ahead of the date
+    // from a prior same-day burst).
+    if (typeof latest === "string" && !semver.gt(version, latest)) {
+      const [major, minor, patch] = latest.split(".");
+      return `${major}.${minor}.${Number(patch) + 1}`;
+    }
+  } catch {
+    // NOOP: package not published yet — the dated version is the first release.
+  }
+  return version;
 }
 
 /**
