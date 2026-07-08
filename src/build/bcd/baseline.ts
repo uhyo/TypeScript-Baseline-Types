@@ -350,6 +350,12 @@ export function manuallyReferencedValueTypes(
  * often carry references as raw signature strings, so those are matched
  * textually against removed names.
  *
+ * A resurrected interface is kept as a *type only*: the closure clears its
+ * interface-level `exposed: ""` marker (so the type is emitted) but marks it
+ * `noInterfaceObject` (so its runtime `declare var` — constructor and statics —
+ * is not). The API failed the Baseline bar; only references to its type need to
+ * resolve, and emitting the constructor would wrongly let `new X()` type-check.
+ *
  * Mutates and returns `removalData` (clears the interface-level `exposed: ""`
  * marker for resurrected interfaces while keeping their member-level removals).
  */
@@ -444,7 +450,18 @@ export function applyReferenceClosure(
   }
 
   for (const name of resurrected) {
+    // The interface failed the Baseline bar and is kept only so references to
+    // its *type* stay resolvable. Its runtime object is not Baseline-available,
+    // so suppress the `declare var X: { prototype: X; new(...): X }` emit (which
+    // would otherwise let `new WebTransport()` type-check in a cut predating
+    // WebTransport). `noInterfaceObject` is exactly "emit the type, not the
+    // runtime object"; setting it leaves the interface as a type-only shell.
+    // Guard against re-setting an already-[LegacyNoInterfaceObject] interface to
+    // avoid a redundant-merge warning.
     delete removalInterfaces[name].exposed;
+    if (!fullInterfaces[name]?.noInterfaceObject) {
+      removalInterfaces[name].noInterfaceObject = true;
+    }
   }
   return removalData;
 }
