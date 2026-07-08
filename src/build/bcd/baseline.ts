@@ -257,6 +257,55 @@ function escapeRegExp(value: string): string {
 }
 
 /**
+ * Manual-input fields that carry type references as *raw strings* the structured
+ * `collectTypeReferences` scan (which only reads `.type`/`.extends`/`.implements`)
+ * can't see: whole signature strings and bare type expressions.
+ *
+ *   overrideSignatures / additionalSignatures — e.g. "new (options: any): Foo"
+ *   overrideType                              — e.g. "TransformStreamDefaultController<O>"
+ *   additionalTypes                           — extra union members, e.g. "Foo"
+ *
+ * The reference-closure text fallback scans only the values of these fields, not
+ * the whole stringified input graph. That keeps its ability to catch references
+ * hidden in raw strings while ensuring a record's own declaration name (its map
+ * key or `name` field) — or incidental strings like an `mdnUrl` that embeds the
+ * interface name — can never masquerade as a reference to a removed interface.
+ */
+const RAW_TYPE_STRING_KEYS = new Set([
+  "overrideSignatures",
+  "additionalSignatures",
+  "overrideType",
+  "additionalTypes",
+]);
+
+/** Collect the raw type-string values (see RAW_TYPE_STRING_KEYS) from an input graph. */
+function collectRawTypeStrings(obj: unknown, out: string[]): void {
+  if (typeof obj !== "object" || obj === null) {
+    return;
+  }
+  if (Array.isArray(obj)) {
+    for (const item of obj) {
+      collectRawTypeStrings(item, out);
+    }
+    return;
+  }
+  for (const [key, value] of Object.entries(obj)) {
+    if (RAW_TYPE_STRING_KEYS.has(key)) {
+      if (typeof value === "string") {
+        out.push(value);
+      } else if (Array.isArray(value)) {
+        for (const item of value) {
+          if (typeof item === "string") {
+            out.push(item);
+          }
+        }
+      }
+    }
+    collectRawTypeStrings(value, out);
+  }
+}
+
+/**
  * Value types (dictionaries/enums/typedefs/callback functions) are never
  * baseline-removed, but the per-scope emit only keeps the ones still reachable
  * from a surviving interface. One whose only remaining reference is a raw-string
@@ -425,11 +474,19 @@ export function applyReferenceClosure(
   }
 
   // Manual inputs merged after removal: structured references plus raw
-  // signature strings (e.g. "...): MathMLElement") matched by name.
+  // signature strings (e.g. "...): MathMLElement") matched by name. Only the
+  // raw type-string fields are scanned textually — not the whole stringified
+  // graph — so a patched interface's own declaration (its record key/`name`,
+  // e.g. `interface WebTransport { ... }` in a patch) doesn't count as a
+  // reference to itself and get spuriously resurrected.
   for (const source of extraReferenceSources) {
     consider(collectTypeReferences(source));
   }
-  const manualText = JSON.stringify(extraReferenceSources);
+  const rawTypeStrings: string[] = [];
+  for (const source of extraReferenceSources) {
+    collectRawTypeStrings(source, rawTypeStrings);
+  }
+  const manualText = rawTypeStrings.join("\n");
   for (const name of removedNames) {
     if (
       !resurrected.has(name) &&
@@ -449,16 +506,26 @@ export function applyReferenceClosure(
     }
   }
 
-  for (const name of resurrected) {
-    // The interface failed the Baseline bar and is kept only so references to
-    // its *type* stay resolvable. Its runtime object is not Baseline-available,
-    // so suppress the `declare var X: { prototype: X; new(...): X }` emit (which
-    // would otherwise let `new WebTransport()` type-check in a cut predating
-    // WebTransport). `noInterfaceObject` is exactly "emit the type, not the
-    // runtime object"; setting it leaves the interface as a type-only shell.
-    // Guard against re-setting an already-[LegacyNoInterfaceObject] interface to
-    // avoid a redundant-merge warning.
-    delete removalInterfaces[name].exposed;
+  // Every baseline-removed interface that nonetheless survives into the output
+  // must do so as a *type-only* shell. Two paths keep one alive: the reference
+  // closure resurrects a genuinely-referenced interface (below, by clearing its
+  // interface-level `exposed: ""`), and a manual `exposed` override merged after
+  // removal can re-add one the closure left removed (e.g. overridingTypes.jsonc
+  // re-exposes MIDIAccess on Window). In both cases the API failed the Baseline
+  // bar, so its runtime object is not Baseline-available: suppress the
+  // `declare var X: { prototype: X; new(...): X }` emit (which would otherwise
+  // let `new WebTransport()` / `new MIDIAccess()` type-check in a cut predating
+  // them). `noInterfaceObject` is exactly "emit the type, not the runtime
+  // object"; setting it here leaves any surfacing interface as a type-only
+  // shell. Marking a still-removed interface is harmless — it is pruned before
+  // emit — so mark all removed names rather than only the resurrected ones, so a
+  // re-exposing override can't smuggle a constructor back in. Guard against
+  // re-setting an already-[LegacyNoInterfaceObject] interface to avoid a
+  // redundant-merge warning.
+  for (const name of removedNames) {
+    if (resurrected.has(name)) {
+      delete removalInterfaces[name].exposed;
+    }
     if (!fullInterfaces[name]?.noInterfaceObject) {
       removalInterfaces[name].noInterfaceObject = true;
     }
