@@ -10,6 +10,17 @@ for changes to the build pipeline itself.
 
 ## Unreleased
 
+- **Fix: interfaces kept only for referential closure no longer expose a
+  constructor.** When a cut removes an interface that is still referenced as a
+  *type* by a surviving API, the build resurrects it so the reference resolves.
+  Previously that resurrection restored the interface's full runtime object,
+  which let `new WebTransport()` (and other not-yet-Baseline constructors)
+  type-check in cuts predating the API — e.g. `@baseline-types/dom-2024`
+  emitted a usable `WebTransport` constructor even though WebTransport is
+  Baseline 2026. Such interfaces are now emitted as a type-only shell (no
+  `declare var`, so no constructor or statics); the type still resolves, but the
+  runtime object the cut can't vouch for is gone. Interfaces that clear the
+  Baseline bar on their own keep their constructor unchanged.
 - **New: moving-target packages `@baseline-types/dom-newly-available` and
   `@baseline-types/dom-widely-available`.** Alongside the frozen per-year cuts,
   these two packages track the latest Baseline state and advance as APIs qualify:
