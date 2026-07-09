@@ -257,6 +257,43 @@ function escapeRegExp(value: string): string {
 }
 
 /**
+ * Collect the string leaves of the manual inputs for the raw-text reference
+ * fallback, EXCLUDING declaration identifiers. Two sources of a removed
+ * interface's *own* name are dropped so that merely patching an interface does
+ * not count as a reference to it:
+ *
+ * - Object keys (the record key, e.g. `interfaces.interface.WebTransport`) are
+ *   never string *values*, so recursing over values alone drops them naturally.
+ * - `name`-field values duplicate that record key on the entity itself, so they
+ *   are skipped explicitly.
+ *
+ * What survives is exactly the textual content the structured
+ * `collectTypeReferences` scan can't see — raw signature strings in
+ * `overrideSignatures`/`overrideType` (e.g. `"...): MathMLElement"`) — which is
+ * the only thing this fallback needs to catch.
+ */
+function collectManualReferenceStrings(value: unknown, out: string[]): void {
+  if (typeof value === "string") {
+    out.push(value);
+    return;
+  }
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      collectManualReferenceStrings(item, out);
+    }
+    return;
+  }
+  if (value && typeof value === "object") {
+    for (const [key, child] of Object.entries(value)) {
+      if (key === "name") {
+        continue;
+      }
+      collectManualReferenceStrings(child, out);
+    }
+  }
+}
+
+/**
  * Value types (dictionaries/enums/typedefs/callback functions) are never
  * baseline-removed, but the per-scope emit only keeps the ones still reachable
  * from a surviving interface. One whose only remaining reference is a raw-string
@@ -356,8 +393,17 @@ export function manuallyReferencedValueTypes(
  * is not). The API failed the Baseline bar; only references to its type need to
  * resolve, and emitting the constructor would wrongly let `new X()` type-check.
  *
- * Mutates and returns `removalData` (clears the interface-level `exposed: ""`
- * marker for resurrected interfaces while keeping their member-level removals).
+ * The same `noInterfaceObject` marking is applied to *every* baseline-removed
+ * interface, not just resurrected ones. A removed interface can also re-enter
+ * the cut through a manual `exposed` override merged after removal (e.g.
+ * MIDIAccess/SourceBuffer, which overrides scope to `Window`); it still failed
+ * the Baseline bar, so its runtime object must be suppressed there too. For
+ * interfaces that simply stay removed the marker is inert — they are never
+ * emitted.
+ *
+ * Mutates and returns `removalData`: clears the interface-level `exposed: ""`
+ * marker for resurrected interfaces (keeping their member-level removals) and
+ * sets `noInterfaceObject` on every removed interface.
  */
 export function applyReferenceClosure(
   webidl: Browser.WebIdl,
@@ -425,11 +471,18 @@ export function applyReferenceClosure(
   }
 
   // Manual inputs merged after removal: structured references plus raw
-  // signature strings (e.g. "...): MathMLElement") matched by name.
+  // signature strings (e.g. "...): MathMLElement") matched by name. The text
+  // match sees only string *values* with declaration identifiers (record keys
+  // and `name` fields) stripped, so a patch that merely modifies an interface
+  // — mentioning its own name in the record key/`name` field — does not
+  // spuriously resurrect it. Joined with newlines so a name can't straddle two
+  // adjacent leaves and form a false `\b` match.
   for (const source of extraReferenceSources) {
     consider(collectTypeReferences(source));
   }
-  const manualText = JSON.stringify(extraReferenceSources);
+  const manualStrings: string[] = [];
+  collectManualReferenceStrings(extraReferenceSources, manualStrings);
+  const manualText = manualStrings.join("\n");
   for (const name of removedNames) {
     if (
       !resurrected.has(name) &&
@@ -449,19 +502,44 @@ export function applyReferenceClosure(
     }
   }
 
-  for (const name of resurrected) {
-    // The interface failed the Baseline bar and is kept only so references to
-    // its *type* stay resolvable. Its runtime object is not Baseline-available,
-    // so suppress the `declare var X: { prototype: X; new(...): X }` emit (which
-    // would otherwise let `new WebTransport()` type-check in a cut predating
-    // WebTransport). `noInterfaceObject` is exactly "emit the type, not the
-    // runtime object"; setting it leaves the interface as a type-only shell.
-    // Guard against re-setting an already-[LegacyNoInterfaceObject] interface to
-    // avoid a redundant-merge warning.
-    delete removalInterfaces[name].exposed;
-    if (!fullInterfaces[name]?.noInterfaceObject) {
+  // Interfaces whose runtime object a manual input already suppresses (e.g. the
+  // RTCIceCandidatePair override rolls it back toward a dictionary form). Skip
+  // them below so noInterfaceObject isn't merged true-onto-true, which warns.
+  const alreadyNoInterfaceObject = new Set<string>();
+  for (const source of extraReferenceSources) {
+    const interfaces = (source as Browser.WebIdl | undefined)?.interfaces
+      ?.interface;
+    for (const [name, entry] of Object.entries(interfaces ?? {})) {
+      if (entry?.noInterfaceObject) {
+        alreadyNoInterfaceObject.add(name);
+      }
+    }
+  }
+
+  // Suppress the runtime object of every baseline-removed interface. Whichever
+  // way it re-enters the cut — resurrected below for referential closure, or
+  // re-exposed by an `exposed` override merged after removal — it failed the
+  // Baseline bar, so its `declare var X: { prototype: X; new(...): X }` must not
+  // be emitted (that would let `new WebTransport()` / `new MIDIAccess()`
+  // type-check in a cut where the API isn't Baseline-available). Only references
+  // to the *type* need to resolve. `noInterfaceObject` is exactly "emit the
+  // type, not the runtime object". For interfaces that stay removed the marker
+  // is inert. Skip interfaces already flagged (by the full graph's
+  // [LegacyNoInterfaceObject] or a manual input) to avoid a redundant-merge
+  // warning.
+  for (const name of removedNames) {
+    if (
+      !fullInterfaces[name]?.noInterfaceObject &&
+      !alreadyNoInterfaceObject.has(name)
+    ) {
       removalInterfaces[name].noInterfaceObject = true;
     }
+  }
+  // Resurrected interfaces have no other path back into the cut, so clear their
+  // interface-level `exposed: ""` marker to emit them as a type-only shell.
+  // (Override-re-exposed interfaces get their exposure from the override merge.)
+  for (const name of resurrected) {
+    delete removalInterfaces[name].exposed;
   }
   return removalData;
 }
