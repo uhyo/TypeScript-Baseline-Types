@@ -10,6 +10,31 @@ for changes to the build pipeline itself.
 
 ## Unreleased
 
+- **Fix: a cut no longer carries interfaces that nothing references.** The
+  referential-closure pass has a raw-text fallback that scans the manual input
+  files (`inputfiles/patches/*.kdl`, `addedTypes.jsonc`, `overridingTypes.jsonc`)
+  for mentions of a removed interface's name, to catch references hidden inside
+  raw signature strings. It used to match a removed interface's *own
+  declaration* — a patch that only *modifies* `WebTransport` mentions the name
+  in its record key, so `WebTransport` was resurrected even though no surviving
+  API used it as a type. Cuts like `@baseline-types/dom-2024` therefore emitted
+  a batch of interfaces they didn't need — the `WebTransport` family, the
+  `PaymentRequest` API and its dictionaries, `ScriptProcessorNode`,
+  `SharedWorker`, `PerformanceTiming`/`PerformanceNavigation`, and more — none
+  of which is Baseline in the cut or referenced by anything that is. The
+  fallback now looks only at string *values* with declaration identifiers
+  (record keys and `name` fields) stripped, so patching an interface no longer
+  counts as referencing it; genuine references in raw signature strings are
+  still caught.
+- **Fix: interfaces that fail the Baseline bar never expose a constructor,
+  even when re-exposed by an override.** A few interfaces fail the bar but are
+  deliberately re-exposed as a *type* by an `"exposed"` override (e.g.
+  `MIDIAccess`, `SourceBuffer`, which the overrides scope to `Window`). Their
+  `declare var` — the runtime constructor and statics — is now suppressed in
+  cuts where the API isn't Baseline-available, so `new MIDIAccess()` no longer
+  type-checks there; the type still resolves for references. This extends the
+  same type-only treatment already applied to interfaces kept purely for
+  referential closure (below) to the override-re-exposed case.
 - **Fix: interfaces kept only for referential closure no longer expose a
   constructor.** When a cut removes an interface that is still referenced as a
   *type* by a surviving API, the build resurrects it so the reference resolves.
