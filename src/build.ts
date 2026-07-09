@@ -239,6 +239,26 @@ async function emitDom() {
     }
   }
 
+  if (isBaselineCut) {
+    // Baseline removal is authoritative over a manual `exposed` override.
+    // A few non-Baseline interfaces carry an `exposed` override written for
+    // full-lib scope reasons (e.g. MIDIAccess/SourceBuffer, narrowed to
+    // `Window` because engines only ship them there). Merged after the removal
+    // data, that override overwrites the interface-level `exposed: ""` cut
+    // marker and re-exposes the interface's *type* into the cut even though
+    // nothing Baseline references it. applyReferenceClosure already cleared the
+    // marker for interfaces the surviving graph genuinely references (the
+    // `resurrected` set), so any interface still marked `exposed: ""` in
+    // removalData is both non-Baseline and unreferenced — re-assert its removal
+    // here, after every manual input has merged.
+    const removedInterfaces = removalData.interfaces?.interface ?? {};
+    for (const [interfaceName, entry] of Object.entries(removedInterfaces)) {
+      if (entry.exposed === "" && webidl.interfaces!.interface[interfaceName]) {
+        webidl.interfaces!.interface[interfaceName].exposed = "";
+      }
+    }
+  }
+
   const transferables = Object.values(
     webidl.interfaces?.interface ?? {},
   ).filter((i) => i.transferable);
