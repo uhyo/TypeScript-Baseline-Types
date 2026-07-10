@@ -26,8 +26,10 @@ export type BaselineTarget =
   | { kind: "newly" }
   | { kind: "widely" };
 
-function parseBaselineTarget(): BaselineTarget | null {
-  const raw = process.env.BASELINE_TARGET;
+/** Parse a raw BASELINE_TARGET value. Pure; exported for tests. */
+export function parseBaselineTarget(
+  raw: string | undefined,
+): BaselineTarget | null {
   if (!raw) {
     return null;
   }
@@ -52,7 +54,9 @@ function parseBaselineTarget(): BaselineTarget | null {
   );
 }
 
-export const baselineTarget: BaselineTarget | null = parseBaselineTarget();
+export const baselineTarget: BaselineTarget | null = parseBaselineTarget(
+  process.env.BASELINE_TARGET,
+);
 
 /** True when any Baseline cut is active (year or moving). */
 export const isBaselineCut: boolean = baselineTarget !== null;
