@@ -258,9 +258,9 @@ function escapeRegExp(value: string): string {
 
 /**
  * Collect the string leaves of the manual inputs for the raw-text reference
- * fallback, EXCLUDING declaration identifiers. Two sources of a removed
- * interface's *own* name are dropped so that merely patching an interface does
- * not count as a reference to it:
+ * fallbacks, EXCLUDING declaration identifiers. Two sources of a declared
+ * entity's *own* name are dropped so that merely patching an entity does not
+ * count as a reference to it:
  *
  * - Object keys (the record key, e.g. `interfaces.interface.WebTransport`) are
  *   never string *values*, so recursing over values alone drops them naturally.
@@ -270,7 +270,7 @@ function escapeRegExp(value: string): string {
  * What survives is exactly the textual content the structured
  * `collectTypeReferences` scan can't see — raw signature strings in
  * `overrideSignatures`/`overrideType` (e.g. `"...): MathMLElement"`) — which is
- * the only thing this fallback needs to catch.
+ * the only thing these fallbacks need to catch.
  */
 function collectManualReferenceStrings(value: unknown, out: string[]): void {
   if (typeof value === "string") {
@@ -294,6 +294,21 @@ function collectManualReferenceStrings(value: unknown, out: string[]): void {
 }
 
 /**
+ * Word-boundary name matcher over the manual inputs' reference text (string
+ * leaf values, declaration identifiers excluded — see
+ * `collectManualReferenceStrings`). Leaves are joined with newlines so a name
+ * can't straddle two adjacent leaves and form a false `\b` match. Shared by
+ * both raw-text fallbacks so they can't drift apart in what counts as a
+ * reference.
+ */
+function manualReferenceMatcher(sources: unknown[]): (name: string) => boolean {
+  const strings: string[] = [];
+  collectManualReferenceStrings(sources, strings);
+  const text = strings.join("\n");
+  return (name) => new RegExp(`\\b${escapeRegExp(name)}\\b`).test(text);
+}
+
+/**
  * Value types (dictionaries/enums/typedefs/callback functions) are never
  * baseline-removed, but the per-scope emit only keeps the ones still reachable
  * from a surviving interface. One whose only remaining reference is a raw-string
@@ -305,12 +320,18 @@ function collectManualReferenceStrings(value: unknown, out: string[]): void {
  * Excludes base types (ArrayBufferView) and names that also have a nominal
  * declaration — interface/callback-interface/mixin (EventListener) — since
  * forcing a same-named value type would emit a duplicate declaration.
+ *
+ * Only the manual inputs' string *leaf values* are scanned (via
+ * `manualReferenceMatcher`), never declaration identifiers — a value type
+ * that is merely patched is not thereby referenced. Structured references
+ * carried by the manual inputs need no forcing: the inputs are merged into
+ * the graph before emit, so the per-scope reachability pass sees them.
  */
 export function manuallyReferencedValueTypes(
   webidl: Browser.WebIdl,
   manualInputs: unknown[],
 ): Set<string> {
-  const text = JSON.stringify(manualInputs);
+  const isManuallyReferenced = manualReferenceMatcher(manualInputs);
   // Keyed by the emitted `.name`, not the record key, since a patch can rename a
   // type (e.g. enum ClientType -> ClientTypes) and references use the new name.
   const named = (record: Record<string, { name: string }> | undefined) =>
@@ -357,7 +378,7 @@ export function manuallyReferencedValueTypes(
     if (
       !baseTypeConversionMap.has(name) &&
       !nominal.has(name) &&
-      new RegExp(`\\b${escapeRegExp(name)}\\b`).test(text)
+      isManuallyReferenced(name)
     ) {
       add(name);
     }
@@ -472,22 +493,16 @@ export function applyReferenceClosure(
 
   // Manual inputs merged after removal: structured references plus raw
   // signature strings (e.g. "...): MathMLElement") matched by name. The text
-  // match sees only string *values* with declaration identifiers (record keys
-  // and `name` fields) stripped, so a patch that merely modifies an interface
-  // — mentioning its own name in the record key/`name` field — does not
-  // spuriously resurrect it. Joined with newlines so a name can't straddle two
-  // adjacent leaves and form a false `\b` match.
+  // match sees only string *values* with declaration identifiers stripped
+  // (see `manualReferenceMatcher`), so a patch that merely modifies an
+  // interface — mentioning its own name in the record key/`name` field —
+  // does not spuriously resurrect it.
   for (const source of extraReferenceSources) {
     consider(collectTypeReferences(source));
   }
-  const manualStrings: string[] = [];
-  collectManualReferenceStrings(extraReferenceSources, manualStrings);
-  const manualText = manualStrings.join("\n");
+  const isManuallyReferenced = manualReferenceMatcher(extraReferenceSources);
   for (const name of removedNames) {
-    if (
-      !resurrected.has(name) &&
-      new RegExp(`\\b${escapeRegExp(name)}\\b`).test(manualText)
-    ) {
+    if (!resurrected.has(name) && isManuallyReferenced(name)) {
       resurrect(name);
     }
   }
