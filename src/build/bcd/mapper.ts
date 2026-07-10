@@ -9,11 +9,7 @@ import type * as Browser from "../types.ts";
 import { filterMapRecord, isEmptyRecord } from "../utils/record.ts";
 import { mapDefined } from "../helpers.ts";
 import { hasStableImplementation } from "./stable.ts";
-import {
-  isBaselineCut,
-  interfaceCompatKeys,
-  memberCompatKeys,
-} from "./baseline.ts";
+import { interfaceCompatKeys, memberCompatKeys } from "./baseline.ts";
 
 interface DataToMap {
   key: string;
@@ -76,7 +72,7 @@ function mapInterfaceLike(
     key: name,
     compat: intCompat,
     mixin: !!i.mixin,
-    compatKeys: isBaselineCut ? interfaceCompatKeys(name) : undefined,
+    compatKeys: interfaceCompatKeys(name),
   });
   if (!data) {
     if (mapped) {
@@ -93,9 +89,7 @@ function mapInterfaceLike(
       parentKey: name,
       compat,
       mixin: !!i.mixin,
-      compatKeys: isBaselineCut
-        ? memberCompatKeys(name, key, data[key])
-        : undefined,
+      compatKeys: memberCompatKeys(name, key, data[key]),
     });
   };
 
@@ -115,25 +109,17 @@ function mapInterfaceLike(
     const iteratorCompat = mergeCompatStatements(
       data[iteratorKey] ?? data["values"],
     );
-    let iteratorCompatKeys: string[] | undefined;
-    if (isBaselineCut) {
-      // BCD rarely has an @@iterator entry; fall back to the iterable method
-      // (values()) the same way the compat lookup above does.
-      iteratorCompatKeys = memberCompatKeys(
-        name,
-        iteratorKey,
-        data[iteratorKey],
-      );
-      if (!iteratorCompatKeys.length) {
-        iteratorCompatKeys = memberCompatKeys(name, "values", data["values"]);
-      }
-    }
     const iteratorMapped = mapper({
       key: iteratorKey,
       parentKey: name,
       compat: iteratorCompat,
       mixin: !!i.mixin,
-      compatKeys: iteratorCompatKeys,
+      // Fall back to the iterable method (values()) the same way the compat
+      // lookup above does.
+      compatKeys: memberCompatKeys(name, iteratorKey, data[iteratorKey], {
+        member: "values",
+        node: data["values"],
+      }),
     });
     if (iteratorMapped !== undefined) {
       result.iterator = iteratorMapped;

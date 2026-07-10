@@ -10,6 +10,21 @@ for changes to the build pipeline itself.
 
 ## Unreleased
 
+- **Fix: a cut no longer force-emits value types that nothing references.**
+  Dictionaries, enums, and typedefs named in the manual input files are kept
+  in every scope of a cut so that references hidden inside raw signature
+  strings never dangle. That scan matched a value type's *own declaration
+  site* — merely patching a dictionary counted as referencing it — so cut
+  builds carried unreachable declarations: the WebAuthn
+  `PublicKeyCredential*`/`AuthenticationExtensions*` dictionaries and
+  `KeyboardEventInit`/`UIEventInit` in all worker scopes, `RequestInit` and
+  other fetch types in `audioworklet` (where `HeadersInit` degraded to a
+  dangling `type HeadersInit = any`), `TokenBinding`, and the
+  `URLPatternResult` family. The scan now uses the same
+  declaration-identifier-stripped matcher as the referential-closure pass
+  (introduced when fixing the interface-side twin of this bug, below), so
+  those declarations are dropped from every cut. Full (non-cut) builds are
+  unaffected.
 - **Fix: a cut no longer carries interfaces that nothing references.** The
   referential-closure pass has a raw-text fallback that scans the manual input
   files (`inputfiles/patches/*.kdl`, `addedTypes.jsonc`, `overridingTypes.jsonc`)

@@ -26,8 +26,10 @@ export type BaselineTarget =
   | { kind: "newly" }
   | { kind: "widely" };
 
-function parseBaselineTarget(): BaselineTarget | null {
-  const raw = process.env.BASELINE_TARGET;
+/** Parse a raw BASELINE_TARGET value. Pure; exported for tests. */
+export function parseBaselineTarget(
+  raw: string | undefined,
+): BaselineTarget | null {
   if (!raw) {
     return null;
   }
@@ -52,7 +54,9 @@ function parseBaselineTarget(): BaselineTarget | null {
   );
 }
 
-export const baselineTarget: BaselineTarget | null = parseBaselineTarget();
+export const baselineTarget: BaselineTarget | null = parseBaselineTarget(
+  process.env.BASELINE_TARGET,
+);
 
 /** True when any Baseline cut is active (year or moving). */
 export const isBaselineCut: boolean = baselineTarget !== null;
@@ -74,8 +78,15 @@ function keyExists(key: string): boolean {
   }
 }
 
-/** BCD compat key for an interface/namespace itself, if BCD knows about it. */
-export function interfaceCompatKeys(name: string): string[] {
+/**
+ * BCD compat key for an interface/namespace itself, if BCD knows about it.
+ * Resolved only under a Baseline cut; returns undefined otherwise, so non-cut
+ * builds never touch compute-baseline and the mapper needs no cut check.
+ */
+export function interfaceCompatKeys(name: string): string[] | undefined {
+  if (!isBaselineCut) {
+    return undefined;
+  }
   const key = `api.${name}`;
   return keyExists(key) ? [key] : [];
 }
@@ -92,8 +103,34 @@ export function interfaceCompatKeys(name: string): string[] {
  *
  * Returns only keys that actually exist in BCD; computeBaseline throws on
  * unknown keys, so callers must check existing ones.
+ *
+ * Resolved only under a Baseline cut; returns undefined otherwise, so non-cut
+ * builds never touch compute-baseline and the mapper needs no cut check.
+ * When `fallback` is given and the member itself yields no keys, the fallback
+ * member is resolved instead (e.g. @@iterator falling back to values() — BCD
+ * rarely has an @@iterator entry).
  */
 export function memberCompatKeys(
+  interfaceName: string,
+  member: string,
+  node: Identifier | undefined,
+  fallback?: { member: string; node: Identifier | undefined },
+): string[] | undefined {
+  if (!isBaselineCut) {
+    return undefined;
+  }
+  const keys = resolveMemberCompatKeys(interfaceName, member, node);
+  if (keys.length === 0 && fallback) {
+    return resolveMemberCompatKeys(
+      interfaceName,
+      fallback.member,
+      fallback.node,
+    );
+  }
+  return keys;
+}
+
+function resolveMemberCompatKeys(
   interfaceName: string,
   member: string,
   node: Identifier | undefined,
@@ -258,9 +295,9 @@ function escapeRegExp(value: string): string {
 
 /**
  * Collect the string leaves of the manual inputs for the raw-text reference
- * fallback, EXCLUDING declaration identifiers. Two sources of a removed
- * interface's *own* name are dropped so that merely patching an interface does
- * not count as a reference to it:
+ * fallbacks, EXCLUDING declaration identifiers. Two sources of a declared
+ * entity's *own* name are dropped so that merely patching an entity does not
+ * count as a reference to it:
  *
  * - Object keys (the record key, e.g. `interfaces.interface.WebTransport`) are
  *   never string *values*, so recursing over values alone drops them naturally.
@@ -270,7 +307,7 @@ function escapeRegExp(value: string): string {
  * What survives is exactly the textual content the structured
  * `collectTypeReferences` scan can't see — raw signature strings in
  * `overrideSignatures`/`overrideType` (e.g. `"...): MathMLElement"`) — which is
- * the only thing this fallback needs to catch.
+ * the only thing these fallbacks need to catch.
  */
 function collectManualReferenceStrings(value: unknown, out: string[]): void {
   if (typeof value === "string") {
@@ -294,6 +331,21 @@ function collectManualReferenceStrings(value: unknown, out: string[]): void {
 }
 
 /**
+ * Word-boundary name matcher over the manual inputs' reference text (string
+ * leaf values, declaration identifiers excluded — see
+ * `collectManualReferenceStrings`). Leaves are joined with newlines so a name
+ * can't straddle two adjacent leaves and form a false `\b` match. Shared by
+ * both raw-text fallbacks so they can't drift apart in what counts as a
+ * reference.
+ */
+function manualReferenceMatcher(sources: unknown[]): (name: string) => boolean {
+  const strings: string[] = [];
+  collectManualReferenceStrings(sources, strings);
+  const text = strings.join("\n");
+  return (name) => new RegExp(`\\b${escapeRegExp(name)}\\b`).test(text);
+}
+
+/**
  * Value types (dictionaries/enums/typedefs/callback functions) are never
  * baseline-removed, but the per-scope emit only keeps the ones still reachable
  * from a surviving interface. One whose only remaining reference is a raw-string
@@ -305,12 +357,18 @@ function collectManualReferenceStrings(value: unknown, out: string[]): void {
  * Excludes base types (ArrayBufferView) and names that also have a nominal
  * declaration — interface/callback-interface/mixin (EventListener) — since
  * forcing a same-named value type would emit a duplicate declaration.
+ *
+ * Only the manual inputs' string *leaf values* are scanned (via
+ * `manualReferenceMatcher`), never declaration identifiers — a value type
+ * that is merely patched is not thereby referenced. Structured references
+ * carried by the manual inputs need no forcing: the inputs are merged into
+ * the graph before emit, so the per-scope reachability pass sees them.
  */
 export function manuallyReferencedValueTypes(
   webidl: Browser.WebIdl,
   manualInputs: unknown[],
 ): Set<string> {
-  const text = JSON.stringify(manualInputs);
+  const isManuallyReferenced = manualReferenceMatcher(manualInputs);
   // Keyed by the emitted `.name`, not the record key, since a patch can rename a
   // type (e.g. enum ClientType -> ClientTypes) and references use the new name.
   const named = (record: Record<string, { name: string }> | undefined) =>
@@ -357,7 +415,7 @@ export function manuallyReferencedValueTypes(
     if (
       !baseTypeConversionMap.has(name) &&
       !nominal.has(name) &&
-      new RegExp(`\\b${escapeRegExp(name)}\\b`).test(text)
+      isManuallyReferenced(name)
     ) {
       add(name);
     }
@@ -371,56 +429,55 @@ export function manuallyReferencedValueTypes(
   return forced;
 }
 
-/**
- * A pure Baseline-year cut is not referentially closed: an API kept for year N
- * may reference an interface that only reached Baseline later (e.g.
- * ImageBitmapRenderingContext, 2020, references ImageBitmap, 2021). Walk the
- * surviving graph and "resurrect" any baseline-removed interface that is still
- * referenced, so the emitted .d.ts stays valid. Only interfaces can be both
- * fully removed and referenced as a type (dictionaries/typedefs/enums/
- * callbacks/mixins are never baseline-removed, and namespaces aren't used as
- * types), so interfaces are the only resurrection targets.
- *
- * References come from several places: the surviving IDL graph, the
- * `webidl.events` map (event handler/map types), and the manual input files
- * (added/overriding/patch types) that are merged after removal. The latter
- * often carry references as raw signature strings, so those are matched
- * textually against removed names.
- *
- * A resurrected interface is kept as a *type only*: the closure clears its
- * interface-level `exposed: ""` marker (so the type is emitted) but marks it
- * `noInterfaceObject` (so its runtime `declare var` — constructor and statics —
- * is not). The API failed the Baseline bar; only references to its type need to
- * resolve, and emitting the constructor would wrongly let `new X()` type-check.
- *
- * The same `noInterfaceObject` marking is applied to *every* baseline-removed
- * interface, not just resurrected ones. A removed interface can also re-enter
- * the cut through a manual `exposed` override merged after removal (e.g.
- * MIDIAccess/SourceBuffer, which overrides scope to `Window`); it still failed
- * the Baseline bar, so its runtime object must be suppressed there too. For
- * interfaces that simply stay removed the marker is inert — they are never
- * emitted.
- *
- * Mutates and returns `removalData`: clears the interface-level `exposed: ""`
- * marker for resurrected interfaces (keeping their member-level removals) and
- * sets `noInterfaceObject` on every removed interface.
- */
-export function applyReferenceClosure(
-  webidl: Browser.WebIdl,
-  removalData: Browser.WebIdl,
-  extraReferenceSources: unknown[] = [],
-): Browser.WebIdl {
-  const removalInterfaces = removalData.interfaces?.interface ?? {};
+/** What the reference closure decided about the baseline-removed interfaces. */
+export interface BaselineRemovalPlan {
+  /**
+   * The removal data passed in, adjusted in place: interface-level
+   * `exposed: ""` markers cleared for resurrected interfaces (member-level
+   * removals kept), `noInterfaceObject` set on every removed interface.
+   */
+  removalData: Browser.WebIdl;
+  /**
+   * Baseline-removed interfaces kept as type-only shells because something
+   * surviving still references them as a type.
+   */
+  resurrected: Set<string>;
+  /**
+   * Baseline-removed interfaces that nothing surviving references. Their
+   * interface-level removal is authoritative: no later merge may re-expose
+   * them (see `reassertBaselineRemovals`).
+   */
+  stillRemoved: Set<string>;
+}
+
+/** Interfaces marked fully removed (`exposed: ""`) in the removal data. */
+function collectRemovedInterfaces(
+  removalInterfaces: Record<string, Browser.Interface>,
+): Set<string> {
   const removedNames = new Set<string>();
   for (const [name, entry] of Object.entries(removalInterfaces)) {
     if (entry.exposed === "") {
       removedNames.add(name);
     }
   }
-  if (removedNames.size === 0) {
-    return removalData;
-  }
+  return removedNames;
+}
 
+/**
+ * The subset of `removedNames` that the surviving graph still references as a
+ * type. References come from several places: the surviving IDL graph, the
+ * `webidl.events` map (event handler/map types), and the manual input files
+ * (added/overriding/patch types) that are merged after removal. The latter
+ * often carry references as raw signature strings, so those are matched
+ * textually against removed names.
+ */
+function computeResurrected(
+  webidl: Browser.WebIdl,
+  removalData: Browser.WebIdl,
+  removedNames: Set<string>,
+  extraReferenceSources: unknown[],
+): Set<string> {
+  const removalInterfaces = removalData.interfaces?.interface ?? {};
   const fullInterfaces = webidl.interfaces?.interface ?? {};
   const resurrected = new Set<string>();
   const seen = new Set<string>();
@@ -472,22 +529,16 @@ export function applyReferenceClosure(
 
   // Manual inputs merged after removal: structured references plus raw
   // signature strings (e.g. "...): MathMLElement") matched by name. The text
-  // match sees only string *values* with declaration identifiers (record keys
-  // and `name` fields) stripped, so a patch that merely modifies an interface
-  // — mentioning its own name in the record key/`name` field — does not
-  // spuriously resurrect it. Joined with newlines so a name can't straddle two
-  // adjacent leaves and form a false `\b` match.
+  // match sees only string *values* with declaration identifiers stripped
+  // (see `manualReferenceMatcher`), so a patch that merely modifies an
+  // interface — mentioning its own name in the record key/`name` field —
+  // does not spuriously resurrect it.
   for (const source of extraReferenceSources) {
     consider(collectTypeReferences(source));
   }
-  const manualStrings: string[] = [];
-  collectManualReferenceStrings(extraReferenceSources, manualStrings);
-  const manualText = manualStrings.join("\n");
+  const isManuallyReferenced = manualReferenceMatcher(extraReferenceSources);
   for (const name of removedNames) {
-    if (
-      !resurrected.has(name) &&
-      new RegExp(`\\b${escapeRegExp(name)}\\b`).test(manualText)
-    ) {
+    if (!resurrected.has(name) && isManuallyReferenced(name)) {
       resurrect(name);
     }
   }
@@ -502,6 +553,29 @@ export function applyReferenceClosure(
     }
   }
 
+  return resurrected;
+}
+
+/**
+ * Suppress the runtime object of every baseline-removed interface. Whichever
+ * way it re-enters the cut — resurrected for referential closure, or
+ * re-exposed by an `exposed` override merged after removal — it failed the
+ * Baseline bar, so its `declare var X: { prototype: X; new(...): X }` must not
+ * be emitted (that would let `new WebTransport()` / `new MIDIAccess()`
+ * type-check in a cut where the API isn't Baseline-available). Only references
+ * to the *type* need to resolve. `noInterfaceObject` is exactly "emit the
+ * type, not the runtime object". For interfaces that stay removed the marker
+ * is inert. Skip interfaces already flagged (by the full graph's
+ * [LegacyNoInterfaceObject] or a manual input) to avoid a redundant-merge
+ * warning.
+ */
+function markRemovedInterfacesTypeOnly(
+  webidl: Browser.WebIdl,
+  removalInterfaces: Record<string, Browser.Interface>,
+  removedNames: Set<string>,
+  extraReferenceSources: unknown[],
+): void {
+  const fullInterfaces = webidl.interfaces?.interface ?? {};
   // Interfaces whose runtime object a manual input already suppresses (e.g. the
   // RTCIceCandidatePair override rolls it back toward a dictionary form). Skip
   // them below so noInterfaceObject isn't merged true-onto-true, which warns.
@@ -516,17 +590,6 @@ export function applyReferenceClosure(
     }
   }
 
-  // Suppress the runtime object of every baseline-removed interface. Whichever
-  // way it re-enters the cut — resurrected below for referential closure, or
-  // re-exposed by an `exposed` override merged after removal — it failed the
-  // Baseline bar, so its `declare var X: { prototype: X; new(...): X }` must not
-  // be emitted (that would let `new WebTransport()` / `new MIDIAccess()`
-  // type-check in a cut where the API isn't Baseline-available). Only references
-  // to the *type* need to resolve. `noInterfaceObject` is exactly "emit the
-  // type, not the runtime object". For interfaces that stay removed the marker
-  // is inert. Skip interfaces already flagged (by the full graph's
-  // [LegacyNoInterfaceObject] or a manual input) to avoid a redundant-merge
-  // warning.
   for (const name of removedNames) {
     if (
       !fullInterfaces[name]?.noInterfaceObject &&
@@ -535,11 +598,87 @@ export function applyReferenceClosure(
       removalInterfaces[name].noInterfaceObject = true;
     }
   }
+}
+
+/**
+ * A pure Baseline-year cut is not referentially closed: an API kept for year N
+ * may reference an interface that only reached Baseline later (e.g.
+ * ImageBitmapRenderingContext, 2020, references ImageBitmap, 2021). Walk the
+ * surviving graph and "resurrect" any baseline-removed interface that is still
+ * referenced, so the emitted .d.ts stays valid. Only interfaces can be both
+ * fully removed and referenced as a type (dictionaries/typedefs/enums/
+ * callbacks/mixins are never baseline-removed, and namespaces aren't used as
+ * types), so interfaces are the only resurrection targets.
+ *
+ * A resurrected interface is kept as a *type only*: the closure clears its
+ * interface-level `exposed: ""` marker (so the type is emitted) but marks it
+ * `noInterfaceObject` (so its runtime `declare var` — constructor and statics —
+ * is not). The API failed the Baseline bar; only references to its type need to
+ * resolve, and emitting the constructor would wrongly let `new X()` type-check.
+ * (Override-re-exposed interfaces get their exposure from the override merge
+ * instead; `markRemovedInterfacesTypeOnly` suppresses their runtime object all
+ * the same.)
+ *
+ * Mutates `removalData` and reports the decisions as explicit sets — see
+ * `BaselineRemovalPlan`.
+ */
+export function applyReferenceClosure(
+  webidl: Browser.WebIdl,
+  removalData: Browser.WebIdl,
+  extraReferenceSources: unknown[] = [],
+): BaselineRemovalPlan {
+  const removalInterfaces = removalData.interfaces?.interface ?? {};
+  const removedNames = collectRemovedInterfaces(removalInterfaces);
+  if (removedNames.size === 0) {
+    return { removalData, resurrected: new Set(), stillRemoved: new Set() };
+  }
+  const resurrected = computeResurrected(
+    webidl,
+    removalData,
+    removedNames,
+    extraReferenceSources,
+  );
+  markRemovedInterfacesTypeOnly(
+    webidl,
+    removalInterfaces,
+    removedNames,
+    extraReferenceSources,
+  );
   // Resurrected interfaces have no other path back into the cut, so clear their
   // interface-level `exposed: ""` marker to emit them as a type-only shell.
-  // (Override-re-exposed interfaces get their exposure from the override merge.)
   for (const name of resurrected) {
     delete removalInterfaces[name].exposed;
   }
-  return removalData;
+  const stillRemoved = new Set(
+    [...removedNames].filter((name) => !resurrected.has(name)),
+  );
+  return { removalData, resurrected, stillRemoved };
+}
+
+/**
+ * Re-assert the interface-level removals a Baseline cut decided on, after
+ * every manual input has merged. Baseline removal must be authoritative over
+ * a manual `exposed` override: a few non-Baseline interfaces carry an
+ * override written for full-lib scope reasons (e.g. MIDIAccess/SourceBuffer,
+ * narrowed to `Window` because engines only ship them there). Merged after
+ * the removal data, that override overwrites the interface-level
+ * `exposed: ""` cut marker and re-exposes the interface's *type* into the cut
+ * even though nothing Baseline references it.
+ *
+ * `stillRemoved` contains exactly the interfaces that are both non-Baseline
+ * and unreferenced (the reference closure already resurrected every
+ * referenced one), so re-asserting their removal cannot create a dangling
+ * reference. Member-level removals are left untouched — they must still yield
+ * to manual additions.
+ */
+export function reassertBaselineRemovals(
+  webidl: Browser.WebIdl,
+  stillRemoved: Set<string>,
+): void {
+  for (const name of stillRemoved) {
+    const iface = webidl.interfaces?.interface?.[name];
+    if (iface) {
+      iface.exposed = "";
+    }
+  }
 }
