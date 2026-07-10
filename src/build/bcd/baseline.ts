@@ -392,56 +392,55 @@ export function manuallyReferencedValueTypes(
   return forced;
 }
 
-/**
- * A pure Baseline-year cut is not referentially closed: an API kept for year N
- * may reference an interface that only reached Baseline later (e.g.
- * ImageBitmapRenderingContext, 2020, references ImageBitmap, 2021). Walk the
- * surviving graph and "resurrect" any baseline-removed interface that is still
- * referenced, so the emitted .d.ts stays valid. Only interfaces can be both
- * fully removed and referenced as a type (dictionaries/typedefs/enums/
- * callbacks/mixins are never baseline-removed, and namespaces aren't used as
- * types), so interfaces are the only resurrection targets.
- *
- * References come from several places: the surviving IDL graph, the
- * `webidl.events` map (event handler/map types), and the manual input files
- * (added/overriding/patch types) that are merged after removal. The latter
- * often carry references as raw signature strings, so those are matched
- * textually against removed names.
- *
- * A resurrected interface is kept as a *type only*: the closure clears its
- * interface-level `exposed: ""` marker (so the type is emitted) but marks it
- * `noInterfaceObject` (so its runtime `declare var` — constructor and statics —
- * is not). The API failed the Baseline bar; only references to its type need to
- * resolve, and emitting the constructor would wrongly let `new X()` type-check.
- *
- * The same `noInterfaceObject` marking is applied to *every* baseline-removed
- * interface, not just resurrected ones. A removed interface can also re-enter
- * the cut through a manual `exposed` override merged after removal (e.g.
- * MIDIAccess/SourceBuffer, which overrides scope to `Window`); it still failed
- * the Baseline bar, so its runtime object must be suppressed there too. For
- * interfaces that simply stay removed the marker is inert — they are never
- * emitted.
- *
- * Mutates and returns `removalData`: clears the interface-level `exposed: ""`
- * marker for resurrected interfaces (keeping their member-level removals) and
- * sets `noInterfaceObject` on every removed interface.
- */
-export function applyReferenceClosure(
-  webidl: Browser.WebIdl,
-  removalData: Browser.WebIdl,
-  extraReferenceSources: unknown[] = [],
-): Browser.WebIdl {
-  const removalInterfaces = removalData.interfaces?.interface ?? {};
+/** What the reference closure decided about the baseline-removed interfaces. */
+export interface BaselineRemovalPlan {
+  /**
+   * The removal data passed in, adjusted in place: interface-level
+   * `exposed: ""` markers cleared for resurrected interfaces (member-level
+   * removals kept), `noInterfaceObject` set on every removed interface.
+   */
+  removalData: Browser.WebIdl;
+  /**
+   * Baseline-removed interfaces kept as type-only shells because something
+   * surviving still references them as a type.
+   */
+  resurrected: Set<string>;
+  /**
+   * Baseline-removed interfaces that nothing surviving references. Their
+   * interface-level removal is authoritative: no later merge may re-expose
+   * them (see `reassertBaselineRemovals`).
+   */
+  stillRemoved: Set<string>;
+}
+
+/** Interfaces marked fully removed (`exposed: ""`) in the removal data. */
+function collectRemovedInterfaces(
+  removalInterfaces: Record<string, Browser.Interface>,
+): Set<string> {
   const removedNames = new Set<string>();
   for (const [name, entry] of Object.entries(removalInterfaces)) {
     if (entry.exposed === "") {
       removedNames.add(name);
     }
   }
-  if (removedNames.size === 0) {
-    return removalData;
-  }
+  return removedNames;
+}
 
+/**
+ * The subset of `removedNames` that the surviving graph still references as a
+ * type. References come from several places: the surviving IDL graph, the
+ * `webidl.events` map (event handler/map types), and the manual input files
+ * (added/overriding/patch types) that are merged after removal. The latter
+ * often carry references as raw signature strings, so those are matched
+ * textually against removed names.
+ */
+function computeResurrected(
+  webidl: Browser.WebIdl,
+  removalData: Browser.WebIdl,
+  removedNames: Set<string>,
+  extraReferenceSources: unknown[],
+): Set<string> {
+  const removalInterfaces = removalData.interfaces?.interface ?? {};
   const fullInterfaces = webidl.interfaces?.interface ?? {};
   const resurrected = new Set<string>();
   const seen = new Set<string>();
@@ -517,6 +516,29 @@ export function applyReferenceClosure(
     }
   }
 
+  return resurrected;
+}
+
+/**
+ * Suppress the runtime object of every baseline-removed interface. Whichever
+ * way it re-enters the cut — resurrected for referential closure, or
+ * re-exposed by an `exposed` override merged after removal — it failed the
+ * Baseline bar, so its `declare var X: { prototype: X; new(...): X }` must not
+ * be emitted (that would let `new WebTransport()` / `new MIDIAccess()`
+ * type-check in a cut where the API isn't Baseline-available). Only references
+ * to the *type* need to resolve. `noInterfaceObject` is exactly "emit the
+ * type, not the runtime object". For interfaces that stay removed the marker
+ * is inert. Skip interfaces already flagged (by the full graph's
+ * [LegacyNoInterfaceObject] or a manual input) to avoid a redundant-merge
+ * warning.
+ */
+function markRemovedInterfacesTypeOnly(
+  webidl: Browser.WebIdl,
+  removalInterfaces: Record<string, Browser.Interface>,
+  removedNames: Set<string>,
+  extraReferenceSources: unknown[],
+): void {
+  const fullInterfaces = webidl.interfaces?.interface ?? {};
   // Interfaces whose runtime object a manual input already suppresses (e.g. the
   // RTCIceCandidatePair override rolls it back toward a dictionary form). Skip
   // them below so noInterfaceObject isn't merged true-onto-true, which warns.
@@ -531,17 +553,6 @@ export function applyReferenceClosure(
     }
   }
 
-  // Suppress the runtime object of every baseline-removed interface. Whichever
-  // way it re-enters the cut — resurrected below for referential closure, or
-  // re-exposed by an `exposed` override merged after removal — it failed the
-  // Baseline bar, so its `declare var X: { prototype: X; new(...): X }` must not
-  // be emitted (that would let `new WebTransport()` / `new MIDIAccess()`
-  // type-check in a cut where the API isn't Baseline-available). Only references
-  // to the *type* need to resolve. `noInterfaceObject` is exactly "emit the
-  // type, not the runtime object". For interfaces that stay removed the marker
-  // is inert. Skip interfaces already flagged (by the full graph's
-  // [LegacyNoInterfaceObject] or a manual input) to avoid a redundant-merge
-  // warning.
   for (const name of removedNames) {
     if (
       !fullInterfaces[name]?.noInterfaceObject &&
@@ -550,11 +561,87 @@ export function applyReferenceClosure(
       removalInterfaces[name].noInterfaceObject = true;
     }
   }
+}
+
+/**
+ * A pure Baseline-year cut is not referentially closed: an API kept for year N
+ * may reference an interface that only reached Baseline later (e.g.
+ * ImageBitmapRenderingContext, 2020, references ImageBitmap, 2021). Walk the
+ * surviving graph and "resurrect" any baseline-removed interface that is still
+ * referenced, so the emitted .d.ts stays valid. Only interfaces can be both
+ * fully removed and referenced as a type (dictionaries/typedefs/enums/
+ * callbacks/mixins are never baseline-removed, and namespaces aren't used as
+ * types), so interfaces are the only resurrection targets.
+ *
+ * A resurrected interface is kept as a *type only*: the closure clears its
+ * interface-level `exposed: ""` marker (so the type is emitted) but marks it
+ * `noInterfaceObject` (so its runtime `declare var` — constructor and statics —
+ * is not). The API failed the Baseline bar; only references to its type need to
+ * resolve, and emitting the constructor would wrongly let `new X()` type-check.
+ * (Override-re-exposed interfaces get their exposure from the override merge
+ * instead; `markRemovedInterfacesTypeOnly` suppresses their runtime object all
+ * the same.)
+ *
+ * Mutates `removalData` and reports the decisions as explicit sets — see
+ * `BaselineRemovalPlan`.
+ */
+export function applyReferenceClosure(
+  webidl: Browser.WebIdl,
+  removalData: Browser.WebIdl,
+  extraReferenceSources: unknown[] = [],
+): BaselineRemovalPlan {
+  const removalInterfaces = removalData.interfaces?.interface ?? {};
+  const removedNames = collectRemovedInterfaces(removalInterfaces);
+  if (removedNames.size === 0) {
+    return { removalData, resurrected: new Set(), stillRemoved: new Set() };
+  }
+  const resurrected = computeResurrected(
+    webidl,
+    removalData,
+    removedNames,
+    extraReferenceSources,
+  );
+  markRemovedInterfacesTypeOnly(
+    webidl,
+    removalInterfaces,
+    removedNames,
+    extraReferenceSources,
+  );
   // Resurrected interfaces have no other path back into the cut, so clear their
   // interface-level `exposed: ""` marker to emit them as a type-only shell.
-  // (Override-re-exposed interfaces get their exposure from the override merge.)
   for (const name of resurrected) {
     delete removalInterfaces[name].exposed;
   }
-  return removalData;
+  const stillRemoved = new Set(
+    [...removedNames].filter((name) => !resurrected.has(name)),
+  );
+  return { removalData, resurrected, stillRemoved };
+}
+
+/**
+ * Re-assert the interface-level removals a Baseline cut decided on, after
+ * every manual input has merged. Baseline removal must be authoritative over
+ * a manual `exposed` override: a few non-Baseline interfaces carry an
+ * override written for full-lib scope reasons (e.g. MIDIAccess/SourceBuffer,
+ * narrowed to `Window` because engines only ship them there). Merged after
+ * the removal data, that override overwrites the interface-level
+ * `exposed: ""` cut marker and re-exposes the interface's *type* into the cut
+ * even though nothing Baseline references it.
+ *
+ * `stillRemoved` contains exactly the interfaces that are both non-Baseline
+ * and unreferenced (the reference closure already resurrected every
+ * referenced one), so re-asserting their removal cannot create a dangling
+ * reference. Member-level removals are left untouched — they must still yield
+ * to manual additions.
+ */
+export function reassertBaselineRemovals(
+  webidl: Browser.WebIdl,
+  stillRemoved: Set<string>,
+): void {
+  for (const name of stillRemoved) {
+    const iface = webidl.interfaces?.interface?.[name];
+    if (iface) {
+      iface.exposed = "";
+    }
+  }
 }

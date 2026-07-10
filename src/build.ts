@@ -13,6 +13,7 @@ import {
   applyReferenceClosure,
   isBaselineCut,
   manuallyReferencedValueTypes,
+  reassertBaselineRemovals,
 } from "./build/bcd/baseline.ts";
 import { getInterfaceElementMergeData } from "./build/webref/elements.ts";
 import { getInterfaceToEventMap } from "./build/webref/events.ts";
@@ -211,17 +212,24 @@ async function emitDom() {
   }
   webidl = merge(webidl, await getInterfaceElementMergeData());
 
+  // Manual input files merged into the graph below; a Baseline cut also scans
+  // them for references so the cut stays consistent with what they pull in.
+  const manualInputs = [addedItems, overriddenItems, patches];
+
   webidl = merge(webidl, getDeprecationData(webidl));
-  let removalData = getRemovalData(webidl);
+  const removalData = getRemovalData(webidl);
+  // Interfaces the Baseline cut removed and nothing surviving references;
+  // their removal is re-asserted after the manual inputs merge.
+  let baselineStillRemoved = new Set<string>();
   if (isBaselineCut) {
     // Keep the cut referentially closed: don't remove interfaces that surviving
     // APIs still reference, including types pulled in by the manual input files
     // that are merged below.
-    removalData = applyReferenceClosure(webidl, removalData, [
-      addedItems,
-      overriddenItems,
-      patches,
-    ]);
+    ({ stillRemoved: baselineStillRemoved } = applyReferenceClosure(
+      webidl,
+      removalData,
+      manualInputs,
+    ));
   }
   webidl = merge(webidl, removalData);
   webidl = merge(webidl, getDocsData(webidl));
@@ -240,23 +248,10 @@ async function emitDom() {
   }
 
   if (isBaselineCut) {
-    // Baseline removal is authoritative over a manual `exposed` override.
-    // A few non-Baseline interfaces carry an `exposed` override written for
-    // full-lib scope reasons (e.g. MIDIAccess/SourceBuffer, narrowed to
-    // `Window` because engines only ship them there). Merged after the removal
-    // data, that override overwrites the interface-level `exposed: ""` cut
-    // marker and re-exposes the interface's *type* into the cut even though
-    // nothing Baseline references it. applyReferenceClosure already cleared the
-    // marker for interfaces the surviving graph genuinely references (the
-    // `resurrected` set), so any interface still marked `exposed: ""` in
-    // removalData is both non-Baseline and unreferenced — re-assert its removal
-    // here, after every manual input has merged.
-    const removedInterfaces = removalData.interfaces?.interface ?? {};
-    for (const [interfaceName, entry] of Object.entries(removedInterfaces)) {
-      if (entry.exposed === "" && webidl.interfaces!.interface[interfaceName]) {
-        webidl.interfaces!.interface[interfaceName].exposed = "";
-      }
-    }
+    // A manual `exposed` override merged above may have overwritten the cut's
+    // interface-level `exposed: ""` marker; put it back. Why this is safe and
+    // necessary: see `reassertBaselineRemovals`.
+    reassertBaselineRemovals(webidl, baselineStillRemoved);
   }
 
   const transferables = Object.values(
@@ -325,11 +320,7 @@ async function emitDom() {
   // Baseline cut only: value types reachable only through raw-string manual
   // overrides, which the per-scope reachability pass can't otherwise see.
   const baselineKnownTypes = isBaselineCut
-    ? manuallyReferencedValueTypes(webidl, [
-        addedItems,
-        overriddenItems,
-        patches,
-      ])
+    ? manuallyReferencedValueTypes(webidl, manualInputs)
     : new Set<string>();
 
   for (const { outputFolder, compilerBehavior } of emitVariations) {
