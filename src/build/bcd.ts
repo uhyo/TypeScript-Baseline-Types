@@ -39,20 +39,17 @@ function isSuitable(
   const forceAlive = parentKey
     ? forceKeepAlive[parentKey]?.includes(key)
     : !!forceKeepAlive[key];
-  // The upstream "supported by 2+ engines" rule.
-  const defaultSupported =
-    !!compat && hasMultipleImplementations(compat.support, prefix);
-  // With a Baseline cut requested, replace that rule with the target's Baseline
-  // bar -- but only when Baseline has data for the item. When it doesn't (no
-  // resolvable BCD key), defer to the upstream decision rather than
-  // unconditionally keeping: the cut must stay a subset of the full lib, never
-  // adding members the normal build drops (e.g. PerformanceEntry.id, which has
-  // no BCD entry and would otherwise clash with LargestContentfulPaint).
-  const supported = isBaselineCut
-    ? compatKeys && compatKeys.length > 0
-      ? isBaselineSuitable(compatKeys)
-      : defaultSupported
-    : defaultSupported;
+  // With a Baseline cut requested, replace the upstream "supported by 2+
+  // engines" rule with the target's Baseline bar -- but only when Baseline has
+  // data for the item (compatKeys is only ever non-empty under a cut). When it
+  // doesn't (no resolvable BCD key), defer to the upstream decision rather
+  // than unconditionally keeping: the cut must stay a subset of the full lib,
+  // never adding members the normal build drops (e.g. PerformanceEntry.id,
+  // which has no BCD entry and would otherwise clash with
+  // LargestContentfulPaint).
+  const supported = compatKeys?.length
+    ? isBaselineSuitable(compatKeys)
+    : !!compat && hasMultipleImplementations(compat.support, prefix);
   if (supported) {
     if (!isBaselineCut && forceAlive) {
       if (parentKey) {

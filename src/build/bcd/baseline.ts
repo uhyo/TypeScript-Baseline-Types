@@ -74,8 +74,15 @@ function keyExists(key: string): boolean {
   }
 }
 
-/** BCD compat key for an interface/namespace itself, if BCD knows about it. */
-export function interfaceCompatKeys(name: string): string[] {
+/**
+ * BCD compat key for an interface/namespace itself, if BCD knows about it.
+ * Resolved only under a Baseline cut; returns undefined otherwise, so non-cut
+ * builds never touch compute-baseline and the mapper needs no cut check.
+ */
+export function interfaceCompatKeys(name: string): string[] | undefined {
+  if (!isBaselineCut) {
+    return undefined;
+  }
   const key = `api.${name}`;
   return keyExists(key) ? [key] : [];
 }
@@ -92,8 +99,34 @@ export function interfaceCompatKeys(name: string): string[] {
  *
  * Returns only keys that actually exist in BCD; computeBaseline throws on
  * unknown keys, so callers must check existing ones.
+ *
+ * Resolved only under a Baseline cut; returns undefined otherwise, so non-cut
+ * builds never touch compute-baseline and the mapper needs no cut check.
+ * When `fallback` is given and the member itself yields no keys, the fallback
+ * member is resolved instead (e.g. @@iterator falling back to values() — BCD
+ * rarely has an @@iterator entry).
  */
 export function memberCompatKeys(
+  interfaceName: string,
+  member: string,
+  node: Identifier | undefined,
+  fallback?: { member: string; node: Identifier | undefined },
+): string[] | undefined {
+  if (!isBaselineCut) {
+    return undefined;
+  }
+  const keys = resolveMemberCompatKeys(interfaceName, member, node);
+  if (keys.length === 0 && fallback) {
+    return resolveMemberCompatKeys(
+      interfaceName,
+      fallback.member,
+      fallback.node,
+    );
+  }
+  return keys;
+}
+
+function resolveMemberCompatKeys(
   interfaceName: string,
   member: string,
   node: Identifier | undefined,
