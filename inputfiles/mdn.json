@@ -16467,7 +16467,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/IDBObjectStore/getAllRecords",
     "pageType": "web-api-instance-method",
-    "summary": "The getAllRecords() method of the IDBObjectStore\ninterface retrieves all records (including primary keys and values) from the object store."
+    "summary": "The getAllRecords() method of the IDBObjectStore interface retrieves all records (including primary keys and values) from the object store."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/IDBObjectStore/getKey",
@@ -16530,9 +16530,14 @@
     "summary": "The upgradeneeded event is fired when an attempt was made to open a database with a version number higher than its current version."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/IDBRecord",
+    "pageType": "web-api-interface",
+    "summary": "The IDBRecord interface of the IndexedDB API represents a snapshot of a single record in an IDBObjectStore or IDBIndex."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/IDBRequest",
     "pageType": "web-api-interface",
-    "summary": "The IDBRequest interface of the IndexedDB API provides access to results of asynchronous requests to databases and database objects using event handler attributes. Each reading and writing operation on a database is done using a request."
+    "summary": "The IDBRequest interface of the IndexedDB API provides access to results of asynchronous requests to databases and database objects using event handler attributes."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/IDBRequest/error",
@@ -16552,7 +16557,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/IDBRequest/result",
     "pageType": "web-api-instance-property",
-    "summary": "The result read-only property of the\nIDBRequest interface returns the result of the request."
+    "summary": "The result read-only property of the IDBRequest interface returns the result of the request."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/IDBRequest/source",
@@ -29352,7 +29357,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/SVGAnimatedEnumeration/animVal",
     "pageType": "web-api-instance-property",
-    "summary": "The animVal read-only property of the SVGAnimatedEnumeration interface interface represents the value of an SVG enumeration."
+    "summary": "The animVal read-only property of the SVGAnimatedEnumeration interface represents the value of an SVG enumeration."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SVGAnimatedEnumeration/baseVal",
@@ -43065,6 +43070,11 @@
     "summary": "A WebAssembly.Module() constructor creates a new Module\nobject containing stateless WebAssembly code that has already been compiled by the\nbrowser and can be efficiently shared with Workers, and instantiated multiple times."
   },
   {
+    "mdn_url": "/en-US/docs/WebAssembly/Reference/JavaScript_interface/promising_static",
+    "pageType": "webassembly-function",
+    "summary": "The WebAssembly.promising() static method is used to wrap an exported Wasm function that relies on an asynchronous operation (that is, an imported suspending function created via the WebAssembly.Suspending() constructor), turning it into a Promise."
+  },
+  {
     "mdn_url": "/en-US/docs/WebAssembly/Reference/JavaScript_interface/RuntimeError",
     "pageType": "webassembly-interface",
     "summary": "The WebAssembly.RuntimeError object is the error type that is thrown whenever WebAssembly specifies a trap."
@@ -43073,6 +43083,26 @@
     "mdn_url": "/en-US/docs/WebAssembly/Reference/JavaScript_interface/RuntimeError/RuntimeError",
     "pageType": "webassembly-constructor",
     "summary": "The WebAssembly.RuntimeError() constructor creates a new\nWebAssembly RuntimeError object — the type that is thrown whenever\nWebAssembly specifies a trap."
+  },
+  {
+    "mdn_url": "/en-US/docs/WebAssembly/Reference/JavaScript_interface/SuspendError",
+    "pageType": "webassembly-interface",
+    "summary": "The WebAssembly.SuspendError object indicates an error during WebAssembly function suspension."
+  },
+  {
+    "mdn_url": "/en-US/docs/WebAssembly/Reference/JavaScript_interface/SuspendError/SuspendError",
+    "pageType": "webassembly-constructor",
+    "summary": "The WebAssembly.SuspendError() constructor creates a new\nWebAssembly SuspendError object, which indicates an error during\nWebAssembly function suspension."
+  },
+  {
+    "mdn_url": "/en-US/docs/WebAssembly/Reference/JavaScript_interface/Suspending",
+    "pageType": "webassembly-interface",
+    "summary": "The WebAssembly.Suspending object represents a suspending function — an asynchronous (Promise-based) JavaScript function that, when imported into a Wasm module and called from inside, will result in execution being suspended until the promise resolves."
+  },
+  {
+    "mdn_url": "/en-US/docs/WebAssembly/Reference/JavaScript_interface/Suspending/Suspending",
+    "pageType": "webassembly-constructor",
+    "summary": "The WebAssembly.Suspending() constructor creates a new Suspending object instance representing a suspending function."
   },
   {
     "mdn_url": "/en-US/docs/WebAssembly/Reference/JavaScript_interface/Table",
