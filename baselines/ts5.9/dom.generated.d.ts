@@ -625,6 +625,7 @@ interface DeviceOrientationEventInit extends EventInit {
 
 interface DisplayMediaStreamOptions {
     audio?: boolean | MediaTrackConstraints;
+    audioSelection?: AudioSelectionPreferenceEnum;
     video?: boolean | MediaTrackConstraints;
 }
 
@@ -29453,6 +29454,7 @@ interface RTCDtlsTransport extends EventTarget {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/RTCDtlsTransport/state)
      */
     readonly state: RTCDtlsTransportState;
+    /** The **`getRemoteCertificates()`** method of the RTCDtlsTransport interface returns the certificate chain of the remote peer of the DTLS connection. */
     getRemoteCertificates(): ArrayBuffer[];
     addEventListener<K extends keyof RTCDtlsTransportEventMap>(type: K, listener: (this: RTCDtlsTransport, ev: RTCDtlsTransportEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
     addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
@@ -44855,6 +44857,7 @@ type AttestationConveyancePreference = "direct" | "enterprise" | "indirect" | "n
 type AudioContextLatencyCategory = "balanced" | "interactive" | "playback";
 type AudioContextState = "closed" | "interrupted" | "running" | "suspended";
 type AudioSampleFormat = "f32" | "f32-planar" | "s16" | "s16-planar" | "s32" | "s32-planar" | "u8" | "u8-planar";
+type AudioSelectionPreferenceEnum = "preferred";
 type AuthenticatorAttachment = "cross-platform" | "platform";
 type AuthenticatorTransport = "ble" | "hybrid" | "internal" | "nfc" | "usb";
 type AutoFillAddressKind = "billing" | "shipping";

@@ -6672,7 +6672,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Document/selectionchange_event",
     "pageType": "web-api-event",
-    "summary": "The selectionchange event of the Selection API is fired when the current Selection of a Document is changed."
+    "summary": "The browser fires the selectionchange event of the Selection API when the current Selection of a Document changes. A document selection represents either a range of selected content across DOM nodes or a collapsed caret position."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Document/startViewTransition",
@@ -24840,6 +24840,11 @@
     "summary": "An RTCDtlsTransport receives an error event when a transport-level error occurs on the RTCPeerConnection."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/RTCDtlsTransport/getRemoteCertificates",
+    "pageType": "web-api-instance-method",
+    "summary": "The getRemoteCertificates() method of the RTCDtlsTransport interface returns the certificate chain of the remote peer of the DTLS connection."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/RTCDtlsTransport/iceTransport",
     "pageType": "web-api-instance-property",
     "summary": "The iceTransport read-only property of the RTCDtlsTransport interface contains a reference to the underlying RTCIceTransport."
@@ -37735,6 +37740,11 @@
     "summary": "The window.requestIdleCallback() method queues a function\nto be called during a browser's idle periods. This enables developers to perform\nbackground and low priority work on the main thread, without impacting\nlatency-critical events such as animation and input response. Functions are generally\ncalled in first-in-first-out order; however, callbacks which have a timeout\nspecified may be called out-of-order if necessary in order to run them before the\ntimeout elapses."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/Window/requestResize",
+    "pageType": "web-api-instance-method",
+    "summary": "The requestResize() method of the Window interface updates the size information shared by an embedded document with its embedding parent, but only if the embedded document has opted in to sharing its size information via the <meta name=\"responsive-embedded-sizing\"> meta tag."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/Window/resize_event",
     "pageType": "web-api-event",
     "summary": "The resize event fires when the document view (window) has been resized."
@@ -40735,6 +40745,11 @@
     "summary": "The border-right-width CSS property sets the width of the right border of an element."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-shape",
+    "pageType": "css-property",
+    "summary": "The border-shape CSS property defines an element's border shape using <basic-shape> values."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-spacing",
     "pageType": "css-property",
     "summary": "The border-spacing CSS property sets the distance between the borders of adjacent cells in a <table>. This property applies only when border-collapse is separate."
@@ -41418,6 +41433,11 @@
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/forced-color-adjust",
     "pageType": "css-property",
     "summary": "The forced-color-adjust CSS property allows authors to opt certain elements out of forced colors mode. This then restores the control of those values to CSS."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/frame-sizing",
+    "pageType": "css-property",
+    "summary": "The frame-sizing CSS property can be used to set an <iframe> element's horizontal or vertical size to equal the layout size of its embedded document in the same dimension, but only if the embedded document has opted in to sharing its size information."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/gap",
@@ -42253,6 +42273,11 @@
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-gap",
     "pageType": "css-property",
     "summary": "The row-gap CSS property sets the size of the gap (gutter) between an element's rows."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-color",
+    "pageType": "css-property",
+    "summary": "The row-rule-color CSS property defines the colors of the lines drawn between rows in multi-row grid, flex, and multi-col layouts."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-visibility-items",
