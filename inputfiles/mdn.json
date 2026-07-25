@@ -40397,7 +40397,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/aspect-ratio",
     "pageType": "css-property",
-    "summary": "The aspect-ratio CSS property allows you to define the desired width-to-height ratio of an element's box. This means that even if the parent container or viewport size changes, the browser will adjust the element's dimensions to maintain the specified width-to-height ratio. The specified aspect ratio is used in the calculation of auto sizes and some other layout functions."
+    "summary": "The aspect-ratio CSS property allows you to define the desired width-to-height ratio of an element's box."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/backdrop-filter",
@@ -40447,7 +40447,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/background-position",
     "pageType": "css-property",
-    "summary": "The background-position CSS property sets the initial position for each background image. The position is relative to the position layer set by background-origin."
+    "summary": "The background-position CSS property sets the initial position for each background image."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/background-position-x",
@@ -40967,17 +40967,17 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule",
     "pageType": "css-shorthand-property",
-    "summary": "The column-rule shorthand CSS property sets the width, style, and color of the line drawn between columns in a multi-column layout."
+    "summary": "The column-rule shorthand CSS property sets the width, style, and color of the lines drawn between columns in multi-column grid, flex, and multi-col layouts."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-color",
     "pageType": "css-property",
-    "summary": "The column-rule-color CSS property sets the color of the line drawn between columns in a multi-column layout."
+    "summary": "The column-rule-color CSS property defines the colors of the lines drawn between columns in multi-column grid, flex, and multi-col layouts."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-style",
     "pageType": "css-property",
-    "summary": "The column-rule-style CSS property sets the style of the line drawn between columns in a multi-column layout."
+    "summary": "The column-rule-style CSS property defines the line style of the lines drawn between columns in multi-column grid, flex, and multi-col layouts."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-visibility-items",
@@ -40987,7 +40987,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-width",
     "pageType": "css-property",
-    "summary": "The column-rule-width CSS property sets the width of the line drawn between columns in a multi-column layout."
+    "summary": "The column-rule-width CSS property defines the widths of the lines drawn between columns in multi-column grid, flex, and multi-col layouts."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-span",
@@ -41685,6 +41685,11 @@
     "summary": "The line-height-step CSS property sets the step unit for line box heights. When the property is set, line box heights are rounded up to the closest multiple of the unit."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/link-parameters",
+    "pageType": "css-property",
+    "summary": "The link-parameters CSS property sets values of external resources, such as SVGs, whose attributes have been set with the env() CSS function"
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/list-style",
     "pageType": "css-shorthand-property",
     "summary": "The list-style CSS shorthand property allows you to set all the list style properties at once."
@@ -42165,6 +42170,11 @@
     "summary": "The paint-order CSS property lets you control the order in which the fill and stroke (and painting markers) of text content and shapes are drawn."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/path-length",
+    "pageType": "css-property",
+    "summary": "The path-length CSS property specifies a total path length, in user units. All path computations are then scaled using the ratio path-length / (computed value of path length) — this includes text paths, animation paths, and various stroke operations."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/perspective",
     "pageType": "css-property",
     "summary": "The perspective CSS property determines the distance between the z=0 plane and the user in order to give a 3D-positioned element some perspective."
@@ -42275,14 +42285,29 @@
     "summary": "The row-gap CSS property sets the size of the gap (gutter) between an element's rows."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule",
+    "pageType": "css-property",
+    "summary": "The row-rule shorthand CSS property sets the width, style, and color of the line drawn between rows in multi-row grid, flex, and multi-col layouts."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-color",
     "pageType": "css-property",
     "summary": "The row-rule-color CSS property defines the colors of the lines drawn between rows in multi-row grid, flex, and multi-col layouts."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-style",
+    "pageType": "css-property",
+    "summary": "The row-rule-style CSS property defines the line style of the lines drawn between rows in multi-row grid, flex, and multi-col layouts."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-visibility-items",
     "pageType": "css-property",
     "summary": "The row-rule-visibility-items CSS property defines whether a row-rule segment is painted in gaps adjacent to empty areas."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-width",
+    "pageType": "css-property",
+    "summary": "The row-rule-width CSS property defines the widths of the lines drawn between rows in multi-row grid, flex, and multi-col layouts."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/ruby-align",
@@ -42297,7 +42322,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/ruby-position",
     "pageType": "css-property",
-    "summary": "The ruby-position CSS property defines the position of a ruby element relative to its base element. It can be positioned over the element (over), under it (under), or between the characters on their right side (inter-character)."
+    "summary": "The ruby-position CSS property defines the position of a ruby element relative to its base element. It can be positioned over the element (over), under it (under), or to the right (inter-character)."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-visibility-items",
@@ -42697,7 +42722,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/text-overflow",
     "pageType": "css-property",
-    "summary": "The text-overflow CSS property sets how hidden overflow content is signaled to users. It can be clipped, display an ellipsis (…), or display a custom string."
+    "summary": "The text-overflow CSS property sets how hidden overflow content is signaled to users."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/text-rendering",
@@ -42907,7 +42932,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/will-change",
     "pageType": "css-property",
-    "summary": "The will-change CSS property hints to browsers how an element is expected to change. Browsers may set up optimizations before an element is actually changed. These kinds of optimizations can increase the responsiveness of a page by doing potentially expensive work before they are actually required."
+    "summary": "The will-change CSS property enables optimizing animations by providing a rendering hint to a browser about how an element is expected to change."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/word-break",
@@ -42922,7 +42947,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/writing-mode",
     "pageType": "css-property",
-    "summary": "The writing-mode CSS property sets whether lines of text are laid out horizontally or vertically, as well as the direction in which blocks progress. When set for an entire document, it should be set on the root element (html element for HTML documents)."
+    "summary": "The writing-mode CSS property sets whether lines of text are laid out horizontally or vertically, as well as the direction in which text flows."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/x",
