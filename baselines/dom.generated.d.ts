@@ -6904,7 +6904,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     appearance: string;
     /**
-     * The aspect-ratio CSS property allows you to define the desired width-to-height ratio of an element's box. This means that even if the parent container or viewport size changes, the browser will adjust the element's dimensions to maintain the specified width-to-height ratio. The specified aspect ratio is used in the calculation of auto sizes and some other layout functions.
+     * The aspect-ratio CSS property allows you to define the desired width-to-height ratio of an element's box.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/aspect-ratio)
      */
@@ -6964,7 +6964,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     backgroundOrigin: string;
     /**
-     * The background-position CSS property sets the initial position for each background image. The position is relative to the position layer set by background-origin.
+     * The background-position CSS property sets the initial position for each background image.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/background-position)
      */
@@ -7499,25 +7499,25 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     columnGap: string;
     /**
-     * The column-rule shorthand CSS property sets the width, style, and color of the line drawn between columns in a multi-column layout.
+     * The column-rule shorthand CSS property sets the width, style, and color of the lines drawn between columns in multi-column grid, flex, and multi-col layouts.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/column-rule)
      */
     columnRule: string;
     /**
-     * The column-rule-color CSS property sets the color of the line drawn between columns in a multi-column layout.
+     * The column-rule-color CSS property defines the colors of the lines drawn between columns in multi-column grid, flex, and multi-col layouts.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/column-rule-color)
      */
     columnRuleColor: string;
     /**
-     * The column-rule-style CSS property sets the style of the line drawn between columns in a multi-column layout.
+     * The column-rule-style CSS property defines the line style of the lines drawn between columns in multi-column grid, flex, and multi-col layouts.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/column-rule-style)
      */
     columnRuleStyle: string;
     /**
-     * The column-rule-width CSS property sets the width of the line drawn between columns in a multi-column layout.
+     * The column-rule-width CSS property defines the widths of the lines drawn between columns in multi-column grid, flex, and multi-col layouts.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/column-rule-width)
      */
@@ -8812,7 +8812,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     rubyAlign: string;
     /**
-     * The ruby-position CSS property defines the position of a ruby element relative to its base element. It can be positioned over the element (over), under it (under), or between the characters on their right side (inter-character).
+     * The ruby-position CSS property defines the position of a ruby element relative to its base element. It can be positioned over the element (over), under it (under), or to the right (inter-character).
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/ruby-position)
      */
@@ -9250,7 +9250,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     textOrientation: string;
     /**
-     * The text-overflow CSS property sets how hidden overflow content is signaled to users. It can be clipped, display an ellipsis (…), or display a custom string.
+     * The text-overflow CSS property sets how hidden overflow content is signaled to users.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/text-overflow)
      */
@@ -9896,7 +9896,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     width: string;
     /**
-     * The will-change CSS property hints to browsers how an element is expected to change. Browsers may set up optimizations before an element is actually changed. These kinds of optimizations can increase the responsiveness of a page by doing potentially expensive work before they are actually required.
+     * The will-change CSS property enables optimizing animations by providing a rendering hint to a browser about how an element is expected to change.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/will-change)
      */
@@ -9920,7 +9920,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     wordWrap: string;
     /**
-     * The writing-mode CSS property sets whether lines of text are laid out horizontally or vertically, as well as the direction in which blocks progress. When set for an entire document, it should be set on the root element (html element for HTML documents).
+     * The writing-mode CSS property sets whether lines of text are laid out horizontally or vertically, as well as the direction in which text flows.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/writing-mode)
      */
@@ -32963,7 +32963,7 @@ declare var SVGFETurbulenceElement: {
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SVGFilterElement)
  */
-interface SVGFilterElement extends SVGElement, SVGURIReference {
+interface SVGFilterElement extends SVGElement {
     /**
      * The **`filterUnits`** read-only property of the SVGFilterElement interface reflects the filterUnits attribute of the given <filter> element. It takes one of the SVG_UNIT_TYPE_* constants defined in SVGUnitTypes.
      *
