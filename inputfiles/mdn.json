@@ -3757,7 +3757,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CreateMonitor",
     "pageType": "web-api-interface",
-    "summary": "The CreateMonitor interface provides information on the progress of an AI model download or some fine-tuning data for the model."
+    "summary": "The CreateMonitor interface provides information on the progress of an AI model download, for example a language pack or some fine-tuning data."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CreateMonitor/downloadprogress_event",
@@ -4352,7 +4352,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSImageValue",
     "pageType": "web-api-interface",
-    "summary": "The CSSImageValue interface of the CSS Typed Object Model API represents values for properties that take an image, for example background-image, list-style-image, or border-image-source."
+    "summary": "The CSSImageValue interface of the CSS Typed Object Model API represents values for CSS properties that take an <image> value, such as\nbackground-image, list-style-image, or border-image-source."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSImportRule",
@@ -4437,17 +4437,17 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSKeywordValue",
     "pageType": "web-api-interface",
-    "summary": "The CSSKeywordValue interface of the CSS Typed Object Model API creates an object to represent CSS keywords and other identifiers."
+    "summary": "The CSSKeywordValue interface of the CSS Typed Object Model API represents the value of a CSS keyword or other identifier."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSKeywordValue/CSSKeywordValue",
     "pageType": "web-api-constructor",
-    "summary": "The CSSKeywordValue() constructor\ncreates a new CSSKeywordValue object which represents CSS keywords and\nother identifiers."
+    "summary": "The CSSKeywordValue() constructor creates a new CSSKeywordValue object which represents a CSS keyword or other identifier."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSKeywordValue/value",
     "pageType": "web-api-instance-property",
-    "summary": "The value property of the\nCSSKeywordValue interface returns or sets the value of the\nCSSKeywordValue."
+    "summary": "The value property of the CSSKeywordValue interface represents the keyword as a string."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSLayerBlockRule",
@@ -4472,102 +4472,102 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathClamp",
     "pageType": "web-api-interface",
-    "summary": "The CSSMathClamp interface of the CSS Typed Object Model API represents the CSS clamp() function. It inherits properties and methods from its parent CSSNumericValue."
+    "summary": "The CSSMathClamp interface of the CSS Typed Object Model API represents the CSS clamp() function."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathClamp/CSSMathClamp",
     "pageType": "web-api-constructor",
-    "summary": "The CSSMathClamp() constructor creates a\nnew CSSMathClamp object representing a CSS clamp() function."
+    "summary": "The CSSMathClamp() constructor creates a new CSSMathClamp object representing a CSS clamp() function."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathClamp/lower",
     "pageType": "web-api-instance-property",
-    "summary": "The lower read-only property of the\nCSSMathClamp interface returns a CSSNumericValue object containing the minimum value of a CSSMathClamp object."
+    "summary": "The lower read-only property of the CSSMathClamp interface returns a CSSNumericValue object representing its minimum value."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathClamp/upper",
     "pageType": "web-api-instance-property",
-    "summary": "The upper read-only property of the\nCSSMathClamp interface returns a CSSNumericValue object containing the maximum value of a CSSMathClamp object."
+    "summary": "The upper read-only property of the CSSMathClamp interface returns a CSSNumericValue object representing its maximum value."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathClamp/value",
     "pageType": "web-api-instance-property",
-    "summary": "The value read-only property of the\nCSSMathClamp interface returns a CSSNumericValue object containing the preferred value of a CSSMathClamp object."
+    "summary": "The value read-only property of the CSSMathClamp interface returns a CSSNumericValue instance representing its preferred value."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathInvert",
     "pageType": "web-api-interface",
-    "summary": "The CSSMathInvert interface of the CSS Typed Object Model API represents a CSS calc() used as calc(1 / <value>). It inherits properties and methods from its parent CSSNumericValue."
+    "summary": "The CSSMathInvert interface of the CSS Typed Object Model API represents the inverse (reciprocal) of a CSSNumericValue."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathInvert/CSSMathInvert",
     "pageType": "web-api-constructor",
-    "summary": "The CSSMathInvert() constructor creates a\nnew CSSMathInvert object which represents a CSS\ncalc() used as calc(1 / value)"
+    "summary": "The CSSMathInvert() constructor creates a new CSSMathInvert object which represents the inverse (reciprocal) of a CSSNumericValue."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathInvert/value",
     "pageType": "web-api-instance-property",
-    "summary": "The CSSMathInvert.value read-only property of the\nCSSMathInvert interface returns a CSSNumericValue object."
+    "summary": "The value read-only property of the CSSMathInvert interface returns the CSSNumericValue that is being inverted."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathMax",
     "pageType": "web-api-interface",
-    "summary": "The CSSMathMax interface of the CSS Typed Object Model API represents the CSS max() function. It inherits properties and methods from its parent CSSNumericValue."
+    "summary": "The CSSMathMax interface of the CSS Typed Object Model API represents the CSS max() function."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathMax/CSSMathMax",
     "pageType": "web-api-constructor",
-    "summary": "The CSSMathMax() constructor creates a\nnew CSSMathMax object which represents the CSS max() function."
+    "summary": "The CSSMathMax() constructor creates a new CSSMathMax object which represents the CSS max() function."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathMax/values",
     "pageType": "web-api-instance-property",
-    "summary": "The CSSMathMax.values read-only property of the\nCSSMathMax interface returns a CSSNumericArray object\nwhich contains one or more CSSNumericValue objects."
+    "summary": "The values read-only property of the CSSMathMax interface returns a CSSNumericArray containing the CSSNumericValue objects being compared to find the maximum."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathMin",
     "pageType": "web-api-interface",
-    "summary": "The CSSMathMin interface of the CSS Typed Object Model API represents the CSS min() function. It inherits properties and methods from its parent CSSNumericValue."
+    "summary": "The CSSMathMin interface of the CSS Typed Object Model API represents the CSS min() function."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathMin/CSSMathMin",
     "pageType": "web-api-constructor",
-    "summary": "The CSSMathMin() constructor creates a\nnew CSSMathMin object which represents the CSS\nmin() function."
+    "summary": "The CSSMathMin() constructor creates a new CSSMathMin object that represents the CSS min() function."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathMin/values",
     "pageType": "web-api-instance-property",
-    "summary": "The CSSMathMin.values read-only property of the\nCSSMathMin interface returns a CSSNumericArray object\nwhich contains one or more CSSNumericValue objects."
+    "summary": "The values read-only property of the CSSMathMin interface returns a CSSNumericArray containing the CSSNumericValue objects being compared to find the minimum."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathNegate",
     "pageType": "web-api-interface",
-    "summary": "The CSSMathNegate interface of the CSS Typed Object Model API negates the value passed into it. It inherits properties and methods from its parent CSSNumericValue."
+    "summary": "The CSSMathNegate interface of the CSS Typed Object Model API negates the value passed into it."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathNegate/CSSMathNegate",
     "pageType": "web-api-constructor",
-    "summary": "The CSSMathNegate() constructor creates a\nnew CSSMathNegate object which negates the value passed into it."
+    "summary": "The CSSMathNegate() constructor creates a new CSSMathNegate object which negates the value passed into it."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathNegate/value",
     "pageType": "web-api-instance-property",
-    "summary": "The CSSMathNegate.value read-only property of the\nCSSMathNegate interface returns a CSSNumericValue object."
+    "summary": "The value read-only property of the CSSMathNegate interface returns the CSSNumericValue that is being negated."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathProduct",
     "pageType": "web-api-interface",
-    "summary": "The CSSMathProduct interface of the CSS Typed Object Model API represents the result obtained by calling add(), sub(), or toSum() on CSSNumericValue. It inherits properties and methods from its parent CSSNumericValue."
+    "summary": "The CSSMathProduct interface of the CSS Typed Object Model API represents the result obtained by calling mul() or div() on a CSSNumericValue."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathProduct/CSSMathProduct",
     "pageType": "web-api-constructor",
-    "summary": "The CSSMathProduct() constructor creates\na new CSSMathProduct object which creates a new\nCSSMathProduct object which multiplies the arguments passed into it."
+    "summary": "The CSSMathProduct() constructor creates a CSSMathProduct object that multiplies the arguments passed into it."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathProduct/values",
     "pageType": "web-api-instance-property",
-    "summary": "The CSSMathProduct.values read-only\nproperty of the CSSMathProduct interface returns a\nCSSNumericArray object which contains one or more\nCSSNumericValue objects."
+    "summary": "The values read-only property of the CSSMathProduct interface returns a CSSNumericArray containing the CSSNumericValue objects being multiplied together."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathSum",
@@ -4577,12 +4577,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathSum/CSSMathSum",
     "pageType": "web-api-constructor",
-    "summary": "The CSSMathSum() constructor creates a\nnew CSSMathSum object which creates a new CSSKeywordValue\nobject which represents the result obtained by calling\nadd(), sub(),\nor toSum() on CSSNumericValue."
+    "summary": "The CSSMathSum() constructor creates a new CSSMathSum object that represents the result obtained by calling add(), sub(), or toSum() on CSSNumericValue."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathSum/values",
     "pageType": "web-api-instance-property",
-    "summary": "The CSSMathSum.values read-only property\nof the CSSMathSum interface returns a CSSNumericArray\nobject which contains one or more CSSNumericValue objects."
+    "summary": "The values read-only property of the CSSMathSum interface returns a CSSNumericArray containing the CSSNumericValue objects being summed together."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathValue",
@@ -4592,22 +4592,22 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathValue/operator",
     "pageType": "web-api-instance-property",
-    "summary": "The CSSMathValue.operator read-only\nproperty of the CSSMathValue interface indicates the operator that the\ncurrent subtype represents. For example, if the current CSSMathValue\nsubtype is CSSMathSum, this property will return the string\n\"sum\"."
+    "summary": "The operator read-only property of the CSSMathValue interface indicates the operator that the current subtype represents.\nFor example, if the current CSSMathValue subtype is CSSMathSum, this property will return the string \"sum\"."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMatrixComponent",
     "pageType": "web-api-interface",
-    "summary": "The CSSMatrixComponent interface of the CSS Typed Object Model API represents the matrix() and matrix3d() values of the individual transform property in CSS. It inherits properties and methods from its parent CSSTransformValue."
+    "summary": "The CSSMatrixComponent interface of the CSS Typed Object Model API represents the matrix() and matrix3d() values of the individual transform property in CSS."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMatrixComponent/CSSMatrixComponent",
     "pageType": "web-api-constructor",
-    "summary": "The CSSMatrixComponent() constructor\ncreates a new CSSMatrixComponent object representing the matrix() and matrix3d() values of the\nindividual transform property in CSS."
+    "summary": "The CSSMatrixComponent() constructor creates a new CSSMatrixComponent object representing the matrix() and matrix3d() values of the individual transform property in CSS."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMatrixComponent/matrix",
     "pageType": "web-api-instance-property",
-    "summary": "The matrix property of the\nCSSMatrixComponent interface gets and sets a 2d or 3d matrix."
+    "summary": "The matrix property of the CSSMatrixComponent interface represents a DOMMatrix object containing a 2D or 3D matrix."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMediaRule",
@@ -4652,7 +4652,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericArray/length",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only length property of the\nCSSNumericArray interface returns the number of\nCSSNumericValue objects in the list."
+    "summary": "The length read-only property of the CSSNumericArray interface returns the number of CSSNumericValue objects in the list."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue",
@@ -4662,42 +4662,42 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/add",
     "pageType": "web-api-instance-method",
-    "summary": "The add() method of the\nCSSNumericValue interface adds a supplied number to the\nCSSNumericValue."
+    "summary": "The add() method of the CSSNumericValue interface adds a supplied number to the CSSNumericValue."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/div",
     "pageType": "web-api-instance-method",
-    "summary": "The div() method of the\nCSSNumericValue interface divides the CSSNumericValue by the\nsupplied value."
+    "summary": "The div() method of the CSSNumericValue interface divides the CSSNumericValue by the supplied value."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/equals",
     "pageType": "web-api-instance-method",
-    "summary": "The equals() method of the\nCSSNumericValue interface returns a boolean indicating whether the passed\nvalue are strictly equal. To return a value of true, all passed values must\nbe of the same type and value and must be in the same order. This allows structural\nequality to be tested quickly."
+    "summary": "The equals() method of the CSSNumericValue interface returns a boolean indicating whether the passed values are strictly equal.\nTo return a value of true, all passed values must be of the same type and value and must be in the same order.\nThis allows structural equality to be tested quickly."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/max",
     "pageType": "web-api-instance-method",
-    "summary": "The max() method of the\nCSSNumericValue interface returns the highest value from among the values\npassed. The passed values must be of the same type."
+    "summary": "The max() method of the CSSNumericValue interface returns the highest value from among the values passed.\nThe passed values must be of the same type."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/min",
     "pageType": "web-api-instance-method",
-    "summary": "The min() method of the\nCSSNumericValue interface returns the lowest value from among those\nvalues passed. The passed values must be of the same type."
+    "summary": "The min() method of the CSSNumericValue interface returns the lowest value from among those values passed.\nThe passed values must be of the same type."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/mul",
     "pageType": "web-api-instance-method",
-    "summary": "The mul() method of the\nCSSNumericValue interface multiplies the CSSNumericValue by\nthe supplied value."
+    "summary": "The mul() method of the CSSNumericValue interface multiplies the CSSNumericValue by the supplied value."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/parse_static",
     "pageType": "web-api-static-method",
-    "summary": "The parse() static method of the\nCSSNumericValue interface converts a value string into an object whose\nmembers are value and the units."
+    "summary": "The parse() static method of the CSSNumericValue interface converts a value string into an object whose members are value and the units."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/sub",
     "pageType": "web-api-instance-method",
-    "summary": "The sub() method of the\nCSSNumericValue interface subtracts a supplied number from the\nCSSNumericValue."
+    "summary": "The sub() method of the CSSNumericValue interface subtracts a supplied number from the CSSNumericValue."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/to",
@@ -4707,12 +4707,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/toSum",
     "pageType": "web-api-instance-method",
-    "summary": "The toSum() method of the\nCSSNumericValue interface converts the object's value to a\nCSSMathSum object to values of the specified unit."
+    "summary": "The toSum() method of the CSSNumericValue interface converts the object's value to a CSSMathSum object to values of the specified unit."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/type",
     "pageType": "web-api-instance-method",
-    "summary": "The type() method of the\nCSSNumericValue interface returns the type of\nCSSNumericValue, one of angle, flex,\nfrequency, length, resolution,\npercent, percentHint, or time."
+    "summary": "The type() method of the CSSNumericValue interface returns the type of CSSNumericValue, one of angle, flex, frequency, length, resolution, percent, percentHint, or time."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSOM_view_API",
@@ -4747,17 +4747,17 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSPerspective",
     "pageType": "web-api-interface",
-    "summary": "The CSSPerspective interface of the CSS Typed Object Model API represents the perspective() value of the individual transform property in CSS. It inherits properties and methods from its parent CSSTransformValue."
+    "summary": "The CSSPerspective interface of the CSS Typed Object Model API represents the perspective() value of the individual transform property in CSS."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSPerspective/CSSPerspective",
     "pageType": "web-api-constructor",
-    "summary": "The CSSPerspective() constructor creates\na new CSSPerspective object representing the perspective() value of\nthe individual transform property in CSS."
+    "summary": "The CSSPerspective() constructor creates a new CSSPerspective object representing the perspective() value of the individual transform property in CSS."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSPerspective/length",
     "pageType": "web-api-instance-property",
-    "summary": "The length property of the\nCSSPerspective interface sets the distance from z=0."
+    "summary": "The length property of the CSSPerspective interface represents the distance from z=0."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSPositionTryDescriptors",
@@ -4787,17 +4787,17 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSPositionValue/CSSPositionValue",
     "pageType": "web-api-constructor",
-    "summary": "The CSSPositionValue() constructor\ncreates a new CSSPositionValue object which represents values for\nproperties that take a position, for example object-position."
+    "summary": "The CSSPositionValue() constructor creates a new CSSPositionValue object that represents values for properties that take a position, for example object-position."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSPositionValue/x",
     "pageType": "web-api-instance-property",
-    "summary": "The x property of the\nCSSPositionValue interface returns the item's position along the web\npage's horizontal axis."
+    "summary": "The x property of the CSSPositionValue interface returns the item's position along the web page's horizontal axis."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSPositionValue/y",
     "pageType": "web-api-instance-property",
-    "summary": "The y property of the\nCSSPositionValue interface returns the item's position along the\nvertical axis."
+    "summary": "The y property of the CSSPositionValue interface returns the item's position along the vertical axis."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSPrimitiveValue",
@@ -4897,12 +4897,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSRotate",
     "pageType": "web-api-interface",
-    "summary": "The CSSRotate interface of the CSS Typed Object Model API represents the rotate value of the individual transform property in CSS. It inherits properties and methods from its parent CSSTransformValue."
+    "summary": "The CSSRotate interface of the CSS Typed Object Model API represents the rotate value of the individual transform property in CSS."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSRotate/angle",
     "pageType": "web-api-instance-property",
-    "summary": "The angle property of the\nCSSRotate interface gets and sets the angle of rotation. A positive angle\ndenotes a clockwise rotation, a negative angle a counter-clockwise one."
+    "summary": "The angle property of the CSSRotate interface gets and sets the angle of rotation.\nA positive angle denotes a clockwise rotation, a negative angle a counter-clockwise one."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSRotate/CSSRotate",
@@ -4912,17 +4912,17 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSRotate/x",
     "pageType": "web-api-instance-property",
-    "summary": "The x property of the\nCSSRotate interface gets and sets the abscissa or x-axis of the\ntranslating vector."
+    "summary": "The x property of the CSSRotate interface gets and sets the abscissa or x-axis of the translating vector."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSRotate/y",
     "pageType": "web-api-instance-property",
-    "summary": "The y property of the\nCSSRotate interface gets and sets the ordinate or y-axis of the\ntranslating vector."
+    "summary": "The y property of the CSSRotate interface gets and sets the ordinate or y-axis of the translating vector."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSRotate/z",
     "pageType": "web-api-instance-property",
-    "summary": "The z property of the\nCSSRotate interface representing the z-component of the translating\nvector. A positive value moves the element towards the viewer, and a negative value\nfarther away."
+    "summary": "The z property of the CSSRotate interface represents the z-component of the translating vector.\nA positive value moves the element towards the viewer and a negative value farther away."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSRule",
@@ -4967,27 +4967,27 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSScale",
     "pageType": "web-api-interface",
-    "summary": "The CSSScale interface of the CSS Typed Object Model API represents the scale() and scale3d() values of the individual transform property in CSS. It inherits properties and methods from its parent CSSTransformValue."
+    "summary": "The CSSScale interface of the CSS Typed Object Model API represents the scale() and scale3d() values of the individual transform property in CSS."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSScale/CSSScale",
     "pageType": "web-api-constructor",
-    "summary": "The CSSScale() constructor creates a new\nCSSScale object representing the scale() and scale3d() values of the\nindividual transform property in CSS."
+    "summary": "The CSSScale() constructor creates a new CSSScale object representing the scale() and scale3d() values of the individual transform property in CSS."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSScale/x",
     "pageType": "web-api-instance-property",
-    "summary": "The x property of the\nCSSScale interface gets and sets the abscissa or x-axis of the\ntranslating vector."
+    "summary": "The x property of the CSSScale interface gets and sets the abscissa or x-axis of the translating vector."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSScale/y",
     "pageType": "web-api-instance-property",
-    "summary": "The y property of the\nCSSScale interface gets and sets the ordinate or y-axis of the\ntranslating vector."
+    "summary": "The y property of the CSSScale interface gets and sets the ordinate or y-axis of the translating vector."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSScale/z",
     "pageType": "web-api-instance-property",
-    "summary": "The z property of the\nCSSScale interface representing the z-component of the translating\nvector. A positive value moves the element towards the viewer, and a negative value\nfarther away."
+    "summary": "The z property of the CSSScale interface represents the z-component of the translating vector.\nA positive value moves the element towards the viewer, and a negative value farther away."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSScopeRule",
@@ -5007,52 +5007,52 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSSkew",
     "pageType": "web-api-interface",
-    "summary": "The CSSSkew interface of the CSS Typed Object Model API is part of the CSSTransformValue interface. It represents the skew() value of the individual transform property in CSS."
+    "summary": "The CSSSkew interface of the CSS Typed Object Model API represents the skew() value of the individual transform property in CSS."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSSkew/ax",
     "pageType": "web-api-instance-property",
-    "summary": "The ax property of the\nCSSSkew interface gets and sets the angle used to distort the element\nalong the x-axis (or abscissa)."
+    "summary": "The ax property of the CSSSkew interface gets and sets the angle used to distort the element along the x-axis (or abscissa)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSSkew/ay",
     "pageType": "web-api-instance-property",
-    "summary": "The ay property of the\nCSSSkew interface gets and sets the angle used to distort the element\nalong the y-axis (or ordinate)."
+    "summary": "The ay property of the CSSSkew interface gets and sets the angle used to distort the element along the y-axis (or ordinate)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSSkew/CSSSkew",
     "pageType": "web-api-constructor",
-    "summary": "The CSSSkew() constructor creates a new\nCSSSkew object which represents the\nskew() value\nof the individual transform property in CSS."
+    "summary": "The CSSSkew() constructor creates a new CSSSkew object which represents the skew() value of the individual transform property in CSS."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSSkewX",
     "pageType": "web-api-interface",
-    "summary": "The CSSSkewX interface of the CSS Typed Object Model API represents the skewX() value of the individual transform property in CSS. It inherits properties and methods from its parent CSSTransformValue."
+    "summary": "The CSSSkewX interface of the CSS Typed Object Model API represents the skewX() value of the individual transform property in CSS."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSSkewX/ax",
     "pageType": "web-api-instance-property",
-    "summary": "The ax property of the\nCSSSkewX interface gets and sets the angle used to distort the element\nalong the x-axis (or abscissa)."
+    "summary": "The ax property of the CSSSkewX interface gets and sets the angle used to distort the element along the x-axis (or abscissa)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSSkewX/CSSSkewX",
     "pageType": "web-api-constructor",
-    "summary": "The CSSSkewX() constructor creates a new\nCSSSkewX object which represents the\nskewX()\nvalue of the individual transform property in CSS."
+    "summary": "The CSSSkewX() constructor creates a new CSSSkewX object that represents the skewX() value of the individual transform property in CSS."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSSkewY",
     "pageType": "web-api-interface",
-    "summary": "The CSSSkewY interface of the CSS Typed Object Model API represents the skewY() value of the individual transform property in CSS. It inherits properties and methods from its parent CSSTransformValue."
+    "summary": "The CSSSkewY interface of the CSS Typed Object Model API represents the skewY() value of the individual transform property in CSS."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSSkewY/ay",
     "pageType": "web-api-instance-property",
-    "summary": "The ay property of the\nCSSSkewY interface gets and sets the angle used to distort the element\nalong the y-axis (or ordinate)."
+    "summary": "The ay property of the CSSSkewY interface gets and sets the angle used to distort the element along the y-axis (or ordinate)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSSkewY/CSSSkewY",
     "pageType": "web-api-constructor",
-    "summary": "The CSSSkewY() constructor creates a new\nCSSSkewY object which represents the\nskewY() value\nof the individual transform property in CSS."
+    "summary": "The CSSSkewY() constructor creates a new CSSSkewY object that represents the skewY() value of the individual transform property in CSS."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSStartingStyleRule",
@@ -5202,17 +5202,22 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSStyleValue",
     "pageType": "web-api-interface",
-    "summary": "The CSSStyleValue interface of the CSS Typed Object Model API is the base class of all CSS values accessible through the Typed OM API. An instance of this class may be used anywhere a string is expected."
+    "summary": "The CSSStyleValue interface of the CSS Typed Object Model API is the base class of all CSS values accessible through the Typed OM API.\nAn instance of this class may be used anywhere a string is expected."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSStyleValue/parse_static",
     "pageType": "web-api-static-method",
-    "summary": "The parse() static method of the CSSStyleValue\ninterface sets a specific CSS property to the specified values and returns the first\nvalue as a CSSStyleValue object."
+    "summary": "The parse() static method of the CSSStyleValue interface sets a specific CSS property to the specified values and returns the first value as a CSSStyleValue object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSStyleValue/parseAll_static",
     "pageType": "web-api-static-method",
-    "summary": "The parseAll() static method of the CSSStyleValue\ninterface sets all occurrences of a specific CSS property to the specified value and\nreturns an array of CSSStyleValue objects, each containing one of the\nsupplied values."
+    "summary": "The parseAll() static method of the CSSStyleValue interface sets all occurrences of a specific CSS property to the specified value and returns an array of CSSStyleValue objects, each containing one of the supplied values."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/CSSStyleValue/toString",
+    "pageType": "web-api-instance-method",
+    "summary": "The toString() method of the CSSStyleValue interface is a stringifier that returns the value formatted as a string of standard CSS text."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSSupportsRule",
@@ -5227,12 +5232,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTransformComponent/is2D",
     "pageType": "web-api-instance-property",
-    "summary": "The is2D read-only property of the CSSTransformComponent interface indicates where the transform is 2D or 3D."
+    "summary": "The is2D read-only property of the CSSTransformComponent interface indicates whether the transform is 2D or 3D."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTransformComponent/toMatrix",
     "pageType": "web-api-instance-method",
-    "summary": "The toMatrix() method of the\nCSSTransformComponent interface returns a DOMMatrix\nobject."
+    "summary": "The toMatrix() method of the CSSTransformComponent interface returns a DOMMatrix object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTransformComponent/toString",
@@ -5247,7 +5252,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTransformValue/CSSTransformValue",
     "pageType": "web-api-constructor",
-    "summary": "The CSSTransformValue() constructor\ncreates a new CSSTransformValue object which represents a list of\nindividual transform objects."
+    "summary": "The CSSTransformValue() constructor creates a new CSSTransformValue object which represents a list of individual transform objects."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTransformValue/entries",
@@ -5262,27 +5267,27 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTransformValue/is2D",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only is2D property of the\nCSSTransformValue interface returns whether the transform is 2D or 3D."
+    "summary": "The is2D read-only property of the CSSTransformValue interface returns whether the transform is 2D or 3D."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTransformValue/keys",
     "pageType": "web-api-instance-method",
-    "summary": "The CSSTransformValue.keys() method\nreturns a new array iterator object that contains the keys\nfor each index in the array."
+    "summary": "The CSSTransformValue.keys() method returns a new array iterator object that contains the keys for each index in the array."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTransformValue/length",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only length property of the\nCSSTransformValue interface returns the number of transform components in\nthe list."
+    "summary": "The length read-only property of the CSSTransformValue interface returns the number of transform components in the list."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTransformValue/toMatrix",
     "pageType": "web-api-instance-method",
-    "summary": "The toMatrix() method of the\nCSSTransformValue interface returns a DOMMatrix object."
+    "summary": "The toMatrix() method of the CSSTransformValue interface returns a DOMMatrix object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTransformValue/values",
     "pageType": "web-api-instance-method",
-    "summary": "The CSSTransformValue.values() returns a\nnew array iterator object that contains the values for\neach index in the CSSTransformValue object."
+    "summary": "The CSSTransformValue.values() returns a new array iterator object that contains the values for each index in the CSSTransformValue object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTransition",
@@ -5297,27 +5302,27 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTranslate",
     "pageType": "web-api-interface",
-    "summary": "The CSSTranslate interface of the CSS Typed Object Model API represents the translate() value of the individual transform property in CSS. It inherits properties and methods from its parent CSSTransformValue."
+    "summary": "The CSSTranslate interface of the CSS Typed Object Model API represents the translate() value of the individual transform property in CSS."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTranslate/CSSTranslate",
     "pageType": "web-api-constructor",
-    "summary": "The CSSTranslate() constructor creates a\nnew CSSTranslate object representing the translate() value of the\nindividual transform property in CSS."
+    "summary": "The CSSTranslate() constructor creates a new CSSTranslate object representing the translate() value of the individual transform property in CSS."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTranslate/x",
     "pageType": "web-api-instance-property",
-    "summary": "The x property of the\nCSSTranslate interface gets and sets the abscissa or x-axis of the\ntranslating vector."
+    "summary": "The x property of the CSSTranslate interface gets and sets the abscissa or x-axis of the translating vector."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTranslate/y",
     "pageType": "web-api-instance-property",
-    "summary": "The y property of the\nCSSTranslate interface gets and sets the ordinate or y-axis of the\ntranslating vector."
+    "summary": "The y property of the CSSTranslate interface gets and sets the ordinate or y-axis of the translating vector."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTranslate/z",
     "pageType": "web-api-instance-property",
-    "summary": "The z property of the\nCSSTranslate interface representing the z-component of the translating\nvector. A positive value moves the element towards the viewer, and a negative value\nfarther away."
+    "summary": "The z property of the CSSTranslate interface represents the z-component of the translating vector.\nA positive value moves the element towards the viewer, and a negative value farther away."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnitValue",
@@ -5327,52 +5332,52 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnitValue/CSSUnitValue",
     "pageType": "web-api-constructor",
-    "summary": "The CSSUnitValue() constructor creates a\nnew CSSUnitValue object which returns a new CSSUnitValue\nobject which represents values that contain a single unit type. For example, \"42px\"\nwould be represented by a CSSNumericValue."
+    "summary": "The CSSUnitValue() constructor creates a new CSSUnitValue object which returns a new CSSUnitValue object which represents values that contain a single unit type.\nFor example, \"42px\" would be represented by a CSSNumericValue."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnitValue/unit",
     "pageType": "web-api-instance-property",
-    "summary": "The CSSUnitValue.unit read-only property\nof the CSSUnitValue interface returns a string\nindicating the unit type."
+    "summary": "The unit read-only property of the CSSUnitValue interface returns a string indicating the unit type."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnitValue/value",
     "pageType": "web-api-instance-property",
-    "summary": "The CSSUnitValue.value property of the\nCSSUnitValue interface returns a double indicating the number of units."
+    "summary": "The value property of the CSSUnitValue interface represents the number of units."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnparsedValue",
     "pageType": "web-api-interface",
-    "summary": "The CSSUnparsedValue interface of the CSS Typed Object Model API represents property values that reference custom properties. It consists of a list of string fragments and variable references."
+    "summary": "The CSSUnparsedValue interface of the CSS Typed Object Model API represents property values that reference custom properties.\nIt consists of a list of string fragments and variable references."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnparsedValue/CSSUnparsedValue",
     "pageType": "web-api-constructor",
-    "summary": "The CSSUnparsedValue() constructor\ncreates a new CSSUnparsedValue object which represents property values\nthat reference custom properties."
+    "summary": "The CSSUnparsedValue() constructor creates a new CSSUnparsedValue object which represents property values that reference custom properties."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnparsedValue/entries",
     "pageType": "web-api-instance-method",
-    "summary": "The CSSUnparsedValue.entries() method\nreturns an array of a given object's own enumerable property [key, value]\npairs in the same order as that provided by a for...in loop (the difference being that a for-in loop enumerates properties in the prototype chain as well)."
+    "summary": "The CSSUnparsedValue.entries() method returns an array of a given object's own enumerable property [key, value] pairs in the same order as that provided by a for...in loop (the difference being that a for-in loop enumerates properties in the prototype chain as well)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnparsedValue/forEach",
     "pageType": "web-api-instance-method",
-    "summary": "The CSSUnparsedValue.forEach() method\nexecutes a provided function once for each element of the\nCSSUnparsedValue."
+    "summary": "The CSSUnparsedValue.forEach() method executes a provided function once for each element of the CSSUnparsedValue."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnparsedValue/keys",
     "pageType": "web-api-instance-method",
-    "summary": "The CSSUnparsedValue.keys() method\nreturns a new array iterator object that contains the keys\nfor each index in the array."
+    "summary": "The CSSUnparsedValue.keys() method returns a new array iterator object that contains the keys for each index in the array."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnparsedValue/length",
     "pageType": "web-api-instance-property",
-    "summary": "The length read-only property of the\nCSSUnparsedValue interface returns the number of items in the object."
+    "summary": "The length read-only property of the CSSUnparsedValue interface returns the number of items in the object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnparsedValue/values",
     "pageType": "web-api-instance-method",
-    "summary": "The CSSUnparsedValue.values() method\nreturns a new array iterator object that contains the\nvalues for each index in the CSSUnparsedValue object."
+    "summary": "The CSSUnparsedValue.values() method returns a new array iterator object that contains the values for each index in the CSSUnparsedValue object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSValue",
@@ -8117,7 +8122,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/computedStyleMap",
     "pageType": "web-api-instance-method",
-    "summary": "The computedStyleMap() method of\nthe Element interface returns a StylePropertyMapReadOnly\ninterface which provides a read-only representation of a CSS declaration block that is\nan alternative to CSSStyleDeclaration."
+    "summary": "The computedStyleMap() method of the Element interface returns a StylePropertyMapReadOnly interface which provides a read-only representation of a CSS declaration block that is an alternative to CSSStyleDeclaration."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/contentvisibilityautostatechange_event",
@@ -17500,6 +17505,66 @@
     "summary": "The measureInputUsage() method of the LanguageDetector interface reports how much input quota would be used by a language detection operation for a given text input."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/LanguageModel",
+    "pageType": "web-api-interface",
+    "summary": "The LanguageModel interface of the Prompt API represents a session with a browser-provided language model. It exposes static methods for creating sessions and checking availability, as well as instance methods for prompting the model, appending context, and managing the context window."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/LanguageModel/append",
+    "pageType": "web-api-instance-method",
+    "summary": "The append() method of the LanguageModel interface adds content to the session's context window without generating a model response. It returns a Promise that resolves when the content has been successfully loaded into context. Use this method to preload a context before asking the model a question."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/LanguageModel/availability_static",
+    "pageType": "web-api-static-method",
+    "summary": "The availability() static method of the LanguageModel interface returns a status identifier indicating whether the browser's language model supports a given set of configuration options, without creating a session or triggering a download."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/LanguageModel/clone",
+    "pageType": "web-api-instance-method",
+    "summary": "The clone() method of the LanguageModel interface creates a copy of the LanguageModel it is called on, including its full context window state. The cloned session can be used independently without affecting the original."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/LanguageModel/contextoverflow_event",
+    "pageType": "web-api-event",
+    "summary": "The contextoverflow event fires on a LanguageModel instance when a call to prompt(), promptStreaming(), or append() causes the session's contextUsage to exceed the contextWindow."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/LanguageModel/contextUsage",
+    "pageType": "web-api-instance-property",
+    "summary": "The contextUsage read-only property of the LanguageModel interface returns the number of context window tokens currently consumed by the session that calls it, including initial prompts and all subsequent turns."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/LanguageModel/contextWindow",
+    "pageType": "web-api-instance-property",
+    "summary": "The contextWindow read-only property of the LanguageModel interface returns the total number of context window tokens available for this session. It is set when the session is created and does not change during the session's lifetime."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/LanguageModel/create_static",
+    "pageType": "web-api-static-method",
+    "summary": "The create() static method of the LanguageModel interface constructs a new LanguageModel instance, automatically downloading the corresponding model data if it is not already available."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/LanguageModel/destroy",
+    "pageType": "web-api-instance-method",
+    "summary": "The destroy() method of the LanguageModel interface releases the resources assigned to the LanguageModel instance it is called on and stops any further activity on it. Any ongoing and subsequent method calls made on the LanguageModel will reject with an AbortError."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/LanguageModel/measureContextUsage",
+    "pageType": "web-api-instance-method",
+    "summary": "The measureContextUsage() method of the LanguageModel interface estimates how many context window tokens the given input would consume without sending it to the model or modifying the session's state."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/LanguageModel/prompt",
+    "pageType": "web-api-instance-method",
+    "summary": "The prompt() method of the LanguageModel interface sends input to the language model and returns a Promise that resolves with the model's complete response as a string."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/LanguageModel/promptStreaming",
+    "pageType": "web-api-instance-method",
+    "summary": "The promptStreaming() method of the LanguageModel interface sends input to the language model and returns a ReadableStream that delivers the model's response incrementally as it is generated."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/LargestContentfulPaint",
     "pageType": "web-api-interface",
     "summary": "The LargestContentfulPaint interface provides timing information about the largest image or text paint before user input on a web page."
@@ -18820,6 +18885,11 @@
     "summary": "The MediaStreamTrackProcessor interface of the Insertable Streams for MediaStreamTrack API consumes a video MediaStreamTrack object's source and generates a stream of VideoFrame objects."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/MediaStreamTrackProcessor/discardedFrames",
+    "pageType": "web-api-instance-property",
+    "summary": "The discardedFrames property of the MediaStreamTrackProcessor interface returns a number indicating how many frames have been dropped by the processor."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/MediaStreamTrackProcessor/MediaStreamTrackProcessor",
     "pageType": "web-api-constructor",
     "summary": "The MediaStreamTrackProcessor() constructor creates a new MediaStreamTrackProcessor object which consumes a video MediaStreamTrack object's source and generates a stream of VideoFrames."
@@ -18828,6 +18898,11 @@
     "mdn_url": "/en-US/docs/Web/API/MediaStreamTrackProcessor/readable",
     "pageType": "web-api-instance-property",
     "summary": "The readable property of the MediaStreamTrackProcessor interface returns a ReadableStream of VideoFrames."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/MediaStreamTrackProcessor/totalFrames",
+    "pageType": "web-api-instance-property",
+    "summary": "The totalFrames property of the MediaStreamTrackProcessor interface returns a number indicating how many frames have been received by the processor in total."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/MediaTrackConstraints",
@@ -23470,6 +23545,31 @@
     "summary": "The PromiseRejectionEvent reason read-only\nproperty is any JavaScript value or Object which provides the reason\npassed into Promise.reject(). This in theory provides information about\nwhy the promise was rejected."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/Prompt_API",
+    "pageType": "web-api-overview",
+    "summary": "The Prompt API allows web pages to directly prompt a language model provided by the user agent via a JavaScript interface, without needing to manage implementation-specific details of the AI model being used."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Prompt_API/Adding_context",
+    "pageType": "guide",
+    "summary": "In our basic Prompt API guide, we covered everything you need to get up and running with the Prompt API. However, this only really covers creating a generic AI prompt app. To give your app different personalities, get it to respond in different ways, and remember past conversations, you need to provide additional context. The Prompt API has a few different mechanisms to allow you to do this, which are covered in this article."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Prompt_API/Multimodal",
+    "pageType": "guide",
+    "summary": "The Prompt API accepts multimodal inputs, including image and audio content. This article looks at how to handle multimodal inputs in your app."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Prompt_API/Preserving_sessions",
+    "pageType": "guide",
+    "summary": "One issue with the Prompt API is that the browser doesn't store session information across browser reloads — this is not a surprise, as the web is stateless by default, but it is an issue nonetheless. To restore session context after a reload or browser restart, you will have to implement a mechanism to save the conversation and restore it using a server- or client-side solution."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Prompt_API/Using",
+    "pageType": "guide",
+    "summary": "The Prompt API provides an asynchronous (Promise-based) mechanism for a website to directly prompt a language model provided by the user agent, without needing to manage implementation-specific details of the AI model being used. Having an on-device model is useful and efficient because sensitive data can stay on the user's device, the model is available offline, and developers can avoid the cost and latency of API calls to external services."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/PublicKeyCredential",
     "pageType": "web-api-interface",
     "summary": "The PublicKeyCredential interface provides information about a public key / private key pair, which is a credential for logging in to a service using an un-phishable and data-breach resistant asymmetric key pair instead of a password. It inherits from Credential, and is part of the Web Authentication API extension to the Credential Management API."
@@ -24585,6 +24685,11 @@
     "summary": "The id property of the RTCCertificateStats dictionary is a string that uniquely identifies the object for which this object provides statistics."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/RTCCertificateStats/issuerCertificateId",
+    "pageType": "web-api-instance-property",
+    "summary": "The issuerCertificateId property of the RTCCertificateStats dictionary is a string containing the id of the RTCCertificateStats object in this report that contains the next certificate in the certificate chain."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/RTCCertificateStats/timestamp",
     "pageType": "web-api-instance-property",
     "summary": "The timestamp property of the RTCCertificateStats dictionary is a DOMHighResTimeStamp object specifying the time at which the data in the object was sampled."
@@ -25097,12 +25202,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/RTCIceCandidatePair/local",
     "pageType": "web-api-instance-property",
-    "summary": "The local property of the RTCIceCandidatePair dictionary specifies the RTCIceCandidate which describes the configuration of the local end of a viable WebRTC connection."
+    "summary": "The local property of the RTCIceCandidatePair interface specifies the RTCIceCandidate that describes the configuration of the local end of a viable WebRTC connection."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/RTCIceCandidatePair/remote",
     "pageType": "web-api-instance-property",
-    "summary": "The remote property of the\nRTCIceCandidatePair dictionary specifies the\nRTCIceCandidate describing the configuration of the remote end of a\nviable WebRTC connection."
+    "summary": "The remote property of the RTCIceCandidatePair interface specifies the RTCIceCandidate that describes the configuration of the remote end of a viable WebRTC connection."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/RTCIceCandidatePairStats",
@@ -25387,7 +25492,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/RTCIceTransport/getSelectedCandidatePair",
     "pageType": "web-api-instance-method",
-    "summary": "The getSelectedCandidatePair() method of the RTCIceTransport interface returns an RTCIceCandidatePair object containing the current best-choice pair of ICE candidates describing the configuration of the endpoints of the transport."
+    "summary": "The getSelectedCandidatePair() method of the RTCIceTransport interface returns an RTCIceCandidatePair instance containing the current best-choice pair of ICE candidates describing the configuration of the endpoints of the transport."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/RTCIceTransport/role",
@@ -28892,67 +28997,67 @@
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMap/append",
     "pageType": "web-api-instance-method",
-    "summary": "The append() method of the\nStylePropertyMap interface adds the passed CSS value to the\nStylePropertyMap with the given property."
+    "summary": "The append() method of the StylePropertyMap interface adds the passed CSS value to the StylePropertyMap with the given property."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMap/clear",
     "pageType": "web-api-instance-method",
-    "summary": "The clear() method of the StylePropertyMap\ninterface removes all declarations in the StylePropertyMap."
+    "summary": "The clear() method of the StylePropertyMap interface removes all declarations in the StylePropertyMap."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMap/delete",
     "pageType": "web-api-instance-method",
-    "summary": "The delete() method of the\nStylePropertyMap interface removes the CSS declaration with the given\nproperty."
+    "summary": "The delete() method of the StylePropertyMap interface removes the CSS declaration using the given property."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMap/set",
     "pageType": "web-api-instance-method",
-    "summary": "The set() method of the StylePropertyMap\ninterface changes the CSS declaration with the given property."
+    "summary": "The set() method of the StylePropertyMap interface changes the CSS declaration using the given property."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMapReadOnly",
     "pageType": "web-api-interface",
-    "summary": "The StylePropertyMapReadOnly interface of the CSS Typed Object Model API provides a read-only representation of a CSS declaration block that is an alternative to CSSStyleDeclaration. Retrieve an instance of this interface using Element.computedStyleMap()."
+    "summary": "The StylePropertyMapReadOnly interface of the CSS Typed Object Model API provides a read-only representation of a CSS declaration block that is an alternative to CSSStyleDeclaration.\nRetrieve an instance of this interface using Element.computedStyleMap()."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMapReadOnly/entries",
     "pageType": "web-api-instance-method",
-    "summary": "The StylePropertyMapReadOnly.entries() method returns an\narray of a given object's own enumerable property [key, value] pairs, in\nthe same order as that provided by a for...in loop\n(the difference being that a for-in loop enumerates properties in the prototype chain as\nwell)."
+    "summary": "The StylePropertyMapReadOnly.entries() method returns an array of a given object's own enumerable property [key, value] pairs, in the same order as that provided by a for...in loop (the difference being that a for-in loop enumerates properties in the prototype chain as well)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMapReadOnly/forEach",
     "pageType": "web-api-instance-method",
-    "summary": "The StylePropertyMapReadOnly.forEach() method executes a\nprovided function once for each element of StylePropertyMapReadOnly."
+    "summary": "The StylePropertyMapReadOnly.forEach() method executes a provided function once for each element of StylePropertyMapReadOnly."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMapReadOnly/get",
     "pageType": "web-api-instance-method",
-    "summary": "The get() method of the\nStylePropertyMapReadOnly interface returns a CSSStyleValue\nobject for the first value of the specified property."
+    "summary": "The get() method of the StylePropertyMapReadOnly interface returns a CSSStyleValue object for the first value of the specified property."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMapReadOnly/getAll",
     "pageType": "web-api-instance-method",
-    "summary": "The getAll() method of the\nStylePropertyMapReadOnly interface returns an array of\nCSSStyleValue objects containing the values for the provided property."
+    "summary": "The getAll() method of the StylePropertyMapReadOnly interface returns an array of CSSStyleValue objects containing the values for the provided property."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMapReadOnly/has",
     "pageType": "web-api-instance-method",
-    "summary": "The has() method of the\nStylePropertyMapReadOnly interface indicates whether the specified\nproperty is in the StylePropertyMapReadOnly object."
+    "summary": "The has() method of the StylePropertyMapReadOnly interface indicates whether the specified property is in the StylePropertyMapReadOnly object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMapReadOnly/keys",
     "pageType": "web-api-instance-method",
-    "summary": "The StylePropertyMapReadOnly.keys() method returns a new\narray iterator containing the keys for each item\nin StylePropertyMapReadOnly"
+    "summary": "The StylePropertyMapReadOnly.keys() method returns a new array iterator containing the keys for each item in StylePropertyMapReadOnly."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMapReadOnly/size",
     "pageType": "web-api-instance-property",
-    "summary": "The size read-only property of the\nStylePropertyMapReadOnly interface returns an unsigned long integer\ncontaining the size of the StylePropertyMapReadOnly object."
+    "summary": "The size read-only property of the StylePropertyMapReadOnly interface returns a positive integer containing the size of the StylePropertyMapReadOnly object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMapReadOnly/values",
     "pageType": "web-api-instance-method",
-    "summary": "The StylePropertyMapReadOnly.values() method returns a\nnew array iterator containing the values for each index in the\nStylePropertyMapReadOnly object."
+    "summary": "The StylePropertyMapReadOnly.values() method returns a new array iterator containing the values for each index in the StylePropertyMapReadOnly object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StyleSheet",
@@ -42325,9 +42430,29 @@
     "summary": "The ruby-position CSS property defines the position of a ruby element relative to its base element. It can be positioned over the element (over), under it (under), or to the right (inter-character)."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule",
+    "pageType": "css-property",
+    "summary": "The rule shorthand CSS property sets the width, style, and color of the line drawn between rows and columns in multi-row grid, flex, and multi-col layouts, setting both the column and row rules to the same values."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-color",
+    "pageType": "css-property",
+    "summary": "The rule-color CSS property defines the colors of the lines drawn between columns and rows in multi-column grid, flex, and multi-col layouts, setting the colors of the column and row rules to the same value."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-style",
+    "pageType": "css-property",
+    "summary": "The rule-style CSS property defines the line style of the lines drawn between columns and rows in multi-column grid, flex, and multi-col layouts, setting the styles of the column and row rules to the same value."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-visibility-items",
     "pageType": "css-property",
     "summary": "The rule-visibility-items CSS shorthand property defines whether rule segments are painted in both row and column gaps adjacent to empty areas."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-width",
+    "pageType": "css-property",
+    "summary": "The rule-width CSS property defines the widths of any lines drawn in the gutters of multi-row grid, flex, and multi-col layouts, setting the widths of the column and row rules to the same value."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rx",
