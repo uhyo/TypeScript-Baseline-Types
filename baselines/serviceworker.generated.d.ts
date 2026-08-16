@@ -1657,7 +1657,7 @@ declare var CSSMathMin: {
 };
 
 /**
- * The **`CSSMathNegate`** interface of the CSS Typed Object Model API negates the value passed into it.
+ * The **`CSSMathNegate`** interface of the CSS Typed Object Model API represents the negation of a CSSNumericValue.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSMathNegate)
  */
@@ -1676,7 +1676,7 @@ declare var CSSMathNegate: {
 };
 
 /**
- * The **`CSSMathProduct`** interface of the CSS Typed Object Model API represents the result obtained by calling mul() or div() on a CSSNumericValue.
+ * The **`CSSMathProduct`** interface of the CSS Typed Object Model API represents the product of two or more CSSNumericValue values — in cases where the result can't be represented as a single value.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSMathProduct)
  */
@@ -1695,7 +1695,7 @@ declare var CSSMathProduct: {
 };
 
 /**
- * The **`CSSMathSum`** interface of the CSS Typed Object Model API represents the result obtained by calling add(), sub(), or toSum() on CSSNumericValue.
+ * The **`CSSMathSum`** interface of the CSS Typed Object Model API represents the sum of two or more CSSNumericValue values — in cases where the result can't be represented as a single value.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSMathSum)
  */
@@ -1714,13 +1714,13 @@ declare var CSSMathSum: {
 };
 
 /**
- * The **`CSSMathValue`** interface of the CSS Typed Object Model API a base class for classes representing complex numeric values.
+ * The **`CSSMathValue`** interface of the CSS Typed Object Model API is the base interface for objects representing complex numeric values produced by the CSS calc(), min(), max(), and clamp() functions.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSMathValue)
  */
 interface CSSMathValue extends CSSNumericValue {
     /**
-     * The **`operator`** read-only property of the CSSMathValue interface indicates the operator that the current subtype represents. For example, if the current CSSMathValue subtype is CSSMathSum, this property will return the string "sum".
+     * The **`operator`** read-only property of the CSSMathValue interface returns the operator that the current subtype represents. For example, if the current CSSMathValue subtype is CSSMathSum, this property will return the string "sum".
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSMathValue/operator)
      */
@@ -1752,13 +1752,13 @@ declare var CSSMatrixComponent: {
 };
 
 /**
- * The **`CSSNumericArray`** interface of the CSS Typed Object Model API contains a list of CSSNumericValue objects.
+ * The **`CSSNumericArray`** interface of the CSS Typed Object Model API represents an iterable of CSSNumericValue-based objects.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSNumericArray)
  */
 interface CSSNumericArray {
     /**
-     * The **`length`** read-only property of the CSSNumericArray interface returns the number of CSSNumericValue objects in the list.
+     * The **`length`** read-only property of the CSSNumericArray interface returns the number of items in the object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSNumericArray/length)
      */
@@ -1809,7 +1809,7 @@ interface CSSNumericValue extends CSSStyleValue {
      */
     min(...values: CSSNumberish[]): CSSNumericValue;
     /**
-     * The **`mul()`** method of the CSSNumericValue interface multiplies the CSSNumericValue by the supplied value.
+     * The **`mul()`** method of the CSSNumericValue interface multiplies the CSSNumericValue by the supplied values.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSNumericValue/mul)
      */
@@ -1827,7 +1827,7 @@ interface CSSNumericValue extends CSSStyleValue {
      */
     to(unit: string): CSSUnitValue;
     /**
-     * The **`toSum()`** method of the CSSNumericValue interface converts the object's value to a CSSMathSum object to values of the specified unit.
+     * The **`toSum()`** method of the CSSNumericValue interface converts the object's value to a CSSMathSum of CSSUnitValues using only the specified units, if possible. If called with no units, it simplifies the value into a minimal sum of CSSUnitValues instead.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSNumericValue/toSum)
      */
@@ -2017,7 +2017,7 @@ declare var CSSStyleValue: {
  */
 interface CSSTransformComponent {
     /**
-     * The **`is2D`** read-only property of the CSSTransformComponent interface indicates whether the transform is 2D or 3D.
+     * The **`is2D`** property of the CSSTransformComponent interface indicates whether the transform is 2D or 3D.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSTransformComponent/is2D)
      */
@@ -2126,7 +2126,7 @@ declare var CSSUnitValue: {
 };
 
 /**
- * The **`CSSUnparsedValue`** interface of the CSS Typed Object Model API represents property values that reference custom properties. It consists of a list of string fragments and variable references.
+ * The **`CSSUnparsedValue`** interface of the CSS Typed Object Model API represents a property value that can't be parsed into a more specific type — typically the value of a custom property.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSUnparsedValue)
  */
@@ -8951,7 +8951,7 @@ interface StylePropertyMapReadOnly {
      */
     readonly size: number;
     /**
-     * The **`get()`** method of the StylePropertyMapReadOnly interface returns a CSSStyleValue object for the first value of the specified property.
+     * The **`get()`** method of the StylePropertyMapReadOnly interface returns a CSSStyleValue-derived object for the first value of the specified property.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/StylePropertyMapReadOnly/get)
      */

@@ -4542,7 +4542,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathNegate",
     "pageType": "web-api-interface",
-    "summary": "The CSSMathNegate interface of the CSS Typed Object Model API negates the value passed into it."
+    "summary": "The CSSMathNegate interface of the CSS Typed Object Model API represents the negation of a CSSNumericValue."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathNegate/CSSMathNegate",
@@ -4557,12 +4557,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathProduct",
     "pageType": "web-api-interface",
-    "summary": "The CSSMathProduct interface of the CSS Typed Object Model API represents the result obtained by calling mul() or div() on a CSSNumericValue."
+    "summary": "The CSSMathProduct interface of the CSS Typed Object Model API represents the product of two or more CSSNumericValue values — in cases where the result can't be represented as a single value."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathProduct/CSSMathProduct",
     "pageType": "web-api-constructor",
-    "summary": "The CSSMathProduct() constructor creates a CSSMathProduct object that multiplies the arguments passed into it."
+    "summary": "The CSSMathProduct() constructor creates a new CSSMathProduct object representing the product of the arguments passed into it."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathProduct/values",
@@ -4572,12 +4572,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathSum",
     "pageType": "web-api-interface",
-    "summary": "The CSSMathSum interface of the CSS Typed Object Model API represents the result obtained by calling add(), sub(), or toSum() on CSSNumericValue."
+    "summary": "The CSSMathSum interface of the CSS Typed Object Model API represents the sum of two or more CSSNumericValue values — in cases where the result can't be represented as a single value."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathSum/CSSMathSum",
     "pageType": "web-api-constructor",
-    "summary": "The CSSMathSum() constructor creates a new CSSMathSum object that represents the result obtained by calling add(), sub(), or toSum() on CSSNumericValue."
+    "summary": "The CSSMathSum() constructor creates a new CSSMathSum object representing the sum of the arguments passed into it."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathSum/values",
@@ -4587,12 +4587,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathValue",
     "pageType": "web-api-interface",
-    "summary": "The CSSMathValue interface of the CSS Typed Object Model API a base class for classes representing complex numeric values."
+    "summary": "The CSSMathValue interface of the CSS Typed Object Model API is the base interface for objects representing complex numeric values produced by the CSS calc(), min(), max(), and clamp() functions."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathValue/operator",
     "pageType": "web-api-instance-property",
-    "summary": "The operator read-only property of the CSSMathValue interface indicates the operator that the current subtype represents.\nFor example, if the current CSSMathValue subtype is CSSMathSum, this property will return the string \"sum\"."
+    "summary": "The operator read-only property of the CSSMathValue interface returns the operator that the current subtype represents.\nFor example, if the current CSSMathValue subtype is CSSMathSum, this property will return the string \"sum\"."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMatrixComponent",
@@ -4647,12 +4647,32 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericArray",
     "pageType": "web-api-interface",
-    "summary": "The CSSNumericArray interface of the CSS Typed Object Model API contains a list of CSSNumericValue objects."
+    "summary": "The CSSNumericArray interface of the CSS Typed Object Model API represents an iterable of CSSNumericValue-based objects."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/CSSNumericArray/entries",
+    "pageType": "web-api-instance-method",
+    "summary": "The entries() method of the CSSNumericArray interface returns a new array iterator that yields [index, value] pairs for each item in the object."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/CSSNumericArray/forEach",
+    "pageType": "web-api-instance-method",
+    "summary": "The forEach() method of the CSSNumericArray interface executes a provided function once for each item in the object."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/CSSNumericArray/keys",
+    "pageType": "web-api-instance-method",
+    "summary": "The keys() method of the CSSNumericArray interface returns a new array iterator that yields the index of each item in the object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericArray/length",
     "pageType": "web-api-instance-property",
-    "summary": "The length read-only property of the CSSNumericArray interface returns the number of CSSNumericValue objects in the list."
+    "summary": "The length read-only property of the CSSNumericArray interface returns the number of items in the object."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/CSSNumericArray/values",
+    "pageType": "web-api-instance-method",
+    "summary": "The values() method of the CSSNumericArray interface returns a new array iterator that yields each item in the object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue",
@@ -4687,7 +4707,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/mul",
     "pageType": "web-api-instance-method",
-    "summary": "The mul() method of the CSSNumericValue interface multiplies the CSSNumericValue by the supplied value."
+    "summary": "The mul() method of the CSSNumericValue interface multiplies the CSSNumericValue by the supplied values."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/parse_static",
@@ -4707,7 +4727,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/toSum",
     "pageType": "web-api-instance-method",
-    "summary": "The toSum() method of the CSSNumericValue interface converts the object's value to a CSSMathSum object to values of the specified unit."
+    "summary": "The toSum() method of the CSSNumericValue interface converts the object's value to a CSSMathSum of CSSUnitValues using only the specified units, if possible.\nIf called with no units, it simplifies the value into a minimal sum of CSSUnitValues instead."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/type",
@@ -4907,7 +4927,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSRotate/CSSRotate",
     "pageType": "web-api-constructor",
-    "summary": "The CSSRotate() constructor creates a new\nCSSRotate object representing the rotate() value of the\nindividual transform property in CSS."
+    "summary": "The CSSRotate() constructor creates a new CSSRotate object representing the rotate() value of the individual transform property in CSS."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSRotate/x",
@@ -5232,7 +5252,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTransformComponent/is2D",
     "pageType": "web-api-instance-property",
-    "summary": "The is2D read-only property of the CSSTransformComponent interface indicates whether the transform is 2D or 3D."
+    "summary": "The is2D property of the CSSTransformComponent interface indicates whether the transform is 2D or 3D."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSTransformComponent/toMatrix",
@@ -5347,27 +5367,27 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnparsedValue",
     "pageType": "web-api-interface",
-    "summary": "The CSSUnparsedValue interface of the CSS Typed Object Model API represents property values that reference custom properties.\nIt consists of a list of string fragments and variable references."
+    "summary": "The CSSUnparsedValue interface of the CSS Typed Object Model API represents a property value that can't be parsed into a more specific type — typically the value of a custom property."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnparsedValue/CSSUnparsedValue",
     "pageType": "web-api-constructor",
-    "summary": "The CSSUnparsedValue() constructor creates a new CSSUnparsedValue object which represents property values that reference custom properties."
+    "summary": "The CSSUnparsedValue() constructor creates a new CSSUnparsedValue object, which represents a property value that can't be parsed into a more specific type — typically the value of a custom property."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnparsedValue/entries",
     "pageType": "web-api-instance-method",
-    "summary": "The CSSUnparsedValue.entries() method returns an array of a given object's own enumerable property [key, value] pairs in the same order as that provided by a for...in loop (the difference being that a for-in loop enumerates properties in the prototype chain as well)."
+    "summary": "The entries() method of the CSSUnparsedValue interface returns a new array iterator that yields [index, value] pairs for each item in the object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnparsedValue/forEach",
     "pageType": "web-api-instance-method",
-    "summary": "The CSSUnparsedValue.forEach() method executes a provided function once for each element of the CSSUnparsedValue."
+    "summary": "The forEach() method of the CSSUnparsedValue interface executes a provided function once for each item in the object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnparsedValue/keys",
     "pageType": "web-api-instance-method",
-    "summary": "The CSSUnparsedValue.keys() method returns a new array iterator object that contains the keys for each index in the array."
+    "summary": "The keys() method of the CSSUnparsedValue interface returns a new array iterator that yields the index of each item in the object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnparsedValue/length",
@@ -5377,7 +5397,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSUnparsedValue/values",
     "pageType": "web-api-instance-method",
-    "summary": "The CSSUnparsedValue.values() method returns a new array iterator object that contains the values for each index in the CSSUnparsedValue object."
+    "summary": "The values() method of the CSSUnparsedValue interface returns a new array iterator that yields each item in the object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSValue",
@@ -6197,7 +6217,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Document/createProcessingInstruction",
     "pageType": "web-api-instance-method",
-    "summary": "createProcessingInstruction() generates a new processing instruction node and returns it."
+    "summary": "The createProcessingInstruction() method of the Document interface creates a new ProcessingInstruction object and returns it."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Document/createRange",
@@ -17125,6 +17145,36 @@
     "summary": "The IntegrityViolationReport dictionary of the Reporting API represents a report that is generated when a document violates its Integrity Policy."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/InteractionContentfulPaint",
+    "pageType": "web-api-interface",
+    "summary": "The InteractionContentfulPaint interface provides timing information about contentful paints attributable to an interaction."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/InteractionContentfulPaint/interactionId",
+    "pageType": "web-api-instance-property",
+    "summary": "The interactionId read-only property of the InteractionContentfulPaint interface returns the interactionId of the PerformanceEventTiming entry representing the interaction that resulted in the paint."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/InteractionContentfulPaint/largestContentfulPaint",
+    "pageType": "web-api-instance-property",
+    "summary": "The largestContentfulPaint read-only property of the PerformanceSoftNavigation interface returns the current largest LargestContentfulPaint relevant to this soft navigation."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/InteractionContentfulPaint/navigationId",
+    "pageType": "web-api-instance-property",
+    "summary": "The navigationId read-only property of the InteractionContentfulPaint interface returns the id of the navigation that this paint is happened under."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/InteractionContentfulPaint/paintTime",
+    "pageType": "web-api-instance-property",
+    "summary": "The paintTime read-only property of the InteractionContentfulPaint interface returns the timestamp of when the rendering phase ended and the paint phase started."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/InteractionContentfulPaint/presentationTime",
+    "pageType": "web-api-instance-property",
+    "summary": "The presentationTime read-only property of the InteractionContentfulPaint interface returns the timestamp of when the painted pixels were actually drawn on the screen."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/InterestEvent",
     "pageType": "web-api-interface",
     "summary": "The InterestEvent interface represents an event that fires when interest is shown or lost on an interest invoker."
@@ -21815,6 +21865,11 @@
     "summary": "The PaymentRequest method\ncanMakePayment() determines whether or not the request\nis configured in a way that is compatible with at least one payment method supported\nby the user agent."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/PaymentRequest/getSecurePaymentConfirmationCapabilities_static",
+    "pageType": "web-api-static-method",
+    "summary": "The getSecurePaymentConfirmationCapabilities() static method of the PaymentRequest interface returns an object indicating which capabilities of the Secure payment confirmation feature are supported by the current browser."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/PaymentRequest/id",
     "pageType": "web-api-instance-property",
     "summary": "The id read-only attribute of the\nPaymentRequest interface returns a unique identifier for a particular\nPaymentRequest instance."
@@ -22755,6 +22810,41 @@
     "summary": "The toJSON() method of the PerformanceServerTiming interface is a serializer; it returns a JSON representation of the PerformanceServerTiming object."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceSoftNavigation",
+    "pageType": "web-api-interface",
+    "summary": "The PerformanceSoftNavigation interface provides timing information about soft navigations as used by client-side routing on single-page application (SPA) sites. It is emitted when a browser observes a soft navigation to have taken place."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceSoftNavigation/getLargestInteractionContentfulPaint",
+    "pageType": "web-api-instance-method",
+    "summary": "The getLargestInteractionContentfulPaint() method of the PerformanceSoftNavigation interface returns the current largest InteractionContentfulPaint relevant to this soft navigation."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceSoftNavigation/interactionId",
+    "pageType": "web-api-instance-property",
+    "summary": "The interactionId read-only property of the PerformanceSoftNavigation interface returns the interactionId of the PerformanceEventTiming entry representing the interaction that resulted in the soft navigation."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceSoftNavigation/navigationId",
+    "pageType": "web-api-instance-property",
+    "summary": "The navigationId read-only property of the PerformanceSoftNavigation interface returns an increasing integer id unique to this page load."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceSoftNavigation/navigationType",
+    "pageType": "web-api-instance-property",
+    "summary": "The navigationType read-only property of the PerformanceSoftNavigation interface returns the type of the soft navigation — push, reload, replace, or traverse."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceSoftNavigation/paintTime",
+    "pageType": "web-api-instance-property",
+    "summary": "The paintTime read-only property of the PerformanceSoftNavigation interface returns the timestamp of when the rendering phase ended and the paint phase started."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceSoftNavigation/presentationTime",
+    "pageType": "web-api-instance-property",
+    "summary": "The presentationTime read-only property of the PerformanceSoftNavigation interface returns the timestamp of when the painted pixels were actually drawn on the screen."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/PerformanceTiming",
     "pageType": "web-api-interface",
     "summary": "The PerformanceTiming interface is a legacy interface kept for backwards compatibility and contains properties that offer performance timing information for various events which occur during the loading and use of the current page. You get a PerformanceTiming object describing your page using the window.performance.timing property."
@@ -23467,7 +23557,42 @@
   {
     "mdn_url": "/en-US/docs/Web/API/ProcessingInstruction",
     "pageType": "web-api-interface",
-    "summary": "The ProcessingInstruction interface represents a processing instruction; that is, a Node which embeds an instruction targeting a specific application but that can be ignored by any other applications which don't recognize the instruction."
+    "summary": "The ProcessingInstruction interface represents a processing instruction — a Node that embeds an instruction targeting a specific application, which can be ignored by any application that doesn't recognize the instruction."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/ProcessingInstruction/getAttribute",
+    "pageType": "web-api-instance-method",
+    "summary": "The getAttribute() method of the\nProcessingInstruction interface returns the value of a specified attribute on the\nprocessing instruction."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/ProcessingInstruction/getAttributeNames",
+    "pageType": "web-api-instance-method",
+    "summary": "The getAttributeNames() method of the\nProcessingInstruction interface returns the attribute names of the processing instruction as an\nArray of strings. If the processing instruction has no attributes it returns an empty\narray."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/ProcessingInstruction/hasAttribute",
+    "pageType": "web-api-instance-method",
+    "summary": "The hasAttribute() method of the ProcessingInstruction interface returns a\nboolean value indicating whether the specified element has the\nspecified attribute or not."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/ProcessingInstruction/hasAttributes",
+    "pageType": "web-api-instance-method",
+    "summary": "The hasAttributes() method of the ProcessingInstruction\ninterface returns a boolean value indicating whether the current element has any\nattributes or not."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/ProcessingInstruction/ProcessingInstruction",
+    "pageType": "web-api-constructor",
+    "summary": "The ProcessingInstruction() constructor creates a new ProcessingInstruction object instance."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/ProcessingInstruction/removeAttribute",
+    "pageType": "web-api-instance-method",
+    "summary": "The removeAttribute() method of the ProcessingInstruction removes the attribute with the specified name from the processing instruction."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/ProcessingInstruction/setAttribute",
+    "pageType": "web-api-instance-method",
+    "summary": "The setAttribute() method of the ProcessingInstruction interface sets the value of an attribute on the processing instruction.\nIf the attribute already exists, the value is updated; otherwise, a new attribute is added with the specified name and value."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/ProcessingInstruction/sheet",
@@ -23478,6 +23603,11 @@
     "mdn_url": "/en-US/docs/Web/API/ProcessingInstruction/target",
     "pageType": "web-api-instance-property",
     "summary": "The read-only target property of the ProcessingInstruction interface\nrepresent the application to which the ProcessingInstruction is targeted."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/ProcessingInstruction/toggleAttribute",
+    "pageType": "web-api-instance-method",
+    "summary": "The toggleAttribute() method of the ProcessingInstruction interface toggles a boolean attribute on the given processing instruction, removing it if present and adding it if not present."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Profiler",
@@ -28997,7 +29127,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMap/append",
     "pageType": "web-api-instance-method",
-    "summary": "The append() method of the StylePropertyMap interface adds the passed CSS value to the StylePropertyMap with the given property."
+    "summary": "The append() method of the StylePropertyMap interface adds one or more values to the end of a list-valued CSS property's value list."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMap/clear",
@@ -29032,7 +29162,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMapReadOnly/get",
     "pageType": "web-api-instance-method",
-    "summary": "The get() method of the StylePropertyMapReadOnly interface returns a CSSStyleValue object for the first value of the specified property."
+    "summary": "The get() method of the StylePropertyMapReadOnly interface returns a CSSStyleValue-derived object for the first value of the specified property."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StylePropertyMapReadOnly/getAll",
