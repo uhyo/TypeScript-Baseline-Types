@@ -2024,7 +2024,7 @@ interface PromiseRejectionEventInit extends EventInit {
 }
 
 interface PropertyDefinition {
-    inherits: boolean;
+    inherits?: boolean;
     initialValue?: string;
     name: string;
     syntax?: string;
@@ -13004,7 +13004,7 @@ interface Document extends Node, DocumentOrShadowRoot, FontFaceSource, GlobalEve
     onvisibilitychange: ((this: Document, ev: Event) => any) | null;
     readonly ownerDocument: null;
     /**
-     * The read-only **`pictureInPictureEnabled`** property of the Document interface indicates whether or not picture-in-picture mode is available.
+     * The **`pictureInPictureEnabled`** read-only property of the Document interface indicates whether or not picture-in-picture mode is available.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/pictureInPictureEnabled)
      */
@@ -13278,7 +13278,7 @@ interface Document extends Node, DocumentOrShadowRoot, FontFaceSource, GlobalEve
      */
     exitFullscreen(): Promise<void>;
     /**
-     * The **`exitPictureInPicture()`** method of the Document interface requests that a video contained in this document, which is currently floating, be taken out of picture-in-picture mode, restoring the previous state of the screen. This usually reverses the effects of a previous call to HTMLVideoElement.requestPictureInPicture().
+     * The **`exitPictureInPicture()`** method of the Document interface requests that a video contained in this document, which is currently floating, be taken out of picture-in-picture mode.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/exitPictureInPicture)
      */
@@ -13947,13 +13947,13 @@ interface Element extends Node, ARIAMixin, Animatable, ChildNode, NonDocumentTyp
      */
     computedStyleMap(): StylePropertyMapReadOnly;
     /**
-     * The **`getAttribute()`** method of the Element interface returns the value of a specified attribute on the element.
+     * The **`getAttribute()`** method of the Element interface returns the string value of the specified attribute of the specified element. It returns null if the element doesn't have an attribute with the given name.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/getAttribute)
      */
     getAttribute(qualifiedName: string): string | null;
     /**
-     * The **`getAttributeNS()`** method of the Element interface returns the string value of the attribute with the specified namespace and name. If the named attribute does not exist, the value returned will either be null or "" (the empty string); see Notes for details.
+     * The **`getAttributeNS()`** method of the Element interface returns the string value of the specified namespaced attribute of the specified element. It returns null if the element doesn't have an attribute with the given name in the namespace.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNS)
      */
@@ -13965,13 +13965,13 @@ interface Element extends Node, ARIAMixin, Animatable, ChildNode, NonDocumentTyp
      */
     getAttributeNames(): string[];
     /**
-     * Returns the specified attribute of the specified element, as an Attr node.
+     * The **`getAttributeNode()`** method of the Element interface returns the specified attribute of the specified element, as an Attr node. It returns null if the element doesn't have an attribute with the given name.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNode)
      */
     getAttributeNode(qualifiedName: string): Attr | null;
     /**
-     * The **`getAttributeNodeNS()`** method of the Element interface returns the namespaced Attr node of an element.
+     * The **`getAttributeNodeNS()`** method of the Element interface returns the specified namespaced attribute of the specified element, as an Attr node. It returns null if the element doesn't have an attribute with the given name in the namespace.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNodeNS)
      */
@@ -21200,7 +21200,7 @@ interface HTMLTableElement extends HTMLElement {
      */
     border: string;
     /**
-     * The **`HTMLTableElement.caption`** property represents the table caption. If no caption element is associated with the table, this property is null.
+     * The **`caption`** property of the HTMLTableElement interface represents the first <caption> element child of the given <table>, or null if no such element exists.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/caption)
      */
@@ -21227,7 +21227,7 @@ interface HTMLTableElement extends HTMLElement {
      */
     frame: string;
     /**
-     * The read-only HTMLTableElement property **`rows`** returns a live HTMLCollection of all the rows in the table, including the rows contained within any <thead>, <tfoot>, and <tbody> elements.
+     * The **`rows`** read-only property of the HTMLTableElement interface returns a live HTMLCollection of all <tr> elements that are a child of the given <table> element, or a child of one of the table's <thead>, <tbody>, and <tfoot> children. The members of the <thead> appear first, followed by members of the <tbody> and the table itself, and members of the <tfoot> come last, sorted by tree order within each group.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/rows)
      */
@@ -21247,19 +21247,19 @@ interface HTMLTableElement extends HTMLElement {
      */
     summary: string;
     /**
-     * The **`HTMLTableElement.tBodies`** read-only property returns a live HTMLCollection of the bodies in a <table>.
+     * The **`tBodies`** read-only property of the HTMLTableElement interface returns a live HTMLCollection of all <tbody> element children of the given <table>.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/tBodies)
      */
     readonly tBodies: HTMLCollectionOf<HTMLTableSectionElement>;
     /**
-     * The **`HTMLTableElement.tFoot`** property represents the <tfoot> element of a <table>. Its value will be null if there is no such element.
+     * The **`tFoot`** property of the HTMLTableElement interface represents the first <tfoot> element child of the given <table>, or null if no such element exists.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/tFoot)
      */
     tFoot: HTMLTableSectionElement | null;
     /**
-     * The **`HTMLTableElement.tHead`** represents the <thead> element of a <table>. Its value will be null if there is no such element.
+     * The **`tHead`** property of the HTMLTableElement interface represents the first <thead> element child of the given <table>, or null if no such element exists.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/tHead)
      */
@@ -21272,55 +21272,55 @@ interface HTMLTableElement extends HTMLElement {
      */
     width: string;
     /**
-     * The **`HTMLTableElement.createCaption()`** method returns the <caption> element associated with a given <table>. If no <caption> element exists on the table, this method creates it, and then returns it.
+     * The **`createCaption()`** method of the HTMLTableElement interface creates a <caption> element, inserts it as the first child of the given <table>, and returns it. If the table already has a <caption> element child, this method returns the first such child without creating one.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/createCaption)
      */
     createCaption(): HTMLTableCaptionElement;
     /**
-     * The **`createTBody()`** method of HTMLTableElement objects creates and returns a new <tbody> element associated with a given <table>.
+     * The **`createTBody()`** method of the HTMLTableElement interface creates a <tbody> element, inserts it immediately after the last <tbody> element child of the given <table>, or as the last child if there is no such element, and returns it.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/createTBody)
      */
     createTBody(): HTMLTableSectionElement;
     /**
-     * The **`createTFoot()`** method of HTMLTableElement objects returns the <tfoot> element associated with a given <table>. If no footer exists in the table, this method creates it, and then returns it.
+     * The **`createTFoot()`** method of the HTMLTableElement interface creates a <tfoot> element, inserts it as the last child of the given <table>, and returns it. If the table already has a <tfoot> element child, this method returns the first such child without creating one.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/createTFoot)
      */
     createTFoot(): HTMLTableSectionElement;
     /**
-     * The **`createTHead()`** method of HTMLTableElement objects returns the <thead> element associated with a given <table>. If no header exists in the table, this method creates it, and then returns it.
+     * The **`createTHead()`** method of the HTMLTableElement interface creates a <thead> element, inserts it before the first element child of the given <table> that's neither a <caption> nor a <colgroup>, or as the last child if no such insertion location is found, and returns it. If the table already has a <thead> element child, this method returns the first such child without creating one.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/createTHead)
      */
     createTHead(): HTMLTableSectionElement;
     /**
-     * The **`HTMLTableElement.deleteCaption()`** method removes the <caption> element from a given <table>. If there is no <caption> element associated with the table, this method does nothing.
+     * The **`deleteCaption()`** method of the HTMLTableElement interface removes the first <caption> element child from a given <table>, if any.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/deleteCaption)
      */
     deleteCaption(): void;
     /**
-     * The **`HTMLTableElement.deleteRow()`** method removes a specific row (<tr>) from a given <table>.
+     * The **`deleteRow()`** method of the HTMLTableElement interface removes a specific row (<tr>) from a given <table>.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/deleteRow)
      */
     deleteRow(index: number): void;
     /**
-     * The **`HTMLTableElement.deleteTFoot()`** method removes the <tfoot> element from a given <table>.
+     * The **`deleteTFoot()`** method of the HTMLTableElement interface removes the first <tfoot> element child from a given <table>, if any.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/deleteTFoot)
      */
     deleteTFoot(): void;
     /**
-     * The **`HTMLTableElement.deleteTHead()`** removes the <thead> element from a given <table>.
+     * The **`deleteTHead()`** method of the HTMLTableElement interface removes the first <thead> element child from a given <table>, if any.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/deleteTHead)
      */
     deleteTHead(): void;
     /**
-     * The **`insertRow()`** method of the HTMLTableElement interface inserts a new row (<tr>) in a given <table>, and returns a reference to the new row.
+     * The **`insertRow()`** method of the HTMLTableElement interface creates a <tr> element, inserts it at the specified position in the rows collection, and returns it. If the rows collection is empty and the table also has no <tbody> elements, a <tbody> element is first created and inserted.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableElement/insertRow)
      */
@@ -21410,7 +21410,7 @@ interface HTMLTableRowElement extends HTMLElement {
      */
     deleteCell(index: number): void;
     /**
-     * The **`insertCell()`** method of the HTMLTableRowElement interface inserts a new cell (<td>) into a table row (<tr>) and returns a reference to the cell.
+     * The **`insertCell()`** method of the HTMLTableRowElement interface creates a <td> element, inserts it at the specified position in the given <tr> element, and returns it.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableRowElement/insertCell)
      */
@@ -21467,13 +21467,13 @@ interface HTMLTableSectionElement extends HTMLElement {
      */
     vAlign: string;
     /**
-     * The **`deleteRow()`** method of the HTMLTableSectionElement interface removes a specific row (<tr>) from a given <section>.
+     * The **`deleteRow()`** method of the HTMLTableSectionElement interface removes a specific row (<tr>) from the given table sectioning element (<thead>, <tfoot>, or <tbody>).
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableSectionElement/deleteRow)
      */
     deleteRow(index: number): void;
     /**
-     * The **`insertRow()`** method of the HTMLTableSectionElement interface inserts a new row (<tr>) in the given table sectioning element (<thead>, <tfoot>, or <tbody>), then returns a reference to this new row.
+     * The **`insertRow()`** method of the HTMLTableSectionElement interface creates a <tr> element, inserts it at the specified position in the given table sectioning element (<thead>, <tfoot>, or <tbody>), and returns it.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableSectionElement/insertRow)
      */
@@ -21908,7 +21908,7 @@ interface HTMLVideoElementEventMap extends HTMLMediaElementEventMap {
  */
 interface HTMLVideoElement extends HTMLMediaElement {
     /**
-     * The HTMLVideoElement **`disablePictureInPicture`** property reflects the HTML attribute indicating whether the picture-in-picture feature is disabled for the current element.
+     * The **`disablePictureInPicture`** property of the HTMLVideoElement interface reflects the disablepictureinpicture HTML attribute indicating whether the picture-in-picture feature is disabled for the current element.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/disablePictureInPicture)
      */
@@ -21961,7 +21961,7 @@ interface HTMLVideoElement extends HTMLMediaElement {
      */
     getVideoPlaybackQuality(): VideoPlaybackQuality;
     /**
-     * The HTMLVideoElement method **`requestPictureInPicture()`** issues an asynchronous request to display the video in picture-in-picture mode.
+     * The **`requestPictureInPicture()`** method of the HTMLVideoElement interface issues an asynchronous request to display the video in picture-in-picture mode.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/requestPictureInPicture)
      */
@@ -28668,7 +28668,7 @@ interface PictureInPictureWindowEventMap {
  */
 interface PictureInPictureWindow extends EventTarget {
     /**
-     * The read-only **`height`** property of the PictureInPictureWindow interface returns the height of the floating video window in pixels.
+     * The **`height`** read-only property of the PictureInPictureWindow interface returns the height of the floating video window in pixels.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PictureInPictureWindow/height)
      */
@@ -28676,7 +28676,7 @@ interface PictureInPictureWindow extends EventTarget {
     /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/PictureInPictureWindow/resize_event) */
     onresize: ((this: PictureInPictureWindow, ev: Event) => any) | null;
     /**
-     * The read-only **`width`** property of the PictureInPictureWindow interface returns the width of the floating video window in pixels.
+     * The **`width`** read-only property of the PictureInPictureWindow interface returns the width of the floating video window in pixels.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PictureInPictureWindow/width)
      */
