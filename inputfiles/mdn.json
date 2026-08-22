@@ -1137,12 +1137,22 @@
   {
     "mdn_url": "/en-US/docs/Web/API/AudioSession",
     "pageType": "web-api-interface",
-    "summary": "The AudioSession interface of the Audio Session API lets a web page declare the type of audio it is producing — for example music playback, a video call, or a short notification. The platform uses that declaration to decide how the page's audio and audio from other applications and tabs should coexist — whether to pause, duck (lower the volume), or play in parallel."
+    "summary": "The AudioSession interface of the Audio Session API lets a web page declare the type of audio it is producing — for example music playback, a video call, or a short notification.\nThe platform uses the declared type to decide how the page's audio and audio from other applications and tabs should coexist — whether to pause, duck (lower the volume), or play in parallel."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/AudioSession/state",
+    "pageType": "web-api-instance-property",
+    "summary": "The state read-only property of the AudioSession interface returns the current state of the audio session."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/AudioSession/statechange_event",
+    "pageType": "web-api-event",
+    "summary": "A statechange event fires on an AudioSession when its state property changes."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/AudioSession/type",
     "pageType": "web-api-instance-property",
-    "summary": "The type property of the AudioSession interface returns or sets the type of the audio session."
+    "summary": "The type property of the AudioSession interface represents the type of the audio session."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/AudioSinkInfo",
@@ -6337,7 +6347,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Document/exitPictureInPicture",
     "pageType": "web-api-instance-method",
-    "summary": "The exitPictureInPicture() method of the Document interface\nrequests that a video contained\nin this document, which is currently floating, be taken out of picture-in-picture\nmode, restoring the previous state of the screen. This usually reverses the\neffects of a previous call to HTMLVideoElement.requestPictureInPicture()."
+    "summary": "The exitPictureInPicture() method of the Document interface requests that a video contained in this document, which is currently floating, be taken out of picture-in-picture mode."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Document/exitPointerLock",
@@ -6542,12 +6552,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Document/pictureInPictureElement",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only pictureInPictureElement property of the Document\ninterface returns the Element that is currently being\npresented in picture-in-picture mode in this document, or null if\npicture-in-picture mode is not currently in use."
+    "summary": "The pictureInPictureElement read-only property of the Document interface returns the Element that is currently being presented in picture-in-picture mode in this document, or null if picture-in-picture mode is not currently in use."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Document/pictureInPictureEnabled",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only\npictureInPictureEnabled property of the\nDocument interface indicates whether or not picture-in-picture mode is\navailable."
+    "summary": "The pictureInPictureEnabled read-only property of the Document interface indicates whether or not picture-in-picture mode is available."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Document/plugins",
@@ -8247,7 +8257,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/getAttribute",
     "pageType": "web-api-instance-method",
-    "summary": "The getAttribute() method of the\nElement interface returns the value of a specified attribute on the\nelement."
+    "summary": "The getAttribute() method of the Element interface returns the string value of the specified attribute of the specified element. It returns null if the element doesn't have an attribute with the given name."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/getAttributeNames",
@@ -8257,17 +8267,17 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/getAttributeNode",
     "pageType": "web-api-instance-method",
-    "summary": "Returns the specified attribute of the specified element, as an Attr node."
+    "summary": "The getAttributeNode() method of the Element interface returns the specified attribute of the specified element, as an Attr node. It returns null if the element doesn't have an attribute with the given name."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/getAttributeNodeNS",
     "pageType": "web-api-instance-method",
-    "summary": "The getAttributeNodeNS() method of the Element interface returns the namespaced Attr node of an element."
+    "summary": "The getAttributeNodeNS() method of the Element interface returns the specified namespaced attribute of the specified element, as an Attr node. It returns null if the element doesn't have an attribute with the given name in the namespace."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/getAttributeNS",
     "pageType": "web-api-instance-method",
-    "summary": "The getAttributeNS() method of the Element\ninterface returns the string value of the attribute with the specified namespace and\nname. If the named attribute does not exist, the value returned will either be\nnull or \"\" (the empty string); see Notes for\ndetails."
+    "summary": "The getAttributeNS() method of the Element interface returns the string value of the specified namespaced attribute of the specified element. It returns null if the element doesn't have an attribute with the given name in the namespace."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/getBoundingClientRect",
@@ -15617,7 +15627,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/caption",
     "pageType": "web-api-instance-property",
-    "summary": "The HTMLTableElement.caption property represents the\ntable caption. If no caption element is associated with the table, this property is\nnull."
+    "summary": "The caption property of the HTMLTableElement interface represents the first <caption> element child of the given <table>, or null if no such element exists."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/cellPadding",
@@ -15632,42 +15642,42 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/createCaption",
     "pageType": "web-api-instance-method",
-    "summary": "The HTMLTableElement.createCaption() method returns the\n<caption> element associated with a given <table>.\nIf no <caption> element exists on the table, this method creates\nit, and then returns it."
+    "summary": "The createCaption() method of the HTMLTableElement interface creates a <caption> element, inserts it as the first child of the given <table>, and returns it. If the table already has a <caption> element child, this method returns the first such child without creating one."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/createTBody",
     "pageType": "web-api-instance-method",
-    "summary": "The createTBody() method of\nHTMLTableElement objects creates and returns a new\n<tbody> element associated with a given <table>."
+    "summary": "The createTBody() method of the HTMLTableElement interface creates a <tbody> element, inserts it immediately after the last <tbody> element child of the given <table>, or as the last child if there is no such element, and returns it."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/createTFoot",
     "pageType": "web-api-instance-method",
-    "summary": "The createTFoot() method of\nHTMLTableElement objects returns the <tfoot> element\nassociated with a given <table>. If no footer exists in the table, this\nmethod creates it, and then returns it."
+    "summary": "The createTFoot() method of the HTMLTableElement interface creates a <tfoot> element, inserts it as the last child of the given <table>, and returns it. If the table already has a <tfoot> element child, this method returns the first such child without creating one."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/createTHead",
     "pageType": "web-api-instance-method",
-    "summary": "The createTHead() method of\nHTMLTableElement objects returns the <thead> element\nassociated with a given <table>. If no header exists in the table, this\nmethod creates it, and then returns it."
+    "summary": "The createTHead() method of the HTMLTableElement interface creates a <thead> element, inserts it before the first element child of the given <table> that's neither a <caption> nor a <colgroup>, or as the last child if no such insertion location is found, and returns it. If the table already has a <thead> element child, this method returns the first such child without creating one."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/deleteCaption",
     "pageType": "web-api-instance-method",
-    "summary": "The HTMLTableElement.deleteCaption() method removes the\n<caption> element from a given <table>. If there is no\n<caption> element associated with the table, this method does\nnothing."
+    "summary": "The deleteCaption() method of the HTMLTableElement interface removes the first <caption> element child from a given <table>, if any."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/deleteRow",
     "pageType": "web-api-instance-method",
-    "summary": "The HTMLTableElement.deleteRow() method removes a\nspecific row (<tr>) from a given <table>."
+    "summary": "The deleteRow() method of the HTMLTableElement interface removes a specific row (<tr>) from a given <table>."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/deleteTFoot",
     "pageType": "web-api-instance-method",
-    "summary": "The HTMLTableElement.deleteTFoot() method removes the\n<tfoot> element from a given <table>."
+    "summary": "The deleteTFoot() method of the HTMLTableElement interface removes the first <tfoot> element child from a given <table>, if any."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/deleteTHead",
     "pageType": "web-api-instance-method",
-    "summary": "The HTMLTableElement.deleteTHead() removes the\n<thead> element from a given <table>."
+    "summary": "The deleteTHead() method of the HTMLTableElement interface removes the first <thead> element child from a given <table>, if any."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/frame",
@@ -15677,12 +15687,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/insertRow",
     "pageType": "web-api-instance-method",
-    "summary": "The insertRow() method of the HTMLTableElement interface inserts a new row\n(<tr>) in a given <table>, and returns a reference to\nthe new row."
+    "summary": "The insertRow() method of the HTMLTableElement interface creates a <tr> element, inserts it at the specified position in the rows collection, and returns it. If the rows collection is empty and the table also has no <tbody> elements, a <tbody> element is first created and inserted."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/rows",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only HTMLTableElement\nproperty rows returns a live\nHTMLCollection of all the rows in the table, including the rows\ncontained within any <thead>, <tfoot>, and\n<tbody> elements."
+    "summary": "The rows read-only property of the HTMLTableElement interface returns a live HTMLCollection of all <tr> elements that are a child of the given <table> element, or a child of one of the table's <thead>, <tbody>, and <tfoot> children. The members of the <thead> appear first, followed by members of the <tbody> and the table itself, and members of the <tfoot> come last, sorted by tree order within each group."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/rules",
@@ -15697,17 +15707,17 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/tBodies",
     "pageType": "web-api-instance-property",
-    "summary": "The HTMLTableElement.tBodies read-only property returns a\nlive HTMLCollection of the bodies in a <table>."
+    "summary": "The tBodies read-only property of the HTMLTableElement interface returns a live HTMLCollection of all <tbody> element children of the given <table>."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/tFoot",
     "pageType": "web-api-instance-property",
-    "summary": "The HTMLTableElement.tFoot property represents the\n<tfoot> element of a <table>. Its value will be\nnull if there is no such element."
+    "summary": "The tFoot property of the HTMLTableElement interface represents the first <tfoot> element child of the given <table>, or null if no such element exists."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/tHead",
     "pageType": "web-api-instance-property",
-    "summary": "The HTMLTableElement.tHead represents the\n<thead> element of a <table>. Its value will be\nnull if there is no such element."
+    "summary": "The tHead property of the HTMLTableElement interface represents the first <thead> element child of the given <table>, or null if no such element exists."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableElement/width",
@@ -15747,12 +15757,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableRowElement/deleteCell",
     "pageType": "web-api-instance-method",
-    "summary": "The deleteCell() method of the HTMLTableRowElement interface removes a\nspecific row cell from a given <tr>."
+    "summary": "The deleteCell() method of the HTMLTableRowElement interface removes a specific row cell from a given <tr>."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableRowElement/insertCell",
     "pageType": "web-api-instance-method",
-    "summary": "The insertCell() method of the HTMLTableRowElement interface inserts a new\ncell (<td>) into a table row (<tr>) and returns a\nreference to the cell."
+    "summary": "The insertCell() method of the HTMLTableRowElement interface creates a <td> element, inserts it at the specified position in the given <tr> element, and returns it."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableRowElement/rowIndex",
@@ -15792,12 +15802,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableSectionElement/deleteRow",
     "pageType": "web-api-instance-method",
-    "summary": "The deleteRow() method of the HTMLTableSectionElement interface removes a\nspecific row (<tr>) from a given <section>."
+    "summary": "The deleteRow() method of the HTMLTableSectionElement interface removes a specific row (<tr>) from the given table sectioning element (<thead>, <tfoot>, or <tbody>)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableSectionElement/insertRow",
     "pageType": "web-api-instance-method",
-    "summary": "The insertRow() method of the HTMLTableSectionElement interface inserts a new row\n(<tr>) in the given table sectioning element (<thead>, <tfoot>, or\n<tbody>), then returns a reference to this new row."
+    "summary": "The insertRow() method of the HTMLTableSectionElement interface creates a <tr> element, inserts it at the specified position in the given table sectioning element (<thead>, <tfoot>, or <tbody>), and returns it."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTableSectionElement/rows",
@@ -16107,7 +16117,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLVideoElement/disablePictureInPicture",
     "pageType": "web-api-instance-property",
-    "summary": "The HTMLVideoElement disablePictureInPicture property reflects the HTML attribute indicating whether the picture-in-picture feature is disabled for the current element."
+    "summary": "The disablePictureInPicture property of the HTMLVideoElement interface reflects the disablepictureinpicture HTML attribute indicating whether the picture-in-picture feature is disabled for the current element."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLVideoElement/enterpictureinpicture_event",
@@ -16137,7 +16147,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLVideoElement/requestPictureInPicture",
     "pageType": "web-api-instance-method",
-    "summary": "The HTMLVideoElement method\nrequestPictureInPicture() issues an asynchronous request\nto display the video in picture-in-picture mode."
+    "summary": "The requestPictureInPicture() method of the HTMLVideoElement interface issues an asynchronous request to display the video in picture-in-picture mode."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLVideoElement/requestVideoFrameCallback",
@@ -22497,7 +22507,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceNavigationTiming/notRestoredReasons",
     "pageType": "web-api-instance-property",
-    "summary": "The notRestoredReasons read-only property of the PerformanceNavigationTiming interface returns a NotRestoredReasons object providing report data on reasons why the current document was blocked from using the back/forward cache (bfcache) on navigation."
+    "summary": "The notRestoredReasons read-only property of the PerformanceNavigationTiming interface returns a NotRestoredReasons object providing report data on the reasons why the current document was blocked from using the back/forward cache (bfcache) on navigation."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceNavigationTiming/redirectCount",
@@ -23077,7 +23087,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Picture-in-Picture_API",
     "pageType": "web-api-overview",
-    "summary": "The Picture-in-Picture API allow websites to create a floating, always-on-top video window. This allows users to continue consuming media while they interact with other sites or applications on their device."
+    "summary": "The Picture-in-Picture API enables websites to create a floating, always-on-top video window.\nThis allows users to continue consuming media while they interact with other sites or applications on their device."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PictureInPictureEvent",
@@ -23102,7 +23112,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PictureInPictureWindow/height",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only height property of the PictureInPictureWindow interface returns the height of the floating video window in pixels."
+    "summary": "The height read-only property of the PictureInPictureWindow interface returns the height of the floating video window in pixels."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PictureInPictureWindow/resize_event",
@@ -23112,7 +23122,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PictureInPictureWindow/width",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only width property of the PictureInPictureWindow interface returns the width of the floating video window in pixels."
+    "summary": "The width read-only property of the PictureInPictureWindow interface returns the width of the floating video window in pixels."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Plugin",
@@ -28573,6 +28583,11 @@
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognition/stop",
     "pageType": "web-api-instance-method",
     "summary": "The stop() method of the Web Speech API stops the speech recognition service from listening for incoming audio and attempts to return a SpeechRecognitionResult based on the results captured so far."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/SpeechRecognition/unspokenPunctuation",
+    "pageType": "web-api-instance-property",
+    "summary": "The unspokenPunctuation property of the\nSpeechRecognition interface specifies whether the speech recognition engine will infer and insert punctuation marks based on the user's natural speech patterns."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognitionAlternative",
@@ -41205,6 +41220,11 @@
     "summary": "The column-rule shorthand CSS property sets the width, style, and color of the lines drawn between columns in multi-column grid, flex, and multi-col layouts."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-break",
+    "pageType": "css-property",
+    "summary": "The column-rule-break CSS property sets the behavior for breaking column rules into segments wherever column rules intersect row gaps."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-color",
     "pageType": "css-property",
     "summary": "The column-rule-color CSS property defines the colors of the lines drawn between columns in multi-column grid, flex, and multi-col layouts."
@@ -41493,6 +41513,11 @@
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/flex-grow",
     "pageType": "css-property",
     "summary": "The flex-grow CSS property sets the flex grow factor, which specifies how much of the flex container's positive free space, if any, should be assigned to the flex item's main size."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+    "pageType": "css-property",
+    "summary": "The flex-line-count CSS property sets the minimum number of flex lines that flex items will be balanced over in cases where a flex container's flex-wrap or flex-flow property includes the balance keyword."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/flex-shrink",
@@ -42525,6 +42550,11 @@
     "summary": "The row-rule shorthand CSS property sets the width, style, and color of the line drawn between rows in multi-row grid, flex, and multi-col layouts."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-break",
+    "pageType": "css-property",
+    "summary": "The row-rule-break CSS property sets the behavior for breaking row rules into segments where row rules intersect column gaps."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-color",
     "pageType": "css-property",
     "summary": "The row-rule-color CSS property defines the colors of the lines drawn between rows in multi-row grid, flex, and multi-col layouts."
@@ -42563,6 +42593,11 @@
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule",
     "pageType": "css-property",
     "summary": "The rule shorthand CSS property sets the width, style, and color of the line drawn between rows and columns in multi-row grid, flex, and multi-col layouts, setting both the column and row rules to the same values."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-break",
+    "pageType": "css-property",
+    "summary": "The rule-break CSS property sets the behavior for breaking column and row rules into segments where rows and column gaps intersect, setting column-rule-break and row-rule-break to the same value."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-color",
