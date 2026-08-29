@@ -1576,6 +1576,7 @@ interface MediaStreamConstraints {
     audio?: boolean | MediaTrackConstraints;
     peerIdentity?: string;
     preferCurrentTab?: boolean;
+    semantics?: GetUserMediaSemantics;
     video?: boolean | MediaTrackConstraints;
 }
 
@@ -1587,17 +1588,25 @@ interface MediaTrackCapabilities {
     aspectRatio?: DoubleRange;
     autoGainControl?: boolean[];
     backgroundBlur?: boolean[];
+    backgroundSegmentationMask?: boolean[];
     channelCount?: ULongRange;
     deviceId?: string;
     displaySurface?: string;
     echoCancellation?: (boolean | string)[];
+    eyeGazeCorrection?: boolean[];
+    faceFraming?: boolean[];
     facingMode?: string[];
     frameRate?: DoubleRange;
+    gestureReactions?: boolean[];
     groupId?: string;
     height?: ULongRange;
+    humanFaceDetectionMode?: string[];
     noiseSuppression?: boolean[];
+    powerEfficient?: boolean[];
+    powerEfficientPixelFormat?: boolean[];
     sampleRate?: ULongRange;
     sampleSize?: ULongRange;
+    voiceIsolation?: boolean[];
     width?: ULongRange;
 }
 
@@ -1605,17 +1614,23 @@ interface MediaTrackConstraintSet {
     aspectRatio?: ConstrainDouble;
     autoGainControl?: ConstrainBoolean;
     backgroundBlur?: ConstrainBoolean;
+    backgroundSegmentationMask?: ConstrainBoolean;
     channelCount?: ConstrainULong;
     deviceId?: ConstrainDOMString;
     displaySurface?: ConstrainDOMString;
     echoCancellation?: ConstrainBooleanOrDOMString;
+    eyeGazeCorrection?: ConstrainBoolean;
+    faceFraming?: ConstrainBoolean;
     facingMode?: ConstrainDOMString;
     frameRate?: ConstrainDouble;
+    gestureReactions?: ConstrainBoolean;
     groupId?: ConstrainDOMString;
     height?: ConstrainULong;
+    humanFaceDetectionMode?: ConstrainDOMString;
     noiseSuppression?: ConstrainBoolean;
     sampleRate?: ConstrainULong;
     sampleSize?: ConstrainULong;
+    voiceIsolation?: ConstrainBoolean;
     width?: ConstrainULong;
 }
 
@@ -1627,18 +1642,26 @@ interface MediaTrackSettings {
     aspectRatio?: number;
     autoGainControl?: boolean;
     backgroundBlur?: boolean;
+    backgroundSegmentationMask?: boolean;
     channelCount?: number;
     deviceId?: string;
     displaySurface?: string;
     echoCancellation?: boolean | string;
+    eyeGazeCorrection?: boolean;
+    faceFraming?: boolean;
     facingMode?: string;
     frameRate?: number;
+    gestureReactions?: boolean;
     groupId?: string;
     height?: number;
+    humanFaceDetectionMode?: string;
     noiseSuppression?: boolean;
+    powerEfficient?: boolean;
+    powerEfficientPixelFormat?: boolean;
     sampleRate?: number;
     sampleSize?: number;
     torch?: boolean;
+    voiceIsolation?: boolean;
     whiteBalanceMode?: string;
     width?: number;
     zoom?: number;
@@ -1648,17 +1671,25 @@ interface MediaTrackSupportedConstraints {
     aspectRatio?: boolean;
     autoGainControl?: boolean;
     backgroundBlur?: boolean;
+    backgroundSegmentationMask?: boolean;
     channelCount?: boolean;
     deviceId?: boolean;
     displaySurface?: boolean;
     echoCancellation?: boolean;
+    eyeGazeCorrection?: boolean;
+    faceFraming?: boolean;
     facingMode?: boolean;
     frameRate?: boolean;
+    gestureReactions?: boolean;
     groupId?: boolean;
     height?: boolean;
+    humanFaceDetectionMode?: boolean;
     noiseSuppression?: boolean;
+    powerEfficient?: boolean;
+    powerEfficientPixelFormat?: boolean;
     sampleRate?: boolean;
     sampleSize?: boolean;
+    voiceIsolation?: boolean;
     width?: boolean;
 }
 
@@ -3323,7 +3354,7 @@ declare var NodeFilter: {
 type XPathNSResolver = ((prefix: string | null) => string | null) | { lookupNamespaceURI(prefix: string | null): string | null; };
 
 /**
- * The **`ANGLE_instanced_arrays`** extension is part of the WebGL API and allows to draw the same object, or groups of similar objects multiple times, if they share the same vertex data, primitive count and type.
+ * The **`ANGLE_instanced_arrays`** extension is part of the WebGL API and allows you to draw the same object, or groups of similar objects multiple times, if they share the same vertex data, primitive count and type.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/ANGLE_instanced_arrays)
  */
@@ -5780,7 +5811,7 @@ declare var CSSLayerBlockRule: {
  */
 interface CSSLayerStatementRule extends CSSRule {
     /**
-     * The read-only **`nameList`** property of the CSSLayerStatementRule interface return the list of associated cascade layer names. The names can't be modified.
+     * The read-only **`nameList`** property of the CSSLayerStatementRule interface returns the list of associated cascade layer names. The names can't be modified.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSLayerStatementRule/nameList)
      */
@@ -6796,7 +6827,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     alignmentBaseline: string;
     /**
-     * The **`all`** shorthand CSS property resets all of an element's properties except unicode-bidi, direction, and CSS Custom Properties. It can set properties to their initial or inherited values, or to the values specified in another cascade layer or stylesheet origin.
+     * The **`all`** CSSshorthand property resets all of an element's properties except unicode-bidi, direction, and CSS Custom Properties. It can set properties to their initial or inherited values, or to the values specified in another cascade layer or stylesheet origin.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/all)
      */
@@ -6814,7 +6845,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     anchorScope: string;
     /**
-     * The **`animation`** shorthand CSS property applies an animation between styles. It is a shorthand for animation-name, animation-duration, animation-timing-function, animation-delay, animation-iteration-count, animation-direction, animation-fill-mode, animation-play-state, and animation-timeline.
+     * The **`animation`** CSS shorthand property applies an animation between styles. It is a shorthand for animation-name, animation-duration, animation-timing-function, animation-delay, animation-iteration-count, animation-direction, animation-fill-mode, animation-play-state, and animation-timeline.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/animation)
      */
@@ -6922,7 +6953,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     backfaceVisibility: string;
     /**
-     * The **`background`** shorthand CSS property sets all background style properties at once, such as color, image, origin, size, and repeat method.
+     * The **`background`** CSS shorthand property sets all background style properties at once, such as color, image, origin, size, and repeat method.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/background)
      */
@@ -6982,7 +7013,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     backgroundPositionY: string;
     /**
-     * The background-repeat CSS property sets how background images are repeated. A background image can be repeated along the horizontal and vertical axes, or not repeated at all.
+     * The background-repeat CSS shorthand property sets how background images are repeated. A background image can be repeated along the horizontal and vertical axes, or not repeated at all.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/background-repeat)
      */
@@ -7012,13 +7043,13 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     blockSize: string;
     /**
-     * The **`border`** shorthand CSS property sets an element's border. It sets the values of border-width, border-style, and border-color.
+     * The **`border`** CSS shorthand property sets an element's border. It sets the values of border-width, border-style, and border-color.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/border)
      */
     border: string;
     /**
-     * The border-block CSS property is a shorthand property for setting the individual logical block border property values in a single place in the style sheet.
+     * The border-block CSS shorthand property sets the individual logical block border property values in a single place in the style sheet.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/border-block)
      */
@@ -7030,7 +7061,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     borderBlockColor: string;
     /**
-     * The border-block-end CSS property is a shorthand property for setting the individual logical block-end border property values in a single place in the style sheet.
+     * The border-block-end CSS shorthand property sets the individual logical block-end border property values in a single place in the style sheet.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/border-block-end)
      */
@@ -7054,7 +7085,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     borderBlockEndWidth: string;
     /**
-     * The border-block-start CSS property is a shorthand property for setting the individual logical block-start border property values in a single place in the style sheet.
+     * The border-block-start CSS shorthand property sets the individual logical block-start border property values in a single place in the style sheet.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/border-block-start)
      */
@@ -7090,7 +7121,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     borderBlockWidth: string;
     /**
-     * The border-bottom shorthand CSS property sets an element's bottom border. It sets the values of border-bottom-width, border-bottom-style and border-bottom-color.
+     * The border-bottom CSS shorthand property sets an element's bottom border. It sets the values of border-bottom-width, border-bottom-style and border-bottom-color.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/border-bottom)
      */
@@ -7132,7 +7163,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     borderCollapse: string;
     /**
-     * The border-color shorthand CSS property sets the color of an element's border.
+     * The border-color CSS shorthand property sets the color of an element's border.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/border-color)
      */
@@ -7150,7 +7181,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     borderEndStartRadius: string;
     /**
-     * The border-image CSS property draws an image around a given element. It replaces the element's regular border.
+     * The border-image CSS shorthand property draws an image around a given element. It replaces the element's regular border.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/border-image)
      */
@@ -7186,7 +7217,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     borderImageWidth: string;
     /**
-     * The border-inline CSS property is a shorthand property for setting the individual logical inline border property values in a single place in the style sheet.
+     * The border-inline CSS shorthand property sets the individual logical inline border property values in a single place in the style sheet.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/border-inline)
      */
@@ -7198,7 +7229,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     borderInlineColor: string;
     /**
-     * The border-inline-end CSS property is a shorthand property for setting the individual logical inline-end border property values in a single place in the style sheet.
+     * The border-inline-end CSS shorthand property sets the individual logical inline-end border property values in a single place in the style sheet.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/border-inline-end)
      */
@@ -7222,7 +7253,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     borderInlineEndWidth: string;
     /**
-     * The border-inline-start CSS property is a shorthand property for setting the individual logical inline-start border property values in a single place in the style sheet.
+     * The border-inline-start CSS shorthand property sets the individual logical inline-start border property values in a single place in the style sheet.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/border-inline-start)
      */
@@ -7258,7 +7289,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     borderInlineWidth: string;
     /**
-     * The border-left shorthand CSS property sets all the properties of an element's left border.
+     * The border-left CSS shorthand property sets all the properties of an element's left border.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/border-left)
      */
@@ -7282,13 +7313,13 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     borderLeftWidth: string;
     /**
-     * The border-radius CSS property rounds the corners of an element's outer border edge. You can set a single radius to make circular corners, or two radii to make elliptical corners.
+     * The border-radius CSS shorthand property rounds the corners of an element's outer border edge. You can set a single radius to make circular corners, or two radii to make elliptical corners.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/border-radius)
      */
     borderRadius: string;
     /**
-     * The border-right shorthand CSS property sets all the properties of an element's right border.
+     * The border-right CSS shorthand property sets all the properties of an element's right border.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/border-right)
      */
@@ -7330,13 +7361,13 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     borderStartStartRadius: string;
     /**
-     * The border-style shorthand CSS property sets the line style for all four sides of an element's border.
+     * The border-style CSS shorthand property sets the line style for all four sides of an element's border.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/border-style)
      */
     borderStyle: string;
     /**
-     * The border-top shorthand CSS property sets all the properties of an element's top border.
+     * The border-top CSS shorthand property sets all the properties of an element's top border.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/border-top)
      */
@@ -7372,7 +7403,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     borderTopWidth: string;
     /**
-     * The border-width shorthand CSS property sets the width of an element's border.
+     * The border-width CSS shorthand property sets the width of an element's border.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/border-width)
      */
@@ -7499,7 +7530,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     columnGap: string;
     /**
-     * The column-rule shorthand CSS property sets the width, style, and color of the lines drawn between columns in multi-column grid, flex, and multi-col layouts.
+     * The column-rule CSS shorthand property sets the width, style, and color of the lines drawn between columns in multi-column grid, flex, and multi-col layouts.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/column-rule)
      */
@@ -7837,7 +7868,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     fontStyle: string;
     /**
-     * The font-synthesis shorthand CSS property lets you specify whether or not the browser may synthesize the bold, italic, small-caps, and/or subscript and superscript typefaces when they are missing in the specified font-family.
+     * The font-synthesis CSS shorthand property lets you specify whether or not the browser may synthesize the bold, italic, small-caps, and/or subscript and superscript typefaces when they are missing in the specified font-family.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/font-synthesis)
      */
@@ -7933,7 +7964,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     gap: string;
     /**
-     * The **`grid`** CSS property is a shorthand property that sets all of the explicit and implicit grid properties in a single declaration.
+     * The **`grid`** CSS shorthand property sets all of the explicit and implicit grid properties in a single declaration.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/grid)
      */
@@ -8005,7 +8036,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     gridRowStart: string;
     /**
-     * The grid-template CSS property is a shorthand property for defining grid columns, grid rows, and grid areas.
+     * The grid-template CSS shorthand property specifies the grid columns, grid rows, and grid areas.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/grid-template)
      */
@@ -8071,13 +8102,13 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     inlineSize: string;
     /**
-     * The **`inset`** CSS property is a shorthand that corresponds to the top, right, bottom, and/or left properties. It has the same multi-value syntax of the margin shorthand.
+     * The **`inset`** CSS shorthand property corresponds to the top, right, bottom, and/or left properties. It has the same multi-value syntax of the margin shorthand.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/inset)
      */
     inset: string;
     /**
-     * The inset-block CSS property defines the logical block start and end offsets of an element, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation.
+     * The inset-block CSS shorthand property defines the logical block start and end offsets of an element, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/inset-block)
      */
@@ -8095,7 +8126,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     insetBlockStart: string;
     /**
-     * The inset-inline CSS property defines the logical start and end offsets of an element in the inline direction, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation.
+     * The inset-inline CSS shorthand property defines the logical start and end offsets of an element in the inline direction, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/inset-inline)
      */
@@ -8704,7 +8735,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     placeContent: string;
     /**
-     * The CSS place-items shorthand property aligns items along both the block and inline directions at once. It sets the values of the align-items and justify-items properties. If the second value is not set, the first value is also used for it.
+     * The place-items CSS shorthand property aligns items along both the block and inline directions at once. It sets the values of the align-items and justify-items properties. If the second value is not set, the first value is also used for it.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/place-items)
      */
@@ -8740,7 +8771,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     positionArea: string;
     /**
-     * The position-try CSS property is a shorthand that corresponds to the position-try-order and position-try-fallbacks properties.
+     * The position-try CSS shorthand property corresponds to the position-try-order and position-try-fallbacks properties.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/position-try)
      */
@@ -8842,13 +8873,13 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     scrollBehavior: string;
     /**
-     * The scroll-margin shorthand property sets all of the scroll margins of an element at once, assigning values much like the margin property does for margins of an element.
+     * The scroll-margin CSS shorthand property sets all of the scroll margins of an element at once, assigning values much like the margin property does for margins of an element.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/scroll-margin)
      */
     scrollMargin: string;
     /**
-     * The scroll-margin-block shorthand property sets the scroll margins of an element in the block dimension.
+     * The scroll-margin-block CSS shorthand property sets the scroll margins of an element in the block dimension.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/scroll-margin-block)
      */
@@ -8872,7 +8903,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     scrollMarginBottom: string;
     /**
-     * The scroll-margin-inline shorthand property sets the scroll margins of an element in the inline dimension.
+     * The scroll-margin-inline CSS shorthand property sets the scroll margins of an element in the inline dimension.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/scroll-margin-inline)
      */
@@ -8908,13 +8939,13 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     scrollMarginTop: string;
     /**
-     * The scroll-padding shorthand property sets scroll padding on all sides of an element at once. It specifies offsets that define the optimal viewing region of a scrollport within a scroll container.
+     * The scroll-padding CSS shorthand property sets scroll padding on all sides of an element at once. It specifies offsets that define the optimal viewing region of a scrollport within a scroll container.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/scroll-padding)
      */
     scrollPadding: string;
     /**
-     * The scroll-padding-block shorthand property sets the scroll padding of an element in the block dimension.
+     * The scroll-padding-block CSS shorthand property sets the scroll padding of an element in the block dimension.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/scroll-padding-block)
      */
@@ -8938,7 +8969,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     scrollPaddingBottom: string;
     /**
-     * The scroll-padding-inline shorthand property sets the scroll padding of an element in the inline dimension.
+     * The scroll-padding-inline CSS shorthand property sets the scroll padding of an element in the inline dimension.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/scroll-padding-inline)
      */
@@ -9148,7 +9179,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     textAutospace: string;
     /**
-     * The text-box CSS property is a shorthand that corresponds to the text-box-trim and text-box-edge properties, which together specify the amount of space to trim from the block-start edge and block-end edge of a text element's block container.
+     * The text-box CSS shorthand property corresponds to the text-box-trim and text-box-edge properties, which together specify the amount of space to trim from the block-start edge and block-end edge of a text element's block container.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/text-box)
      */
@@ -9172,7 +9203,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     textCombineUpright: string;
     /**
-     * The text-decoration shorthand CSS property sets the appearance of decorative lines on text. It is a shorthand for text-decoration-line, text-decoration-color, text-decoration-style, and the newer text-decoration-thickness property.
+     * The text-decoration CSS shorthand property sets the appearance of decorative lines on text. It is a shorthand for text-decoration-line, text-decoration-color, text-decoration-style, and the newer text-decoration-thickness property.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/text-decoration)
      */
@@ -9208,7 +9239,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     textDecorationThickness: string;
     /**
-     * The text-emphasis CSS property applies emphasis marks to text (except spaces and control characters). It is a shorthand for text-emphasis-style and text-emphasis-color.
+     * The text-emphasis CSS shorthand property applies emphasis marks to text (except spaces and control characters).
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/text-emphasis)
      */
@@ -9346,7 +9377,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     transformStyle: string;
     /**
-     * The **`transition`** CSS property is a shorthand property for transition-property, transition-duration, transition-timing-function, transition-delay, and transition-behavior.
+     * The **`transition`** CSS shorthand property for transition-property, transition-duration, transition-timing-function, transition-delay, and transition-behavior.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/transition)
      */
@@ -9690,7 +9721,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     webkitMask: string;
     /**
-     * The non-standard prefixed -webkit-mask-box-image shorthand property sets the mask image for an element's border box.
+     * The non-standard prefixed -webkit-mask-box-image CSS shorthand property sets the mask image for an element's border box.
      * @deprecated This is a legacy alias of `maskBorder`.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/mask-border)
@@ -9800,7 +9831,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     webkitTextSizeAdjust: string;
     /**
-     * The -webkit-text-stroke CSS property specifies the width and color of strokes for text characters. This is a shorthand property for the longhand properties -webkit-text-stroke-width and -webkit-text-stroke-color.
+     * The -webkit-text-stroke CSS shorthand property specifies the width and color of strokes for text characters.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/-webkit-text-stroke)
      */
@@ -9872,7 +9903,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     webkitUserSelect: string;
     /**
-     * The white-space CSS property sets how white space inside an element is handled.
+     * The white-space CSS shorthand property sets how white space inside an element is handled.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/white-space)
      */
@@ -10762,7 +10793,7 @@ declare var ChannelSplitterNode: {
  */
 interface CharacterData extends Node, ChildNode, NonDocumentTypeChildNode {
     /**
-     * The **`data`** property of the CharacterData interface represent the value of the current object's data.
+     * The **`data`** property of the CharacterData interface represents the value of the current object's data.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CharacterData/data)
      */
@@ -13699,7 +13730,7 @@ interface EXT_float_blend {
 }
 
 /**
- * The **`EXT_frag_depth`** extension is part of the WebGL API and enables to set a depth value of a fragment from within the fragment shader.
+ * The **`EXT_frag_depth`** extension is part of the WebGL API and enables you to set a depth value of a fragment from within the fragment shader.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/EXT_frag_depth)
  */
@@ -17861,7 +17892,7 @@ declare var HTMLDataListElement: {
  */
 interface HTMLDetailsElement extends HTMLElement {
     /**
-     * The **`name`** property of the HTMLDetailsElement interface reflects the name attribute of <details> elements. It enables multiple <details> elements to be connected together, where only one for the <details> elements can be open at once. This allows developers to easily create UI features such as accordions without scripting.
+     * The **`name`** property of the HTMLDetailsElement interface reflects the name attribute of <details> elements. It enables multiple <details> elements to be connected together, where only one of the <details> elements can be open at once. This allows developers to easily create UI features such as accordions without scripting.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLDetailsElement/name)
      */
@@ -19339,7 +19370,7 @@ interface HTMLLabelElement extends HTMLElement {
      */
     readonly form: HTMLFormElement | null;
     /**
-     * The **`HTMLLabelElement.htmlFor`** property reflects the value of the for content property. That means that this script-accessible property is used to set and read the value of the content property for, which is the ID of the label's associated control element.
+     * The **`htmlFor`** property of the HTMLLabelElement interface is the ID of the associated label's control element. It reflects the value of, and is used to set and get the for content attribute.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLLabelElement/htmlFor)
      */
@@ -19356,7 +19387,7 @@ declare var HTMLLabelElement: {
 };
 
 /**
- * The **`HTMLLegendElement`** is an interface allowing to access properties of the <legend> elements. It inherits properties and methods from the HTMLElement interface.
+ * The **`HTMLLegendElement`** is an interface allowing you to access properties of the <legend> elements. It inherits properties and methods from the HTMLElement interface.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLLegendElement)
  */
@@ -19438,7 +19469,7 @@ interface HTMLLinkElement extends HTMLElement, LinkStyle {
      */
     imageSizes: string;
     /**
-     * The **`imageSrcset`** property of the HTMLLinkElement interface is a string which identifies one or more comma-separated image candidate strings. This property reflects the value of the <link> element's imagesrcset attribute. This property can retrieved or set the imagesrcset attribute value.
+     * The **`imageSrcset`** property of the HTMLLinkElement interface is a string which identifies one or more comma-separated image candidate strings. This property reflects the value of the <link> element's imagesrcset attribute. This property can retrieve or set the imagesrcset attribute value.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLLinkElement/imageSrcset)
      */
@@ -24075,7 +24106,7 @@ declare var MathMLElement: {
  */
 interface MediaCapabilities {
     /**
-     * The **`decodingInfo()`** method of the MediaCapabilities interface returns a promise that fulfils with information about how well the user agent can decode/display media with a given configuration.
+     * The **`decodingInfo()`** method of the MediaCapabilities interface returns a promise that fulfills with information about how well the user agent can decode/display media with a given configuration.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaCapabilities/decodingInfo)
      */
@@ -25680,7 +25711,7 @@ interface NavigateEvent extends Event {
      */
     readonly navigationType: NavigationType;
     /**
-     * The **`signal`** read-only property of the NavigateEvent interface returns an AbortSignal, which will become aborted if the navigation is cancelled (e.g., by the user pressing the browser's "Stop" button, or another navigation starting and thus cancelling the ongoing one).
+     * The **`signal`** read-only property of the NavigateEvent interface returns an AbortSignal, which will become aborted if the navigation is canceled (e.g., by the user pressing the browser's "Stop" button, or another navigation starting and thus canceling the ongoing one).
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/NavigateEvent/signal)
      */
@@ -27474,7 +27505,7 @@ declare var Path2D: {
 };
 
 /**
- * The **`ContactAddress`** interface of the Contact Picker API represents a physical address. Instances of this interface are retrieved from the address property of the objects returned by ContactsManager.getProperties().
+ * The **`ContactAddress`** interface of the Contact Picker API represents a physical address. Instances of this interface are retrieved from the address property of the objects returned by ContactsManager.select().
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/ContactAddress)
  */
@@ -28532,7 +28563,7 @@ interface PerformanceTiming {
      */
     readonly redirectEnd: number;
     /**
-     * The legacy **`PerformanceTiming.redirectStart`** read-only property returns an unsigned long long representing the moment, in milliseconds since the UNIX epoch, the first HTTP redirect starts. If there is no redirect, or if one of the redirect is not of the same origin, the value returned is 0.
+     * The legacy **`PerformanceTiming.redirectStart`** read-only property returns an unsigned long long representing the moment, in milliseconds since the UNIX epoch, the first HTTP redirect starts. If there is no redirect, or if one of the redirects is not of the same origin, the value returned is 0.
      * @deprecated
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceTiming/redirectStart)
@@ -30708,7 +30739,7 @@ declare var ReadableStreamBYOBReader: {
 };
 
 /**
- * The **`ReadableStreamBYOBRequest`** interface of the Streams API represents a "pull request" for data from an underlying source that will made as a zero-copy transfer to a consumer (bypassing the stream's internal queues).
+ * The **`ReadableStreamBYOBRequest`** interface of the Streams API represents a "pull request" for data from an underlying source that will be made as a zero-copy transfer to a consumer (bypassing the stream's internal queues).
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/ReadableStreamBYOBRequest)
  */
@@ -38990,7 +39021,7 @@ interface WEBGL_lose_context {
 }
 
 /**
- * The **`WEBGL_multi_draw`** extension is part of the WebGL API and allows to render more than one primitive with a single function call. This can improve a WebGL application's performance as it reduces binding costs in the renderer and speeds up GPU thread time with uniform data.
+ * The **`WEBGL_multi_draw`** extension is part of the WebGL API and allows you to render more than one primitive with a single function call. This can improve a WebGL application's performance as it reduces binding costs in the renderer and speeds up GPU thread time with uniform data.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WEBGL_multi_draw)
  */
@@ -41328,7 +41359,7 @@ declare var WebGLTexture: {
 };
 
 /**
- * The **`WebGLTransformFeedback`** interface is part of the WebGL 2 API and enables transform feedback, which is the process of capturing primitives generated by vertex processing. It allows to preserve the post-transform rendering state of an object and resubmit this data multiple times.
+ * The **`WebGLTransformFeedback`** interface is part of the WebGL 2 API and enables transform feedback, which is the process of capturing primitives generated by vertex processing. It allows you to preserve the post-transform rendering state of an object and resubmit this data multiple times.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebGLTransformFeedback)
  */
@@ -42743,7 +42774,7 @@ declare var XMLSerializer: {
 };
 
 /**
- * The **`XPathEvaluator`** interface allows to compile and evaluate XPath expressions.
+ * The **`XPathEvaluator`** interface allows you to compile and evaluate XPath expressions.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/XPathEvaluator)
  */
@@ -44952,11 +44983,12 @@ type GPUTextureDimension = "1d" | "2d" | "3d";
 type GPUTextureFormat = "astc-10x10-unorm" | "astc-10x10-unorm-srgb" | "astc-10x5-unorm" | "astc-10x5-unorm-srgb" | "astc-10x6-unorm" | "astc-10x6-unorm-srgb" | "astc-10x8-unorm" | "astc-10x8-unorm-srgb" | "astc-12x10-unorm" | "astc-12x10-unorm-srgb" | "astc-12x12-unorm" | "astc-12x12-unorm-srgb" | "astc-4x4-unorm" | "astc-4x4-unorm-srgb" | "astc-5x4-unorm" | "astc-5x4-unorm-srgb" | "astc-5x5-unorm" | "astc-5x5-unorm-srgb" | "astc-6x5-unorm" | "astc-6x5-unorm-srgb" | "astc-6x6-unorm" | "astc-6x6-unorm-srgb" | "astc-8x5-unorm" | "astc-8x5-unorm-srgb" | "astc-8x6-unorm" | "astc-8x6-unorm-srgb" | "astc-8x8-unorm" | "astc-8x8-unorm-srgb" | "bc1-rgba-unorm" | "bc1-rgba-unorm-srgb" | "bc2-rgba-unorm" | "bc2-rgba-unorm-srgb" | "bc3-rgba-unorm" | "bc3-rgba-unorm-srgb" | "bc4-r-snorm" | "bc4-r-unorm" | "bc5-rg-snorm" | "bc5-rg-unorm" | "bc6h-rgb-float" | "bc6h-rgb-ufloat" | "bc7-rgba-unorm" | "bc7-rgba-unorm-srgb" | "bgra8unorm" | "bgra8unorm-srgb" | "depth16unorm" | "depth24plus" | "depth24plus-stencil8" | "depth32float" | "depth32float-stencil8" | "eac-r11snorm" | "eac-r11unorm" | "eac-rg11snorm" | "eac-rg11unorm" | "etc2-rgb8a1unorm" | "etc2-rgb8a1unorm-srgb" | "etc2-rgb8unorm" | "etc2-rgb8unorm-srgb" | "etc2-rgba8unorm" | "etc2-rgba8unorm-srgb" | "r16float" | "r16sint" | "r16snorm" | "r16uint" | "r16unorm" | "r32float" | "r32sint" | "r32uint" | "r8sint" | "r8snorm" | "r8uint" | "r8unorm" | "rg11b10ufloat" | "rg16float" | "rg16sint" | "rg16snorm" | "rg16uint" | "rg16unorm" | "rg32float" | "rg32sint" | "rg32uint" | "rg8sint" | "rg8snorm" | "rg8uint" | "rg8unorm" | "rgb10a2uint" | "rgb10a2unorm" | "rgb9e5ufloat" | "rgba16float" | "rgba16sint" | "rgba16snorm" | "rgba16uint" | "rgba16unorm" | "rgba32float" | "rgba32sint" | "rgba32uint" | "rgba8sint" | "rgba8snorm" | "rgba8uint" | "rgba8unorm" | "rgba8unorm-srgb" | "stencil8";
 type GPUTextureSampleType = "depth" | "float" | "sint" | "uint" | "unfilterable-float";
 type GPUTextureViewDimension = "1d" | "2d" | "2d-array" | "3d" | "cube" | "cube-array";
-type GPUVertexFormat = "float16" | "float16x2" | "float16x4" | "float32" | "float32x2" | "float32x3" | "float32x4" | "sint16" | "sint16x2" | "sint16x4" | "sint32" | "sint32x2" | "sint32x3" | "sint32x4" | "sint8" | "sint8x2" | "sint8x4" | "snorm16" | "snorm16x2" | "snorm16x4" | "snorm8" | "snorm8x2" | "snorm8x4" | "uint16" | "uint16x2" | "uint16x4" | "uint32" | "uint32x2" | "uint32x3" | "uint32x4" | "uint8" | "uint8x2" | "uint8x4" | "unorm10-10-10-2" | "unorm16" | "unorm16x2" | "unorm16x4" | "unorm8" | "unorm8x2" | "unorm8x4" | "unorm8x4-bgra";
+type GPUVertexFormat = "float16" | "float16x2" | "float16x4" | "float32" | "float32x2" | "float32x3" | "float32x4" | "sint16" | "sint16x2" | "sint16x4" | "sint32" | "sint32x2" | "sint32x3" | "sint32x4" | "sint8" | "sint8x2" | "sint8x4" | "snorm10-10-10-2" | "snorm16" | "snorm16x2" | "snorm16x4" | "snorm8" | "snorm8x2" | "snorm8x4" | "uint16" | "uint16x2" | "uint16x4" | "uint32" | "uint32x2" | "uint32x3" | "uint32x4" | "uint8" | "uint8x2" | "uint8x4" | "unorm10-10-10-2" | "unorm16" | "unorm16x2" | "unorm16x4" | "unorm8" | "unorm8x2" | "unorm8x4" | "unorm8x4-bgra";
 type GPUVertexStepMode = "instance" | "vertex";
 type GamepadHapticEffectType = "dual-rumble" | "trigger-rumble";
 type GamepadHapticsResult = "complete" | "preempted";
 type GamepadMappingType = "" | "standard" | "xr-standard";
+type GetUserMediaSemantics = "browser-chooses" | "user-chooses";
 type GlobalCompositeOperation = "color" | "color-burn" | "color-dodge" | "copy" | "darken" | "destination-atop" | "destination-in" | "destination-out" | "destination-over" | "difference" | "exclusion" | "hard-light" | "hue" | "lighten" | "lighter" | "luminosity" | "multiply" | "overlay" | "saturation" | "screen" | "soft-light" | "source-atop" | "source-in" | "source-out" | "source-over" | "xor";
 type HardwareAcceleration = "no-preference" | "prefer-hardware" | "prefer-software";
 type HdrMetadataType = "smpteSt2086" | "smpteSt2094-10" | "smpteSt2094-40";

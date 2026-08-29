@@ -222,7 +222,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/ANGLE_instanced_arrays",
     "pageType": "web-api-interface",
-    "summary": "The ANGLE_instanced_arrays extension is part of the WebGL API and allows to draw the same object, or groups of similar objects multiple times, if they share the same vertex data, primitive count and type."
+    "summary": "The ANGLE_instanced_arrays extension is part of the WebGL API and allows you to draw the same object, or groups of similar objects multiple times, if they share the same vertex data, primitive count and type."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/ANGLE_instanced_arrays/drawArraysInstancedANGLE",
@@ -3002,7 +3002,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/data",
     "pageType": "web-api-instance-property",
-    "summary": "The data property of the CharacterData interface represent the value of the current object's data."
+    "summary": "The data property of the CharacterData interface represents the value of the current object's data."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/deleteData",
@@ -3497,7 +3497,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/ContactAddress",
     "pageType": "web-api-interface",
-    "summary": "The ContactAddress interface of the Contact Picker API represents a physical address. Instances of this interface are retrieved from the address property of the objects returned by ContactsManager.getProperties()."
+    "summary": "The ContactAddress interface of the Contact Picker API represents a physical address. Instances of this interface are retrieved from the address property of the objects returned by ContactsManager.select()."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/ContactAddress/addressLine",
@@ -4477,7 +4477,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSLayerStatementRule/nameList",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only nameList property of the CSSLayerStatementRule interface return the list of associated cascade layer names. The names can't be modified."
+    "summary": "The read-only nameList property of the CSSLayerStatementRule interface returns the list of associated cascade layer names. The names can't be modified."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSMathClamp",
@@ -7502,7 +7502,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/DOMTokenList/keys",
     "pageType": "web-api-instance-method",
-    "summary": "The keys() method of the DOMTokenList interface\nreturns an iterator allowing to go through all keys contained in this object.\nThe keys are unsigned integers."
+    "summary": "The keys() method of the DOMTokenList interface\nreturns an iterator allowing you to go through all keys contained in this object.\nThe keys are unsigned integers."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DOMTokenList/length",
@@ -8067,7 +8067,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/beforescriptexecute_event",
     "pageType": "web-api-event",
-    "summary": "The beforescriptexecute event is fired when a script is about to be executed. Cancelling the event prevents the script from executing."
+    "summary": "The beforescriptexecute event is fired when a script is about to be executed. Canceling the event prevents the script from executing."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/beforexrselect_event",
@@ -9502,7 +9502,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/EXT_frag_depth",
     "pageType": "webgl-extension",
-    "summary": "The EXT_frag_depth extension is part of the WebGL API and enables to set a depth value of a fragment from within the fragment shader."
+    "summary": "The EXT_frag_depth extension is part of the WebGL API and enables you to set a depth value of a fragment from within the fragment shader."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/EXT_shader_texture_lod",
@@ -9962,7 +9962,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/FileReaderSync",
     "pageType": "web-api-interface",
-    "summary": "The FileReaderSync interface allows to read File or Blob objects synchronously. This interface is only available in workers as it enables synchronous I/O that could potentially block."
+    "summary": "The FileReaderSync interface allows you to read File or Blob objects synchronously. This interface is only available in workers as it enables synchronous I/O that could potentially block."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/FileReaderSync/FileReaderSync",
@@ -9972,22 +9972,22 @@
   {
     "mdn_url": "/en-US/docs/Web/API/FileReaderSync/readAsArrayBuffer",
     "pageType": "web-api-instance-method",
-    "summary": "The readAsArrayBuffer() method of the FileReaderSync interface allows to read File or Blob objects in a synchronous way into an ArrayBuffer. This interface is only available in workers as it enables synchronous I/O that could potentially block."
+    "summary": "The readAsArrayBuffer() method of the FileReaderSync interface allows you to read File or Blob objects in a synchronous way into an ArrayBuffer. This interface is only available in workers as it enables synchronous I/O that could potentially block."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/FileReaderSync/readAsBinaryString",
     "pageType": "web-api-instance-method",
-    "summary": "The readAsBinaryString() method of the FileReaderSync interface allows to read File or Blob objects in a synchronous way into a string. This interface is only available in workers as it enables synchronous I/O that could potentially block."
+    "summary": "The readAsBinaryString() method of the FileReaderSync interface allows you to read File or Blob objects in a synchronous way into a string. This interface is only available in workers as it enables synchronous I/O that could potentially block."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/FileReaderSync/readAsDataURL",
     "pageType": "web-api-instance-method",
-    "summary": "The readAsDataURL() method of the FileReaderSync interface allows to read File or Blob objects in a synchronous way into a string representing a data URL. This interface is only available in workers as it enables synchronous I/O that could potentially block."
+    "summary": "The readAsDataURL() method of the FileReaderSync interface allows you to read File or Blob objects in a synchronous way into a string representing a data URL. This interface is only available in workers as it enables synchronous I/O that could potentially block."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/FileReaderSync/readAsText",
     "pageType": "web-api-instance-method",
-    "summary": "The readAsText() method of the FileReaderSync interface allows to read File or Blob objects in a synchronous way into a string. This interface is only available in workers as it enables synchronous I/O that could potentially block."
+    "summary": "The readAsText() method of the FileReaderSync interface allows you to read File or Blob objects in a synchronous way into a string. This interface is only available in workers as it enables synchronous I/O that could potentially block."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/FileSystem",
@@ -11992,7 +11992,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Headers/entries",
     "pageType": "web-api-instance-method",
-    "summary": "The Headers.entries() method returns an\niterator allowing to go through all key/value pairs\ncontained in this object. Both the key and value of each pair are\nString objects."
+    "summary": "The Headers.entries() method returns an\niterator allowing you to go through all key/value pairs\ncontained in this object. Both the key and value of each pair are\nString objects."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Headers/forEach",
@@ -12022,7 +12022,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Headers/keys",
     "pageType": "web-api-instance-method",
-    "summary": "The Headers.keys() method returns an\niterator allowing to go through all keys contained\nin this object. The keys are String objects."
+    "summary": "The Headers.keys() method returns an\niterator allowing you to go through all keys contained\nin this object. The keys are String objects."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Headers/set",
@@ -12032,7 +12032,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Headers/values",
     "pageType": "web-api-instance-method",
-    "summary": "The Headers.values() method returns an\niterator allowing to go through all values contained\nin this object. The values are String objects."
+    "summary": "The Headers.values() method returns an\niterator allowing you to go through all values contained\nin this object. The values are String objects."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HID",
@@ -12407,7 +12407,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop",
     "pageType": "guide",
-    "summary": "As mentioned on the landing page, the Drag and Drop API simultaneously models three use cases: dragging elements within a page, dragging data out of a page, and dragging data into a page. This tutorial demonstrates the third use case: dragging data into a page. We will be implementing a basic drop zone that allows the user to drop image files from the user's operation system file explorer and displays them on the page. For users who can't or don't want to use drag and drop, we also provide the alternative functionality of file selection via an <input> element."
+    "summary": "As mentioned on the landing page, the Drag and Drop API simultaneously models three use cases: dragging elements within a page, dragging data out of a page, and dragging data into a page. This tutorial demonstrates the third use case: dragging data into a page. We will be implementing a basic drop zone that allows the user to drop image files from the user's operating system file explorer and displays them on the page. For users who can't or don't want to use drag and drop, we also provide the alternative functionality of file selection via an <input> element."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Kanban_board",
@@ -12957,7 +12957,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLDetailsElement/name",
     "pageType": "web-api-instance-property",
-    "summary": "The name property of the HTMLDetailsElement interface reflects the name attribute of <details> elements. It enables multiple <details> elements to be connected together, where only one for the <details> elements can be open at once. This allows developers to easily create UI features such as accordions without scripting."
+    "summary": "The name property of the HTMLDetailsElement interface reflects the name attribute of <details> elements. It enables multiple <details> elements to be connected together, where only one of the <details> elements can be open at once. This allows developers to easily create UI features such as accordions without scripting."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLDetailsElement/open",
@@ -14262,12 +14262,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLLabelElement/htmlFor",
     "pageType": "web-api-instance-property",
-    "summary": "The HTMLLabelElement.htmlFor property reflects the value\nof the for content property. That means that this\nscript-accessible property is used to set and read the value of the content property\nfor, which is the ID of the label's associated control element."
+    "summary": "The htmlFor property of the HTMLLabelElement interface is the ID of the associated label's control element. It reflects the value of, and is used to set and get the for content attribute."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLLegendElement",
     "pageType": "web-api-interface",
-    "summary": "The HTMLLegendElement is an interface allowing to access properties of the <legend> elements. It inherits properties and methods from the HTMLElement interface."
+    "summary": "The HTMLLegendElement is an interface allowing you to access properties of the <legend> elements. It inherits properties and methods from the HTMLElement interface."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLLegendElement/form",
@@ -14332,7 +14332,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLLinkElement/imageSrcset",
     "pageType": "web-api-instance-property",
-    "summary": "The imageSrcset property of the HTMLLinkElement interface is a string which identifies one or more comma-separated image candidate strings. This property reflects the value of the <link> element's imagesrcset attribute. This property can retrieved or set the imagesrcset attribute value."
+    "summary": "The imageSrcset property of the HTMLLinkElement interface is a string which identifies one or more comma-separated image candidate strings. This property reflects the value of the <link> element's imagesrcset attribute. This property can retrieve or set the imagesrcset attribute value."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLLinkElement/integrity",
@@ -15830,6 +15830,11 @@
     "summary": "The content property of the HTMLTemplateElement interface returns the <template> element's template contents as a DocumentFragment. This content's ownerDocument is a separate Document from the one that contains the <template> element itself — unless the containing document is itself constructed for the purpose of holding template content."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/HTMLTemplateElement/htmlFor",
+    "pageType": "web-api-instance-property",
+    "summary": "The htmlFor property of the HTMLTemplateElement interface is the ID of the Processing Instruction marker to replace with the contents of the associated <template> element. It reflects the value of, and is used to set and get the for content attribute."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/HTMLTemplateElement/shadowRootClonable",
     "pageType": "web-api-instance-property",
     "summary": "The shadowRootClonable property reflects the value of the shadowrootclonable attribute of the associated <template> element."
@@ -17170,11 +17175,6 @@
     "summary": "The largestContentfulPaint read-only property of the PerformanceSoftNavigation interface returns the current largest LargestContentfulPaint relevant to this soft navigation."
   },
   {
-    "mdn_url": "/en-US/docs/Web/API/InteractionContentfulPaint/navigationId",
-    "pageType": "web-api-instance-property",
-    "summary": "The navigationId read-only property of the InteractionContentfulPaint interface returns the id of the navigation that this paint is happened under."
-  },
-  {
     "mdn_url": "/en-US/docs/Web/API/InteractionContentfulPaint/paintTime",
     "pageType": "web-api-instance-property",
     "summary": "The paintTime read-only property of the InteractionContentfulPaint interface returns the timestamp of when the rendering phase ended and the paint phase started."
@@ -17183,6 +17183,11 @@
     "mdn_url": "/en-US/docs/Web/API/InteractionContentfulPaint/presentationTime",
     "pageType": "web-api-instance-property",
     "summary": "The presentationTime read-only property of the InteractionContentfulPaint interface returns the timestamp of when the painted pixels were actually drawn on the screen."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/InteractionContentfulPaint/toJSON",
+    "pageType": "web-api-instance-method",
+    "summary": "The toJSON() method of the InteractionContentfulPaint interface is a serializer; it returns a JSON representation of the InteractionContentfulPaint object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/InterestEvent",
@@ -18037,7 +18042,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/MediaCapabilities/decodingInfo",
     "pageType": "web-api-instance-method",
-    "summary": "The decodingInfo() method of the MediaCapabilities interface returns a promise that fulfils with information about how well the user agent can decode/display media with a given configuration."
+    "summary": "The decodingInfo() method of the MediaCapabilities interface returns a promise that fulfills with information about how well the user agent can decode/display media with a given configuration."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/MediaCapabilities/encodingInfo",
@@ -19922,7 +19927,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/NavigateEvent/signal",
     "pageType": "web-api-instance-property",
-    "summary": "The signal read-only property of the\nNavigateEvent interface returns an AbortSignal, which will become aborted if the navigation is cancelled (e.g., by the user pressing the browser's \"Stop\" button, or another navigation starting and thus cancelling the ongoing one)."
+    "summary": "The signal read-only property of the\nNavigateEvent interface returns an AbortSignal, which will become aborted if the navigation is canceled (e.g., by the user pressing the browser's \"Stop\" button, or another navigation starting and thus canceling the ongoing one)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/NavigateEvent/sourceElement",
@@ -20992,7 +20997,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/NodeList/entries",
     "pageType": "web-api-instance-method",
-    "summary": "The NodeList.entries() method returns an\niterator allowing to go through all key/value pairs\ncontained in this object. The values are Node objects."
+    "summary": "The NodeList.entries() method returns an\niterator allowing you to go through all key/value pairs\ncontained in this object. The values are Node objects."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/NodeList/forEach",
@@ -21007,7 +21012,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/NodeList/keys",
     "pageType": "web-api-instance-method",
-    "summary": "The NodeList.keys() method returns an\niterator allowing to go through all keys contained\nin this object. The keys are unsigned integer."
+    "summary": "The NodeList.keys() method returns an\niterator allowing you to go through all keys contained\nin this object. The keys are unsigned integer."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/NodeList/length",
@@ -21017,7 +21022,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/NodeList/values",
     "pageType": "web-api-instance-method",
-    "summary": "The NodeList.values() method returns an\niterator allowing to go through all values contained\nin this object. The values are Node objects."
+    "summary": "The NodeList.values() method returns an\niterator allowing you to go through all values contained\nin this object. The values are Node objects."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Notification",
@@ -22305,6 +22310,11 @@
     "summary": "The read-only name property of the PerformanceEntry interface is a string representing the name for a performance entry. It acts as an identifier, but it does not have to be unique. The value depends on the subclass."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceEntry/navigationId",
+    "pageType": "web-api-instance-property",
+    "summary": "The navigationId read-only property of the PerformanceEntry interface returns the ID of the navigation that this paint happened under."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/PerformanceEntry/startTime",
     "pageType": "web-api-instance-property",
     "summary": "The read-only startTime property returns the first timestamp recorded for this PerformanceEntry. The meaning of this property depends on the value of this entry's entryType."
@@ -22835,11 +22845,6 @@
     "summary": "The interactionId read-only property of the PerformanceSoftNavigation interface returns the interactionId of the PerformanceEventTiming entry representing the interaction that resulted in the soft navigation."
   },
   {
-    "mdn_url": "/en-US/docs/Web/API/PerformanceSoftNavigation/navigationId",
-    "pageType": "web-api-instance-property",
-    "summary": "The navigationId read-only property of the PerformanceSoftNavigation interface returns an increasing integer id unique to this page load."
-  },
-  {
     "mdn_url": "/en-US/docs/Web/API/PerformanceSoftNavigation/navigationType",
     "pageType": "web-api-instance-property",
     "summary": "The navigationType read-only property of the PerformanceSoftNavigation interface returns the type of the soft navigation — push, reload, replace, or traverse."
@@ -22853,6 +22858,11 @@
     "mdn_url": "/en-US/docs/Web/API/PerformanceSoftNavigation/presentationTime",
     "pageType": "web-api-instance-property",
     "summary": "The presentationTime read-only property of the PerformanceSoftNavigation interface returns the timestamp of when the painted pixels were actually drawn on the screen."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceSoftNavigation/toJSON",
+    "pageType": "web-api-instance-method",
+    "summary": "The toJSON() method of the PerformanceSoftNavigation interface is a serializer; it returns a JSON representation of the PerformanceSoftNavigation object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceTiming",
@@ -22932,7 +22942,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceTiming/redirectStart",
     "pageType": "web-api-instance-property",
-    "summary": "The legacy\nPerformanceTiming.redirectStart\nread-only property returns an unsigned long long representing the moment,\nin milliseconds since the UNIX epoch, the first HTTP redirect starts. If there is no\nredirect, or if one of the redirect is not of the same origin, the value returned is\n0."
+    "summary": "The legacy\nPerformanceTiming.redirectStart\nread-only property returns an unsigned long long representing the moment,\nin milliseconds since the UNIX epoch, the first HTTP redirect starts. If there is no\nredirect, or if one of the redirects is not of the same origin, the value returned is\n0."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceTiming/requestStart",
@@ -24227,7 +24237,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/ReadableStreamBYOBRequest",
     "pageType": "web-api-interface",
-    "summary": "The ReadableStreamBYOBRequest interface of the Streams API represents a \"pull request\" for data from an underlying source that will made as a zero-copy transfer to a consumer (bypassing the stream's internal queues)."
+    "summary": "The ReadableStreamBYOBRequest interface of the Streams API represents a \"pull request\" for data from an underlying source that will be made as a zero-copy transfer to a consumer (bypassing the stream's internal queues)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/ReadableStreamBYOBRequest/respond",
@@ -29422,7 +29432,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Summarizer/type",
     "pageType": "web-api-instance-property",
-    "summary": "The type read-only property of the Summarizer interface returns the type of summary that will generated by the Summarizer."
+    "summary": "The type read-only property of the Summarizer interface returns the type of summary that will be generated by the Summarizer."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SVG_API",
@@ -35717,7 +35727,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/WEBGL_multi_draw",
     "pageType": "webgl-extension",
-    "summary": "The WEBGL_multi_draw extension is part of the\nWebGL API and allows to render more\nthan one primitive with a single function call. This can improve a WebGL application's performance\nas it reduces binding costs in the renderer and speeds up GPU thread time with uniform data."
+    "summary": "The WEBGL_multi_draw extension is part of the\nWebGL API and allows you to render more\nthan one primitive with a single function call. This can improve a WebGL application's performance\nas it reduces binding costs in the renderer and speeds up GPU thread time with uniform data."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/WEBGL_multi_draw/multiDrawArraysInstancedWEBGL",
@@ -36807,7 +36817,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/WebGLTransformFeedback",
     "pageType": "web-api-interface",
-    "summary": "The WebGLTransformFeedback interface is part of the WebGL 2 API and enables transform feedback, which is the process of capturing primitives generated by vertex processing. It allows to preserve the post-transform rendering state of an object and resubmit this data multiple times."
+    "summary": "The WebGLTransformFeedback interface is part of the WebGL 2 API and enables transform feedback, which is the process of capturing primitives generated by vertex processing. It allows you to preserve the post-transform rendering state of an object and resubmit this data multiple times."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/WebGLUniformLocation",
@@ -36847,7 +36857,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/WebRTC_API/Build_a_phone_with_peerjs",
     "pageType": "guide",
-    "summary": "One of WebRTC's main issues is that it is pretty complicated to use and develop with — handling the signalling service and knowing when to call the right endpoint can get confusing. But there is some good news; PeerJS is a WebRTC framework that abstracts away all of the ice and signalling logic so that you can focus on the functionality of your application. There are two parts to PeerJS, the client-side framework and the server."
+    "summary": "One of WebRTC's main issues is that it is pretty complicated to use and develop with — handling the signaling service and knowing when to call the right endpoint can get confusing. But there is some good news; PeerJS is a WebRTC framework that abstracts away all of the ice and signaling logic so that you can focus on the functionality of your application. There are two parts to PeerJS, the client-side framework and the server."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/WebRTC_API/Build_a_phone_with_peerjs/Build_the_server",
@@ -39092,7 +39102,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/XPathEvaluator",
     "pageType": "web-api-interface",
-    "summary": "The XPathEvaluator interface allows to compile and evaluate XPath expressions."
+    "summary": "The XPathEvaluator interface allows you to compile and evaluate XPath expressions."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/XPathEvaluator/createExpression",
@@ -40447,7 +40457,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/-webkit-border-before",
     "pageType": "css-shorthand-property",
-    "summary": "The -webkit-border-before CSS property is a shorthand property for setting the individual logical block start border property values in a single place in the style sheet."
+    "summary": "The -webkit-border-before CSS shorthand property sets the individual logical block start border property values in a single place in the style sheet."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/-webkit-box-reflect",
@@ -40457,7 +40467,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/-webkit-mask-box-image",
     "pageType": "css-shorthand-property",
-    "summary": "The non-standard prefixed -webkit-mask-box-image shorthand property sets the mask image for an element's border box."
+    "summary": "The non-standard prefixed -webkit-mask-box-image CSS shorthand property sets the mask image for an element's border box."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/-webkit-mask-composite",
@@ -40502,7 +40512,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/-webkit-text-stroke",
     "pageType": "css-shorthand-property",
-    "summary": "The -webkit-text-stroke CSS property specifies the width and color of strokes for text characters. This is a shorthand property for the longhand properties -webkit-text-stroke-width and -webkit-text-stroke-color."
+    "summary": "The -webkit-text-stroke CSS shorthand property specifies the width and color of strokes for text characters."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/-webkit-text-stroke-color",
@@ -40547,7 +40557,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/all",
     "pageType": "css-shorthand-property",
-    "summary": "The all shorthand CSS property resets all of an element's properties except unicode-bidi, direction, and CSS Custom Properties. It can set properties to their initial or inherited values, or to the values specified in another cascade layer or stylesheet origin."
+    "summary": "The all CSSshorthand property resets all of an element's properties except unicode-bidi, direction, and CSS Custom Properties. It can set properties to their initial or inherited values, or to the values specified in another cascade layer or stylesheet origin."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/anchor-name",
@@ -40562,7 +40572,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/animation",
     "pageType": "css-shorthand-property",
-    "summary": "The animation shorthand CSS property applies an animation between styles. It is a shorthand for animation-name, animation-duration, animation-timing-function, animation-delay, animation-iteration-count, animation-direction, animation-fill-mode, animation-play-state, and animation-timeline."
+    "summary": "The animation CSS shorthand property applies an animation between styles. It is a shorthand for animation-name, animation-duration, animation-timing-function, animation-delay, animation-iteration-count, animation-direction, animation-fill-mode, animation-play-state, and animation-timeline."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/animation-composition",
@@ -40662,7 +40672,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/background",
     "pageType": "css-shorthand-property",
-    "summary": "The background shorthand CSS property sets all background style properties at once, such as color, image, origin, size, and repeat method."
+    "summary": "The background CSS shorthand property sets all background style properties at once, such as color, image, origin, size, and repeat method."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/background-attachment",
@@ -40712,7 +40722,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/background-repeat",
     "pageType": "css-property",
-    "summary": "The background-repeat CSS property sets how background images are repeated. A background image can be repeated along the horizontal and vertical axes, or not repeated at all."
+    "summary": "The background-repeat CSS shorthand property sets how background images are repeated. A background image can be repeated along the horizontal and vertical axes, or not repeated at all."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/background-repeat-x",
@@ -40747,12 +40757,12 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border",
     "pageType": "css-shorthand-property",
-    "summary": "The border shorthand CSS property sets an element's border. It sets the values of border-width, border-style, and border-color."
+    "summary": "The border CSS shorthand property sets an element's border. It sets the values of border-width, border-style, and border-color."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-block",
     "pageType": "css-shorthand-property",
-    "summary": "The border-block CSS property is a shorthand property for setting the individual logical block border property values in a single place in the style sheet."
+    "summary": "The border-block CSS shorthand property sets the individual logical block border property values in a single place in the style sheet."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-block-color",
@@ -40762,7 +40772,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-block-end",
     "pageType": "css-shorthand-property",
-    "summary": "The border-block-end CSS property is a shorthand property for setting the individual logical block-end border property values in a single place in the style sheet."
+    "summary": "The border-block-end CSS shorthand property sets the individual logical block-end border property values in a single place in the style sheet."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-block-end-color",
@@ -40782,7 +40792,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-block-start",
     "pageType": "css-shorthand-property",
-    "summary": "The border-block-start CSS property is a shorthand property for setting the individual logical block-start border property values in a single place in the style sheet."
+    "summary": "The border-block-start CSS shorthand property sets the individual logical block-start border property values in a single place in the style sheet."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-block-start-color",
@@ -40812,7 +40822,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-bottom",
     "pageType": "css-shorthand-property",
-    "summary": "The border-bottom shorthand CSS property sets an element's bottom border. It sets the values of border-bottom-width, border-bottom-style and border-bottom-color."
+    "summary": "The border-bottom CSS shorthand property sets an element's bottom border. It sets the values of border-bottom-width, border-bottom-style and border-bottom-color."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-bottom-color",
@@ -40847,7 +40857,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-color",
     "pageType": "css-shorthand-property",
-    "summary": "The border-color shorthand CSS property sets the color of an element's border."
+    "summary": "The border-color CSS shorthand property sets the color of an element's border."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-end-end-radius",
@@ -40862,7 +40872,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-image",
     "pageType": "css-shorthand-property",
-    "summary": "The border-image CSS property draws an image around a given element. It replaces the element's regular border."
+    "summary": "The border-image CSS shorthand property draws an image around a given element. It replaces the element's regular border."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-image-outset",
@@ -40892,7 +40902,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-inline",
     "pageType": "css-shorthand-property",
-    "summary": "The border-inline CSS property is a shorthand property for setting the individual logical inline border property values in a single place in the style sheet."
+    "summary": "The border-inline CSS shorthand property sets the individual logical inline border property values in a single place in the style sheet."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-inline-color",
@@ -40902,7 +40912,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-inline-end",
     "pageType": "css-shorthand-property",
-    "summary": "The border-inline-end CSS property is a shorthand property for setting the individual logical inline-end border property values in a single place in the style sheet."
+    "summary": "The border-inline-end CSS shorthand property sets the individual logical inline-end border property values in a single place in the style sheet."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-inline-end-color",
@@ -40922,7 +40932,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-inline-start",
     "pageType": "css-shorthand-property",
-    "summary": "The border-inline-start CSS property is a shorthand property for setting the individual logical inline-start border property values in a single place in the style sheet."
+    "summary": "The border-inline-start CSS shorthand property sets the individual logical inline-start border property values in a single place in the style sheet."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-inline-start-color",
@@ -40952,7 +40962,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-left",
     "pageType": "css-shorthand-property",
-    "summary": "The border-left shorthand CSS property sets all the properties of an element's left border."
+    "summary": "The border-left CSS shorthand property sets all the properties of an element's left border."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-left-color",
@@ -40972,12 +40982,12 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-radius",
     "pageType": "css-shorthand-property",
-    "summary": "The border-radius CSS property rounds the corners of an element's outer border edge. You can set a single radius to make circular corners, or two radii to make elliptical corners."
+    "summary": "The border-radius CSS shorthand property rounds the corners of an element's outer border edge. You can set a single radius to make circular corners, or two radii to make elliptical corners."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-right",
     "pageType": "css-shorthand-property",
-    "summary": "The border-right shorthand CSS property sets all the properties of an element's right border."
+    "summary": "The border-right CSS shorthand property sets all the properties of an element's right border."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-right-color",
@@ -41017,12 +41027,12 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-style",
     "pageType": "css-shorthand-property",
-    "summary": "The border-style shorthand CSS property sets the line style for all four sides of an element's border."
+    "summary": "The border-style CSS shorthand property sets the line style for all four sides of an element's border."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-top",
     "pageType": "css-shorthand-property",
-    "summary": "The border-top shorthand CSS property sets all the properties of an element's top border."
+    "summary": "The border-top CSS shorthand property sets all the properties of an element's top border."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-top-color",
@@ -41052,7 +41062,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/border-width",
     "pageType": "css-shorthand-property",
-    "summary": "The border-width shorthand CSS property sets the width of an element's border."
+    "summary": "The border-width CSS shorthand property sets the width of an element's border."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/bottom",
@@ -41137,7 +41147,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/caret",
     "pageType": "css-shorthand-property",
-    "summary": "The caret shorthand CSS property sets the appearance and behavior of the insertion caret in a single declaration."
+    "summary": "The caret CSS shorthand property sets the appearance and behavior of the insertion caret in a single declaration."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/caret-animation",
@@ -41217,7 +41227,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule",
     "pageType": "css-shorthand-property",
-    "summary": "The column-rule shorthand CSS property sets the width, style, and color of the lines drawn between columns in multi-column grid, flex, and multi-col layouts."
+    "summary": "The column-rule CSS shorthand property sets the width, style, and color of the lines drawn between columns in multi-column grid, flex, and multi-col layouts."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-break",
@@ -41377,7 +41387,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/corner-shape",
     "pageType": "css-shorthand-property",
-    "summary": "The corner-shape shorthand CSS property specifies the shape of a box's corners, within the area specified by its border-radius property value."
+    "summary": "The corner-shape CSS shorthand property specifies the shape of a box's corners, within the area specified by its border-radius property value."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/corner-start-end-shape",
@@ -41612,7 +41622,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/font-synthesis",
     "pageType": "css-shorthand-property",
-    "summary": "The font-synthesis shorthand CSS property lets you specify whether or not the browser may synthesize the bold, italic, small-caps, and/or subscript and superscript typefaces when they are missing in the specified font-family."
+    "summary": "The font-synthesis CSS shorthand property lets you specify whether or not the browser may synthesize the bold, italic, small-caps, and/or subscript and superscript typefaces when they are missing in the specified font-family."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/font-synthesis-position",
@@ -41707,7 +41717,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/grid",
     "pageType": "css-shorthand-property",
-    "summary": "The grid CSS property is a shorthand property that sets all of the explicit and implicit grid properties in a single declaration."
+    "summary": "The grid CSS shorthand property sets all of the explicit and implicit grid properties in a single declaration."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/grid-area",
@@ -41762,7 +41772,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/grid-template",
     "pageType": "css-shorthand-property",
-    "summary": "The grid-template CSS property is a shorthand property for defining grid columns, grid rows, and grid areas."
+    "summary": "The grid-template CSS shorthand property specifies the grid columns, grid rows, and grid areas."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/grid-template-areas",
@@ -41832,12 +41842,12 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/inset",
     "pageType": "css-shorthand-property",
-    "summary": "The inset CSS property is a shorthand that corresponds to the top, right, bottom, and/or left properties. It has the same multi-value syntax of the margin shorthand."
+    "summary": "The inset CSS shorthand property corresponds to the top, right, bottom, and/or left properties. It has the same multi-value syntax of the margin shorthand."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/inset-block",
     "pageType": "css-shorthand-property",
-    "summary": "The inset-block CSS property defines the logical block start and end offsets of an element, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation."
+    "summary": "The inset-block CSS shorthand property defines the logical block start and end offsets of an element, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/inset-block-end",
@@ -41852,7 +41862,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/inset-inline",
     "pageType": "css-shorthand-property",
-    "summary": "The inset-inline CSS property defines the logical start and end offsets of an element in the inline direction, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation."
+    "summary": "The inset-inline CSS shorthand property defines the logical start and end offsets of an element in the inline direction, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/inset-inline-end",
@@ -42452,7 +42462,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/place-items",
     "pageType": "css-shorthand-property",
-    "summary": "The CSS place-items shorthand property aligns items along both the block and inline directions at once. It sets the values of the align-items and justify-items properties. If the second value is not set, the first value is also used for it."
+    "summary": "The place-items CSS shorthand property aligns items along both the block and inline directions at once. It sets the values of the align-items and justify-items properties. If the second value is not set, the first value is also used for it."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/place-self",
@@ -42482,7 +42492,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/position-try",
     "pageType": "css-shorthand-property",
-    "summary": "The position-try CSS property is a shorthand that corresponds to the position-try-order and position-try-fallbacks properties."
+    "summary": "The position-try CSS shorthand property corresponds to the position-try-order and position-try-fallbacks properties."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/position-try-fallbacks",
@@ -42547,7 +42557,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule",
     "pageType": "css-property",
-    "summary": "The row-rule shorthand CSS property sets the width, style, and color of the line drawn between rows in multi-row grid, flex, and multi-col layouts."
+    "summary": "The row-rule CSS shorthand property sets the width, style, and color of the line drawn between rows in multi-row grid, flex, and multi-col layouts."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-break",
@@ -42592,22 +42602,22 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule",
     "pageType": "css-property",
-    "summary": "The rule shorthand CSS property sets the width, style, and color of the line drawn between rows and columns in multi-row grid, flex, and multi-col layouts, setting both the column and row rules to the same values."
+    "summary": "The rule CSS shorthand property sets the width, style, and color of the line drawn between rows and columns in multi-row grid, flex, and multi-col layouts, setting both the column and row rules to the same values."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-break",
     "pageType": "css-property",
-    "summary": "The rule-break CSS property sets the behavior for breaking column and row rules into segments where rows and column gaps intersect, setting column-rule-break and row-rule-break to the same value."
+    "summary": "The rule-break CSS shorthand property sets the behavior for breaking column and row rules into segments where rows and column gaps intersect, setting column-rule-break and row-rule-break to the same value."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-color",
     "pageType": "css-property",
-    "summary": "The rule-color CSS property defines the colors of the lines drawn between columns and rows in multi-column grid, flex, and multi-col layouts, setting the colors of the column and row rules to the same value."
+    "summary": "The rule-color CSS shorthand property defines the colors of the lines drawn between columns and rows in multi-column grid, flex, and multi-col layouts, setting the colors of the column and row rules to the same value."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-style",
     "pageType": "css-property",
-    "summary": "The rule-style CSS property defines the line style of the lines drawn between columns and rows in multi-column grid, flex, and multi-col layouts, setting the styles of the column and row rules to the same value."
+    "summary": "The rule-style CSS shorthand property defines the line style of the lines drawn between columns and rows in multi-column grid, flex, and multi-col layouts, setting the styles of the column and row rules to the same value."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-visibility-items",
@@ -42617,7 +42627,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-width",
     "pageType": "css-property",
-    "summary": "The rule-width CSS property defines the widths of any lines drawn in the gutters of multi-row grid, flex, and multi-col layouts, setting the widths of the column and row rules to the same value."
+    "summary": "The rule-width CSS shorthand property defines the widths of any lines drawn in the gutters of multi-row grid, flex, and multi-col layouts, setting the widths of the column and row rules to the same value."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rx",
@@ -42647,12 +42657,12 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/scroll-margin",
     "pageType": "css-shorthand-property",
-    "summary": "The scroll-margin shorthand property sets all of the scroll margins of an element at once, assigning values much like the margin property does for margins of an element."
+    "summary": "The scroll-margin CSS shorthand property sets all of the scroll margins of an element at once, assigning values much like the margin property does for margins of an element."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/scroll-margin-block",
     "pageType": "css-shorthand-property",
-    "summary": "The scroll-margin-block shorthand property sets the scroll margins of an element in the block dimension."
+    "summary": "The scroll-margin-block CSS shorthand property sets the scroll margins of an element in the block dimension."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/scroll-margin-block-end",
@@ -42672,7 +42682,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/scroll-margin-inline",
     "pageType": "css-shorthand-property",
-    "summary": "The scroll-margin-inline shorthand property sets the scroll margins of an element in the inline dimension."
+    "summary": "The scroll-margin-inline CSS shorthand property sets the scroll margins of an element in the inline dimension."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/scroll-margin-inline-end",
@@ -42707,12 +42717,12 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/scroll-padding",
     "pageType": "css-shorthand-property",
-    "summary": "The scroll-padding shorthand property sets scroll padding on all sides of an element at once. It specifies offsets that define the optimal viewing region of a scrollport within a scroll container."
+    "summary": "The scroll-padding CSS shorthand property sets scroll padding on all sides of an element at once. It specifies offsets that define the optimal viewing region of a scrollport within a scroll container."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/scroll-padding-block",
     "pageType": "css-shorthand-property",
-    "summary": "The scroll-padding-block shorthand property sets the scroll padding of an element in the block dimension."
+    "summary": "The scroll-padding-block CSS shorthand property sets the scroll padding of an element in the block dimension."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/scroll-padding-block-end",
@@ -42732,7 +42742,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/scroll-padding-inline",
     "pageType": "css-shorthand-property",
-    "summary": "The scroll-padding-inline shorthand property sets the scroll padding of an element in the inline dimension."
+    "summary": "The scroll-padding-inline CSS shorthand property sets the scroll padding of an element in the inline dimension."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/scroll-padding-inline-end",
@@ -42917,7 +42927,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/text-box",
     "pageType": "css-shorthand-property",
-    "summary": "The text-box CSS property is a shorthand that corresponds to the text-box-trim and text-box-edge properties, which together specify the amount of space to trim from the block-start edge and block-end edge of a text element's block container."
+    "summary": "The text-box CSS shorthand property corresponds to the text-box-trim and text-box-edge properties, which together specify the amount of space to trim from the block-start edge and block-end edge of a text element's block container."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/text-box-edge",
@@ -42937,7 +42947,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/text-decoration",
     "pageType": "css-shorthand-property",
-    "summary": "The text-decoration shorthand CSS property sets the appearance of decorative lines on text. It is a shorthand for text-decoration-line, text-decoration-color, text-decoration-style, and the newer text-decoration-thickness property."
+    "summary": "The text-decoration CSS shorthand property sets the appearance of decorative lines on text. It is a shorthand for text-decoration-line, text-decoration-color, text-decoration-style, and the newer text-decoration-thickness property."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/text-decoration-color",
@@ -42977,7 +42987,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/text-emphasis",
     "pageType": "css-shorthand-property",
-    "summary": "The text-emphasis CSS property applies emphasis marks to text (except spaces and control characters). It is a shorthand for text-emphasis-style and text-emphasis-color."
+    "summary": "The text-emphasis CSS shorthand property applies emphasis marks to text (except spaces and control characters)."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/text-emphasis-color",
@@ -43102,7 +43112,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/transition",
     "pageType": "css-shorthand-property",
-    "summary": "The transition CSS property is a shorthand property for transition-property, transition-duration, transition-timing-function, transition-delay, and transition-behavior."
+    "summary": "The transition CSS shorthand property for transition-property, transition-duration, transition-timing-function, transition-delay, and transition-behavior."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/transition-behavior",
@@ -43202,7 +43212,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/white-space",
     "pageType": "css-property",
-    "summary": "The white-space CSS property sets how white space inside an element is handled."
+    "summary": "The white-space CSS shorthand property sets how white space inside an element is handled."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/white-space-collapse",
