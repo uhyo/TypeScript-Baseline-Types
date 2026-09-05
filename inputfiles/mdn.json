@@ -427,7 +427,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/AnimationPlaybackEvent/currentTime",
     "pageType": "web-api-instance-property",
-    "summary": "The currentTime read-only property of the AnimationPlaybackEvent interface represents the current time of the animation that generated the event at the moment the event is queued. This will be unresolved if the animation was idle at the time the event was generated."
+    "summary": "The currentTime read-only property of the AnimationPlaybackEvent interface represents the current time of the animation that generated the event at the moment the event is queued. For browser-generated cancel events, the value is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/AnimationPlaybackEvent/timelineTime",
@@ -1667,7 +1667,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/BaseAudioContext/currentTime",
     "pageType": "web-api-instance-property",
-    "summary": "The currentTime read-only property of the BaseAudioContext\ninterface returns a double representing an ever-increasing hardware timestamp in seconds that\ncan be used for scheduling audio playback, visualizing timelines, etc. It starts at 0."
+    "summary": "The currentTime read-only property of the BaseAudioContext\ninterface returns a double representing the elapsed time in the context's audio timeline in seconds that\ncan be used for scheduling audio playback, visualizing timelines, etc. It starts at 0."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/BaseAudioContext/decodeAudioData",
@@ -1862,12 +1862,17 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Blob/stream",
     "pageType": "web-api-instance-method",
-    "summary": "The stream() method of the Blob interface returns a ReadableStream which upon reading returns the data contained within the Blob."
+    "summary": "The stream() method of the Blob interface returns a ReadableStream which upon reading returns the data contained within the Blob as chunks of raw bytes."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Blob/text",
     "pageType": "web-api-instance-method",
     "summary": "The text() method of the\nBlob interface returns a Promise that resolves with a\nstring containing the contents of the blob, interpreted as UTF-8."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Blob/textStream",
+    "pageType": "web-api-instance-method",
+    "summary": "The textStream() method of the Blob interface returns a ReadableStream that can be used to read the contents of the Blob in chunks of UTF-8."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Blob/type",
@@ -5612,12 +5617,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransfer/addElement",
     "pageType": "web-api-instance-method",
-    "summary": "The DataTransfer.addElement() method sets the drag source\nto the given element. This element will be the element to which drag and\ndragend events are fired, and not the default target (the node that was\ndragged)."
+    "summary": "The addElement() method of the DataTransfer interface sets the drag source to the given element. This element will be the element to which drag and dragend events are fired, and not the default target (the node that was dragged)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransfer/clearData",
     "pageType": "web-api-instance-method",
-    "summary": "The DataTransfer.clearData() method removes the drag\noperation's drag data for the given type. If data for the\ngiven type does not exist, this method does nothing."
+    "summary": "The clearData() method of the DataTransfer interface removes the drag operation's drag data for the given type. If data for the given type does not exist, this method does nothing."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransfer/DataTransfer",
@@ -5632,37 +5637,37 @@
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransfer/effectAllowed",
     "pageType": "web-api-instance-property",
-    "summary": "The DataTransfer.effectAllowed property specifies the\neffect that is allowed for a drag operation. The copy operation is used to\nindicate that the data being dragged will be copied from its present location to the\ndrop location. The move operation is used to indicate that the data being\ndragged will be moved, and the link operation is used to indicate that some\nform of relationship or connection will be created between the source and drop\nlocations."
+    "summary": "The effectAllowed property of the DataTransfer interface specifies the effect that is allowed for a drag operation. The copy operation is used to indicate that the data being dragged will be copied from its present location to the drop location. The move operation is used to indicate that the data being dragged will be moved, and the link operation is used to indicate that some form of relationship or connection will be created between the source and drop locations."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransfer/files",
     "pageType": "web-api-instance-property",
-    "summary": "The files read-only property of DataTransfer objects is a list of the files in the drag operation. If the operation includes no files, the list is empty."
+    "summary": "The files read-only property of the DataTransfer interface is a list of the files in the drag operation. If the operation includes no files, the list is empty."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransfer/getData",
     "pageType": "web-api-instance-method",
-    "summary": "The DataTransfer.getData()\nmethod retrieves drag data (as a string) for the specified type.\nIf the drag operation does not include data, this method returns an empty\nstring."
+    "summary": "The getData() method of the DataTransfer interface retrieves drag data (as a string) for the specified type. If the drag operation does not include data, this method returns an empty string."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransfer/items",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only items property of the DataTransfer interface is a\nlist of the data transfer items in a drag operation. The list includes one item for each item in the operation and if the operation had no items, the list is empty."
+    "summary": "The items read-only property of the DataTransfer interface is a DataTransferItemList of the DataTransferItem objects in a drag operation. The list includes one item for each item in the operation, and if the operation had no items, the list is empty."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransfer/setData",
     "pageType": "web-api-instance-method",
-    "summary": "The DataTransfer.setData() method sets the drag\noperation's drag data to the specified data and type. If\ndata for the given type does not exist, it is added at the end of the drag data store,\nsuch that the last item in the types list will be\nthe new type. If data for the given type already exists, the existing data is replaced\nin the same position. That is, the order of the\ntypes list is not changed when replacing data of the\nsame type."
+    "summary": "The setData() method of the DataTransfer interface sets the drag operation's drag data to the specified data and type. If data for the given type does not exist, it is added at the end of the drag data store, such that the last item in the types list will be the new type. If data for the given type already exists, the existing data is replaced in the same position. That is, the order of the types list is not changed when replacing data of the same type."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransfer/setDragImage",
     "pageType": "web-api-instance-method",
-    "summary": "When a drag occurs, a translucent image is generated from the drag target (the element\nthe dragstart event is fired at), and follows the mouse pointer during the\ndrag. This image is created automatically, so you do not need to create it yourself.\nHowever, if a custom image is desired, the\nDataTransfer.setDragImage() method can be used to set the\ncustom image to be used. The image will typically be an <img> element\nbut it can also be a <canvas> or any other visible element."
+    "summary": "The setDragImage() method of the DataTransfer interface sets a custom image to use as drag feedback. The image will typically be an <img> element but it can also be a <canvas> or any other visible element."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransfer/types",
     "pageType": "web-api-instance-property",
-    "summary": "The DataTransfer.types read-only property returns the available types that exist in the items."
+    "summary": "The types read-only property of the DataTransfer interface returns the available types that exist in the items."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransferItem",
@@ -5672,7 +5677,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransferItem/getAsFile",
     "pageType": "web-api-instance-method",
-    "summary": "If the item is a file, the DataTransferItem.getAsFile() method returns the drag data item's File object.\nIf the item is not a file, this method returns null."
+    "summary": "The getAsFile() method of the DataTransferItem interface returns the drag data item's File object if the item is a file. If the item is not a file, this method returns null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransferItem/getAsFileSystemHandle",
@@ -5682,22 +5687,22 @@
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransferItem/getAsString",
     "pageType": "web-api-instance-method",
-    "summary": "The DataTransferItem.getAsString() method invokes the given callback with the drag data item's string data as the argument if the item's kind is a Plain unicode string (i.e., kind is string)."
+    "summary": "The getAsString() method of the DataTransferItem interface invokes the given callback with the drag data item's string data as the argument if the item's kind is a Plain unicode string (i.e., kind is string)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransferItem/kind",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only DataTransferItem.kind property returns the kind–a string or a file–of the DataTransferItem object representing the drag data item."
+    "summary": "The kind read-only property of the DataTransferItem interface returns the kind–a string or a file–of the object representing the drag data item."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransferItem/type",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only DataTransferItem.type property returns the type (format) of the DataTransferItem object representing the drag data item.\nThe type is a Unicode string generally given by a MIME type, although a MIME type is not required."
+    "summary": "The type read-only property of the DataTransferItem interface returns the type (format) of the object representing the drag data item. The type is a Unicode string generally given by a MIME type, although a MIME type is not required."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransferItem/webkitGetAsEntry",
     "pageType": "web-api-instance-method",
-    "summary": "If the item described by the DataTransferItem is a file, webkitGetAsEntry() returns a FileSystemFileEntry or FileSystemDirectoryEntry representing it. If the item isn't a file, null is returned."
+    "summary": "The webkitGetAsEntry() method of the DataTransferItem interface returns a FileSystemFileEntry or FileSystemDirectoryEntry representing the item if it is a file. If the item isn't a file, null is returned."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransferItemList",
@@ -5707,22 +5712,22 @@
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransferItemList/add",
     "pageType": "web-api-instance-method",
-    "summary": "The DataTransferItemList.add() method creates a new\nDataTransferItem using the specified data and adds it to the drag data\nlist. The item may be a File or a string of a\ngiven type. If the item is successfully added to the list, the newly-created\nDataTransferItem object is returned."
+    "summary": "The add() method of the DataTransferItemList interface creates a new DataTransferItem using the specified data and adds it to the drag data list. The item may be a File or a string of a given type. If the item is successfully added to the list, the newly-created DataTransferItem object is returned."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransferItemList/clear",
     "pageType": "web-api-instance-method",
-    "summary": "The DataTransferItemList method\nclear() removes all DataTransferItem\nobjects from the drag data items list, leaving the list empty."
+    "summary": "The clear() method of the DataTransferItemList interface removes all DataTransferItem objects from the drag data items list, leaving the list empty."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransferItemList/length",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only length property of the\nDataTransferItemList interface returns the number of items currently in\nthe drag item list."
+    "summary": "The length read-only property of the DataTransferItemList interface returns the number of items currently in the drag item list."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DataTransferItemList/remove",
     "pageType": "web-api-instance-method",
-    "summary": "The DataTransferItemList.remove() method removes the\nDataTransferItem at the specified index from the list. If the index is\nless than zero or greater than one less than the length of the list, the list will not\nbe changed."
+    "summary": "The remove() method of the DataTransferItemList interface removes the DataTransferItem at the specified index from the list. If the index is less than zero or greater than one less than the length of the list, the list will not be changed."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DecompressionStream",
@@ -8497,7 +8502,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/pointermove_event",
     "pageType": "web-api-event",
-    "summary": "The pointermove event is fired when a pointer changes coordinates, and the pointer has not been canceled by a browser touch-action. It's very similar to the mousemove event, but with more features."
+    "summary": "The pointermove event is fired when a pointer changes coordinates, and the pointer has not been canceled by a browser touch-action. The event is also fired when a pointer changes any of its other properties, provided the change doesn't produce some other pointer event. This includes any change to pressure, tangential pressure, tilt, twist, contact geometry (width and height), or chorded buttons."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/pointerout_event",
@@ -13122,7 +13127,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLElement/drag_event",
     "pageType": "web-api-event",
-    "summary": "The drag event is fired every few hundred milliseconds as an element or text selection is being dragged by the user."
+    "summary": "The drag event is fired repeatedly as an element or text selection is being dragged by the user. The firing frequency depends on the browser, operating system, and pointer movement; do not rely on a fixed interval."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLElement/dragend_event",
@@ -13147,7 +13152,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLElement/dragover_event",
     "pageType": "web-api-event",
-    "summary": "The dragover event is fired when an element or text selection is being dragged over a valid drop target (every few hundred milliseconds)."
+    "summary": "The dragover event is fired repeatedly when an element or text selection is being dragged over a potential drop target."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLElement/dragstart_event",
@@ -13792,7 +13797,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLImageElement/attributionSrc",
     "pageType": "web-api-instance-property",
-    "summary": "The attributionSrc property of the HTMLImageElement interface that you want the browser to send an Attribution-Reporting-Eligible header along with the image request. It reflects the <img> element's attributionsrc content attribute."
+    "summary": "The attributionSrc property of the HTMLImageElement interface specifies that you want the browser to send an Attribution-Reporting-Eligible header along with the image request. It reflects the <img> element's attributionsrc content attribute."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLImageElement/border",
@@ -13877,7 +13882,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLImageElement/referrerPolicy",
     "pageType": "web-api-instance-property",
-    "summary": "The referrerPolicy property of the HTMLImageElement interface defining which referrer is sent when fetching the resource. It reflects the <img> element's referrerpolicy content attribute."
+    "summary": "The referrerPolicy property of the HTMLImageElement interface defines which referrer is sent when fetching the resource. It reflects the <img> element's referrerpolicy content attribute."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLImageElement/sizes",
@@ -13897,7 +13902,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLImageElement/useMap",
     "pageType": "web-api-instance-property",
-    "summary": "The useMap property of the HTMLImageElement interface providing the name of the client-side image map to apply to the image. It reflects the <img> element's usemap content attribute."
+    "summary": "The useMap property of the HTMLImageElement interface provides the name of the client-side image map to apply to the image. It reflects the <img> element's usemap content attribute."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLImageElement/vspace",
@@ -14142,12 +14147,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLInputElement/selectionEnd",
     "pageType": "web-api-instance-property",
-    "summary": "The selectionEnd property of the HTMLInputElement interface is a number that represents the end index of the selected text. That is, it represents the index of the character immediately following the selection. Likewise, when there is no selection, this returns the offset of the character immediately following the current text input cursor position."
+    "summary": "The selectionEnd property of the HTMLInputElement interface specifies the end position of the current text selection in an <input> element."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLInputElement/selectionStart",
     "pageType": "web-api-instance-property",
-    "summary": "The selectionStart property of the HTMLInputElement interface is a number that represents the beginning index of the selected text. When nothing is selected, it returns the position of the text input cursor (caret) inside of the <input> element."
+    "summary": "The selectionStart property of the HTMLInputElement interface specifies the start position of the current text selection in an <input> element."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLInputElement/setCustomValidity",
@@ -15972,12 +15977,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTextAreaElement/selectionEnd",
     "pageType": "web-api-instance-property",
-    "summary": "The selectionEnd property of the HTMLTextAreaElement interface specifies the end position of the current text selection in a <textarea> element. It is a number representing the last index of the selected text. It can be used to both retrieve and set the index of the end of a <textarea>s selected text."
+    "summary": "The selectionEnd property of the HTMLTextAreaElement interface specifies the end position of the current text selection in a <textarea> element."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTextAreaElement/selectionStart",
     "pageType": "web-api-instance-property",
-    "summary": "The selectionStart property of the HTMLTextAreaElement interface specifies the start position of the current text selection in a <textarea> element. It is a number representing the beginning index of the selected text. It can be used to both retrieve and set the start of the index of the beginning of a <textarea>s selected text."
+    "summary": "The selectionStart property of the HTMLTextAreaElement interface specifies the start position of the current text selection in a <textarea> element."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTextAreaElement/setCustomValidity",
@@ -16312,7 +16317,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/IDBFactory/deleteDatabase",
     "pageType": "web-api-instance-method",
-    "summary": "The deleteDatabase() method of the\nIDBFactory interface requests the deletion of a database. The method\nreturns an IDBOpenDBRequest object immediately, and performs the deletion\noperation asynchronously."
+    "summary": "The deleteDatabase() method of the IDBFactory interface requests the deletion of a database. The method returns an IDBOpenDBRequest object immediately, and performs the deletion operation asynchronously."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/IDBFactory/open",
@@ -24530,6 +24535,11 @@
     "summary": "The text() method of the Request interface\nreads the request body and returns it as a promise that resolves with a String.\nThe response is always decoded using UTF-8."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/Request/textStream",
+    "pageType": "web-api-instance-method",
+    "summary": "The textStream() method of the Request interface returns a ReadableStream that can be used to read the contents of the request body in chunks of UTF-8."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/Request/url",
     "pageType": "web-api-instance-property",
     "summary": "The url read-only property of the Request\ninterface contains the URL of the request."
@@ -24708,6 +24718,11 @@
     "mdn_url": "/en-US/docs/Web/API/Response/text",
     "pageType": "web-api-instance-method",
     "summary": "The text() method of the Response interface takes a Response stream and reads it to completion.\nIt returns a promise that resolves with a String.\nThe response is always decoded using UTF-8."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Response/textStream",
+    "pageType": "web-api-instance-method",
+    "summary": "The textStream() method of the Response interface returns a ReadableStream that can be used to read the contents of the response body in chunks of UTF-8."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Response/type",
@@ -26747,7 +26762,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/RTCRtpTransceiver/mid",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only RTCRtpTransceiver interface's\nmid property specifies the negotiated media ID\n(mid) which the local and remote peers have agreed upon to uniquely\nidentify the stream's pairing of sender and receiver."
+    "summary": "The read-only RTCRtpTransceiver interface's mid property specifies the media ID (mid) which uniquely identifies the stream's pairing of sender and receiver."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/RTCRtpTransceiver/receiver",
@@ -27747,7 +27762,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events",
     "pageType": "guide",
-    "summary": "Developing a web application that uses server-sent events is straightforward. You'll need a bit of code on the server to stream events to the front-end, but the client side code works almost identically to websockets in part of handling incoming events. This is a one-way connection, so you can't send events from a client to a server."
+    "summary": "Developing a web application that uses server-sent events is straightforward. You'll need a bit of code on the server to stream events to the front-end, but the client-side code works almost identically to websockets in part of handling incoming events. This is a one-way connection, so you can't send events from a client to a server."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Service_Worker_API",
@@ -31222,7 +31237,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/SVGLength/unitType",
     "pageType": "web-api-instance-property",
-    "summary": "The unitType property of the SVGLength interface that represents type of the value as specified by one of the SVG_LENGTHTYPE_* constants defined on this interface."
+    "summary": "The unitType property of the SVGLength interface represents the type of the value as specified by one of the SVG_LENGTHTYPE_* constants defined on this interface."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SVGLength/value",
@@ -33897,12 +33912,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/configuration",
     "pageType": "web-api-instance-property",
-    "summary": "The configuration read only property of the\nUSBDevice interface returns a USBConfiguration object for\nthe currently selected interface for a paired USB device."
+    "summary": "The configuration read-only property of the\nUSBDevice interface returns a USBConfiguration object for\nthe currently selected interface for a paired USB device."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/configurations",
     "pageType": "web-api-instance-property",
-    "summary": "The configurations read only property of the\nUSBDevice interface an Array of device-specific interfaces\nfor controlling a paired USB device."
+    "summary": "The configurations read-only property of the\nUSBDevice interface an Array of device-specific interfaces\nfor controlling a paired USB device."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/controlTransferIn",
@@ -33917,32 +33932,32 @@
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/deviceClass",
     "pageType": "web-api-instance-property",
-    "summary": "The deviceClass read only property of the\nUSBDevice interface one of three properties that identify USB devices for\nthe purpose of loading a USB driver that will work with that device. The other two\nproperties are USBDevice.deviceSubclass and USBDevice.deviceProtocol."
+    "summary": "The deviceClass read-only property of the\nUSBDevice interface one of three properties that identify USB devices for\nthe purpose of loading a USB driver that will work with that device. The other two\nproperties are USBDevice.deviceSubclass and USBDevice.deviceProtocol."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/deviceProtocol",
     "pageType": "web-api-instance-property",
-    "summary": "The deviceProtocol read only property of the\nUSBDevice interface one of three properties that identify USB devices for\nthe purpose of loading a USB driver that will work with that device. The other two\nproperties are USBDevice.deviceClass\nand USBDevice.deviceSubclass."
+    "summary": "The deviceProtocol read-only property of the\nUSBDevice interface one of three properties that identify USB devices for\nthe purpose of loading a USB driver that will work with that device. The other two\nproperties are USBDevice.deviceClass\nand USBDevice.deviceSubclass."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/deviceSubclass",
     "pageType": "web-api-instance-property",
-    "summary": "The deviceSubclass read only property of the\nUSBDevice interface one of three properties that identify USB devices for\nthe purpose of loading a USB driver that will work with that device. The other two\nproperties are USBDevice.deviceClass and USBDevice.deviceProtocol."
+    "summary": "The deviceSubclass read-only property of the\nUSBDevice interface one of three properties that identify USB devices for\nthe purpose of loading a USB driver that will work with that device. The other two\nproperties are USBDevice.deviceClass and USBDevice.deviceProtocol."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/deviceVersionMajor",
     "pageType": "web-api-instance-property",
-    "summary": "The deviceVersionMajor read only property of the\nUSBDevice interface he major version number of the device in a semantic\nversioning scheme."
+    "summary": "The deviceVersionMajor read-only property of the\nUSBDevice interface he major version number of the device in a semantic\nversioning scheme."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/deviceVersionMinor",
     "pageType": "web-api-instance-property",
-    "summary": "The deviceVersionMinor read only property of the\nUSBDevice interface the minor version number of the device in a semantic\nversioning scheme."
+    "summary": "The deviceVersionMinor read-only property of the\nUSBDevice interface the minor version number of the device in a semantic\nversioning scheme."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/deviceVersionSubminor",
     "pageType": "web-api-instance-property",
-    "summary": "The deviceVersionSubminor read only property of the\nUSBDevice interface the patch version number of the device in a semantic\nversioning scheme."
+    "summary": "The deviceVersionSubminor read-only property of the\nUSBDevice interface the patch version number of the device in a semantic\nversioning scheme."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/forget",
@@ -33962,7 +33977,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/manufacturerName",
     "pageType": "web-api-instance-property",
-    "summary": "The manufacturerName read only property of the\nUSBDevice interface the of the organization that manufactured the USB\ndevice."
+    "summary": "The manufacturerName read-only property of the\nUSBDevice interface the of the organization that manufactured the USB\ndevice."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/open",
@@ -33972,17 +33987,17 @@
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/opened",
     "pageType": "web-api-instance-property",
-    "summary": "The opened read only property of the\nUSBDevice interface indicates whether a session has been started with a\npaired USB device. A device must be opened before it can be controlled by a web page."
+    "summary": "The opened read-only property of the\nUSBDevice interface indicates whether a session has been started with a\npaired USB device. A device must be opened before it can be controlled by a web page."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/productId",
     "pageType": "web-api-instance-property",
-    "summary": "The productId read only property of the\nUSBDevice interface the manufacturer-defined code that identifies a USB\ndevice."
+    "summary": "The productId read-only property of the\nUSBDevice interface the manufacturer-defined code that identifies a USB\ndevice."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/productName",
     "pageType": "web-api-instance-property",
-    "summary": "The productName read only property of the\nUSBDevice interface the manufacturer-defined name that identifies a USB\ndevice."
+    "summary": "The productName read-only property of the\nUSBDevice interface the manufacturer-defined name that identifies a USB\ndevice."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/releaseInterface",
@@ -34007,7 +34022,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/serialNumber",
     "pageType": "web-api-instance-property",
-    "summary": "The serialNumber read only property of the\nUSBDevice interface is the manufacturer-defined serial number for the\nspecific USB device."
+    "summary": "The serialNumber read-only property of the\nUSBDevice interface is the manufacturer-defined serial number for the\nspecific USB device."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/transferIn",
@@ -34022,22 +34037,22 @@
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/usbVersionMajor",
     "pageType": "web-api-instance-property",
-    "summary": "The usbVersionMajor read only property of the\nUSBDevice interface is one of three properties that declare the USB\nprotocol version supported by the device. The other two properties\nare USBDevice.usbVersionMinor and USBDevice.usbVersionSubminor."
+    "summary": "The usbVersionMajor read-only property of the\nUSBDevice interface is one of three properties that declare the USB\nprotocol version supported by the device. The other two properties\nare USBDevice.usbVersionMinor and USBDevice.usbVersionSubminor."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/usbVersionMinor",
     "pageType": "web-api-instance-property",
-    "summary": "The usbVersionMinor read only property of the\nUSBDevice interface is one of three properties that declare the USB\nprotocol version supported by the device. The other two properties\nare USBDevice.usbVersionMajor and USBDevice.usbVersionSubminor."
+    "summary": "The usbVersionMinor read-only property of the\nUSBDevice interface is one of three properties that declare the USB\nprotocol version supported by the device. The other two properties\nare USBDevice.usbVersionMajor and USBDevice.usbVersionSubminor."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/usbVersionSubminor",
     "pageType": "web-api-instance-property",
-    "summary": "The usbVersionSubminor read only property of the\nUSBDevice interface is one of three properties that declare the USB\nprotocol version supported by the device. The other two properties\nare USBDevice.usbVersionMajor and USBDevice.usbVersionMinor."
+    "summary": "The usbVersionSubminor read-only property of the\nUSBDevice interface is one of three properties that declare the USB\nprotocol version supported by the device. The other two properties\nare USBDevice.usbVersionMajor and USBDevice.usbVersionMinor."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBDevice/vendorId",
     "pageType": "web-api-instance-property",
-    "summary": "The vendorId read only property of the\nUSBDevice interface is the official usb.org-assigned vendor ID."
+    "summary": "The vendorId read-only property of the\nUSBDevice interface is the official usb.org-assigned vendor ID."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/USBEndpoint",
@@ -37135,6 +37150,11 @@
     "summary": "The datagrams read-only property of the WebTransport interface returns a WebTransportDatagramDuplexStream instance that can be used to send and receive datagrams — unreliable data transmission."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/WebTransport/exportKeyingMaterial",
+    "pageType": "web-api-instance-method",
+    "summary": "The exportKeyingMaterial() method of the WebTransport interface returns a Promise that fulfills with keying material derived from the TLS session underlying the transport's connection."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/WebTransport/getStats",
     "pageType": "web-api-instance-method",
     "summary": "The getStats() method of the WebTransport interface asynchronously returns an object containing HTTP/3 connection statistics."
@@ -37148,6 +37168,11 @@
     "mdn_url": "/en-US/docs/Web/API/WebTransport/incomingUnidirectionalStreams",
     "pageType": "web-api-instance-property",
     "summary": "The incomingUnidirectionalStreams read-only property of the WebTransport interface represents one or more unidirectional streams opened by the server. Returns a ReadableStream of WebTransportReceiveStream objects. Each one can be used to reliably read data from the server."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/WebTransport/protocol",
+    "pageType": "web-api-instance-property",
+    "summary": "The protocol read-only property of the WebTransport interface returns the application-specific protocol selected by the server."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/WebTransport/ready",
@@ -37232,12 +37257,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/WebTransportDatagramsWritable/sendGroup",
     "pageType": "web-api-instance-property",
-    "summary": "The sendGroup property of the WebTransportDatagramsWritable interface gets or sets the WebTransportSendGroup that this WebTransportDatagramsWritable is grouped under for the purposes of sendOrder prioritization."
+    "summary": "The sendGroup property of the WebTransportDatagramsWritable interface represents the WebTransportSendGroup that this WebTransportDatagramsWritable is grouped under for the purposes of sendOrder prioritization."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/WebTransportDatagramsWritable/sendOrder",
     "pageType": "web-api-instance-property",
-    "summary": "The sendOrder property of the WebTransportDatagramsWritable interface gets or sets an integer indicating the priority of this stream's datagrams relative to other streams and datagrams in the same sendGroup."
+    "summary": "The sendOrder property of the WebTransportDatagramsWritable interface represents the priority of this stream's datagrams relative to other streams and datagrams in the same sendGroup, as an integer."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/WebTransportError",
@@ -37277,7 +37302,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/WebTransportSendGroup/getStats",
     "pageType": "web-api-instance-method",
-    "summary": "The getStats() method of the WebTransportSendGroup interface returns a Promise that resolves to an object containing statistics aggregated across all of the WebTransportSendStream and WebTransportDatagramsWritable objects currently associated with this group.\nThat is, every stream and datagram writable whose sendGroup is set to this WebTransportSendGroup."
+    "summary": "The getStats() method of the WebTransportSendGroup interface returns a Promise that resolves to an object containing statistics aggregated across all of the WebTransportSendStream objects currently associated with this group.\nThat is, every stream whose sendGroup is set to this WebTransportSendGroup."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/WebTransportSendStream",
@@ -37293,6 +37318,11 @@
     "mdn_url": "/en-US/docs/Web/API/WebTransportSendStream/getWriter",
     "pageType": "web-api-instance-method",
     "summary": "The getWriter() method of the WebTransportSendStream interface returns a new WebTransportWriter object and locks the stream to that instance. While the stream is locked, no other writer can be acquired until this one is released."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/WebTransportSendStream/sendGroup",
+    "pageType": "web-api-instance-property",
+    "summary": "The sendGroup property of the WebTransportSendStream interface represents the WebTransportSendGroup that this stream is grouped under for the purposes of sendOrder prioritization."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/WebTransportSendStream/sendOrder",
@@ -38032,22 +38062,22 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Window/screenLeft",
     "pageType": "web-api-instance-property",
-    "summary": "The Window.screenLeft read-only property returns the\nhorizontal distance, in CSS pixels, from the left border of the user's browser viewport\nto the left side of the screen."
+    "summary": "The screenLeft read-only property of the Window interface returns the horizontal distance, in CSS pixels, from the left border of the user's browser window to the left side of the screen."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Window/screenTop",
     "pageType": "web-api-instance-property",
-    "summary": "The Window.screenTop read-only property returns the\nvertical distance, in CSS pixels, from the top border of the user's browser viewport to\nthe top side of the screen."
+    "summary": "The screenTop read-only property of the Window interface returns the vertical distance, in CSS pixels, from the top border of the user's browser window to the top side of the screen."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Window/screenX",
     "pageType": "web-api-instance-property",
-    "summary": "The Window.screenX read-only property returns the\nhorizontal distance, in CSS pixels, of the left border of the user's browser viewport to\nthe left side of the screen."
+    "summary": "The screenX read-only property of the Window interface returns the horizontal distance, in CSS pixels, from the left border of the user's browser window to the left side of the screen."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Window/screenY",
     "pageType": "web-api-instance-property",
-    "summary": "The Window.screenY read-only property returns the vertical distance, in CSS pixels, of the top border of the user's browser viewport to the top edge of the screen."
+    "summary": "The screenY read-only property of the Window interface returns the vertical distance, in CSS pixels, from the top border of the user's browser window to the top side of the screen."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Window/scroll",
@@ -41602,7 +41632,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/font-size-adjust",
     "pageType": "css-property",
-    "summary": "The font-size-adjust CSS property provides a way to modify the size of lowercase letters relative to the size of uppercase letters, which defines the overall font-size. This property is useful for situations where font fallback can occur."
+    "summary": "The font-size-adjust CSS property adjusts the size of a font to match a chosen font metric, such as the height of lowercase letters, to a specified proportion of the font-size. This property is intended for adjusting fallback fonts to have similar metrics as the first-choice font."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/font-smooth",

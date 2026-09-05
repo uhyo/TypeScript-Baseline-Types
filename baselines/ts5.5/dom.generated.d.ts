@@ -121,7 +121,7 @@ interface AudioDataCopyToOptions {
 }
 
 interface AudioDataInit {
-    data: BufferSource;
+    data: AllowSharedBufferSource;
     format: AudioSampleFormat;
     numberOfChannels: number;
     numberOfFrames: number;
@@ -1808,7 +1808,7 @@ interface OfflineAudioCompletionEventInit extends EventInit {
 }
 
 interface OfflineAudioContextOptions {
-    length: number;
+    length?: number | null;
     numberOfChannels?: number;
     sampleRate: number;
 }
@@ -3923,7 +3923,7 @@ interface AnimationFrameProvider {
  */
 interface AnimationPlaybackEvent extends Event {
     /**
-     * The **`currentTime`** read-only property of the AnimationPlaybackEvent interface represents the current time of the animation that generated the event at the moment the event is queued. This will be unresolved if the animation was idle at the time the event was generated.
+     * The **`currentTime`** read-only property of the AnimationPlaybackEvent interface represents the current time of the animation that generated the event at the moment the event is queued. For browser-generated cancel events, the value is null.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/AnimationPlaybackEvent/currentTime)
      */
@@ -4944,7 +4944,7 @@ interface BaseAudioContext extends EventTarget {
      */
     readonly audioWorklet: AudioWorklet;
     /**
-     * The **`currentTime`** read-only property of the BaseAudioContext interface returns a double representing an ever-increasing hardware timestamp in seconds that can be used for scheduling audio playback, visualizing timelines, etc. It starts at 0.
+     * The **`currentTime`** read-only property of the BaseAudioContext interface returns a double representing the elapsed time in the context's audio timeline in seconds that can be used for scheduling audio playback, visualizing timelines, etc. It starts at 0.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/currentTime)
      */
@@ -5207,7 +5207,7 @@ interface Blob {
      */
     slice(start?: number, end?: number, contentType?: string): Blob;
     /**
-     * The **`stream()`** method of the Blob interface returns a ReadableStream which upon reading returns the data contained within the Blob.
+     * The **`stream()`** method of the Blob interface returns a ReadableStream which upon reading returns the data contained within the Blob as chunks of raw bytes.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Blob/stream)
      */
@@ -7840,7 +7840,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     fontSize: string;
     /**
-     * The font-size-adjust CSS property provides a way to modify the size of lowercase letters relative to the size of uppercase letters, which defines the overall font-size. This property is useful for situations where font fallback can occur.
+     * The font-size-adjust CSS property adjusts the size of a font to match a chosen font metric, such as the height of lowercase letters, to a specified proportion of the font-size. This property is intended for adjusting fallback fonts to have similar metrics as the first-choice font.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/font-size-adjust)
      */
@@ -12464,49 +12464,49 @@ interface DataTransfer {
      */
     dropEffect: "none" | "copy" | "link" | "move";
     /**
-     * The **`DataTransfer.effectAllowed`** property specifies the effect that is allowed for a drag operation. The copy operation is used to indicate that the data being dragged will be copied from its present location to the drop location. The move operation is used to indicate that the data being dragged will be moved, and the link operation is used to indicate that some form of relationship or connection will be created between the source and drop locations.
+     * The **`effectAllowed`** property of the DataTransfer interface specifies the effect that is allowed for a drag operation. The copy operation is used to indicate that the data being dragged will be copied from its present location to the drop location. The move operation is used to indicate that the data being dragged will be moved, and the link operation is used to indicate that some form of relationship or connection will be created between the source and drop locations.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransfer/effectAllowed)
      */
     effectAllowed: "none" | "copy" | "copyLink" | "copyMove" | "link" | "linkMove" | "move" | "all" | "uninitialized";
     /**
-     * The **`files`** read-only property of DataTransfer objects is a list of the files in the drag operation. If the operation includes no files, the list is empty.
+     * The **`files`** read-only property of the DataTransfer interface is a list of the files in the drag operation. If the operation includes no files, the list is empty.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransfer/files)
      */
     readonly files: FileList;
     /**
-     * The read-only **`items`** property of the DataTransfer interface is a list of the data transfer items in a drag operation. The list includes one item for each item in the operation and if the operation had no items, the list is empty.
+     * The **`items`** read-only property of the DataTransfer interface is a DataTransferItemList of the DataTransferItem objects in a drag operation. The list includes one item for each item in the operation, and if the operation had no items, the list is empty.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransfer/items)
      */
     readonly items: DataTransferItemList;
     /**
-     * The **`DataTransfer.types`** read-only property returns the available types that exist in the items.
+     * The **`types`** read-only property of the DataTransfer interface returns the available types that exist in the items.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransfer/types)
      */
     readonly types: ReadonlyArray<string>;
     /**
-     * The **`DataTransfer.clearData()`** method removes the drag operation's drag data for the given type. If data for the given type does not exist, this method does nothing.
+     * The **`clearData()`** method of the DataTransfer interface removes the drag operation's drag data for the given type. If data for the given type does not exist, this method does nothing.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransfer/clearData)
      */
     clearData(format?: string): void;
     /**
-     * The **`DataTransfer.getData()`** method retrieves drag data (as a string) for the specified type. If the drag operation does not include data, this method returns an empty string.
+     * The **`getData()`** method of the DataTransfer interface retrieves drag data (as a string) for the specified type. If the drag operation does not include data, this method returns an empty string.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransfer/getData)
      */
     getData(format: string): string;
     /**
-     * The **`DataTransfer.setData()`** method sets the drag operation's drag data to the specified data and type. If data for the given type does not exist, it is added at the end of the drag data store, such that the last item in the types list will be the new type. If data for the given type already exists, the existing data is replaced in the same position. That is, the order of the types list is not changed when replacing data of the same type.
+     * The **`setData()`** method of the DataTransfer interface sets the drag operation's drag data to the specified data and type. If data for the given type does not exist, it is added at the end of the drag data store, such that the last item in the types list will be the new type. If data for the given type already exists, the existing data is replaced in the same position. That is, the order of the types list is not changed when replacing data of the same type.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransfer/setData)
      */
     setData(format: string, data: string): void;
     /**
-     * When a drag occurs, a translucent image is generated from the drag target (the element the dragstart event is fired at), and follows the mouse pointer during the drag. This image is created automatically, so you do not need to create it yourself. However, if a custom image is desired, the **`DataTransfer.setDragImage()`** method can be used to set the custom image to be used. The image will typically be an <img> element but it can also be a <canvas> or any other visible element.
+     * The **`setDragImage()`** method of the DataTransfer interface sets a custom image to use as drag feedback. The image will typically be an <img> element but it can also be a <canvas> or any other visible element.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransfer/setDragImage)
      */
@@ -12525,31 +12525,31 @@ declare var DataTransfer: {
  */
 interface DataTransferItem {
     /**
-     * The read-only **`DataTransferItem.kind`** property returns the kind–a string or a file–of the DataTransferItem object representing the drag data item.
+     * The **`kind`** read-only property of the DataTransferItem interface returns the kind–a string or a file–of the object representing the drag data item.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransferItem/kind)
      */
     readonly kind: string;
     /**
-     * The read-only **`DataTransferItem.type`** property returns the type (format) of the DataTransferItem object representing the drag data item. The type is a Unicode string generally given by a MIME type, although a MIME type is not required.
+     * The **`type`** read-only property of the DataTransferItem interface returns the type (format) of the object representing the drag data item. The type is a Unicode string generally given by a MIME type, although a MIME type is not required.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransferItem/type)
      */
     readonly type: string;
     /**
-     * If the item is a file, the **`DataTransferItem.getAsFile()`** method returns the drag data item's File object. If the item is not a file, this method returns null.
+     * The **`getAsFile()`** method of the DataTransferItem interface returns the drag data item's File object if the item is a file. If the item is not a file, this method returns null.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransferItem/getAsFile)
      */
     getAsFile(): File | null;
     /**
-     * The **`DataTransferItem.getAsString()`** method invokes the given callback with the drag data item's string data as the argument if the item's kind is a Plain unicode string (i.e., kind is string).
+     * The **`getAsString()`** method of the DataTransferItem interface invokes the given callback with the drag data item's string data as the argument if the item's kind is a Plain unicode string (i.e., kind is string).
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransferItem/getAsString)
      */
     getAsString(callback: FunctionStringCallback | null): void;
     /**
-     * If the item described by the DataTransferItem is a file, **`webkitGetAsEntry()`** returns a FileSystemFileEntry or FileSystemDirectoryEntry representing it. If the item isn't a file, null is returned.
+     * The **`webkitGetAsEntry()`** method of the DataTransferItem interface returns a FileSystemFileEntry or FileSystemDirectoryEntry representing the item if it is a file. If the item isn't a file, null is returned.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransferItem/webkitGetAsEntry)
      */
@@ -12568,26 +12568,26 @@ declare var DataTransferItem: {
  */
 interface DataTransferItemList {
     /**
-     * The read-only **`length`** property of the DataTransferItemList interface returns the number of items currently in the drag item list.
+     * The **`length`** read-only property of the DataTransferItemList interface returns the number of items currently in the drag item list.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransferItemList/length)
      */
     readonly length: number;
     /**
-     * The **`DataTransferItemList.add()`** method creates a new DataTransferItem using the specified data and adds it to the drag data list. The item may be a File or a string of a given type. If the item is successfully added to the list, the newly-created DataTransferItem object is returned.
+     * The **`add()`** method of the DataTransferItemList interface creates a new DataTransferItem using the specified data and adds it to the drag data list. The item may be a File or a string of a given type. If the item is successfully added to the list, the newly-created DataTransferItem object is returned.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransferItemList/add)
      */
     add(data: string, type: string): DataTransferItem | null;
     add(data: File): DataTransferItem | null;
     /**
-     * The DataTransferItemList method **`clear()`** removes all DataTransferItem objects from the drag data items list, leaving the list empty.
+     * The **`clear()`** method of the DataTransferItemList interface removes all DataTransferItem objects from the drag data items list, leaving the list empty.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransferItemList/clear)
      */
     clear(): void;
     /**
-     * The **`DataTransferItemList.remove()`** method removes the DataTransferItem at the specified index from the list. If the index is less than zero or greater than one less than the length of the list, the list will not be changed.
+     * The **`remove()`** method of the DataTransferItemList interface removes the DataTransferItem at the specified index from the list. If the index is less than zero or greater than one less than the length of the list, the list will not be changed.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DataTransferItemList/remove)
      */
@@ -18879,7 +18879,7 @@ interface HTMLImageElement extends HTMLElement {
      */
     readonly naturalWidth: number;
     /**
-     * The **`referrerPolicy`** property of the HTMLImageElement interface defining which referrer is sent when fetching the resource. It reflects the <img> element's referrerpolicy content attribute.
+     * The **`referrerPolicy`** property of the HTMLImageElement interface defines which referrer is sent when fetching the resource. It reflects the <img> element's referrerpolicy content attribute.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/referrerPolicy)
      */
@@ -18903,7 +18903,7 @@ interface HTMLImageElement extends HTMLElement {
      */
     srcset: string;
     /**
-     * The **`useMap`** property of the HTMLImageElement interface providing the name of the client-side image map to apply to the image. It reflects the <img> element's usemap content attribute.
+     * The **`useMap`** property of the HTMLImageElement interface provides the name of the client-side image map to apply to the image. It reflects the <img> element's usemap content attribute.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLImageElement/useMap)
      */
@@ -19151,13 +19151,13 @@ interface HTMLInputElement extends HTMLElement, PopoverTargetAttributes {
      */
     selectionDirection: SelectionDirection | null;
     /**
-     * The **`selectionEnd`** property of the HTMLInputElement interface is a number that represents the end index of the selected text. That is, it represents the index of the character immediately following the selection. Likewise, when there is no selection, this returns the offset of the character immediately following the current text input cursor position.
+     * The **`selectionEnd`** property of the HTMLInputElement interface specifies the end position of the current text selection in an <input> element.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/selectionEnd)
      */
     selectionEnd: number | null;
     /**
-     * The **`selectionStart`** property of the HTMLInputElement interface is a number that represents the beginning index of the selected text. When nothing is selected, it returns the position of the text input cursor (caret) inside of the <input> element.
+     * The **`selectionStart`** property of the HTMLInputElement interface specifies the start position of the current text selection in an <input> element.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/selectionStart)
      */
@@ -21670,13 +21670,13 @@ interface HTMLTextAreaElement extends HTMLElement {
      */
     selectionDirection: SelectionDirection;
     /**
-     * The **`selectionEnd`** property of the HTMLTextAreaElement interface specifies the end position of the current text selection in a <textarea> element. It is a number representing the last index of the selected text. It can be used to both retrieve and set the index of the end of a <textarea>s selected text.
+     * The **`selectionEnd`** property of the HTMLTextAreaElement interface specifies the end position of the current text selection in a <textarea> element.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/selectionEnd)
      */
     selectionEnd: number;
     /**
-     * The **`selectionStart`** property of the HTMLTextAreaElement interface specifies the start position of the current text selection in a <textarea> element. It is a number representing the beginning index of the selected text. It can be used to both retrieve and set the start of the index of the beginning of a <textarea>s selected text.
+     * The **`selectionStart`** property of the HTMLTextAreaElement interface specifies the start position of the current text selection in a <textarea> element.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/selectionStart)
      */
@@ -27029,7 +27029,7 @@ interface OfflineAudioContext extends BaseAudioContext {
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext/length)
      */
-    readonly length: number;
+    readonly length: number | null;
     /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext/complete_event) */
     oncomplete: ((this: OfflineAudioContext, ev: OfflineAudioCompletionEvent) => any) | null;
     /**
@@ -27043,7 +27043,7 @@ interface OfflineAudioContext extends BaseAudioContext {
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/OfflineAudioContext/startRendering)
      */
-    startRendering(): Promise<AudioBuffer>;
+    startRendering(chunkSize?: number | null): Promise<AudioBuffer>;
     /**
      * The **`suspend()`** method of the OfflineAudioContext interface schedules a suspension of the time progression in the audio context at the specified time and returns a promise. This is generally useful at the time of manipulating the audio graph synchronously on OfflineAudioContext.
      *
@@ -30242,7 +30242,7 @@ interface RTCRtpTransceiver {
      */
     direction: RTCRtpTransceiverDirection;
     /**
-     * The read-only RTCRtpTransceiver interface's **`mid`** property specifies the negotiated media ID (mid) which the local and remote peers have agreed upon to uniquely identify the stream's pairing of sender and receiver.
+     * The read-only RTCRtpTransceiver interface's **`mid`** property specifies the media ID (mid) which uniquely identifies the stream's pairing of sender and receiver.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/RTCRtpTransceiver/mid)
      */
@@ -33286,7 +33286,7 @@ declare var SVGImageElement: {
  */
 interface SVGLength {
     /**
-     * The **`unitType`** property of the SVGLength interface that represents type of the value as specified by one of the SVG_LENGTHTYPE_* constants defined on this interface.
+     * The **`unitType`** property of the SVGLength interface represents the type of the value as specified by one of the SVG_LENGTHTYPE_* constants defined on this interface.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SVGLength/unitType)
      */
@@ -41500,6 +41500,7 @@ interface WebTransport {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/incomingUnidirectionalStreams)
      */
     readonly incomingUnidirectionalStreams: ReadableStream;
+    /** The **`protocol`** read-only property of the WebTransport interface returns the application-specific protocol selected by the server. */
     readonly protocol: string;
     /**
      * The **`ready`** read-only property of the WebTransport interface returns a promise that resolves when the transport is ready to use.
@@ -41965,25 +41966,25 @@ interface Window extends EventTarget, AnimationFrameProvider, GlobalEventHandler
      */
     readonly screen: Screen;
     /**
-     * The **`Window.screenLeft`** read-only property returns the horizontal distance, in CSS pixels, from the left border of the user's browser viewport to the left side of the screen.
+     * The **`screenLeft`** read-only property of the Window interface returns the horizontal distance, in CSS pixels, from the left border of the user's browser window to the left side of the screen.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/screenLeft)
      */
     readonly screenLeft: number;
     /**
-     * The **`Window.screenTop`** read-only property returns the vertical distance, in CSS pixels, from the top border of the user's browser viewport to the top side of the screen.
+     * The **`screenTop`** read-only property of the Window interface returns the vertical distance, in CSS pixels, from the top border of the user's browser window to the top side of the screen.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/screenTop)
      */
     readonly screenTop: number;
     /**
-     * The **`Window.screenX`** read-only property returns the horizontal distance, in CSS pixels, of the left border of the user's browser viewport to the left side of the screen.
+     * The **`screenX`** read-only property of the Window interface returns the horizontal distance, in CSS pixels, from the left border of the user's browser window to the left side of the screen.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/screenX)
      */
     readonly screenX: number;
     /**
-     * The **`Window.screenY`** read-only property returns the vertical distance, in CSS pixels, of the top border of the user's browser viewport to the top edge of the screen.
+     * The **`screenY`** read-only property of the Window interface returns the vertical distance, in CSS pixels, from the top border of the user's browser window to the top side of the screen.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/screenY)
      */
@@ -44171,25 +44172,25 @@ declare var personalbar: BarProp;
  */
 declare var screen: Screen;
 /**
- * The **`Window.screenLeft`** read-only property returns the horizontal distance, in CSS pixels, from the left border of the user's browser viewport to the left side of the screen.
+ * The **`screenLeft`** read-only property of the Window interface returns the horizontal distance, in CSS pixels, from the left border of the user's browser window to the left side of the screen.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/screenLeft)
  */
 declare var screenLeft: number;
 /**
- * The **`Window.screenTop`** read-only property returns the vertical distance, in CSS pixels, from the top border of the user's browser viewport to the top side of the screen.
+ * The **`screenTop`** read-only property of the Window interface returns the vertical distance, in CSS pixels, from the top border of the user's browser window to the top side of the screen.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/screenTop)
  */
 declare var screenTop: number;
 /**
- * The **`Window.screenX`** read-only property returns the horizontal distance, in CSS pixels, of the left border of the user's browser viewport to the left side of the screen.
+ * The **`screenX`** read-only property of the Window interface returns the horizontal distance, in CSS pixels, from the left border of the user's browser window to the left side of the screen.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/screenX)
  */
 declare var screenX: number;
 /**
- * The **`Window.screenY`** read-only property returns the vertical distance, in CSS pixels, of the top border of the user's browser viewport to the top edge of the screen.
+ * The **`screenY`** read-only property of the Window interface returns the vertical distance, in CSS pixels, from the top border of the user's browser window to the top side of the screen.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/screenY)
  */
@@ -44938,7 +44939,7 @@ type GPUCompilationMessageType = "error" | "info" | "warning";
 type GPUCullMode = "back" | "front" | "none";
 type GPUDeviceLostReason = "destroyed" | "unknown";
 type GPUErrorFilter = "internal" | "out-of-memory" | "validation";
-type GPUFeatureName = "bgra8unorm-storage" | "clip-distances" | "core-features-and-limits" | "depth-clip-control" | "depth32float-stencil8" | "dual-source-blending" | "float32-blendable" | "float32-filterable" | "indirect-first-instance" | "primitive-index" | "rg11b10ufloat-renderable" | "shader-f16" | "subgroup-size-control" | "subgroups" | "texture-compression-astc" | "texture-compression-astc-sliced-3d" | "texture-compression-bc" | "texture-compression-bc-sliced-3d" | "texture-compression-etc2" | "texture-formats-tier1" | "timestamp-query";
+type GPUFeatureName = "bgra8unorm-storage" | "clip-distances" | "core-features-and-limits" | "depth-clip-control" | "depth32float-stencil8" | "dual-source-blending" | "float32-blendable" | "float32-filterable" | "indirect-first-instance" | "primitive-index" | "rg11b10ufloat-renderable" | "shader-f16" | "subgroup-size-control" | "subgroups" | "texture-compression-astc" | "texture-compression-astc-sliced-3d" | "texture-compression-bc" | "texture-compression-bc-sliced-3d" | "texture-compression-etc2" | "texture-compression-unaligned" | "texture-formats-tier1" | "timestamp-query";
 type GPUFilterMode = "linear" | "nearest";
 type GPUFrontFace = "ccw" | "cw";
 type GPUIndexFormat = "uint16" | "uint32";
