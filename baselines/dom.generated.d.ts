@@ -6466,31 +6466,31 @@ declare var CSSPropertyRule: {
 };
 
 /**
- * The **`CSSRotate`** interface of the CSS Typed Object Model API represents the rotate value of the individual transform property in CSS.
+ * The **`CSSRotate`** interface of the CSS Typed Object Model API represents the value of a rotation function in the transform property in CSS.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSRotate)
  */
 interface CSSRotate extends CSSTransformComponent {
     /**
-     * The **`angle`** property of the CSSRotate interface gets and sets the angle of rotation. A positive angle denotes a clockwise rotation, a negative angle a counter-clockwise one.
+     * The **`angle`** property of the CSSRotate interface represents the angle of rotation. A positive angle denotes a clockwise rotation, a negative angle a counter-clockwise one.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSRotate/angle)
      */
     angle: CSSNumericValue;
     /**
-     * The **`x`** property of the CSSRotate interface gets and sets the abscissa or x-axis of the translating vector.
+     * The **`x`** property of the CSSRotate interface represents the x-coordinate of the vector denoting the axis of rotation.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSRotate/x)
      */
     x: CSSNumberish;
     /**
-     * The **`y`** property of the CSSRotate interface gets and sets the ordinate or y-axis of the translating vector.
+     * The **`y`** property of the CSSRotate interface represents the y-coordinate of the vector denoting the axis of rotation.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSRotate/y)
      */
     y: CSSNumberish;
     /**
-     * The **`z`** property of the CSSRotate interface represents the z-component of the translating vector. A positive value moves the element towards the viewer and a negative value farther away.
+     * The **`z`** property of the CSSRotate interface represents the z-coordinate of the vector denoting the axis of rotation.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSRotate/z)
      */
@@ -6827,7 +6827,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     alignmentBaseline: string;
     /**
-     * The **`all`** CSSshorthand property resets all of an element's properties except unicode-bidi, direction, and CSS Custom Properties. It can set properties to their initial or inherited values, or to the values specified in another cascade layer or stylesheet origin.
+     * The **`all`** CSS shorthand property resets all of an element's properties except unicode-bidi, direction, and CSS Custom Properties. It can set properties to their initial or inherited values, or to the values specified in another cascade layer or stylesheet origin.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/all)
      */
@@ -8783,7 +8783,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     positionTryFallbacks: string;
     /**
-     * The position-try-order CSS property allows you to specify various fallback options that result in an available position-try fallback being used to set an anchor-positioned element's position, instead of its initial position settings.
+     * The position-try-order CSS property allows you to prioritize the position-try-fallbacks option applied to an anchor-positioned element when it first renders, based on which option creates the most space around the element in the given direction.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/position-try-order)
      */
@@ -8831,7 +8831,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     rotate: string;
     /**
-     * The row-gap CSS property sets the size of the gap (gutter) between an element's rows.
+     * The row-gap CSS property sets the size of the gap (gutter) between an element's rows in multi-column, flexible box, and grid layouts.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/row-gap)
      */
@@ -10129,13 +10129,13 @@ declare var CSSSupportsRule: {
 };
 
 /**
- * The **`CSSTransformComponent`** interface of the CSS Typed Object Model API is part of the CSSTransformValue interface.
+ * The **`CSSTransformComponent`** interface of the CSS Typed Object Model API is the base interface for objects that represent individual transform functions, such as rotate() and scale().
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSTransformComponent)
  */
 interface CSSTransformComponent {
     /**
-     * The **`is2D`** property of the CSSTransformComponent interface indicates whether the transform is 2D or 3D.
+     * The **`is2D`** property of the CSSTransformComponent interface represents whether the transform is 2D or 3D.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSTransformComponent/is2D)
      */
@@ -10155,7 +10155,7 @@ declare var CSSTransformComponent: {
 };
 
 /**
- * The **`CSSTransformValue`** interface of the CSS Typed Object Model API represents transform-list values as used by the CSS transform property.
+ * The **`CSSTransformValue`** interface of the CSS Typed Object Model API represents transform-list values as used by the CSS transform property. It is an iterable of CSSTransformComponent objects, each representing a single <transform-function>.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSTransformValue)
  */
@@ -10167,7 +10167,7 @@ interface CSSTransformValue extends CSSStyleValue {
      */
     readonly is2D: boolean;
     /**
-     * The **`length`** read-only property of the CSSTransformValue interface returns the number of transform components in the list.
+     * The **`length`** read-only property of the CSSTransformValue interface returns the number of items in the object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSTransformValue/length)
      */
@@ -13832,7 +13832,7 @@ interface Element extends Node, ARIAMixin, Animatable, ChildNode, NonDocumentTyp
     get classList(): DOMTokenList;
     set classList(value: string);
     /**
-     * The **`className`** property of the Element interface gets and sets the value of the class attribute of the specified element.
+     * The **`className`** property of the Element interface reflects the element's class content attribute.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/className)
      */
@@ -13874,7 +13874,7 @@ interface Element extends Node, ARIAMixin, Animatable, ChildNode, NonDocumentTyp
      */
     readonly customElementRegistry: CustomElementRegistry | null;
     /**
-     * The **`id`** property of the Element interface represents the element's identifier, reflecting the id global attribute.
+     * The **`id`** property of the Element interface reflects the element's id content attribute.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/id)
      */
@@ -13952,7 +13952,7 @@ interface Element extends Node, ARIAMixin, Animatable, ChildNode, NonDocumentTyp
      */
     readonly shadowRoot: ShadowRoot | null;
     /**
-     * The **`slot`** property of the Element interface returns the name of the shadow DOM slot the element is inserted in.
+     * The **`slot`** property of the Element interface returns the name of the shadow DOM slot the element is inserted in. It reflects the element's slot content attribute.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/slot)
      */
@@ -19986,7 +19986,7 @@ interface HTMLMeterElement extends HTMLElement {
      */
     low: number;
     /**
-     * The **`max`** property of the HTMLMeterElement interface represents the maximum value of the <meter> element as a floating-point number. It reflects the element's max attribute, or the min value if no max is set, or 1 if neither the min or the max is defined.
+     * The **`max`** property of the HTMLMeterElement interface represents the maximum value of the <meter> element as a floating-point number. It reflects the element's max attribute, or the min value if no max is set, or 1 if neither the min nor the max is defined.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMeterElement/max)
      */
@@ -31221,9 +31221,10 @@ interface SVGAElement extends SVGGraphicsElement, SVGURIReference {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SVGAElement/ping)
      */
     ping: string;
+    /** The **`referrerPolicy`** property of the SVGAElement interface returns a string specifying which referrer to send when fetching the URL. */
     referrerPolicy: string;
     /**
-     * The **`rel`** property of the SVGAElement returns a string reflecting the value of the rel attribute of the SVG <a> element.
+     * The **`rel`** property of the SVGAElement interface returns a string reflecting the value of the rel attribute of the SVG <a> element.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SVGAElement/rel)
      */
