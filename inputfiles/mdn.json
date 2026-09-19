@@ -3107,7 +3107,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Clients/openWindow",
     "pageType": "web-api-instance-method",
-    "summary": "The openWindow() method of the Clients\ninterface creates a new top level browsing context and loads a given URL. If the calling\nscript doesn't have permission to show popups, openWindow() will throw an\nInvalidAccessError."
+    "summary": "The openWindow() method of the Clients\ninterface creates a new top-level browsing context and loads a given URL. If the calling\nscript doesn't have permission to show popups, openWindow() will throw an\nInvalidAccessError."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Clipboard",
@@ -7822,7 +7822,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/ariaColIndexText",
     "pageType": "web-api-instance-property",
-    "summary": "The ariaColIndexText property of the Element interface reflects the value of the aria-colindextext attribute, which defines a human readable text alternative of aria-colindex."
+    "summary": "The ariaColIndexText property of the Element interface reflects the value of the aria-colindextext attribute, which defines a human-readable text alternative of aria-colindex."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/ariaColSpan",
@@ -7992,7 +7992,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/ariaRowIndexText",
     "pageType": "web-api-instance-property",
-    "summary": "The ariaRowIndexText property of the Element interface reflects the value of the aria-rowindextext attribute, which defines a human readable text alternative of aria-rowindex."
+    "summary": "The ariaRowIndexText property of the Element interface reflects the value of the aria-rowindextext attribute, which defines a human-readable text alternative of aria-rowindex."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/ariaRowSpan",
@@ -8867,7 +8867,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/ElementInternals/ariaColIndexText",
     "pageType": "web-api-instance-property",
-    "summary": "The ariaColIndexText property of the ElementInternals interface reflects the value of the aria-colindextext attribute, which defines a human readable text alternative of aria-colindex."
+    "summary": "The ariaColIndexText property of the ElementInternals interface reflects the value of the aria-colindextext attribute, which defines a human-readable text alternative of aria-colindex."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/ElementInternals/ariaColSpan",
@@ -9032,7 +9032,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/ElementInternals/ariaRowIndexText",
     "pageType": "web-api-instance-property",
-    "summary": "The ariaRowIndexText property of the ElementInternals interface reflects the value of the aria-rowindextext attribute, which defines a human readable text alternative of aria-rowindex."
+    "summary": "The ariaRowIndexText property of the ElementInternals interface reflects the value of the aria-rowindextext attribute, which defines a human-readable text alternative of aria-rowindex."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/ElementInternals/ariaRowSpan",
@@ -9778,11 +9778,6 @@
     "mdn_url": "/en-US/docs/Web/API/FetchEvent/preloadResponse",
     "pageType": "web-api-instance-property",
     "summary": "The preloadResponse read-only property of the FetchEvent interface returns a Promise that resolves to the navigation preload Response if navigation preload was triggered, or undefined otherwise."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/FetchEvent/replacesClientId",
-    "pageType": "web-api-instance-property",
-    "summary": "The replacesClientId read-only property of the\nFetchEvent interface is the id of the\nclient that is being replaced during a page navigation."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/FetchEvent/request",
@@ -11137,7 +11132,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/GPUCommandBuffer/label",
     "pageType": "web-api-instance-property",
-    "summary": "The label read-only property of the\nGPUCommandBuffer interface is a string providing a label that can be used to identify the object, for example in GPUError messages or console warnings."
+    "summary": "The label property of the\nGPUCommandBuffer interface is a string providing a label that can be used to identify the object, for example in GPUError messages or console warnings."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/GPUCommandEncoder",
@@ -11192,7 +11187,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/GPUCommandEncoder/label",
     "pageType": "web-api-instance-property",
-    "summary": "The label read-only property of the\nGPUCommandEncoder interface is a string providing a label that can be used to identify the object, for example in GPUError messages or console warnings."
+    "summary": "The label property of the\nGPUCommandEncoder interface is a string providing a label that can be used to identify the object, for example in GPUError messages or console warnings."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/GPUCommandEncoder/popDebugGroup",
@@ -11287,7 +11282,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/GPUComputePassEncoder/label",
     "pageType": "web-api-instance-property",
-    "summary": "The label read-only property of the\nGPUComputePassEncoder interface is a string providing a label that can be used to identify the object, for example in GPUError messages or console warnings."
+    "summary": "The label property of the\nGPUComputePassEncoder interface is a string providing a label that can be used to identify the object, for example in GPUError messages or console warnings."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/GPUComputePassEncoder/popDebugGroup",
@@ -11422,7 +11417,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/GPUDevice/label",
     "pageType": "web-api-instance-property",
-    "summary": "The label read-only property of the\nGPUDevice interface is a string providing a label that can be used to identify the object, for example in GPUError messages or console warnings."
+    "summary": "The label property of the\nGPUDevice interface is a string providing a label that can be used to identify the object, for example in GPUError messages or console warnings."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/GPUDevice/limits",
@@ -11572,7 +11567,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/GPUQueue/label",
     "pageType": "web-api-instance-property",
-    "summary": "The label read-only property of the\nGPUQueue interface is a string providing a label that can be used to identify the object, for example in GPUError messages or console warnings."
+    "summary": "The label property of the\nGPUQueue interface is a string providing a label that can be used to identify the object, for example in GPUError messages or console warnings."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/GPUQueue/onSubmittedWorkDone",
@@ -11602,7 +11597,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/GPURenderBundle/label",
     "pageType": "web-api-instance-property",
-    "summary": "The label read-only property of the\nGPURenderBundle interface is a string providing a label that can be used to identify the object, for example in GPUError messages or console warnings."
+    "summary": "The label property of the\nGPURenderBundle interface is a string providing a label that can be used to identify the object, for example in GPUError messages or console warnings."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/GPURenderBundleEncoder",
@@ -11642,7 +11637,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/GPURenderBundleEncoder/label",
     "pageType": "web-api-instance-property",
-    "summary": "The label read-only property of the\nGPURenderBundleEncoder interface is a string providing a label that can be used to identify the object, for example in GPUError messages or console warnings."
+    "summary": "The label property of the\nGPURenderBundleEncoder interface is a string providing a label that can be used to identify the object, for example in GPUError messages or console warnings."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/GPURenderBundleEncoder/popDebugGroup",
@@ -11727,7 +11722,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/GPURenderPassEncoder/label",
     "pageType": "web-api-instance-property",
-    "summary": "The label read-only property of the\nGPURenderPassEncoder interface is a string providing a label that can be used to identify the object, for example in GPUError messages or console warnings."
+    "summary": "The label property of the\nGPURenderPassEncoder interface is a string providing a label that can be used to identify the object, for example in GPUError messages or console warnings."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/GPURenderPassEncoder/popDebugGroup",
@@ -22710,6 +22705,11 @@
     "summary": "The connectStart read-only property returns the timestamp immediately before the user agent starts establishing the connection to the server to retrieve the resource."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceResourceTiming/contentEncoding",
+    "pageType": "web-api-instance-property",
+    "summary": "The contentEncoding read-only property of the PerformanceResourceTiming interface is a string indicating the content encoding of the fetched resource."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/PerformanceResourceTiming/contentType",
     "pageType": "web-api-instance-property",
     "summary": "The contentType read-only property of the PerformanceResourceTiming interface is a string indicating the content type of the fetched resource, formatted as a MIME type and subtype separated by a forward slash."
@@ -26507,7 +26507,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/RTCPeerConnectionStats",
     "pageType": "web-api-interface",
-    "summary": "The RTCPeerConnectionStats dictionary of the WebRTC API provides information about the high level peer connection (RTCPeerConnection)."
+    "summary": "The RTCPeerConnectionStats dictionary of the WebRTC API provides information about the high-level peer connection (RTCPeerConnection)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/RTCPeerConnectionStats/dataChannelsClosed",
@@ -26772,7 +26772,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/RTCRtpSender/dtmf",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only dtmf property on the\nRTCRtpSender interface returns a\nRTCDTMFSender object which can be used to send DTMF tones\nover the RTCPeerConnection. See Using DTMF for details on how to\nmake use of the returned RTCDTMFSender object."
+    "summary": "The read-only dtmf property on the RTCRtpSender interface returns an RTCDTMFSender you can use to send DTMF tones on this sender's audio track."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/RTCRtpSender/getCapabilities_static",
@@ -31217,7 +31217,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/SVGGraphicsElement/getBBox",
     "pageType": "web-api-instance-method",
-    "summary": "The SVGGraphicsElement.getBBox() method allows us to determine\nthe coordinates of the smallest rectangle in which the object fits. The coordinates\nreturned are with respect to the current SVG space (after the application of all\ngeometry attributes on all the elements contained in the target element)."
+    "summary": "The getBBox() method of the SVGGraphicsElement interface returns the smallest rectangle that contains the element. The rectangle is measured in the user coordinate system of the element, with the geometry attributes of the element and its descendants applied."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SVGGraphicsElement/getCTM",
@@ -38232,7 +38232,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Window/setImmediate",
     "pageType": "web-api-instance-method",
-    "summary": "This method is used to break up long running operations and run a callback function immediately after the browser has completed other operations such as events and display updates."
+    "summary": "This method is used to break up long-running operations and run a callback function immediately after the browser has completed other operations such as events and display updates."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Window/setInterval",
@@ -41377,7 +41377,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-width",
     "pageType": "css-property",
-    "summary": "The column-width CSS property sets the ideal column width in a multi-column layout. The container will have as many columns as can fit without any of them having a width less than the column-width value. If the width of the container is narrower than the specified value, the single column's width will be smaller than the declared column width."
+    "summary": "The column-width CSS property sets the ideal column width in a multi-column layout."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
@@ -42057,7 +42057,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/line-clamp",
     "pageType": "css-property",
-    "summary": "The line-clamp CSS property allows limiting of the contents of a block to the specified number of lines."
+    "summary": "The line-clamp CSS property allows limiting of the contents of a block to the specified number of lines. Optionally, it also allows inserting content into the last line to indicate that content was truncated."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/line-height",
@@ -42382,7 +42382,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/outline",
     "pageType": "css-shorthand-property",
-    "summary": "The outline CSS shorthand property sets most of the outline properties in a single declaration."
+    "summary": "The outline CSS shorthand property sets the style, color, and width of an element's outline."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/outline-color",
@@ -42577,7 +42577,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/place-items",
     "pageType": "css-shorthand-property",
-    "summary": "The place-items CSS shorthand property aligns items along both the block and inline directions at once. It sets the values of the align-items and justify-items properties. If the second value is not set, the first value is also used for it."
+    "summary": "The place-items CSS shorthand property aligns items along both block and inline directions at the same time."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/place-self",
@@ -42887,7 +42887,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/scroll-snap-align",
     "pageType": "css-property",
-    "summary": "The scroll-snap-align property specifies the box's snap position as an alignment of its snap area (as the alignment subject) within its snap container's snap port (as the alignment container)."
+    "summary": "The scroll-snap-align CSS property specifies the box's snap position as an alignment of its snap area."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/scroll-snap-stop",
@@ -42917,7 +42917,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/scroll-timeline-name",
     "pageType": "css-property",
-    "summary": "The scroll-timeline-name CSS property is used to define the name of a named scroll progress timeline, which is progressed through by scrolling a scrollable element (scroller) between top and bottom (or left and right). scroll-timeline-name is set on the scroller that will provide the timeline."
+    "summary": "The scroll-timeline-name CSS property is used to define the name of a named scroll progress timeline."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/scrollbar-color",
@@ -43118,6 +43118,11 @@
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/text-emphasis-style",
     "pageType": "css-property",
     "summary": "The text-emphasis-style CSS property sets the appearance of emphasis marks. It can also be set, and reset, using the text-emphasis shorthand."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/text-fit",
+    "pageType": "css-property",
+    "summary": "The text-fit CSS property can be used to scale the rendered font size of text nodes (and other inline content) so that they fit exactly within the inline dimension of their containing boxes, optionally limited by a maximum or minimum scaling factor."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/text-indent",

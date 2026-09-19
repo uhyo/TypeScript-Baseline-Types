@@ -2698,6 +2698,7 @@ interface SanitizerConfig {
     comments?: boolean;
     dataAttributes?: boolean;
     elements?: SanitizerElementWithAttributes[];
+    javascriptURLs?: boolean;
     processingInstructions?: SanitizerPI[];
     removeAttributes?: SanitizerAttribute[];
     removeElements?: SanitizerElement[];
@@ -7550,7 +7551,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     columnSpan: string;
     /**
-     * The column-width CSS property sets the ideal column width in a multi-column layout. The container will have as many columns as can fit without any of them having a width less than the column-width value. If the width of the container is narrower than the specified value, the single column's width will be smaller than the declared column width.
+     * The column-width CSS property sets the ideal column width in a multi-column layout.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/column-width)
      */
@@ -8500,7 +8501,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     orphans: string;
     /**
-     * The **`outline`** CSS shorthand property sets most of the outline properties in a single declaration.
+     * The **`outline`** CSS shorthand property sets the style, color, and width of an element's outline.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/outline)
      */
@@ -8725,7 +8726,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     placeContent: string;
     /**
-     * The place-items CSS shorthand property aligns items along both the block and inline directions at once. It sets the values of the align-items and justify-items properties. If the second value is not set, the first value is also used for it.
+     * The place-items CSS shorthand property aligns items along both block and inline directions at the same time.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/place-items)
      */
@@ -8995,7 +8996,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     scrollPaddingTop: string;
     /**
-     * The scroll-snap-align property specifies the box's snap position as an alignment of its snap area (as the alignment subject) within its snap container's snap port (as the alignment container).
+     * The scroll-snap-align CSS property specifies the box's snap position as an alignment of its snap area.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/scroll-snap-align)
      */
@@ -9025,7 +9026,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     scrollTimelineAxis: string;
     /**
-     * The scroll-timeline-name CSS property is used to define the name of a named scroll progress timeline, which is progressed through by scrolling a scrollable element (scroller) between top and bottom (or left and right). scroll-timeline-name is set on the scroller that will provide the timeline.
+     * The scroll-timeline-name CSS property is used to define the name of a named scroll progress timeline.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/scroll-timeline-name)
      */
@@ -30157,7 +30158,7 @@ declare var RTCRtpScriptTransform: {
  */
 interface RTCRtpSender {
     /**
-     * The read-only **`dtmf`** property on the RTCRtpSender interface returns a RTCDTMFSender object which can be used to send DTMF tones over the RTCPeerConnection. See Using DTMF for details on how to make use of the returned RTCDTMFSender object.
+     * The read-only **`dtmf`** property on the RTCRtpSender interface returns an RTCDTMFSender you can use to send DTMF tones on this sender's audio track.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/RTCRtpSender/dtmf)
      */
@@ -31178,19 +31179,13 @@ declare var Response: {
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SVGAElement)
  */
-interface SVGAElement extends SVGGraphicsElement, SVGURIReference {
+interface SVGAElement extends SVGGraphicsElement, HyperlinkElementUtils, SVGURIReference {
     /**
      * The **`download`** property of the SVGAElement interface returns a string indicating that the browser should treat the linked URL as a download.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SVGAElement/download)
      */
     download: string;
-    /**
-     * The **`hreflang`** property of the SVGAElement interface returns a string indicating the language of the linked resource.
-     *
-     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SVGAElement/hreflang)
-     */
-    hreflang: string;
     /**
      * The **`ping`** property of the SVGAElement interface returns a string that reflects the ping attribute, containing a space-separated list of URLs to which, when the hyperlink is followed, POST requests with the body PING will be sent by the browser (in the background). Typically used for tracking.
      *
@@ -31217,12 +31212,6 @@ interface SVGAElement extends SVGGraphicsElement, SVGURIReference {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SVGAElement/target)
      */
     readonly target: SVGAnimatedString;
-    /**
-     * The **`type`** property of the SVGAElement interface returns a string indicating the MIME type of the linked resource.
-     *
-     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SVGAElement/type)
-     */
-    type: string;
     addEventListener<K extends keyof SVGElementEventMap>(type: K, listener: (this: SVGAElement, ev: SVGElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
     addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
     removeEventListener<K extends keyof SVGElementEventMap>(type: K, listener: (this: SVGAElement, ev: SVGElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
@@ -33199,7 +33188,7 @@ interface SVGGraphicsElement extends SVGElement, SVGTests {
      */
     readonly transform: SVGAnimatedTransformList;
     /**
-     * The **`SVGGraphicsElement.getBBox()`** method allows us to determine the coordinates of the smallest rectangle in which the object fits. The coordinates returned are with respect to the current SVG space (after the application of all geometry attributes on all the elements contained in the target element).
+     * The **`getBBox()`** method of the SVGGraphicsElement interface returns the smallest rectangle that contains the element. The rectangle is measured in the user coordinate system of the element, with the geometry attributes of the element and its descendants applied.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SVGGraphicsElement/getBBox)
      */
@@ -36106,7 +36095,7 @@ interface SpeechRecognitionResult {
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SpeechRecognitionResult/item)
      */
-    item(index: number): SpeechRecognitionAlternative;
+    item(index: number): SpeechRecognitionAlternative | null;
     [index: number]: SpeechRecognitionAlternative;
 }
 
@@ -36133,7 +36122,7 @@ interface SpeechRecognitionResultList {
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SpeechRecognitionResultList/item)
      */
-    item(index: number): SpeechRecognitionResult;
+    item(index: number): SpeechRecognitionResult | null;
     [index: number]: SpeechRecognitionResult;
 }
 
@@ -44940,7 +44929,7 @@ type GPUCompilationMessageType = "error" | "info" | "warning";
 type GPUCullMode = "back" | "front" | "none";
 type GPUDeviceLostReason = "destroyed" | "unknown";
 type GPUErrorFilter = "internal" | "out-of-memory" | "validation";
-type GPUFeatureName = "bgra8unorm-storage" | "clip-distances" | "core-features-and-limits" | "depth-clip-control" | "depth32float-stencil8" | "dual-source-blending" | "float32-blendable" | "float32-filterable" | "indirect-first-instance" | "primitive-index" | "rg11b10ufloat-renderable" | "shader-f16" | "subgroup-size-control" | "subgroups" | "texture-compression-astc" | "texture-compression-astc-sliced-3d" | "texture-compression-bc" | "texture-compression-bc-sliced-3d" | "texture-compression-etc2" | "texture-compression-unaligned" | "texture-formats-tier1" | "timestamp-query";
+type GPUFeatureName = "atomic-vec2u-min-max" | "bgra8unorm-storage" | "clip-distances" | "core-features-and-limits" | "depth-clip-control" | "depth32float-stencil8" | "dual-source-blending" | "float32-blendable" | "float32-filterable" | "indirect-first-instance" | "primitive-index" | "rg11b10ufloat-renderable" | "shader-f16" | "subgroup-size-control" | "subgroups" | "texture-compression-astc" | "texture-compression-astc-sliced-3d" | "texture-compression-bc" | "texture-compression-bc-sliced-3d" | "texture-compression-etc2" | "texture-compression-unaligned" | "texture-formats-tier1" | "timestamp-query";
 type GPUFilterMode = "linear" | "nearest";
 type GPUFrontFace = "ccw" | "cw";
 type GPUIndexFormat = "uint16" | "uint32";
