@@ -3467,7 +3467,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/console/timeStamp_static",
     "pageType": "web-api-static-method",
-    "summary": "The console.timeStamp() static method adds a single marker to the browser's Performance tool (Firefox bug 1387528, Chrome). This lets you correlate a point in your code with the other events recorded in the timeline, such as layout and paint events."
+    "summary": "The console.timeStamp() static method adds a marker to a performance recording in developer tools that support it, such as the Chrome Performance panel and Firefox Profiler. This lets you correlate a point in your code with recorded events such as layout and painting."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/console/trace_static",
@@ -13222,7 +13222,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLElement/load_event",
     "pageType": "web-api-event",
-    "summary": "The load event fires for elements containing a resource when the resource has successfully loaded. Currently, the list of supported HTML elements are: <body>, <embed>, <iframe>, <img>, <link>, <object>, <script>, <style>, and <track>."
+    "summary": "The load event fires for elements containing a resource when the resource has successfully loaded. Currently, the list of supported HTML elements are: <embed>, <iframe>, <img>, <link>, <object>, <script>, <style>, and <track>."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLElement/loseinterest_event",
@@ -37627,7 +37627,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Window/blur_event",
     "pageType": "web-api-event",
-    "summary": "The blur event fires when an element has lost focus."
+    "summary": "The blur event fires when the window has lost focus,, for example when the user moves focus from the page to the address bar. Focus may previously have been on the document's viewport or on an element within it."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Window/btoa",
@@ -37797,7 +37797,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Window/focus_event",
     "pageType": "web-api-event",
-    "summary": "The focus event fires when an element has received focus."
+    "summary": "The focus event fires when the window has received focus, such as when focus transitions from the address bar into the page. Focus can be on the document's viewport or on an element within it."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Window/frameElement",
@@ -41350,9 +41350,24 @@
     "summary": "The column-rule-color CSS property defines the colors of the lines drawn between columns in multi-column grid, flex, and multi-col layouts."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-inset-cap",
+    "pageType": "css-property",
+    "summary": "The column-rule-inset-cap shorthand CSS property can be used to offset the column rule segment cap endpoints at the container's start and end edges, and endpoints where the segments don't intersect other row or column segments."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-inset-cap-end",
     "pageType": "css-property",
-    "summary": "The column-rule-inset-cap-end CSS property can be used to offset the bottom of column rule segment cap endpoints at the container's content end edge, and cap endpoints where no rule segments intersect."
+    "summary": "The column-rule-inset-cap-end CSS property can be used to offset the bottom of column rule segment cap endpoints at the container's end edge, and cap endpoints where no rule segments intersect."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-inset-cap-start",
+    "pageType": "css-property",
+    "summary": "The column-rule-inset-cap-start CSS property can be used to offset the top of column rule segment cap endpoints at the container's start edge, and cap endpoints where no rule segments intersect."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-inset-junction-end",
+    "pageType": "css-property",
+    "summary": "The column-rule-inset-junction-end CSS property can be used to offset the bottom endpoints of column rule segments that are junction endpoints; that is, endpoints at gap junctions where rule segments intersect."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-style",
@@ -41537,7 +41552,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/counter-reset",
     "pageType": "css-property",
-    "summary": "The counter-reset CSS property creates named CSS counters and initializes them to a specific value. It supports creating counters that count up from one to the number of elements, as well as those that count down from the number of elements to one."
+    "summary": "The counter-reset CSS property creates named CSS counters and initializes their values. It can create both regular and reversed counters."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/counter-set",
@@ -42685,6 +42700,21 @@
     "summary": "The row-rule-color CSS property defines the colors of the lines drawn between rows in multi-row grid, flex, and multi-col layouts."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-inset-cap",
+    "pageType": "css-property",
+    "summary": "The row-rule-inset-cap shorthand CSS property can be used to offset the row rule segment cap endpoints at the container's left and right edges, and endpoints where the segments don't intersect other column or row segments."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-inset-cap-end",
+    "pageType": "css-property",
+    "summary": "The row-rule-inset-cap-end CSS property can be used to offset the end of row rule segment cap endpoints."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-inset-cap-start",
+    "pageType": "css-property",
+    "summary": "The row-rule-inset-cap-start CSS property can be used to offset the start of row rule segment cap endpoints."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-style",
     "pageType": "css-property",
     "summary": "The row-rule-style CSS property defines the line style of the lines drawn between rows in multi-row grid, flex, and multi-col layouts."
@@ -42728,6 +42758,11 @@
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-color",
     "pageType": "css-property",
     "summary": "The rule-color CSS shorthand property defines the colors of the lines drawn between columns and rows in multi-column grid, flex, and multi-col layouts, setting the colors of the column and row rules to the same value."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-inset-cap",
+    "pageType": "css-property",
+    "summary": "The rule-inset-cap CSS shorthand property can be used to offset the column and row rule segment cap endpoints to the same value."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-style",
