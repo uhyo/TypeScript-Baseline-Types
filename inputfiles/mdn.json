@@ -602,7 +602,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/AudioBufferSourceNode/playbackRate",
     "pageType": "web-api-instance-property",
-    "summary": "The playbackRate property of\nthe AudioBufferSourceNode interface Is a k-rate AudioParam that\ndefines the speed at which the audio asset will be played."
+    "summary": "The playbackRate read-only property of the AudioBufferSourceNode interface is a k-rate AudioParam that defines the speed at which the audio asset will be played."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/AudioBufferSourceNode/start",
@@ -967,12 +967,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/AudioNode/numberOfInputs",
     "pageType": "web-api-instance-property",
-    "summary": "The numberOfInputs property of\nthe AudioNode interface returns the number of inputs feeding the\nnode. Source nodes are defined as nodes having a numberOfInputs\nproperty with a value of 0."
+    "summary": "The numberOfInputs read-only property of the AudioNode interface returns the number of inputs feeding the node. Source nodes are defined as nodes having a numberOfInputs property with a value of 0."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/AudioNode/numberOfOutputs",
     "pageType": "web-api-instance-property",
-    "summary": "The numberOfOutputs property of\nthe AudioNode interface returns the number of outputs coming out of\nthe node. Destination nodes — like AudioDestinationNode — have\na value of 0 for this attribute."
+    "summary": "The numberOfOutputs read-only property of the AudioNode interface returns the number of outputs coming out of the node. Destination nodes — like AudioDestinationNode — have a value of 0 for this attribute."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/AudioParam",
@@ -1327,7 +1327,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/AuthenticatorAssertionResponse/authenticatorData",
     "pageType": "web-api-instance-property",
-    "summary": "The authenticatorData property of the AuthenticatorAssertionResponse interface returns an ArrayBuffer containing information from the authenticator such as the Relying Party ID Hash (rpIdHash), a signature counter, test of user presence, user verification flags, and any extensions processed by the authenticator."
+    "summary": "The authenticatorData read-only property of the AuthenticatorAssertionResponse interface returns an ArrayBuffer containing information from the authenticator such as the Relying Party ID Hash (rpIdHash), a signature counter, test of user presence, user verification flags, and any extensions processed by the authenticator."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/AuthenticatorAssertionResponse/signature",
@@ -1677,17 +1677,17 @@
   {
     "mdn_url": "/en-US/docs/Web/API/BaseAudioContext/destination",
     "pageType": "web-api-instance-property",
-    "summary": "The destination property of the BaseAudioContext\ninterface returns an AudioDestinationNode representing the final\ndestination of all audio in the context. It often represents an actual audio-rendering\ndevice such as your device's speakers."
+    "summary": "The destination read-only property of the BaseAudioContext interface returns an AudioDestinationNode representing the final destination of all audio in the context. It often represents an actual audio-rendering device such as your device's speakers."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/BaseAudioContext/listener",
     "pageType": "web-api-instance-property",
-    "summary": "The listener property of the BaseAudioContext interface\nreturns an AudioListener object that can then be used for\nimplementing 3D audio spatialization."
+    "summary": "The listener read-only property of the BaseAudioContext interface returns an AudioListener object that can then be used for implementing 3D audio spatialization."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/BaseAudioContext/sampleRate",
     "pageType": "web-api-instance-property",
-    "summary": "The sampleRate property of the BaseAudioContext interface returns a floating point number representing the sample rate, in samples per second, used by all nodes in this audio context.\nThis limitation means that sample-rate converters are not supported."
+    "summary": "The sampleRate read-only property of the BaseAudioContext interface returns a floating point number representing the sample rate, in samples per second, used by all nodes in this audio context.\nThis limitation means that sample-rate converters are not supported."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/BaseAudioContext/state",
@@ -4972,12 +4972,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSRule/parentRule",
     "pageType": "web-api-instance-property",
-    "summary": "The parentRule property of the CSSRule\ninterface returns the containing rule of the current rule if this exists, or otherwise\nreturns null."
+    "summary": "The parentRule read-only property of the CSSRule interface returns the containing rule of the current rule if this exists, or otherwise returns null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSRule/parentStyleSheet",
     "pageType": "web-api-instance-property",
-    "summary": "The parentStyleSheet property of the\nCSSRule interface returns the StyleSheet object in which\nthe current rule is defined."
+    "summary": "The parentStyleSheet read-only property of the CSSRule interface returns the StyleSheet object in which the current rule is defined."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSRule/type",
@@ -5232,7 +5232,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSStyleSheet/rules",
     "pageType": "web-api-instance-property",
-    "summary": "rules is a deprecated\nlegacy property of the CSSStyleSheet interface. Functionally\nidentical to the preferred cssRules property,\nit provides access to a live-updating list of the CSS rules comprising the\nstylesheet."
+    "summary": "The rules read-only property of the CSSStyleSheet interface is a deprecated legacy property. Functionally identical to the preferred cssRules property, it provides access to a live-updating list of the CSS rules comprising the stylesheet."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSStyleValue",
@@ -6037,7 +6037,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Document_Object_Model/Selection_and_traversal_on_the_DOM_tree",
     "pageType": "guide",
-    "summary": "The Selectors API provides methods that make it quick and easy to retrieve Element nodes from the DOM by matching against a set of selectors. This is much faster than past techniques, wherein it was necessary to, for example, use a loop in JavaScript code to locate the specific items you needed to find."
+    "summary": "In the Anatomy of the DOM guide, we introduced properties for navigating between parents, children, and siblings, but manually walking the tree is verbose and error-prone. The DOM provides methods for directly obtaining the reference to an element in the tree by a unique identifier, a class name, a tag name, a CSS selector, and more. It also provides utility functions for iterating over tree nodes."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Document_Picture-in-Picture_API",
@@ -9417,7 +9417,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/EventTarget",
     "pageType": "web-api-interface",
-    "summary": "The EventTarget interface is implemented by objects that can receive events and may have listeners for them.\nIn other words, any target of events implements the three methods associated with this interface."
+    "summary": "The EventTarget interface is implemented by objects that can receive events and may have listeners for them.\nIn other words, any target of events implements the methods associated with this interface."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/EventTarget/addEventListener",
@@ -9438,6 +9438,11 @@
     "mdn_url": "/en-US/docs/Web/API/EventTarget/removeEventListener",
     "pageType": "web-api-instance-method",
     "summary": "The removeEventListener() method of the EventTarget interface\nremoves an event listener previously registered with EventTarget.addEventListener() from the target.\nThe event listener to be removed is identified using a combination of the event type,\nthe event listener function itself, and various optional options that may affect the matching process;\nsee Matching event listeners for removal."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/EventTarget/when",
+    "pageType": "web-api-instance-method",
+    "summary": "The when() method of the EventTarget interface returns an Observable object representing a stream of events fired on the event target it is called on."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/EXT_blend_minmax",
@@ -9687,7 +9692,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/FederatedCredential/provider",
     "pageType": "web-api-instance-property",
-    "summary": "The provider property of the\nFederatedCredential interface returns a string\ncontaining a credential's federated identity provider."
+    "summary": "The provider read-only property of the FederatedCredential interface returns a string containing a credential's federated identity provider."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/FederatedCredentialInit",
@@ -9767,7 +9772,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/FetchEvent/handled",
     "pageType": "web-api-instance-property",
-    "summary": "The handled property of the FetchEvent interface returns a promise indicating if the event has been handled by the fetch algorithm or not. This property allows executing code after the browser has consumed a response, and is usually used together with the waitUntil() method."
+    "summary": "The handled read-only property of the FetchEvent interface returns a promise indicating if the event has been handled by the fetch algorithm or not. This property allows executing code after the browser has consumed a response, and is usually used together with the waitUntil() method."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/FetchEvent/isReload",
@@ -10497,7 +10502,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/FontFaceSet/size",
     "pageType": "web-api-instance-property",
-    "summary": "The size property of the FontFaceSet interface returns the number of items in the FontFaceSet."
+    "summary": "The size read-only property of the FontFaceSet interface returns the number of items in the FontFaceSet."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/FontFaceSet/status",
@@ -10647,17 +10652,17 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Gamepad/axes",
     "pageType": "web-api-instance-property",
-    "summary": "The Gamepad.axes property of the Gamepad\ninterface returns an array representing the controls with axes present on the device\n(e.g., analog thumb sticks)."
+    "summary": "The axes read-only property of the Gamepad interface returns an array representing the controls with axes present on the device (e.g., analog thumb sticks)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Gamepad/buttons",
     "pageType": "web-api-instance-property",
-    "summary": "The buttons property of the Gamepad interface returns an array of GamepadButton objects representing the buttons present on the device."
+    "summary": "The buttons read-only property of the Gamepad interface returns an array of GamepadButton objects representing the buttons present on the device."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Gamepad/connected",
     "pageType": "web-api-instance-property",
-    "summary": "The Gamepad.connected property of the\nGamepad interface returns a boolean indicating whether the gamepad is\nstill connected to the system."
+    "summary": "The connected read-only property of the Gamepad interface returns a boolean indicating whether the gamepad is still connected to the system."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Gamepad/displayId",
@@ -10677,17 +10682,17 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Gamepad/id",
     "pageType": "web-api-instance-property",
-    "summary": "The Gamepad.id property of the Gamepad\ninterface returns a string containing some information about the controller."
+    "summary": "The id read-only property of the Gamepad interface returns a string containing some information about the controller."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Gamepad/index",
     "pageType": "web-api-instance-property",
-    "summary": "The Gamepad.index property of the Gamepad\ninterface returns an integer that is auto-incremented to be unique for each device\ncurrently connected to the system."
+    "summary": "The index read-only property of the Gamepad interface returns an integer that is auto-incremented to be unique for each device currently connected to the system."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Gamepad/mapping",
     "pageType": "web-api-instance-property",
-    "summary": "The Gamepad.mapping property of the\nGamepad interface returns a string indicating whether the browser has\nremapped the controls on the device to a known layout."
+    "summary": "The mapping read-only property of the Gamepad interface returns a string indicating whether the browser has remapped the controls on the device to a known layout."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Gamepad/pose",
@@ -10697,7 +10702,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Gamepad/timestamp",
     "pageType": "web-api-instance-property",
-    "summary": "The Gamepad.timestamp property of the\nGamepad interface returns a DOMHighResTimeStamp\nrepresenting the last time the data for this gamepad was updated."
+    "summary": "The timestamp read-only property of the Gamepad interface returns a DOMHighResTimeStamp representing the last time the data for this gamepad was updated."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Gamepad/vibrationActuator",
@@ -12562,7 +12567,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLAnchorElement/toString",
     "pageType": "web-api-instance-method",
-    "summary": "The HTMLAnchorElement.toString() stringifier\nmethod returns a string containing the whole URL. It is a read-only\nversion of HTMLAnchorElement.href."
+    "summary": "The HTMLAnchorElement.toString() stringifier method returns a string containing the whole URL, which is the same value as HTMLAnchorElement.href."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLAnchorElement/type",
@@ -12682,7 +12687,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLAreaElement/toString",
     "pageType": "web-api-instance-method",
-    "summary": "The HTMLAreaElement.toString() stringifier\nmethod returns a string containing the whole URL. It is a read-only\nversion of HTMLAreaElement.href."
+    "summary": "The HTMLAreaElement.toString() stringifier method returns a string containing the whole URL, which is the same value as HTMLAreaElement.href."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLAreaElement/username",
@@ -16287,7 +16292,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/IDBDatabase/version",
     "pageType": "web-api-instance-property",
-    "summary": "The version property of the IDBDatabase\ninterface is a 64-bit integer\nthat contains the version of the connected database.\nWhen a database is first created, this attribute is an empty string."
+    "summary": "The version read-only property of the IDBDatabase interface is non-negative integer that contains the version of the connected database."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/IDBDatabase/versionchange_event",
@@ -16362,7 +16367,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/IDBIndex/keyPath",
     "pageType": "web-api-instance-property",
-    "summary": "The keyPath property of the IDBIndex\ninterface returns the key path of the current index. If null, this index is not auto-populated."
+    "summary": "The keyPath read-only property of the IDBIndex interface returns the key path of the current index. If null, this index is not auto-populated."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/IDBIndex/locale",
@@ -16382,7 +16387,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/IDBIndex/objectStore",
     "pageType": "web-api-instance-property",
-    "summary": "The objectStore property of the IDBIndex\ninterface returns the object store referenced by the current index."
+    "summary": "The objectStore read-only property of the IDBIndex interface returns the object store referenced by the current index."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/IDBIndex/openCursor",
@@ -16652,7 +16657,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/IDBTransaction/error",
     "pageType": "web-api-instance-property",
-    "summary": "The IDBTransaction.error property of the IDBTransaction interface\nreturns the type of error when there is an unsuccessful transaction."
+    "summary": "The error read-only property of the IDBTransaction interface returns the type of error when there is an unsuccessful transaction."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/IDBTransaction/error_event",
@@ -17852,7 +17857,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Location/toString",
     "pageType": "web-api-instance-method",
-    "summary": "The toString() stringifier method of the\nLocation interface returns a string containing the\nwhole URL. It is a read-only version of Location.href."
+    "summary": "The toString() stringifier method of the Location interface returns a string containing the whole URL, which is the same value as Location.href."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Lock",
@@ -18177,7 +18182,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/MediaDevices/getSupportedConstraints",
     "pageType": "web-api-instance-method",
-    "summary": "The getSupportedConstraints() method of the MediaDevices interface returns an object based on the MediaTrackSupportedConstraints dictionary, whose member fields each specify one of the constrainable properties the user agent understands."
+    "summary": "The getSupportedConstraints() method of the MediaDevices interface returns an object whose member fields each specify one of the constrainable properties the user agent understands."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/MediaDevices/getUserMedia",
@@ -18692,7 +18697,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/MediaSource/canConstructInDedicatedWorker_static",
     "pageType": "web-api-static-property",
-    "summary": "The canConstructInDedicatedWorker static property of the MediaSource interface returns true if MediaSource worker support is implemented, providing a low-latency feature detection mechanism."
+    "summary": "The canConstructInDedicatedWorker read-only static property of the MediaSource interface returns true if MediaSource worker support is implemented, providing a low-latency feature detection mechanism."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/MediaSource/clearLiveSeekableRange",
@@ -19253,106 +19258,6 @@
     "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/width",
     "pageType": "web-api-instance-property",
     "summary": "The MediaTrackSettings dictionary's width\nproperty is an integer indicating the number of pixels wide\nMediaStreamTrack is currently configured to be. This lets you determine\nwhat value was selected to comply with your specified constraints for this property's\nvalue as described in the MediaTrackConstraints.width property you\nprovided when calling either getUserMedia()\nor MediaStreamTrack.applyConstraints()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints",
-    "pageType": "web-api-interface",
-    "summary": "The MediaTrackSupportedConstraints dictionary establishes the list of constrainable properties recognized by the user agent or browser in its implementation of the MediaStreamTrack object. An object conforming to MediaTrackSupportedConstraints is returned by MediaDevices.getSupportedConstraints()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/aspectRatio",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's aspectRatio property is a read-only Boolean value which is present (and set to true) in the object returned by MediaDevices.getSupportedConstraints() if and only if the\nuser agent supports the aspectRatio constraint.\nIf the constraint isn't supported, it's not included in the list, so this value will never be false."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/autoGainControl",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's autoGainControl property is a read-only Boolean value which is present (and set to true) in the object returned by MediaDevices.getSupportedConstraints() if and only if the user agent supports the autoGainControl constraint.\nIf the constraint isn't supported, it's not included in the list, so this value will never be false."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/channelCount",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's\nchannelCount property is a read-only Boolean value which\nis present (and set to true) in the object returned by\nMediaDevices.getSupportedConstraints() if and only if the\nuser agent supports the channelCount constraint. If the\nconstraint isn't supported, it's not included in the list, so this value will never be\nfalse."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/deviceId",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's\ndeviceId property is a read-only Boolean value which is\npresent (and set to true) in the object returned by\nMediaDevices.getSupportedConstraints() if and only if the\nuser agent supports the deviceId constraint. If the\nconstraint isn't supported, it's not included in the list, so this value will never be\nfalse."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/displaySurface",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's displaySurface property indicates whether or not the displaySurface constraint is supported by the user agent and the device on which the content is being used."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/echoCancellation",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's\nechoCancellation property is a read-only Boolean value\nwhich is present (and set to true) in the object returned by\nMediaDevices.getSupportedConstraints() if and only if the\nuser agent supports the echoCancellation constraint. If the\nconstraint isn't supported, it's not included in the list, so this value will never be\nfalse."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/facingMode",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's\nfacingMode property is a read-only Boolean value which is\npresent (and set to true) in the object returned by\nMediaDevices.getSupportedConstraints() if and only if the\nuser agent supports the facingMode constraint. If the\nconstraint isn't supported, it's not included in the list, so this value will never be\nfalse."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/frameRate",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's frameRate property is a read-only Boolean value which is\npresent (and set to true) in the object returned by MediaDevices.getSupportedConstraints() if and only if the user agent supports the frameRate constraint."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/groupId",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's\ngroupId property is a read-only Boolean value which is\npresent (and set to true) in the object returned by\nMediaDevices.getSupportedConstraints() if and only if the\nuser agent supports the groupId constraint. If the\nconstraint isn't supported, it's not included in the list, so this value will never be\nfalse."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/height",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's\nheight property is a read-only Boolean value which is\npresent (and set to true) in the object returned by\nMediaDevices.getSupportedConstraints() if and only if the\nuser agent supports the height constraint. If the\nconstraint isn't supported, it's not included in the list, so this value will never be\nfalse."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/latency",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's latency property is a read-only Boolean value which is present (and set to true) in the object returned by MediaDevices.getSupportedConstraints() if and only if the user agent supports the latency constraint.\nIf the constraint isn't supported, it's not included in the list, so this value will never be false."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/logicalSurface",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's logicalSurface property indicates whether or not the logicalSurface constraint is supported by the user agent and the device on which the content is being used."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/noiseSuppression",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's\nnoiseSuppression property is a read-only Boolean value\nwhich is present (and set to true) in the object returned by\nMediaDevices.getSupportedConstraints() if and only if the\nuser agent supports the noiseSuppression\nconstraint. If the constraint isn't supported, it's not included in the list, so this\nvalue will never be false."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/restrictOwnAudio",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's restrictOwnAudio property is a read-only boolean value which is present (and set to true) in the object returned by MediaDevices.getSupportedConstraints() if and only if the user agent supports the restrictOwnAudio constraint. If the constraint isn't supported, it's not included in the list, so this value will never be false."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/sampleRate",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's\nsampleRate property is a read-only Boolean value which is\npresent (and set to true) in the object returned by\nMediaDevices.getSupportedConstraints() if and only if the\nuser agent supports the sampleRate constraint. If the\nconstraint isn't supported, it's not included in the list, so this value will never be\nfalse."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/sampleSize",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's\nsampleSize property is a read-only Boolean value which is\npresent (and set to true) in the object returned by\nMediaDevices.getSupportedConstraints() if and only if the\nuser agent supports the sampleSize constraint. If the\nconstraint isn't supported, it's not included in the list, so this value will never be\nfalse."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/suppressLocalAudioPlayback",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's suppressLocalAudioPlayback property indicates whether or not the suppressLocalAudioPlayback constraint is supported by the user agent and the device on which the content is being used."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/volume",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's\nvolume property is a read-only Boolean value which is\npresent (and set to true) in the object returned by\nMediaDevices.getSupportedConstraints() if and only if the\nuser agent supports the volume constraint. If the\nconstraint isn't supported, it's not included in the list, so this value will never be\nfalse."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSupportedConstraints/width",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSupportedConstraints dictionary's\nwidth property is a read-only Boolean value which is\npresent (and set to true) in the object returned by\nMediaDevices.getSupportedConstraints() if and only if the\nuser agent supports the width constraint. If the constraint\nisn't supported, it's not included in the list, so this value will never be\nfalse."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/MerchantValidationEvent",
@@ -21313,6 +21218,131 @@
     "mdn_url": "/en-US/docs/Web/API/NotRestoredReasons/url",
     "pageType": "web-api-instance-property",
     "summary": "The url read-only property of the\nNotRestoredReasons interface returns a string representing the URL of the navigated page or <iframe>."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable",
+    "pageType": "web-api-interface",
+    "summary": "The Observable interface of the Observable API represents a stream of values that can be subscribed to."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable_API",
+    "pageType": "web-api-overview",
+    "summary": "The Observable API provides a mechanism for handling streams of values, including asynchronous events. You can declare a pipeline to filter and transform these values, subscribe to receive them, and unsubscribe when they are no longer needed."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable_API/Creating_observables",
+    "pageType": "guide",
+    "summary": "The Observable API lets you create custom streams of values using the Observable() constructor. This guide explains how to produce values, complete a stream, and clean up resources when a subscription ends."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable_API/Using_observables",
+    "pageType": "guide",
+    "summary": "The Observable API provides a mechanism for handling streams of values, including asynchronous events. This guide explains how to transform, subscribe to, and unsubscribe from existing observables, using browser event streams as examples."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/catch",
+    "pageType": "web-api-instance-method",
+    "summary": "The catch() method of the Observable interface returns a new observable that replaces an error from the source observable with values from another observable."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/drop",
+    "pageType": "web-api-instance-method",
+    "summary": "The drop() method of the Observable interface returns a new observable that skips the given number of values at the start of the source observable."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/every",
+    "pageType": "web-api-instance-method",
+    "summary": "The every() method of the Observable interface returns a promise that fulfills with a boolean indicating whether every value emitted by the source observable satisfies the provided testing function."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/filter",
+    "pageType": "web-api-instance-method",
+    "summary": "The filter() method of the Observable interface returns a new observable that emits only those values of the source observable for which the provided callback function returns a truthy value."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/finally",
+    "pageType": "web-api-instance-method",
+    "summary": "The finally() method of the Observable interface returns a new observable that mirrors the source observable and calls a callback when its subscription ends."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/find",
+    "pageType": "web-api-instance-method",
+    "summary": "The find() method of the Observable interface returns a promise that fulfills with the first value emitted by the source observable that satisfies the provided testing function, or undefined if the source completes without a match."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/first",
+    "pageType": "web-api-instance-method",
+    "summary": "The first() method of the Observable interface returns a promise that fulfills with the first value emitted by the source observable."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/flatMap",
+    "pageType": "web-api-instance-method",
+    "summary": "The flatMap() method of the Observable interface returns a new observable that maps each value of the source observable to an inner observable and emits the inner observables' values sequentially."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/forEach",
+    "pageType": "web-api-instance-method",
+    "summary": "The forEach() method of the Observable interface returns a promise that fulfills with undefined when the source observable completes, after executing a callback for each emitted value."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/from_static",
+    "pageType": "web-api-static-method",
+    "summary": "The from() static method of the Observable interface returns an observable converted from a promise, iterable, or async iterable; existing observables are returned unchanged."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/inspect",
+    "pageType": "web-api-instance-method",
+    "summary": "The inspect() method of the Observable interface returns a new observable that mirrors the source observable and calls callbacks to inspect its values and subscription lifecycle."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/last",
+    "pageType": "web-api-instance-method",
+    "summary": "The last() method of the Observable interface returns a promise that fulfills with the last value emitted by the source observable."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/map",
+    "pageType": "web-api-instance-method",
+    "summary": "The map() method of the Observable interface returns a new observable that emits the values of the source observable, each transformed by a mapping function."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/Observable",
+    "pageType": "web-api-constructor",
+    "summary": "The Observable() constructor creates a new Observable object whose values and lifecycle are controlled by a callback."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/reduce",
+    "pageType": "web-api-instance-method",
+    "summary": "The reduce() method of the Observable interface returns a promise that fulfills with a single value obtained by combining the source observable's values using a reducer function."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/some",
+    "pageType": "web-api-instance-method",
+    "summary": "The some() method of the Observable interface returns a promise that fulfills with a boolean indicating whether any value emitted by the source observable satisfies the provided testing function."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/subscribe",
+    "pageType": "web-api-instance-method",
+    "summary": "The subscribe() method of the Observable interface subscribes to the observable, receiving its values, errors, and completion through observer callbacks."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/switchMap",
+    "pageType": "web-api-instance-method",
+    "summary": "The switchMap() method of the Observable interface returns a new observable that maps each value of the source observable to an inner observable and emits values from only the latest inner observable."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/take",
+    "pageType": "web-api-instance-method",
+    "summary": "The take() method of the Observable interface returns a new observable that emits the given number of values from the start of the source observable and then completes."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/takeUntil",
+    "pageType": "web-api-instance-method",
+    "summary": "The takeUntil() method of the Observable interface returns a new observable that emits values from the source observable until another observable emits a value or errors."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Observable/toArray",
+    "pageType": "web-api-instance-method",
+    "summary": "The toArray() method of the Observable interface returns a promise that fulfills with a new array containing the source observable's values in the order they were emitted."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/OES_draw_buffers_indexed",
@@ -23436,7 +23466,7 @@
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PreferenceObject/override",
-    "pageType": "web-api-instance-method",
+    "pageType": "web-api-instance-property",
     "summary": "The override read-only property of the PreferenceObject interface returns the override of a preference if one is set, null otherwise."
   },
   {
@@ -23502,7 +23532,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PresentationConnection/id",
     "pageType": "web-api-instance-property",
-    "summary": "The id attribute specifies the presentation identifier of a presentation connection."
+    "summary": "The id read-only property of the PresentationConnection interface specifies the presentation identifier of a presentation connection."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PresentationConnection/send",
@@ -23512,7 +23542,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PresentationConnection/state",
     "pageType": "web-api-instance-property",
-    "summary": "The state attribute reflects the presentation connection's current state. Depending on the current PresentationConnectionState, the state attribute can hold one of the following values."
+    "summary": "The state read-only property of the PresentationConnection interface reflects the presentation connection's current state. Depending on the current PresentationConnectionState, the state attribute can hold one of the following values."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PresentationConnection/terminate",
@@ -25222,7 +25252,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/RTCDTMFSender/toneBuffer",
     "pageType": "web-api-instance-property",
-    "summary": "The RTCDTMFSender interface's toneBuffer property returns a string\ncontaining a list of the DTMF tones currently queued for sending to the\nremote peer over the RTCPeerConnection. To place tones into the buffer,\ncall insertDTMF()."
+    "summary": "The toneBuffer read-only property of the RTCDTMFSender interface returns a string containing a list of the DTMF tones currently queued for sending to the remote peer over the RTCPeerConnection. To place tones into the buffer, call insertDTMF()."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/RTCDTMFSender/tonechange_event",
@@ -27867,7 +27897,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/ServiceWorker/scriptURL",
     "pageType": "web-api-instance-property",
-    "summary": "Returns the ServiceWorker serialized script URL defined as part of ServiceWorkerRegistration.\nMust be on the same origin as the document that registers the\nServiceWorker."
+    "summary": "The scriptURL read-only property of the ServiceWorker interface returns the ServiceWorker serialized script URL defined as part of ServiceWorkerRegistration. Must be on the same origin as the document that registers the ServiceWorker."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/ServiceWorker/state",
@@ -29327,22 +29357,22 @@
   {
     "mdn_url": "/en-US/docs/Web/API/StyleSheet/ownerNode",
     "pageType": "web-api-instance-property",
-    "summary": "The ownerNode property of the\nStyleSheet interface returns the node that associates this style sheet\nwith the document."
+    "summary": "The ownerNode read-only property of the StyleSheet interface returns the node that associates this style sheet with the document."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StyleSheet/parentStyleSheet",
     "pageType": "web-api-instance-property",
-    "summary": "The parentStyleSheet property of the\nStyleSheet interface returns the style sheet, if any, that is including\nthe given style sheet."
+    "summary": "The parentStyleSheet read-only property of the StyleSheet interface returns the style sheet, if any, that is including the given style sheet."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StyleSheet/title",
     "pageType": "web-api-instance-property",
-    "summary": "The title property of the StyleSheet interface returns the advisory title of the current style sheet."
+    "summary": "The title read-only property of the StyleSheet interface returns the advisory title of the current style sheet."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StyleSheet/type",
     "pageType": "web-api-instance-property",
-    "summary": "The type property of the StyleSheet\ninterface specifies the style sheet language for the given style sheet."
+    "summary": "The type read-only property of the StyleSheet interface specifies the style sheet language for the given style sheet."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/StyleSheetList",
@@ -29373,6 +29403,41 @@
     "mdn_url": "/en-US/docs/Web/API/SubmitEvent/submitter",
     "pageType": "web-api-instance-property",
     "summary": "The read-only submitter property found on\nthe SubmitEvent interface specifies the submit button or other element\nthat was invoked to cause the form to be submitted."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Subscriber",
+    "pageType": "web-api-interface",
+    "summary": "The Subscriber interface of the Observable API represents a subscription to a stream of observable values, and contains methods to manage the lifecycle of that subscription."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Subscriber/active",
+    "pageType": "web-api-instance-property",
+    "summary": "The active read-only property of the Subscriber interface indicates whether the subscription can still send values to observers."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Subscriber/addTeardown",
+    "pageType": "web-api-instance-method",
+    "summary": "The addTeardown() method of the Subscriber interface registers a callback to clean up resources when the subscription ends. This happens when either Subscriber.complete() or Subscriber.error() is called, or when all observers unsubscribe."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Subscriber/complete",
+    "pageType": "web-api-instance-method",
+    "summary": "The complete() method of the Subscriber interface closes the subscription and notifies observers that the stream has completed successfully."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Subscriber/error",
+    "pageType": "web-api-instance-method",
+    "summary": "The error() method of the Subscriber interface closes the subscription and notifies observers of an error."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Subscriber/next",
+    "pageType": "web-api-instance-method",
+    "summary": "The next() method of the Subscriber interface sends a value to each observer of the subscription, invoking its next callback synchronously. These callbacks are supplied to Observable.subscribe()."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/Subscriber/signal",
+    "pageType": "web-api-instance-property",
+    "summary": "The signal read-only property of the Subscriber interface provides an AbortSignal that is aborted when the subscription ends. A producer can pass this signal to APIs such as fetch() to cancel work when it is no longer needed."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SubtleCrypto",
@@ -30077,7 +30142,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/SVGElement/ownerSVGElement",
     "pageType": "web-api-instance-property",
-    "summary": "The ownerSVGElement property of the SVGElement interface reflects the nearest ancestor <svg> element. null if the given element is the outermost <svg> element."
+    "summary": "The ownerSVGElement read-only property of the SVGElement interface reflects the nearest ancestor <svg> element. null if the given element is the outermost <svg> element."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SVGElement/style",
@@ -30092,7 +30157,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/SVGElement/viewportElement",
     "pageType": "web-api-instance-property",
-    "summary": "The viewportElement property of the SVGElement interface represents the SVGElement which established the current viewport. Often the nearest ancestor <svg> element. null if the given element is the outermost <svg> element."
+    "summary": "The viewportElement read-only property of the SVGElement interface represents the SVGElement which established the current viewport. Often the nearest ancestor <svg> element. null if the given element is the outermost <svg> element."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SVGEllipseElement",
@@ -33742,7 +33807,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/URL/toString",
     "pageType": "web-api-instance-method",
-    "summary": "The toString() method of the URL interface returns a\nstring containing the whole URL. It is effectively a read-only version\nof URL.href."
+    "summary": "The toString() method of the URL interface returns a string containing the whole URL, which is the same value as URL.href."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/URL/URL",
@@ -34342,7 +34407,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/VideoDecoder/state",
     "pageType": "web-api-instance-property",
-    "summary": "The state property of the VideoDecoder interface returns the current state of the underlying codec."
+    "summary": "The state read-only property of the VideoDecoder interface returns the current state of the underlying codec."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/VideoDecoder/VideoDecoder",
@@ -35150,9 +35215,9 @@
     "summary": "The sizeX read-only property of the VRStageParameters interface returns the width of the play-area bounds in meters."
   },
   {
-    "mdn_url": "/en-US/docs/Web/API/VRStageParameters/sizeY",
+    "mdn_url": "/en-US/docs/Web/API/VRStageParameters/sizeZ",
     "pageType": "web-api-instance-property",
-    "summary": "The sizeY read-only property of the VRStageParameters interface returns the depth of the play-area bounds in meters."
+    "summary": "The sizeZ read-only property of the VRStageParameters interface returns the depth of the play-area bounds in meters."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/VTTCue",
@@ -39067,7 +39132,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/XMLHttpRequest/readyState",
     "pageType": "web-api-instance-property",
-    "summary": "The XMLHttpRequest.readyState property returns the state an XMLHttpRequest client is in. An XHR client exists in one of the following states:"
+    "summary": "The readyState read-only property of the XMLHttpRequest interface returns the state an XMLHttpRequest client is in. An XHR client exists in one of the following states:"
   },
   {
     "mdn_url": "/en-US/docs/Web/API/XMLHttpRequest/readystatechange_event",
@@ -39077,7 +39142,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/XMLHttpRequest/response",
     "pageType": "web-api-instance-property",
-    "summary": "The XMLHttpRequest\nresponse property returns the response's body content as\nan ArrayBuffer, a Blob, a Document,\na JavaScript Object, or a string, depending on the value\nof the request's responseType\nproperty."
+    "summary": "The response read-only property of the XMLHttpRequest interface returns the response's body content as an ArrayBuffer, a Blob, a Document, a JavaScript Object, or a string, depending on the value of the request's responseType property."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/XMLHttpRequest/responseText",
@@ -39137,7 +39202,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/XMLHttpRequest/upload",
     "pageType": "web-api-instance-property",
-    "summary": "The XMLHttpRequest upload property returns an XMLHttpRequestUpload object that can be observed to monitor an upload's progress."
+    "summary": "The upload read-only property of the XMLHttpRequest interface returns an XMLHttpRequestUpload object that can be observed to monitor an upload's progress."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/XMLHttpRequest/withCredentials",
@@ -39692,7 +39757,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/XRInputSourcesChangeEvent/session",
     "pageType": "web-api-instance-property",
-    "summary": "The XRInputSourcesChangeEvent property\nsession specifies the\nXRSession to which the input source list change event applies."
+    "summary": "The session read-only property of the XRInputSourcesChangeEvent interface specifies the XRSession to which the input source list change event applies."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/XRInputSourcesChangeEvent/XRInputSourcesChangeEvent",

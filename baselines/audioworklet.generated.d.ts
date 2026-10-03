@@ -692,7 +692,7 @@ interface EventListenerObject {
 }
 
 /**
- * The **`EventTarget`** interface is implemented by objects that can receive events and may have listeners for them. In other words, any target of events implements the three methods associated with this interface.
+ * The **`EventTarget`** interface is implemented by objects that can receive events and may have listeners for them. In other words, any target of events implements the methods associated with this interface.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget)
  */
@@ -2045,7 +2045,7 @@ declare var sampleRate: number;
  */
 declare function registerProcessor(name: string, processorCtor: AudioWorkletProcessorConstructor): void;
 type AllowSharedBufferSource = ArrayBufferLike | ArrayBufferView<ArrayBufferLike>;
-type BufferSource = ArrayBufferView<ArrayBuffer> | ArrayBuffer;
+type BufferSource = ArrayBuffer | ArrayBufferView<ArrayBuffer>;
 type DOMHighResTimeStamp = number;
 type EventListenerOrEventListenerObject = EventListener | EventListenerObject;
 type MessageEventSource = MessagePort;

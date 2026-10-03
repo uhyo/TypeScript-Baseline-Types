@@ -3216,7 +3216,7 @@ interface VideoFrameInit {
 interface ViewTimelineOptions {
     axis?: ScrollAxis;
     inset?: string | (CSSNumericValue | CSSKeywordValue)[];
-    subject?: Element;
+    subject: Element;
 }
 
 interface WaveShaperOptions extends AudioNodeOptions {
@@ -4119,7 +4119,7 @@ interface AudioBufferSourceNode extends AudioScheduledSourceNode {
      */
     loopStart: number;
     /**
-     * The **`playbackRate`** property of the AudioBufferSourceNode interface Is a k-rate AudioParam that defines the speed at which the audio asset will be played.
+     * The **`playbackRate`** read-only property of the AudioBufferSourceNode interface is a k-rate AudioParam that defines the speed at which the audio asset will be played.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/AudioBufferSourceNode/playbackRate)
      */
@@ -4560,13 +4560,13 @@ interface AudioNode extends EventTarget {
      */
     readonly context: BaseAudioContext;
     /**
-     * The **`numberOfInputs`** property of the AudioNode interface returns the number of inputs feeding the node. Source nodes are defined as nodes having a numberOfInputs property with a value of 0.
+     * The **`numberOfInputs`** read-only property of the AudioNode interface returns the number of inputs feeding the node. Source nodes are defined as nodes having a numberOfInputs property with a value of 0.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfInputs)
      */
     readonly numberOfInputs: number;
     /**
-     * The **`numberOfOutputs`** property of the AudioNode interface returns the number of outputs coming out of the node. Destination nodes — like AudioDestinationNode — have a value of 0 for this attribute.
+     * The **`numberOfOutputs`** read-only property of the AudioNode interface returns the number of outputs coming out of the node. Destination nodes — like AudioDestinationNode — have a value of 0 for this attribute.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/AudioNode/numberOfOutputs)
      */
@@ -4820,7 +4820,7 @@ declare var AudioWorkletNode: {
  */
 interface AuthenticatorAssertionResponse extends AuthenticatorResponse {
     /**
-     * The **`authenticatorData`** property of the AuthenticatorAssertionResponse interface returns an ArrayBuffer containing information from the authenticator such as the Relying Party ID Hash (rpIdHash), a signature counter, test of user presence, user verification flags, and any extensions processed by the authenticator.
+     * The **`authenticatorData`** read-only property of the AuthenticatorAssertionResponse interface returns an ArrayBuffer containing information from the authenticator such as the Relying Party ID Hash (rpIdHash), a signature counter, test of user presence, user verification flags, and any extensions processed by the authenticator.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/AuthenticatorAssertionResponse/authenticatorData)
      */
@@ -4951,13 +4951,13 @@ interface BaseAudioContext extends EventTarget {
      */
     readonly currentTime: number;
     /**
-     * The **`destination`** property of the BaseAudioContext interface returns an AudioDestinationNode representing the final destination of all audio in the context. It often represents an actual audio-rendering device such as your device's speakers.
+     * The **`destination`** read-only property of the BaseAudioContext interface returns an AudioDestinationNode representing the final destination of all audio in the context. It often represents an actual audio-rendering device such as your device's speakers.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/destination)
      */
     readonly destination: AudioDestinationNode;
     /**
-     * The **`listener`** property of the BaseAudioContext interface returns an AudioListener object that can then be used for implementing 3D audio spatialization.
+     * The **`listener`** read-only property of the BaseAudioContext interface returns an AudioListener object that can then be used for implementing 3D audio spatialization.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/listener)
      */
@@ -4965,7 +4965,7 @@ interface BaseAudioContext extends EventTarget {
     /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/statechange_event) */
     onstatechange: ((this: BaseAudioContext, ev: Event) => any) | null;
     /**
-     * The **`sampleRate`** property of the BaseAudioContext interface returns a floating point number representing the sample rate, in samples per second, used by all nodes in this audio context. This limitation means that sample-rate converters are not supported.
+     * The **`sampleRate`** read-only property of the BaseAudioContext interface returns a floating point number representing the sample rate, in samples per second, used by all nodes in this audio context. This limitation means that sample-rate converters are not supported.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/BaseAudioContext/sampleRate)
      */
@@ -6514,13 +6514,13 @@ interface CSSRule {
      */
     cssText: string;
     /**
-     * The **`parentRule`** property of the CSSRule interface returns the containing rule of the current rule if this exists, or otherwise returns null.
+     * The **`parentRule`** read-only property of the CSSRule interface returns the containing rule of the current rule if this exists, or otherwise returns null.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSRule/parentRule)
      */
     readonly parentRule: CSSRule | null;
     /**
-     * The **`parentStyleSheet`** property of the CSSRule interface returns the StyleSheet object in which the current rule is defined.
+     * The **`parentStyleSheet`** read-only property of the CSSRule interface returns the StyleSheet object in which the current rule is defined.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSRule/parentStyleSheet)
      */
@@ -10036,7 +10036,7 @@ interface CSSStyleSheet extends StyleSheet {
      */
     readonly ownerRule: CSSRule | null;
     /**
-     * **`rules`** is a deprecated legacy property of the CSSStyleSheet interface. Functionally identical to the preferred cssRules property, it provides access to a live-updating list of the CSS rules comprising the stylesheet.
+     * The **`rules`** read-only property of the CSSStyleSheet interface is a deprecated legacy property. Functionally identical to the preferred cssRules property, it provides access to a live-updating list of the CSS rules comprising the stylesheet.
      * @deprecated
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet/rules)
@@ -14688,7 +14688,7 @@ declare var EventSource: {
 };
 
 /**
- * The **`EventTarget`** interface is implemented by objects that can receive events and may have listeners for them. In other words, any target of events implements the three methods associated with this interface.
+ * The **`EventTarget`** interface is implemented by objects that can receive events and may have listeners for them. In other words, any target of events implements the methods associated with this interface.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget)
  */
@@ -16683,43 +16683,43 @@ declare var GainNode: {
  */
 interface Gamepad {
     /**
-     * The **`Gamepad.axes`** property of the Gamepad interface returns an array representing the controls with axes present on the device (e.g., analog thumb sticks).
+     * The **`axes`** read-only property of the Gamepad interface returns an array representing the controls with axes present on the device (e.g., analog thumb sticks).
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Gamepad/axes)
      */
     readonly axes: ReadonlyArray<number>;
     /**
-     * The **`buttons`** property of the Gamepad interface returns an array of GamepadButton objects representing the buttons present on the device.
+     * The **`buttons`** read-only property of the Gamepad interface returns an array of GamepadButton objects representing the buttons present on the device.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Gamepad/buttons)
      */
     readonly buttons: ReadonlyArray<GamepadButton>;
     /**
-     * The **`Gamepad.connected`** property of the Gamepad interface returns a boolean indicating whether the gamepad is still connected to the system.
+     * The **`connected`** read-only property of the Gamepad interface returns a boolean indicating whether the gamepad is still connected to the system.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Gamepad/connected)
      */
     readonly connected: boolean;
     /**
-     * The **`Gamepad.id`** property of the Gamepad interface returns a string containing some information about the controller.
+     * The **`id`** read-only property of the Gamepad interface returns a string containing some information about the controller.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Gamepad/id)
      */
     readonly id: string;
     /**
-     * The **`Gamepad.index`** property of the Gamepad interface returns an integer that is auto-incremented to be unique for each device currently connected to the system.
+     * The **`index`** read-only property of the Gamepad interface returns an integer that is auto-incremented to be unique for each device currently connected to the system.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Gamepad/index)
      */
     readonly index: number;
     /**
-     * The **`Gamepad.mapping`** property of the Gamepad interface returns a string indicating whether the browser has remapped the controls on the device to a known layout.
+     * The **`mapping`** read-only property of the Gamepad interface returns a string indicating whether the browser has remapped the controls on the device to a known layout.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Gamepad/mapping)
      */
     readonly mapping: GamepadMappingType;
     /**
-     * The **`Gamepad.timestamp`** property of the Gamepad interface returns a DOMHighResTimeStamp representing the last time the data for this gamepad was updated.
+     * The **`timestamp`** read-only property of the Gamepad interface returns a DOMHighResTimeStamp representing the last time the data for this gamepad was updated.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Gamepad/timestamp)
      */
@@ -22428,7 +22428,7 @@ interface IDBDatabase extends EventTarget {
     /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/IDBDatabase/versionchange_event) */
     onversionchange: ((this: IDBDatabase, ev: IDBVersionChangeEvent) => any) | null;
     /**
-     * The **`version`** property of the IDBDatabase interface is a 64-bit integer that contains the version of the connected database. When a database is first created, this attribute is an empty string.
+     * The **`version`** read-only property of the IDBDatabase interface is non-negative integer that contains the version of the connected database.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/IDBDatabase/version)
      */
@@ -22512,7 +22512,7 @@ declare var IDBFactory: {
  */
 interface IDBIndex {
     /**
-     * The **`keyPath`** property of the IDBIndex interface returns the key path of the current index. If null, this index is not auto-populated.
+     * The **`keyPath`** read-only property of the IDBIndex interface returns the key path of the current index. If null, this index is not auto-populated.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/IDBIndex/keyPath)
      */
@@ -22530,7 +22530,7 @@ interface IDBIndex {
      */
     name: string;
     /**
-     * The **`objectStore`** property of the IDBIndex interface returns the object store referenced by the current index.
+     * The **`objectStore`** read-only property of the IDBIndex interface returns the object store referenced by the current index.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/IDBIndex/objectStore)
      */
@@ -22891,7 +22891,7 @@ interface IDBTransaction extends EventTarget {
      */
     readonly durability: IDBTransactionDurability;
     /**
-     * The **`IDBTransaction.error`** property of the IDBTransaction interface returns the type of error when there is an unsuccessful transaction.
+     * The **`error`** read-only property of the IDBTransaction interface returns the type of error when there is an unsuccessful transaction.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/IDBTransaction/error)
      */
@@ -24192,7 +24192,7 @@ interface MediaDevices extends EventTarget {
      */
     getDisplayMedia(options?: DisplayMediaStreamOptions): Promise<MediaStream>;
     /**
-     * The **`getSupportedConstraints()`** method of the MediaDevices interface returns an object based on the MediaTrackSupportedConstraints dictionary, whose member fields each specify one of the constrainable properties the user agent understands.
+     * The **`getSupportedConstraints()`** method of the MediaDevices interface returns an object whose member fields each specify one of the constrainable properties the user agent understands.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaDevices/getSupportedConstraints)
      */
@@ -24886,7 +24886,7 @@ declare var MediaSource: {
     prototype: MediaSource;
     new(): MediaSource;
     /**
-     * The **`canConstructInDedicatedWorker`** static property of the MediaSource interface returns true if MediaSource worker support is implemented, providing a low-latency feature detection mechanism.
+     * The **`canConstructInDedicatedWorker`** read-only static property of the MediaSource interface returns true if MediaSource worker support is implemented, providing a low-latency feature detection mechanism.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaSource/canConstructInDedicatedWorker_static)
      */
@@ -29280,7 +29280,7 @@ interface RTCDTMFSender extends EventTarget {
     /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/RTCDTMFSender/tonechange_event) */
     ontonechange: ((this: RTCDTMFSender, ev: RTCDTMFToneChangeEvent) => any) | null;
     /**
-     * The RTCDTMFSender interface's **`toneBuffer`** property returns a string containing a list of the DTMF tones currently queued for sending to the remote peer over the RTCPeerConnection. To place tones into the buffer, call insertDTMF().
+     * The **`toneBuffer`** read-only property of the RTCDTMFSender interface returns a string containing a list of the DTMF tones currently queued for sending to the remote peer over the RTCPeerConnection. To place tones into the buffer, call insertDTMF().
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/RTCDTMFSender/toneBuffer)
      */
@@ -31908,13 +31908,13 @@ interface SVGElement extends Element, ElementCSSInlineStyle, GlobalEventHandlers
     /** @deprecated */
     readonly className: any;
     /**
-     * The **`ownerSVGElement`** property of the SVGElement interface reflects the nearest ancestor <svg> element. null if the given element is the outermost <svg> element.
+     * The **`ownerSVGElement`** read-only property of the SVGElement interface reflects the nearest ancestor <svg> element. null if the given element is the outermost <svg> element.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SVGElement/ownerSVGElement)
      */
     readonly ownerSVGElement: SVGSVGElement | null;
     /**
-     * The **`viewportElement`** property of the SVGElement interface represents the SVGElement which established the current viewport. Often the nearest ancestor <svg> element. null if the given element is the outermost <svg> element.
+     * The **`viewportElement`** read-only property of the SVGElement interface represents the SVGElement which established the current viewport. Often the nearest ancestor <svg> element. null if the given element is the outermost <svg> element.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SVGElement/viewportElement)
      */
@@ -35600,7 +35600,7 @@ interface ServiceWorker extends EventTarget, AbstractWorker {
     /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/ServiceWorker/statechange_event) */
     onstatechange: ((this: ServiceWorker, ev: Event) => any) | null;
     /**
-     * Returns the ServiceWorker serialized script URL defined as part of ServiceWorkerRegistration. Must be on the same origin as the document that registers the ServiceWorker.
+     * The **`scriptURL`** read-only property of the ServiceWorker interface returns the ServiceWorker serialized script URL defined as part of ServiceWorkerRegistration. Must be on the same origin as the document that registers the ServiceWorker.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/ServiceWorker/scriptURL)
      */
@@ -36677,25 +36677,25 @@ interface StyleSheet {
     get media(): MediaList;
     set media(mediaText: string);
     /**
-     * The **`ownerNode`** property of the StyleSheet interface returns the node that associates this style sheet with the document.
+     * The **`ownerNode`** read-only property of the StyleSheet interface returns the node that associates this style sheet with the document.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/StyleSheet/ownerNode)
      */
     readonly ownerNode: Element | ProcessingInstruction | null;
     /**
-     * The **`parentStyleSheet`** property of the StyleSheet interface returns the style sheet, if any, that is including the given style sheet.
+     * The **`parentStyleSheet`** read-only property of the StyleSheet interface returns the style sheet, if any, that is including the given style sheet.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/StyleSheet/parentStyleSheet)
      */
     readonly parentStyleSheet: CSSStyleSheet | null;
     /**
-     * The **`title`** property of the StyleSheet interface returns the advisory title of the current style sheet.
+     * The **`title`** read-only property of the StyleSheet interface returns the advisory title of the current style sheet.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/StyleSheet/title)
      */
     readonly title: string | null;
     /**
-     * The **`type`** property of the StyleSheet interface specifies the style sheet language for the given style sheet.
+     * The **`type`** read-only property of the StyleSheet interface specifies the style sheet language for the given style sheet.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/StyleSheet/type)
      */
@@ -38371,7 +38371,7 @@ interface VideoDecoder extends EventTarget {
     /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/VideoDecoder/dequeue_event) */
     ondequeue: ((this: VideoDecoder, ev: Event) => any) | null;
     /**
-     * The **`state`** property of the VideoDecoder interface returns the current state of the underlying codec.
+     * The **`state`** read-only property of the VideoDecoder interface returns the current state of the underlying codec.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/VideoDecoder/state)
      */
@@ -38659,7 +38659,7 @@ interface ViewTimeline extends ScrollTimeline {
 
 declare var ViewTimeline: {
     prototype: ViewTimeline;
-    new(options?: ViewTimelineOptions): ViewTimeline;
+    new(options: ViewTimelineOptions): ViewTimeline;
 };
 
 /**
@@ -42562,13 +42562,13 @@ interface XMLHttpRequest extends XMLHttpRequestEventTarget {
     /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/readystatechange_event) */
     onreadystatechange: ((this: XMLHttpRequest, ev: Event) => any) | null;
     /**
-     * The **`XMLHttpRequest.readyState`** property returns the state an XMLHttpRequest client is in. An XHR client exists in one of the following states:
+     * The **`readyState`** read-only property of the XMLHttpRequest interface returns the state an XMLHttpRequest client is in. An XHR client exists in one of the following states:
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/readyState)
      */
     readonly readyState: number;
     /**
-     * The XMLHttpRequest **`response`** property returns the response's body content as an ArrayBuffer, a Blob, a Document, a JavaScript Object, or a string, depending on the value of the request's responseType property.
+     * The **`response`** read-only property of the XMLHttpRequest interface returns the response's body content as an ArrayBuffer, a Blob, a Document, a JavaScript Object, or a string, depending on the value of the request's responseType property.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/response)
      */
@@ -42616,7 +42616,7 @@ interface XMLHttpRequest extends XMLHttpRequestEventTarget {
      */
     timeout: number;
     /**
-     * The XMLHttpRequest **`upload`** property returns an XMLHttpRequestUpload object that can be observed to monitor an upload's progress.
+     * The **`upload`** read-only property of the XMLHttpRequest interface returns an XMLHttpRequestUpload object that can be observed to monitor an upload's progress.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest/upload)
      */
@@ -44768,7 +44768,7 @@ type BigInteger = Uint8Array;
 type BlobPart = BufferSource | Blob | string;
 type BluetoothServiceUUID = string | number;
 type BodyInit = ReadableStream | XMLHttpRequestBodyInit;
-type BufferSource = ArrayBufferView | ArrayBuffer;
+type BufferSource = ArrayBuffer | ArrayBufferView;
 type COSEAlgorithmIdentifier = number;
 type CSSKeywordish = string | CSSKeywordValue;
 type CSSNumberish = number | CSSNumericValue;
