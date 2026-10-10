@@ -877,7 +877,12 @@ interface PushSubscriptionChangeEventInit extends ExtendableEventInit {
 interface PushSubscriptionJSON {
     endpoint?: string;
     expirationTime?: EpochTimeStamp | null;
-    keys?: Record<string, string>;
+    keys?: PushSubscriptionKeys;
+}
+
+interface PushSubscriptionKeys {
+    auth?: string;
+    p256dh?: string;
 }
 
 interface PushSubscriptionOptionsInit {
@@ -7508,7 +7513,7 @@ declare var PerformanceMark: {
  */
 interface PerformanceMeasure extends PerformanceEntry {
     /**
-     * The read-only **`detail`** property returns arbitrary metadata that was included in the mark upon construction (when using performance.measure().
+     * The read-only **`detail`** property returns arbitrary metadata that was included in the measure upon construction (when using performance.measure()).
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceMeasure/detail)
      */

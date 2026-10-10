@@ -2154,7 +2154,12 @@ interface PublicKeyCredentialUserEntityJSON {
 interface PushSubscriptionJSON {
     endpoint?: string;
     expirationTime?: EpochTimeStamp | null;
-    keys?: Record<string, string>;
+    keys?: PushSubscriptionKeys;
+}
+
+interface PushSubscriptionKeys {
+    auth?: string;
+    p256dh?: string;
 }
 
 interface PushSubscriptionOptionsInit {
@@ -2386,7 +2391,6 @@ interface RTCOutboundRtpStreamStats extends RTCSentRtpStreamStats {
     scalabilityMode?: string;
     targetBitrate?: number;
     totalEncodeTime?: number;
-    totalEncodedBytesTarget?: number;
     totalPacketSendDelay?: number;
 }
 
@@ -17684,13 +17688,13 @@ interface HTMLButtonElement extends HTMLElement, PopoverTargetAttributes {
      */
     readonly willValidate: boolean;
     /**
-     * The **`checkValidity()`** method of the HTMLButtonElement interface returns a boolean value which indicates if the element meets any constraint validation rules applied to it. If false, the method also fires an invalid event on the element. Because there's no default browser behavior for checkValidity(), canceling this invalid event has no effect. It always returns true if the <button> element's type is "button" or "reset", because such buttons are never candidates for constraint validation.
+     * The **`checkValidity()`** method of the HTMLButtonElement interface returns a boolean value which indicates if the element meets any constraint validation rules applied to it. If false, the method also fires an invalid event on the element. Because there's no default browser behavior for checkValidity(), canceling this invalid event has no effect. It always returns true if the <button> element is not a candidate for constraint validation (its willValidate is false).
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/checkValidity)
      */
     checkValidity(): boolean;
     /**
-     * The **`reportValidity()`** method of the HTMLButtonElement interface performs the same validity checking steps as the checkValidity() method. In addition, if the invalid event is not canceled, the browser displays the problem to the user.
+     * The **`reportValidity()`** method of the HTMLButtonElement interface performs the same validity checking steps as the checkValidity() method. In addition, if the invalid event is not canceled, the browser displays the problem to the user. It always returns true if the <button> element is not a candidate for constraint validation (its willValidate is false).
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLButtonElement/reportValidity)
      */
@@ -25120,7 +25124,7 @@ interface MediaStreamTrack extends EventTarget {
      */
     getConstraints(): MediaTrackConstraints;
     /**
-     * The **`getSettings()`** method of the MediaStreamTrack interface returns a MediaTrackSettings object containing the current values of each of the constrainable properties for the current MediaStreamTrack.
+     * The **`getSettings()`** method of the MediaStreamTrack interface returns an object containing the current values of each of the constrainable properties for the current MediaStreamTrack.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/getSettings)
      */
@@ -28042,7 +28046,7 @@ declare var PerformanceMark: {
  */
 interface PerformanceMeasure extends PerformanceEntry {
     /**
-     * The read-only **`detail`** property returns arbitrary metadata that was included in the mark upon construction (when using performance.measure().
+     * The read-only **`detail`** property returns arbitrary metadata that was included in the measure upon construction (when using performance.measure()).
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceMeasure/detail)
      */
@@ -43799,8 +43803,10 @@ interface HTMLElementTagNameMap {
     "pre": HTMLPreElement;
     "progress": HTMLProgressElement;
     "q": HTMLQuoteElement;
+    "rb": HTMLElement;
     "rp": HTMLElement;
     "rt": HTMLElement;
+    "rtc": HTMLElement;
     "ruby": HTMLElement;
     "s": HTMLElement;
     "samp": HTMLElement;
