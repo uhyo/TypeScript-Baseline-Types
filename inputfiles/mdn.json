@@ -4857,7 +4857,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSPrimitiveValue/getRGBColorValue",
     "pageType": "web-api-instance-method",
-    "summary": "The getRGBColorValue() method of the\nCSSPrimitiveValue interface is used to get an RGB color value. If this\nCSS value doesn't contain a RGB color value, a DOMException is raised.\nModification to the corresponding style property can be achieved using the\nRGBColor interface."
+    "summary": "The getRGBColorValue() method of the\nCSSPrimitiveValue interface is used to get an RGB color value. If this\nCSS value doesn't contain an RGB color value, a DOMException is raised.\nModification to the corresponding style property can be achieved using the\nRGBColor interface."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSPrimitiveValue/getStringValue",
@@ -7882,7 +7882,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/ariaHidden",
     "pageType": "web-api-instance-property",
-    "summary": "The ariaHidden property of the Element interface reflects the value of the aria-hidden) attribute, which indicates whether the element is exposed to an accessibility API."
+    "summary": "The ariaHidden property of the Element interface reflects the value of the aria-hidden attribute, which indicates whether the element is exposed to an accessibility API."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/ariaInvalid",
@@ -12242,7 +12242,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HighlightRegistry/delete",
     "pageType": "web-api-instance-method",
-    "summary": "The delete() method of the HighlightRegistry interface removes a the named Highlight object from the HighlightRegistry."
+    "summary": "The delete() method of the HighlightRegistry interface removes the named Highlight object from the HighlightRegistry."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HighlightRegistry/entries",
@@ -12737,7 +12737,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLButtonElement/checkValidity",
     "pageType": "web-api-instance-method",
-    "summary": "The checkValidity() method of the HTMLButtonElement interface returns a boolean value which indicates if the element meets any constraint validation rules applied to it. If false, the method also fires an invalid event on the element. Because there's no default browser behavior for checkValidity(), canceling this invalid event has no effect. It always returns true if the <button> element's type is \"button\" or \"reset\", because such buttons are never candidates for constraint validation."
+    "summary": "The checkValidity() method of the HTMLButtonElement interface returns a boolean value which indicates if the element meets any constraint validation rules applied to it. If false, the method also fires an invalid event on the element. Because there's no default browser behavior for checkValidity(), canceling this invalid event has no effect. It always returns true if the <button> element is not a candidate for constraint validation (its willValidate is false)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLButtonElement/command",
@@ -12812,7 +12812,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLButtonElement/reportValidity",
     "pageType": "web-api-instance-method",
-    "summary": "The reportValidity() method of the HTMLButtonElement interface performs the same validity checking steps as the checkValidity() method. In addition, if the invalid event is not canceled, the browser displays the problem to the user."
+    "summary": "The reportValidity() method of the HTMLButtonElement interface performs the same validity checking steps as the checkValidity() method. In addition, if the invalid event is not canceled, the browser displays the problem to the user. It always returns true if the <button> element is not a candidate for constraint validation (its willValidate is false)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLButtonElement/setCustomValidity",
@@ -16762,7 +16762,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/IdentityProvider/getUserInfo_static",
     "pageType": "web-api-static-method",
-    "summary": "The getUserInfo() static method of the IdentityProvider interface returns information about a user that has signed in, which can be used to provide a personalized welcome message and sign-in button. This method has to be called from within an IdP origin <iframe> so that relying party (RP) scripts cannot access the data. This must occur after a user has been signed in to a RP site."
+    "summary": "The getUserInfo() static method of the IdentityProvider interface returns information about a user that has signed in, which can be used to provide a personalized welcome message and sign-in button. This method has to be called from within an IdP origin <iframe> so that relying party (RP) scripts cannot access the data. This must occur after a user has been signed in to an RP site."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Idle_Detection_API",
@@ -18942,7 +18942,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/MediaStreamTrack/getSettings",
     "pageType": "web-api-instance-method",
-    "summary": "The getSettings() method of the\nMediaStreamTrack interface returns a MediaTrackSettings\nobject containing the current values of each of the constrainable properties for the\ncurrent MediaStreamTrack."
+    "summary": "The getSettings() method of the MediaStreamTrack interface returns an object containing the current values of each of the constrainable properties for the current MediaStreamTrack."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/MediaStreamTrack/id",
@@ -19148,116 +19148,6 @@
     "mdn_url": "/en-US/docs/Web/API/MediaTrackConstraints/width",
     "pageType": "web-api-instance-property",
     "summary": "The MediaTrackConstraints dictionary's\nwidth property is a ConstrainULong\ndescribing the requested or mandatory constraints placed upon the value of the\nwidth constrainable property."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings",
-    "pageType": "web-api-interface",
-    "summary": "The MediaTrackSettings dictionary is used to return the current values configured for each of a MediaStreamTrack's settings. These values will adhere as closely as possible to any constraints previously described using a MediaTrackConstraints object and set using applyConstraints(), and will adhere to the default constraints for any properties whose constraints haven't been changed, or whose customized constraints couldn't be matched."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/aspectRatio",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's aspectRatio property is a double-precision floating-point number indicating the aspect ratio of the MediaStreamTrack as currently configured.\nThis lets you determine what value was selected to comply with your specified constraints for this property's value as described in the MediaTrackConstraints.aspectRatio property you provided when calling either getUserMedia() or MediaStreamTrack.applyConstraints()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/autoGainControl",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's\nautoGainControl property is a Boolean value whose value\nindicates whether or not automatic gain control (AGC) is enabled on an audio track. This\nlets you determine what value was selected to comply with your specified constraints for\nthis property's value as described in the\nMediaTrackConstraints.autoGainControl property you provided when calling\neither getUserMedia() or\nMediaStreamTrack.applyConstraints()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/channelCount",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's\nchannelCount property is an integer indicating how many\naudio channels the MediaStreamTrack is currently configured to have. This\nlets you determine what value was selected to comply with your specified constraints for\nthis property's value as described in the\nMediaTrackConstraints.channelCount property you provided when calling\neither getUserMedia() or\nMediaStreamTrack.applyConstraints()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/cursor",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's cursor property indicates whether or not the cursor should be captured as part of the video track included in the MediaStream returned by getDisplayMedia()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/deviceId",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's\ndeviceId property is a string which\nuniquely identifies the source for the corresponding MediaStreamTrack for\nthe origin corresponding to the browsing session. This lets you determine what value was\nselected to comply with your specified constraints for this property's value as\ndescribed in the MediaTrackConstraints.deviceId property you provided\nwhen calling either getUserMedia()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/displaySurface",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's\ndisplaySurface property indicates the type of display\nsurface being captured."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/echoCancellation",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's\nechoCancellation property is a Boolean value whose value\nindicates whether or not echo cancellation is enabled on an audio track. This lets you\ndetermine what value was selected to comply with your specified constraints for this\nproperty's value as described in the\nMediaTrackConstraints.echoCancellation property you provided when calling\neither getUserMedia() or\nMediaStreamTrack.applyConstraints()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/facingMode",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's\nfacingMode property is a string\nindicating the direction in which the camera producing the video track represented by\nthe MediaStreamTrack is currently facing. This lets you determine what\nvalue was selected to comply with your specified constraints for this property's value\nas described in the MediaTrackConstraints.facingMode property you\nprovided when calling either getUserMedia()\nor MediaStreamTrack.applyConstraints()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/frameRate",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's\nframeRate property is a double-precision floating-point\nnumber indicating the frame rate, in frames per second, of the\nMediaStreamTrack as currently configured. This lets you determine what\nvalue was selected to comply with your specified constraints for this property's value\nas described in the MediaTrackConstraints.frameRate property you provided\nwhen calling either getUserMedia() or\nMediaStreamTrack.applyConstraints()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/groupId",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's\ngroupId property is a browsing-session unique\nstring which identifies the group of devices which includes the source\nfor the MediaStreamTrack. This lets you determine what value was selected\nto comply with your specified constraints for this property's value as described in the\nMediaTrackConstraints.groupId property you provided when calling either\ngetUserMedia()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/height",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's height\nproperty is an integer indicating the number of pixels tall\nMediaStreamTrack is currently configured to be. This lets you determine\nwhat value was selected to comply with your specified constraints for this property's\nvalue as described in the MediaTrackConstraints.height property you\nprovided when calling either getUserMedia()\nor MediaStreamTrack.applyConstraints()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/latency",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's\nlatency property is a double-precision floating-point\nnumber indicating the estimated latency (specified in seconds) of the\nMediaStreamTrack as currently configured. This lets you determine what\nvalue was selected to comply with your specified constraints for this property's value\nas described in the MediaTrackConstraints.latency property you provided\nwhen calling either getUserMedia() or\nMediaStreamTrack.applyConstraints()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/logicalSurface",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's\nlogicalSurface property indicates whether or not the\ndisplay area being captured is a logical surface. Logical surfaces are those which are\nnot necessarily entirely onscreen, or may even be off-screen, such as windows' backing\nbuffers (where only part of the buffer is visible without scrolling the containing\nwindow) and offscreen rendering contexts."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/noiseSuppression",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's\nnoiseSuppression property is a Boolean value whose value\nindicates whether or not noise suppression technology is enabled on an audio track. This\nlets you determine what value was selected to comply with your specified constraints for\nthis property's value as described in the\nMediaTrackConstraints.noiseSuppression property you provided when calling\neither getUserMedia() or\nMediaStreamTrack.applyConstraints()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/restrictOwnAudio",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's restrictOwnAudio property controls whether system audio originating from the capturing tab is filtered out of screen capture, allowing for cleaner screen recordings in some cases."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/sampleRate",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's\nsampleRate property is an integer indicating how many\naudio samples per second the MediaStreamTrack is currently configured\nfor. This lets you determine what value was selected to comply with your specified\nconstraints for this property's value as described in the\nMediaTrackConstraints.sampleRate property you provided when calling\neither getUserMedia() or\nMediaStreamTrack.applyConstraints()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/sampleSize",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's\nsampleSize property is an integer indicating the linear\nsample size (in bits per sample) the MediaStreamTrack is currently\nconfigured for. This lets you determine what value was selected to comply with your\nspecified constraints for this property's value as described in the\nMediaTrackConstraints.sampleSize property you provided when calling\neither getUserMedia() or\nMediaStreamTrack.applyConstraints()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/screenPixelRatio",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's screenPixelRatio property is a number representing the ratio of the physical size of a pixel on the captured display surface (displayed at its physical resolution) to the logical size of a CSS pixel on the capturing screen (displayed at its logical resolution). It cannot be used as a constraint or capability."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/suppressLocalAudioPlayback",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's suppressLocalAudioPlayback property controls whether the audio playing in a tab will continue to be played out of a user's local speakers when the tab is captured."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/volume",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's volume\nproperty is a double-precision floating-point number indicating the volume of the\nMediaStreamTrack as currently configured, as a value from 0.0 (silence)\nto 1.0 (maximum supported volume for the device). This lets you determine what value was\nselected to comply with your specified constraints for this property's value as\ndescribed in the MediaTrackConstraints.volume property you provided when\ncalling either getUserMedia() or\nMediaStreamTrack.applyConstraints()."
-  },
-  {
-    "mdn_url": "/en-US/docs/Web/API/MediaTrackSettings/width",
-    "pageType": "web-api-instance-property",
-    "summary": "The MediaTrackSettings dictionary's width\nproperty is an integer indicating the number of pixels wide\nMediaStreamTrack is currently configured to be. This lets you determine\nwhat value was selected to comply with your specified constraints for this property's\nvalue as described in the MediaTrackConstraints.width property you\nprovided when calling either getUserMedia()\nor MediaStreamTrack.applyConstraints()."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/MerchantValidationEvent",
@@ -22547,7 +22437,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceMeasure/detail",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only detail property returns arbitrary metadata that was included in the mark upon construction (when using performance.measure()."
+    "summary": "The read-only detail property returns arbitrary metadata that was included in the measure upon construction (when using performance.measure())."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceNavigation",
@@ -37692,7 +37582,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Window/blur_event",
     "pageType": "web-api-event",
-    "summary": "The blur event fires when the window has lost focus,, for example when the user moves focus from the page to the address bar. Focus may previously have been on the document's viewport or on an element within it."
+    "summary": "The blur event fires when the window has lost focus, for example when the user moves focus from the page to the address bar. Focus may previously have been on the document's viewport or on an element within it."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Window/btoa",
@@ -40825,6 +40715,11 @@
     "summary": "The animation-timing-function CSS property sets how an animation progresses through the duration of each cycle."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/animation-trigger",
+    "pageType": "css-property",
+    "summary": "The animation-trigger CSS property specifies whether CSS animations declared on an element are triggered animations (or not) and, if so, what their triggers are and how they should behave when the trigger becomes active or inactive. This is used to create scroll-triggered animations."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/appearance",
     "pageType": "css-property",
     "summary": "The appearance CSS property specifies the rendered appearance of replaced UI widget elements such as form controls. Most commonly, such elements are given native, platform-specific styling based on the operating system's theme, or a primitive appearance with styles that can be overridden using CSS."
@@ -41428,6 +41323,11 @@
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-inset-cap-start",
     "pageType": "css-property",
     "summary": "The column-rule-inset-cap-start CSS property can be used to offset the top of column rule segment cap endpoints at the container's start edge, and cap endpoints where no rule segments intersect."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-inset-junction",
+    "pageType": "css-property",
+    "summary": "The column-rule-inset-junction CSS shorthand property can be used to offset both the top and bottom endpoints of column rule segments that are junction endpoints; that is, endpoints at gap junctions where rule segments intersect."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-inset-junction-end",
@@ -42780,6 +42680,11 @@
     "summary": "The row-rule-inset-cap-start CSS property can be used to offset the start of row rule segment cap endpoints."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-inset-junction",
+    "pageType": "css-property",
+    "summary": "The row-rule-inset-junction CSS shorthand property can be used to offset both the left and right endpoints of row rule segments that are junction endpoints; that is, endpoints at gap junctions where rule segments intersect."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-style",
     "pageType": "css-property",
     "summary": "The row-rule-style CSS property defines the line style of the lines drawn between rows in multi-row grid, flex, and multi-col layouts."
@@ -42828,6 +42733,16 @@
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-inset-cap",
     "pageType": "css-property",
     "summary": "The rule-inset-cap CSS shorthand property can be used to offset the column and row rule segment cap endpoints to the same value."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-inset-junction",
+    "pageType": "css-property",
+    "summary": "The rule-inset-junction CSS shorthand property can be used to offset the column and row rule segment junction endpoints to the same value."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-overlap",
+    "pageType": "css-property",
+    "summary": "The rule-overlap CSS property specifies which rule is painted on top when column rules and row rules intersect."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/rule-style",
@@ -43300,6 +43215,51 @@
     "summary": "The timeline-scope CSS property modifies the scope of a named animation timeline."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/timeline-trigger",
+    "pageType": "css-shorthand-property",
+    "summary": "The timeline-trigger CSS shorthand property defines a scroll-triggered animation trigger on an element."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/timeline-trigger-activation-range",
+    "pageType": "css-shorthand-property",
+    "summary": "The timeline-trigger-activation-range CSS shorthand property specifies the start and end of a scroll-triggered animation trigger's activation range."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/timeline-trigger-activation-range-end",
+    "pageType": "css-property",
+    "summary": "The timeline-trigger-activation-range-end CSS property specifies the end of a scroll-triggered animation trigger's activation range."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/timeline-trigger-activation-range-start",
+    "pageType": "css-property",
+    "summary": "The timeline-trigger-activation-range-start CSS property specifies the start of a scroll-triggered animation trigger's activation range."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/timeline-trigger-active-range",
+    "pageType": "css-shorthand-property",
+    "summary": "The timeline-trigger-active-range CSS shorthand property specifies a scroll-triggered animation trigger's active range."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/timeline-trigger-active-range-end",
+    "pageType": "css-property",
+    "summary": "The timeline-trigger-active-range-end CSS property specifies the end of a scroll-triggered animation trigger's active range."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/timeline-trigger-active-range-start",
+    "pageType": "css-property",
+    "summary": "The timeline-trigger-active-range-start CSS property specifies the start of a scroll-triggered animation trigger's active range."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/timeline-trigger-name",
+    "pageType": "css-property",
+    "summary": "The timeline-trigger-name CSS property specifies a scroll-triggered animation trigger's identifier(s)."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/timeline-trigger-source",
+    "pageType": "css-property",
+    "summary": "The timeline-trigger-source CSS property specifies the timeline that will trigger a scroll-triggered animation."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/top",
     "pageType": "css-property",
     "summary": "The top CSS property sets the vertical position of a positioned element. This inset property has no effect on non-positioned elements."
@@ -43363,6 +43323,11 @@
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/translate",
     "pageType": "css-property",
     "summary": "The translate CSS property allows you to specify translation transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/trigger-scope",
+    "pageType": "css-property",
+    "summary": "The trigger-scope CSS property can be used to limit the scope of a scroll-triggered animation trigger name to a document subtree."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/unicode-bidi",
