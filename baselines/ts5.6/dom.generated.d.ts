@@ -8590,7 +8590,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     overflowY: string;
     /**
-     * The overscroll-behavior CSS property sets what a browser does when reaching the boundary of a scrolling area.
+     * The overscroll-behavior CSS property controls what happens when scrolling reaches the edge of a scroll container.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/overscroll-behavior)
      */
@@ -17364,7 +17364,7 @@ interface HTMLAnchorElement extends HTMLElement, HTMLHyperlinkElementUtils, Hype
     /** @deprecated */
     coords: string;
     /**
-     * The **`HTMLAnchorElement.download`** property is a string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value, if any, specifies the default file name for use in labeling the resource in a local file system. If the name is not a valid file name in the underlying OS, the browser will adjust it.
+     * The **`download`** property of the HTMLAnchorElement interface is a string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value, if any, represents the proposed name of the file. It reflects the download attribute of the <a> element.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/download)
      */
@@ -17436,7 +17436,7 @@ interface HTMLAreaElement extends HTMLElement, HTMLHyperlinkElementUtils, Hyperl
      */
     coords: string;
     /**
-     * The **`download`** property of the HTMLAreaElement interface is a string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value represent the proposed name of the file. If the name is not a valid filename of the underlying OS, browser will adjust it accordingly.
+     * The **`download`** property of the HTMLAreaElement interface is a string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value, if any, represents the proposed name of the file. It reflects the download attribute of the <area> element.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLAreaElement/download)
      */
@@ -20662,6 +20662,12 @@ interface HTMLScriptElement extends HTMLElement {
     /** @deprecated */
     htmlFor: string;
     /**
+     * The **`innerText`** property of the HTMLScriptElement interface represents the text content of the <script> element. It behaves in the same way as the textContent and text properties.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/innerText)
+     */
+    innerText: string;
+    /**
      * The **`integrity`** property of the HTMLScriptElement interface is a string that contains inline metadata that a browser can use to verify that a fetched resource has been delivered without unexpected manipulation.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/integrity)
@@ -20691,6 +20697,12 @@ interface HTMLScriptElement extends HTMLElement {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/text)
      */
     text: string;
+    /**
+     * The **`textContent`** property of the HTMLScriptElement interface represents the inline text content of the <script> element. It behaves in the same way as the text and innerText properties.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/textContent)
+     */
+    textContent: string | null;
     /**
      * The **`type`** property of the HTMLScriptElement interface is a string that reflects the type of the script.
      *
@@ -26784,7 +26796,7 @@ interface Notification extends EventTarget {
      */
     readonly dir: NotificationDirection;
     /**
-     * The **`icon`** read-only property of the Notification interface contains the URL of an icon to be displayed as part of the notification, as specified in the icon option of the Notification() constructor.
+     * The **`icon`** read-only property of the Notification interface returns a string containing the URL of a small image that reinforces the notification — for example, an app logo or a photo of the message sender. It is displayed alongside the notification title and body.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Notification/icon)
      */
@@ -34661,6 +34673,9 @@ interface SVGTextPathElement extends SVGTextContentElement, SVGURIReference {
     readonly TEXTPATH_SPACINGTYPE_UNKNOWN: 0;
     readonly TEXTPATH_SPACINGTYPE_AUTO: 1;
     readonly TEXTPATH_SPACINGTYPE_EXACT: 2;
+    readonly TEXTPATH_SIDETYPE_UNKNOWN: 0;
+    readonly TEXTPATH_SIDETYPE_LEFT: 1;
+    readonly TEXTPATH_SIDETYPE_RIGHT: 2;
     addEventListener<K extends keyof SVGElementEventMap>(type: K, listener: (this: SVGTextPathElement, ev: SVGElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
     addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
     removeEventListener<K extends keyof SVGElementEventMap>(type: K, listener: (this: SVGTextPathElement, ev: SVGElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
@@ -34676,6 +34691,9 @@ declare var SVGTextPathElement: {
     readonly TEXTPATH_SPACINGTYPE_UNKNOWN: 0;
     readonly TEXTPATH_SPACINGTYPE_AUTO: 1;
     readonly TEXTPATH_SPACINGTYPE_EXACT: 2;
+    readonly TEXTPATH_SIDETYPE_UNKNOWN: 0;
+    readonly TEXTPATH_SIDETYPE_LEFT: 1;
+    readonly TEXTPATH_SIDETYPE_RIGHT: 2;
 };
 
 /**

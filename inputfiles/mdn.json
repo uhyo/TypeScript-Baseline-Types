@@ -2992,7 +2992,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/after",
     "pageType": "web-api-instance-method",
-    "summary": "The after() method of the CharacterData interface\ninserts a set of Node objects or strings in the children list of the\nobject's parent, just after the object itself."
+    "summary": "The after() method of the CharacterData interface inserts a set of Node objects or strings in the children list of the CharacterData's parent, just after the CharacterData. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/appendData",
@@ -3002,7 +3002,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/before",
     "pageType": "web-api-instance-method",
-    "summary": "The before() method of the CharacterData interface\ninserts a set of Node objects and strings\nin the children list of the CharacterData's parent, just before the CharacterData node."
+    "summary": "The before() method of the CharacterData interface inserts a set of Node objects or strings in the children list of this CharacterData's parent, just before this CharacterData. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/data",
@@ -3037,7 +3037,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/remove",
     "pageType": "web-api-instance-method",
-    "summary": "The remove() method of the CharacterData removes it from its parent node.\nIf it has no parent node, calling remove() does nothing."
+    "summary": "The remove() method of the CharacterData interface removes the CharacterData node from its parent node. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/replaceData",
@@ -3047,7 +3047,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/replaceWith",
     "pageType": "web-api-instance-method",
-    "summary": "The replaceWith() method of the CharacterData interface\nreplaces this node in the children list of its parent\nwith a set of Node objects or string."
+    "summary": "The replaceWith() method of the CharacterData interface replaces this CharacterData in the children list of its parent with a set of Node objects or strings. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/substringData",
@@ -3378,6 +3378,11 @@
     "mdn_url": "/en-US/docs/Web/API/console/clear_static",
     "pageType": "web-api-static-method",
     "summary": "The console.clear() static method clears the console if possible."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/console/context_static",
+    "pageType": "web-api-static-method",
+    "summary": "The console.context() static method creates a new console context: an object with most of the same methods as the console object, whose messages are associated with an optional label. This lets you group and filter the messages that come from different parts of your code."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/console/count_static",
@@ -6897,12 +6902,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/DocumentType/after",
     "pageType": "web-api-instance-method",
-    "summary": "The DocumentType.after() method inserts a set of\nNode objects or strings in the children list of the\nDocumentType's parent, just after the DocumentType.\nStrings are inserted as equivalent Text nodes."
+    "summary": "The after() method of the DocumentType interface inserts a set of Node objects or strings in the children list of the DocumentType's parent, just after the DocumentType. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DocumentType/before",
     "pageType": "web-api-instance-method",
-    "summary": "The DocumentType.before() method inserts a set of\nNode objects or strings in the children list of the\nDocumentType's parent, just before the DocumentType.\nStrings are inserted as equivalent Text nodes."
+    "summary": "The before() method of the DocumentType interface inserts a set of Node objects or strings in the children list of this DocumentType's parent, just before this DocumentType. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DocumentType/name",
@@ -6917,12 +6922,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/DocumentType/remove",
     "pageType": "web-api-instance-method",
-    "summary": "The DocumentType.remove() method removes a document's doctype.\nIf it is already detached from the document, calling remove() does nothing."
+    "summary": "The remove() method of the DocumentType interface removes the DocumentType node from its parent node. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DocumentType/replaceWith",
     "pageType": "web-api-instance-method",
-    "summary": "The DocumentType.replaceWith() method replaces the document type with a set of given nodes."
+    "summary": "The replaceWith() method of the DocumentType interface replaces this DocumentType in the children list of its parent with a set of Node objects or strings. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DocumentType/systemId",
@@ -7737,7 +7742,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/after",
     "pageType": "web-api-instance-method",
-    "summary": "The Element.after() method inserts a set of\nNode objects or strings in the children list of the\nElement's parent, just after the Element.\nStrings are inserted as equivalent Text nodes."
+    "summary": "The after() method of the Element interface inserts a set of Node objects or strings in the children list of the Element's parent, just after the Element. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/afterscriptexecute_event",
@@ -8057,7 +8062,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/before",
     "pageType": "web-api-instance-method",
-    "summary": "The Element.before() method inserts a set of\nNode objects or strings in the children list of this\nElement's parent, just before this Element.\nStrings are inserted as equivalent Text nodes."
+    "summary": "The before() method of the Element interface inserts a set of Node objects or strings in the children list of this Element's parent, just before this Element. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/beforeinput_event",
@@ -8562,7 +8567,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/remove",
     "pageType": "web-api-instance-method",
-    "summary": "The Element.remove() method removes the element from its parent node.\nIf it has no parent node, calling remove() does nothing."
+    "summary": "The remove() method of the Element interface removes the element from its parent node. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/removeAttribute",
@@ -8587,7 +8592,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/replaceWith",
     "pageType": "web-api-instance-method",
-    "summary": "The Element.replaceWith() method replaces this\nElement in the children list of its parent with a set of\nNode objects or strings. Strings are inserted as equivalent Text nodes."
+    "summary": "The replaceWith() method of the Element interface replaces this Element in the children list of its parent with a set of Node objects or strings. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/requestFullscreen",
@@ -12472,7 +12477,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLAnchorElement/download",
     "pageType": "web-api-instance-property",
-    "summary": "The HTMLAnchorElement.download property is a\nstring indicating that the linked resource is intended to be\ndownloaded rather than displayed in the browser. The value, if any, specifies the\ndefault file name for use in labeling the resource in a local file system. If the name\nis not a valid file name in the underlying OS, the browser will adjust it."
+    "summary": "The download property of the HTMLAnchorElement interface is a string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value, if any, represents the proposed name of the file. It reflects the download attribute of the <a> element."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLAnchorElement/hash",
@@ -12597,7 +12602,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLAreaElement/download",
     "pageType": "web-api-instance-property",
-    "summary": "The download property of the HTMLAreaElement interface is a string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value represent the proposed name of the file. If the name is not a valid filename of the underlying OS, browser will adjust it accordingly."
+    "summary": "The download property of the HTMLAreaElement interface is a string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value, if any, represents the proposed name of the file. It reflects the download attribute of the <area> element."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLAreaElement/hash",
@@ -20907,7 +20912,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Notification/badge",
     "pageType": "web-api-instance-property",
-    "summary": "The badge read-only property of the Notification interface returns a string containing the URL of an image to represent the notification when there is not enough space to display the notification itself such as for example, the Android Notification Bar. On Android devices, the badge should accommodate devices up to 4x resolution, about 96 by 96 px, and the image will be automatically masked."
+    "summary": "The badge read-only property of the Notification interface returns a string containing the URL of a small icon representing the web application itself. The badge is used by the platform when there is not enough space to display the full notification — for example, in a status bar. On Android, the badge should accommodate up to 4x display resolution (about 96×96px), and the image will be automatically masked to a monochrome silhouette."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Notification/body",
@@ -20947,12 +20952,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Notification/icon",
     "pageType": "web-api-instance-property",
-    "summary": "The icon read-only property of the\nNotification interface contains the URL of an icon to be displayed as\npart of the notification, as specified in the icon option of the\nNotification() constructor."
+    "summary": "The icon read-only property of the Notification interface returns a string containing the URL of a small image that reinforces the notification — for example, an app logo or a photo of the message sender. It is displayed alongside the notification title and body."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Notification/image",
     "pageType": "web-api-instance-property",
-    "summary": "The image read-only property of the\nNotification interface contains the URL of an image to be displayed as\npart of the notification, as specified in the image option of the\nNotification() constructor."
+    "summary": "The image read-only property of the Notification interface returns a string containing the URL of a large image displayed as part of the notification's content body — for example, a news photo or product thumbnail. It has the highest visual priority of the three image options (image, icon, badge)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Notification/lang",
@@ -37220,6 +37225,11 @@
     "summary": "The reliability read-only property of the WebTransport interface indicates whether the connection supports reliable transports only, or whether it also supports unreliable transports (such as UDP)."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/WebTransport/supportsReliableOnly_static",
+    "pageType": "web-api-static-property",
+    "summary": "The supportsReliableOnly static read-only property of the WebTransport interface returns a boolean value that indicates whether the browser supports WebTransport sessions over exclusively reliable transports, such as HTTP/2. Such sessions can't send unreliable datagrams, which need HTTP/3 over QUIC."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/WebTransport/WebTransport",
     "pageType": "web-api-constructor",
     "summary": "The WebTransport() constructor creates a new WebTransport object instance."
@@ -42432,7 +42442,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/overscroll-behavior",
     "pageType": "css-shorthand-property",
-    "summary": "The overscroll-behavior CSS property sets what a browser does when reaching the boundary of a scrolling area."
+    "summary": "The overscroll-behavior CSS property controls what happens when scrolling reaches the edge of a scroll container."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/overscroll-behavior-block",
