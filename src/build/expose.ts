@@ -7,6 +7,7 @@ import {
   filterProperties,
   mapToArray,
   arrayToMap,
+  collectTypeReferences,
 } from "./helpers.ts";
 import { isEmptyRecord } from "./utils/record.ts";
 import { isBaselineCut } from "./bcd/baseline.ts";
@@ -74,7 +75,7 @@ export function getExposedTypes(
     }
   }
 
-  const knownIDLTypes = new Set([
+  const referencedIDLTypes = new Set([
     ...followTypeReferences(webidl, filtered.interfaces!.interface),
     ...followTypeReferences(
       webidl,
@@ -84,9 +85,17 @@ export function getExposedTypes(
         (i) => i,
       ),
     ),
+  ]);
+  const knownIDLTypes = new Set([
+    ...referencedIDLTypes,
     // Value types referenced only by raw-string manual overrides, which
     // followTypeReferences can't see (baseline cut only).
-    ...extraKnownTypes,
+    ...scopeExtraKnownTypes(
+      webidl,
+      extraKnownTypes,
+      unexposedTypes,
+      referencedIDLTypes,
+    ),
   ]);
   const isKnownName = (o: { name: string }) =>
     knownIDLTypes.has(o.name) || forceKnownTypesLogged.has(o.name);
@@ -177,6 +186,95 @@ function filterTypedefs(
  * @param webidl target types
  * @param unexposedTypes type names to be filtered out
  */
+/** Fields holding raw TypeScript, which the unexposed-type filter can't see into. */
+const rawTypeKeys = new Set([
+  "overrideType",
+  "overrideSignatures",
+  "additionalSignatures",
+  "overrideIndexSignatures",
+  "overrideThis",
+]);
+
+function collectRawTypeIdentifiers(
+  value: unknown,
+  out: Set<string>,
+  raw = false,
+): void {
+  if (typeof value === "string") {
+    if (raw) {
+      for (const [identifier] of value.matchAll(/[A-Za-z_$][\w$]*/g)) {
+        out.add(identifier);
+      }
+    }
+    return;
+  }
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      collectRawTypeIdentifiers(item, out, raw);
+    }
+    return;
+  }
+  if (value && typeof value === "object") {
+    for (const [key, child] of Object.entries(value)) {
+      collectRawTypeIdentifiers(child, out, raw || rawTypeKeys.has(key));
+    }
+  }
+}
+
+/**
+ * The extra known types are forced into every scope, so drop the ones whose
+ * raw-string overrides name an interface this scope doesn't expose (e.g.
+ * Keyframe's index signature naming the window-only CSSStyleValue in
+ * AudioWorklet), then the ones left referencing a dropped type.
+ */
+function scopeExtraKnownTypes(
+  webidl: Browser.WebIdl,
+  extraKnownTypes: Set<string>,
+  unexposedTypes: Set<string>,
+  referencedIDLTypes: Set<string>,
+): Set<string> {
+  if (!extraKnownTypes.size) {
+    return extraKnownTypes;
+  }
+  const defs = new Map<string, unknown>();
+  for (const def of [
+    ...Object.values(webidl.dictionaries?.dictionary ?? {}),
+    ...Object.values(webidl.enums?.enum ?? {}),
+    ...(webidl.typedefs?.typedef ?? []),
+  ]) {
+    defs.set(def.name, def);
+  }
+  const rawReferences = new Map<string, Set<string>>();
+  for (const name of extraKnownTypes) {
+    const identifiers = new Set<string>();
+    collectRawTypeIdentifiers(defs.get(name), identifiers);
+    rawReferences.set(name, identifiers);
+  }
+
+  const kept = new Set(extraKnownTypes);
+  // Structured references to unexposed types are filtered member by member
+  // later on, so only a dropped extra type makes one dangle.
+  const isDropped = (name: string) =>
+    extraKnownTypes.has(name) &&
+    !kept.has(name) &&
+    !referencedIDLTypes.has(name);
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const name of kept) {
+      const raw = [...rawReferences.get(name)!];
+      if (
+        raw.some((r) => unexposedTypes.has(r) || isDropped(r)) ||
+        collectTypeReferences(defs.get(name)).some(isDropped)
+      ) {
+        kept.delete(name);
+        changed = true;
+      }
+    }
+  }
+  return kept;
+}
+
 function deepFilterUnexposedTypes(
   webidl: Browser.WebIdl,
   unexposedTypes: Set<string>,
@@ -209,7 +307,15 @@ function deepFilterUnexposedTypes(
       const types = Array.isArray(p.type) ? p.type : [p];
       const filtered = filterUnexposedTypeFromUnion(types, unexposedTypes);
       if (filtered.length >= 1) {
-        param.push({ ...p, type: flattenType(filtered) });
+        const additionalTypes = filterAdditionalTypes(
+          p.additionalTypes,
+          unexposedTypes,
+        );
+        param.push({
+          ...p,
+          type: flattenType(filtered),
+          additionalTypes,
+        });
       } else if (!p.optional) {
         if (isBaselineCut) {
           // A Baseline cut can leave a kept API with a non-optional
@@ -250,11 +356,34 @@ function filterUnexposedType<T extends Browser.Typed>(
       unexposedTypes,
     );
     if (filteredUnion.length) {
-      return { ...type, type: flattenType(filteredUnion) };
+      return {
+        ...type,
+        type: flattenType(filteredUnion),
+        additionalTypes: filterAdditionalTypes(
+          type.additionalTypes,
+          unexposedTypes,
+        ),
+      };
     }
-  } else if (type.overrideType || !unexposedTypes.has(type.type)) {
-    return type;
+  } else if (!type.overrideType && unexposedTypes.has(type.type)) {
+    return;
+  } else {
+    const additionalTypes = filterAdditionalTypes(
+      type.additionalTypes,
+      unexposedTypes,
+    );
+    return type.additionalTypes ? { ...type, additionalTypes } : type;
   }
+}
+
+function filterAdditionalTypes(
+  additionalTypes: string[] | undefined,
+  unexposedTypes: Set<string>,
+) {
+  const filtered = additionalTypes?.filter(
+    (additionalType) => !unexposedTypes.has(additionalType),
+  );
+  return filtered?.length ? filtered : undefined;
 }
 
 function filterUnexposedTypeFromUnion(

@@ -601,6 +601,12 @@ interface IDBDatabaseInfo {
     version?: number;
 }
 
+interface IDBGetAllOptions {
+    count?: number;
+    direction?: IDBCursorDirection;
+    query?: any;
+}
+
 interface IDBIndexParameters {
     multiEntry?: boolean;
     unique?: boolean;
@@ -745,8 +751,6 @@ interface NavigationPreloadState {
 
 interface NotificationAction {
     action: string;
-    icon?: string;
-    navigate?: string;
     title: string;
 }
 
@@ -1186,6 +1190,7 @@ interface WebTransportReceiveStreamStats {
 }
 
 interface WebTransportSendOptions {
+    sendGroup?: WebTransportSendGroup | null;
     sendOrder?: number;
 }
 
@@ -1391,21 +1396,53 @@ declare var Blob: {
 };
 
 interface Body {
-    /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/Request/body) */
+    /**
+     * The **`body`** read-only property of the Request interface contains a ReadableStream with the body contents that have been added to the request. Note that a request using the GET or HEAD method cannot have a body and null is returned in these cases.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Request/body)
+     */
     readonly body: ReadableStream<Uint8Array> | null;
-    /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/Request/bodyUsed) */
+    /**
+     * The **`bodyUsed`** read-only property of the Request interface is a boolean value that indicates whether the request body has been read yet.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Request/bodyUsed)
+     */
     readonly bodyUsed: boolean;
-    /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/Request/arrayBuffer) */
+    /**
+     * The **`arrayBuffer()`** method of the Request interface reads the request body and returns it as a promise that resolves with an ArrayBuffer.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Request/arrayBuffer)
+     */
     arrayBuffer(): Promise<ArrayBuffer>;
-    /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/Request/blob) */
+    /**
+     * The **`blob()`** method of the Request interface reads the request body and returns it as a promise that resolves with a Blob.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Request/blob)
+     */
     blob(): Promise<Blob>;
-    /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/Request/bytes) */
+    /**
+     * The **`bytes()`** method of the Request interface reads the request body and returns it as a promise that resolves with a Uint8Array.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Request/bytes)
+     */
     bytes(): Promise<Uint8Array>;
-    /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/Request/formData) */
+    /**
+     * The **`formData()`** method of the Request interface reads the request body and returns it as a promise that resolves with a FormData object.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Request/formData)
+     */
     formData(): Promise<FormData>;
-    /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/Request/json) */
+    /**
+     * The **`json()`** method of the Request interface reads the request body and returns it as a promise that resolves with the result of parsing the body text as JSON.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Request/json)
+     */
     json(): Promise<any>;
-    /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/Request/text) */
+    /**
+     * The **`text()`** method of the Request interface reads the request body and returns it as a promise that resolves with a String. The response is always decoded using UTF-8.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Request/text)
+     */
     text(): Promise<string>;
 }
 
@@ -5821,6 +5858,12 @@ interface IDBIndex {
      */
     getAllKeys(queryOrOptions?: IDBValidKey | IDBKeyRange | null, count?: number): IDBRequest<IDBValidKey[]>;
     /**
+     * The **`getAllRecords()`** method of the IDBIndex interface retrieves all records (including index keys, primary keys, and values) from the index.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/IDBIndex/getAllRecords)
+     */
+    getAllRecords(options?: IDBGetAllOptions): IDBRequest;
+    /**
      * The **`getKey()`** method of the IDBIndex interface returns an IDBRequest object, and, in a separate thread, finds either the primary key that corresponds to the given key in this index or the first corresponding primary key, if key is set to an IDBKeyRange.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/IDBIndex/getKey)
@@ -6003,6 +6046,12 @@ interface IDBObjectStore {
      */
     getAllKeys(queryOrOptions?: IDBValidKey | IDBKeyRange | null, count?: number): IDBRequest<IDBValidKey[]>;
     /**
+     * The **`getAllRecords()`** method of the IDBObjectStore interface retrieves all records (including primary keys and values) from the object store.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/getAllRecords)
+     */
+    getAllRecords(options?: IDBGetAllOptions): IDBRequest;
+    /**
      * The **`getKey()`** method of the IDBObjectStore interface returns an IDBRequest object, and, in a separate thread, returns the key selected by the specified query. This is for retrieving specific records from an object store.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/IDBObjectStore/getKey)
@@ -6063,6 +6112,22 @@ interface IDBOpenDBRequest extends IDBRequest<IDBDatabase> {
 declare var IDBOpenDBRequest: {
     prototype: IDBOpenDBRequest;
     new(): IDBOpenDBRequest;
+};
+
+/**
+ * The **`IDBRecord`** interface of the IndexedDB API represents a snapshot of a single record in an IDBObjectStore or IDBIndex.
+ *
+ * [MDN Reference](https://developer.mozilla.org/docs/Web/API/IDBRecord)
+ */
+interface IDBRecord {
+    readonly key: any;
+    readonly primaryKey: any;
+    readonly value: any;
+}
+
+declare var IDBRecord: {
+    prototype: IDBRecord;
+    new(): IDBRecord;
 };
 
 interface IDBRequestEventMap {
@@ -6678,6 +6743,12 @@ interface Notification extends EventTarget {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Notification/lang)
      */
     readonly lang: string;
+    /**
+     * The **`navigate`** read-only property of the Notification interface contains the URL the user agent will navigate to when the user activates the notification.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Notification/navigate)
+     */
+    readonly navigate: string;
     /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/Notification/click_event) */
     onclick: ((this: Notification, ev: Event) => any) | null;
     /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/Notification/close_event) */
@@ -6940,6 +7011,7 @@ interface OffscreenCanvas extends EventTarget {
     getContext(contextId: "bitmaprenderer", options?: any): ImageBitmapRenderingContext | null;
     getContext(contextId: "webgl", options?: any): WebGLRenderingContext | null;
     getContext(contextId: "webgl2", options?: any): WebGL2RenderingContext | null;
+    getContext(contextId: "webgpu"): GPUCanvasContext | null;
     getContext(contextId: OffscreenRenderingContextId, options?: any): OffscreenRenderingContext | null;
     /**
      * The **`transferToImageBitmap()`** method of the OffscreenCanvas interface creates an ImageBitmap object from the most recently rendered image of the OffscreenCanvas. The image in the OffscreenCanvas is replaced with a new blank image for subsequent rendering.
@@ -7386,6 +7458,8 @@ interface PerformanceResourceTiming extends PerformanceEntry {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceResourceTiming/transferSize)
      */
     readonly transferSize: number;
+    readonly workerCacheLookupStart: DOMHighResTimeStamp;
+    readonly workerRouterEvaluationStart: DOMHighResTimeStamp;
     /**
      * The **`workerStart`** read-only property of the PerformanceResourceTiming interface returns a DOMHighResTimeStamp immediately before dispatching the FetchEvent if a Service Worker thread is already running, or immediately before starting the Service Worker thread if it is not already running. If the resource is not intercepted by a Service Worker the property will always return 0.
      *
@@ -11812,6 +11886,12 @@ interface WebTransport {
      */
     readonly datagrams: WebTransportDatagramDuplexStream;
     /**
+     * The **`draining`** read-only property of the WebTransport interface returns a Promise that fulfills when the server indicates that it would like the transport session to start draining, prior to closing it.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/draining)
+     */
+    readonly draining: Promise<void>;
+    /**
      * The **`incomingBidirectionalStreams`** read-only property of the WebTransport interface represents one or more bidirectional streams opened by the server. Returns a ReadableStream of WebTransportBidirectionalStream objects. Each one can be used to reliably read data from the server and write data back to it.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/incomingBidirectionalStreams)
@@ -11823,7 +11903,11 @@ interface WebTransport {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/incomingUnidirectionalStreams)
      */
     readonly incomingUnidirectionalStreams: ReadableStream;
-    /** The **`protocol`** read-only property of the WebTransport interface returns the application-specific protocol selected by the server. */
+    /**
+     * The **`protocol`** read-only property of the WebTransport interface returns the application-specific protocol selected by the server.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/protocol)
+     */
     readonly protocol: string;
     /**
      * The **`ready`** read-only property of the WebTransport interface returns a promise that resolves when the transport is ready to use.
@@ -11850,6 +11934,12 @@ interface WebTransport {
      */
     createBidirectionalStream(options?: WebTransportSendStreamOptions): Promise<WebTransportBidirectionalStream>;
     /**
+     * The **`createSendGroup()`** method of the WebTransport interface creates and returns a WebTransportSendGroup.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/createSendGroup)
+     */
+    createSendGroup(): WebTransportSendGroup;
+    /**
      * The **`createUnidirectionalStream()`** method of the WebTransport interface asynchronously opens a unidirectional stream.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/createUnidirectionalStream)
@@ -11866,6 +11956,8 @@ interface WebTransport {
 declare var WebTransport: {
     prototype: WebTransport;
     new(url: string | URL, options?: WebTransportOptions): WebTransport;
+    /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/supportsReliableOnly_static) */
+    readonly supportsReliableOnly: boolean;
 };
 
 /**
@@ -11943,11 +12035,43 @@ interface WebTransportDatagramDuplexStream {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/writable)
      */
     readonly writable: WritableStream;
+    /**
+     * The **`createWritable()`** method of the WebTransportDatagramDuplexStream interface returns a WebTransportDatagramsWritable instance that can be used to write outgoing datagrams to the transport.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/createWritable)
+     */
+    createWritable(options?: WebTransportSendOptions): WebTransportDatagramsWritable;
 }
 
 declare var WebTransportDatagramDuplexStream: {
     prototype: WebTransportDatagramDuplexStream;
     new(): WebTransportDatagramDuplexStream;
+};
+
+/**
+ * The **`WebTransportDatagramsWritable`** interface of the WebTransport API is a specialized WritableStream that can be used to write outgoing datagrams to a WebTransport connection.
+ * Available only in secure contexts.
+ *
+ * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramsWritable)
+ */
+interface WebTransportDatagramsWritable extends WritableStream {
+    /**
+     * The **`sendGroup`** property of the WebTransportDatagramsWritable interface represents the WebTransportSendGroup that this WebTransportDatagramsWritable is grouped under for the purposes of sendOrder prioritization.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramsWritable/sendGroup)
+     */
+    sendGroup: WebTransportSendGroup | null;
+    /**
+     * The **`sendOrder`** property of the WebTransportDatagramsWritable interface represents the priority of this stream's datagrams relative to other streams and datagrams in the same sendGroup, as an integer.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramsWritable/sendOrder)
+     */
+    sendOrder: number;
+}
+
+declare var WebTransportDatagramsWritable: {
+    prototype: WebTransportDatagramsWritable;
+    new(): WebTransportDatagramsWritable;
 };
 
 /**
@@ -11997,12 +12121,38 @@ declare var WebTransportReceiveStream: {
 };
 
 /**
+ * The **`WebTransportSendGroup`** interface of the WebTransport API represents a group of streams and datagrams, within which relative send priority is determined by the sendOrder value of each member.
+ * Available only in secure contexts.
+ *
+ * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportSendGroup)
+ */
+interface WebTransportSendGroup {
+    /**
+     * The **`getStats()`** method of the WebTransportSendGroup interface returns a Promise that resolves to an object containing statistics aggregated across all of the WebTransportSendStream objects currently associated with this group. That is, every stream whose sendGroup is set to this WebTransportSendGroup.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportSendGroup/getStats)
+     */
+    getStats(): Promise<WebTransportSendStreamStats>;
+}
+
+declare var WebTransportSendGroup: {
+    prototype: WebTransportSendGroup;
+    new(): WebTransportSendGroup;
+};
+
+/**
  * The **`WebTransportSendStream`** interface of the WebTransport API is a specialized WritableStream that is used to send outbound data in both unidirectional or bidirectional WebTransport streams.
  * Available only in secure contexts.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportSendStream)
  */
 interface WebTransportSendStream extends WritableStream {
+    /**
+     * The **`sendGroup`** property of the WebTransportSendStream interface represents the WebTransportSendGroup that this stream is grouped under for the purposes of sendOrder prioritization.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportSendStream/sendGroup)
+     */
+    sendGroup: WebTransportSendGroup | null;
     /**
      * The **`sendOrder`** property of the WebTransportSendStream interface indicates the send priority of this stream relative to other streams for which the value has been set.
      *
@@ -12566,6 +12716,47 @@ declare var XMLHttpRequestUpload: {
     prototype: XMLHttpRequestUpload;
     new(): XMLHttpRequestUpload;
 };
+
+declare namespace GPUBufferUsage {
+    const MAP_READ: 0x0001;
+    const MAP_WRITE: 0x0002;
+    const COPY_SRC: 0x0004;
+    const COPY_DST: 0x0008;
+    const INDEX: 0x0010;
+    const VERTEX: 0x0020;
+    const UNIFORM: 0x0040;
+    const STORAGE: 0x0080;
+    const INDIRECT: 0x0100;
+    const QUERY_RESOLVE: 0x0200;
+}
+
+declare namespace GPUColorWrite {
+    const RED: 0x1;
+    const GREEN: 0x2;
+    const BLUE: 0x4;
+    const ALPHA: 0x8;
+    const ALL: 0xF;
+}
+
+declare namespace GPUMapMode {
+    const READ: 0x0001;
+    const WRITE: 0x0002;
+}
+
+declare namespace GPUShaderStage {
+    const VERTEX: 0x1;
+    const FRAGMENT: 0x2;
+    const COMPUTE: 0x4;
+}
+
+declare namespace GPUTextureUsage {
+    const COPY_SRC: 0x01;
+    const COPY_DST: 0x02;
+    const TEXTURE_BINDING: 0x04;
+    const STORAGE_BINDING: 0x08;
+    const RENDER_ATTACHMENT: 0x10;
+    const TRANSIENT_ATTACHMENT: 0x20;
+}
 
 declare namespace WebAssembly {
     /** The **`WebAssembly.CompileError`** object indicates an error during WebAssembly decoding or validation. */
@@ -13237,7 +13428,7 @@ type ReportList = Report[];
 type RequestInfo = Request | string;
 type TexImageSource = ImageBitmap | ImageData | OffscreenCanvas;
 type TimerHandler = string | Function;
-type Transferable = OffscreenCanvas | ImageBitmap | MessagePort | ReadableStream | WritableStream | TransformStream | ArrayBuffer;
+type Transferable = OffscreenCanvas | ImageBitmap | MessagePort | ReadableStream | WritableStream | TransformStream | WebTransportDatagramsWritable | ArrayBuffer;
 type URLPatternInput = string | URLPatternInit;
 type Uint32List = Uint32Array | GLuint[];
 type XMLHttpRequestBodyInit = Blob | BufferSource | FormData | URLSearchParams | string;
@@ -13276,7 +13467,7 @@ type GPUCompilationMessageType = "error" | "info" | "warning";
 type GPUCullMode = "back" | "front" | "none";
 type GPUDeviceLostReason = "destroyed" | "unknown";
 type GPUErrorFilter = "internal" | "out-of-memory" | "validation";
-type GPUFeatureName = "atomic-vec2u-min-max" | "bgra8unorm-storage" | "clip-distances" | "core-features-and-limits" | "depth-clip-control" | "depth32float-stencil8" | "dual-source-blending" | "float32-blendable" | "float32-filterable" | "indirect-first-instance" | "primitive-index" | "rg11b10ufloat-renderable" | "shader-f16" | "subgroup-size-control" | "subgroups" | "texture-compression-astc" | "texture-compression-astc-sliced-3d" | "texture-compression-bc" | "texture-compression-bc-sliced-3d" | "texture-compression-etc2" | "texture-compression-unaligned" | "texture-formats-tier1" | "timestamp-query";
+type GPUFeatureName = "atomic-vec2u-min-max" | "bgra8unorm-storage" | "clip-distances" | "core-features-and-limits" | "depth-clip-control" | "depth32float-stencil8" | "dual-source-blending" | "float32-blendable" | "float32-filterable" | "indirect-first-instance" | "primitive-index" | "rg11b10ufloat-renderable" | "shader-f16" | "subgroups" | "texture-compression-astc" | "texture-compression-astc-sliced-3d" | "texture-compression-bc" | "texture-compression-bc-sliced-3d" | "texture-compression-etc2" | "texture-compression-unaligned" | "texture-formats-tier1" | "timestamp-query";
 type GPUFilterMode = "linear" | "nearest";
 type GPUFrontFace = "ccw" | "cw";
 type GPUIndexFormat = "uint16" | "uint32";

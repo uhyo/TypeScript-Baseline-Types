@@ -135,6 +135,8 @@ export interface CompilerBehavior {
   allowUnrelatedSetterType?: boolean;
   useGenericTypedArrays?: boolean;
   includeIterable?: boolean;
+  /** If true, treat async_sequence as AsyncIterable<T>, otherwise as any (legacy < TS 4.4 emit). */
+  treatAsyncSequence?: boolean;
 }
 
 export function emitWebIdl(
@@ -408,6 +410,17 @@ export function emitWebIdl(
     forReturn: boolean,
   ): string {
     function convertBaseType() {
+      // Support async_sequence (see https://github.com/whatwg/streams/pull/1372)
+      if (obj.type === "async_sequence") {
+        // AsyncIterable<T> requires separate asynciterable.d.ts until TS 6.0.
+        // To make it correct, we need to defer any functions using async_sequence to the asynciterable variant.
+        // For now, skip generation and warn.
+        console.warn(
+          "Skipping generation for a function or property with async_sequence type: " +
+            JSON.stringify(obj),
+        );
+        return "never"; // Use 'never' to signal omission in type generation
+      }
       if (obj.type === "sequence" && !forReturn && iterator !== "") {
         return "Iterable";
       }
@@ -560,6 +573,17 @@ export function emitWebIdl(
   function emitConstants(i: Browser.Interface) {
     if (i.constants) {
       mapToArray(i.constants.constant).forEach(emitConstant);
+    }
+  }
+
+  function emitNamespaceConstant(c: Browser.Constant) {
+    emitComments(c, printer.printLine);
+    printer.printLine(`const ${c.name}: ${c.value};`);
+  }
+
+  function emitNamespaceConstants(i: Browser.Interface) {
+    if (i.constants) {
+      mapToArray(i.constants.constant).forEach(emitNamespaceConstant);
     }
   }
 
@@ -1086,10 +1110,45 @@ export function emitWebIdl(
       method.overrideSignatures!.forEach((s) => printLine(`${prefix}${s};`));
     } else if (method.signature) {
       method.additionalSignatures?.forEach((s) => printLine(`${prefix}${s};`));
-      method.signature.forEach((sig) =>
-        emitSignature(sig, prefix, name, printLine, shouldResolvePromise),
-      );
+      method.signature
+        .filter((sig) => !signatureUsesAsyncSequence(sig))
+        .forEach((sig) =>
+          emitSignature(sig, prefix, name, printLine, shouldResolvePromise),
+        );
     }
+  }
+
+  function typeUsesAsyncSequence(t: Browser.Typed): boolean {
+    if (t.type === "async_sequence") {
+      return true;
+    }
+    if (Array.isArray(t.type) && t.type.some(typeUsesAsyncSequence)) {
+      return true;
+    }
+    return arrayify(t.subtype).some(typeUsesAsyncSequence);
+  }
+
+  function signatureUsesAsyncSequence(s: Browser.Signature): boolean {
+    return !!s.param?.some(typeUsesAsyncSequence);
+  }
+
+  /**
+   * async_sequence<T> is not emitted yet (see convertBaseType), so drop the
+   * overloads taking one, and the whole method when no overload is left.
+   */
+  function isOmittedForAsyncSequence(m: Browser.Method): boolean {
+    if (
+      m.overrideSignatures ||
+      m.additionalSignatures?.length ||
+      !m.signature?.length ||
+      !m.signature.every(signatureUsesAsyncSequence)
+    ) {
+      return false;
+    }
+    console.warn(
+      `Skipping generation for ${m.name} since it uses async_sequence type`,
+    );
+    return true;
   }
 
   function emitMethods(
@@ -1122,6 +1181,7 @@ export function emitWebIdl(
               return true;
           }
         })
+        .filter((m) => !isOmittedForAsyncSequence(m))
         .sort(compareName)
         .forEach((m) => emitMethod(prefix, m, conflictedMembers));
     }
@@ -1569,6 +1629,7 @@ export function emitWebIdl(
 
     emitProperties("var ", "InstanceOnly", namespace);
     emitMethods("function ", "InstanceOnly", namespace, new Set());
+    emitNamespaceConstants(namespace);
 
     printer.decreaseIndent();
     printer.printLine("}");
