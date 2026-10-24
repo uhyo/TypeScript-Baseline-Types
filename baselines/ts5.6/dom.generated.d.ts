@@ -6338,7 +6338,7 @@ interface CSSNumericValue extends CSSStyleValue {
      */
     div(...values: CSSNumberish[]): CSSNumericValue;
     /**
-     * The **`equals()`** method of the CSSNumericValue interface returns a boolean indicating whether the passed values are strictly equal. To return a value of true, all passed values must be of the same type and value and must be in the same order. This allows structural equality to be tested quickly.
+     * The **`equals()`** method of the CSSNumericValue interface returns true if every value passed to it is the same as the CSSNumericValue, and false otherwise.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSNumericValue/equals)
      */
@@ -8827,7 +8827,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     overflowY: string;
     /**
-     * The overscroll-behavior CSS property sets what a browser does when reaching the boundary of a scrolling area.
+     * The overscroll-behavior CSS property controls what happens when scrolling reaches the edge of a scroll container.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/overscroll-behavior)
      */
@@ -9459,6 +9459,12 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/text-decoration-color)
      */
     textDecorationColor: string;
+    /**
+     * The text-decoration-inset CSS property enables adjusting the start and end points of an element's text decoration so it can be shortened, lengthened, or have its position shifted with respect to the rendered text.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/text-decoration-inset)
+     */
+    textDecorationInset: string;
     /**
      * The text-decoration-line CSS property sets the kind of decoration that is used on text in an element, such as an underline or overline.
      *
@@ -11135,7 +11141,7 @@ interface ClientRect extends DOMRect {
  */
 interface Clipboard extends EventTarget {
     /**
-     * The **`read()`** method of the Clipboard interface requests a copy of the clipboard's contents, fulfilling the returned Promise with the data.
+     * The **`read()`** method of the Clipboard interface returns a Promise that fulfills with a copy of the clipboard's contents.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Clipboard/read)
      */
@@ -11147,7 +11153,7 @@ interface Clipboard extends EventTarget {
      */
     readText(): Promise<string>;
     /**
-     * The **`write()`** method of the Clipboard interface writes arbitrary ClipboardItem data such as images and text to the clipboard, fulfilling the returned Promise on completion. This can be used to implement cut and copy functionality.
+     * The **`write()`** method of the Clipboard interface is used to write data such as images, text, and custom types, to the system clipboard.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Clipboard/write)
      */
@@ -11185,7 +11191,7 @@ declare var ClipboardEvent: {
 };
 
 /**
- * The **`ClipboardItem`** interface of the Clipboard API represents a single item format, used when reading or writing clipboard data using Clipboard.read() and Clipboard.write() respectively.
+ * The **`ClipboardItem`** interface of the Clipboard API represents a single item of data copied to, or read from, the clipboard, used with Clipboard.write() and Clipboard.read() respectively.
  * Available only in secure contexts.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/ClipboardItem)
@@ -14020,6 +14026,11 @@ interface EXT_float_blend {
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/EXT_frag_depth)
  */
 interface EXT_frag_depth {
+}
+
+interface EXT_polygon_offset_clamp {
+    polygonOffsetClampEXT(factor: GLfloat, units: GLfloat, clamp: GLfloat): void;
+    readonly POLYGON_OFFSET_CLAMP_EXT: 0x8E1B;
 }
 
 /**
@@ -17650,7 +17661,7 @@ interface HTMLAnchorElement extends HTMLElement, HTMLHyperlinkElementUtils, Hype
     /** @deprecated */
     coords: string;
     /**
-     * The **`HTMLAnchorElement.download`** property is a string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value, if any, specifies the default file name for use in labeling the resource in a local file system. If the name is not a valid file name in the underlying OS, the browser will adjust it.
+     * The **`download`** property of the HTMLAnchorElement interface is a string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value, if any, represents the proposed name of the file. It reflects the download attribute of the <a> element.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/download)
      */
@@ -17676,7 +17687,7 @@ interface HTMLAnchorElement extends HTMLElement, HTMLHyperlinkElementUtils, Hype
      */
     rel: string;
     /**
-     * The read-only **`relList`** property of the HTMLAnchorElement returns a live DOMTokenList object containing the set of link types indicating the relationship between the resource represented by the <a> element and the current document. It reflects the <a> element's rel content attribute.
+     * The read-only **`relList`** property of the HTMLAnchorElement returns a live DOMTokenList object containing the set of link types indicating the relationship between the resource represented by the <a> element and the current document.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement/relList)
      */
@@ -17722,7 +17733,7 @@ interface HTMLAreaElement extends HTMLElement, HTMLHyperlinkElementUtils, Hyperl
      */
     coords: string;
     /**
-     * The **`download`** property of the HTMLAreaElement interface is a string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value represent the proposed name of the file. If the name is not a valid filename of the underlying OS, browser will adjust it accordingly.
+     * The **`download`** property of the HTMLAreaElement interface is a string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value, if any, represents the proposed name of the file. It reflects the download attribute of the <area> element.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLAreaElement/download)
      */
@@ -20954,6 +20965,12 @@ interface HTMLScriptElement extends HTMLElement {
     /** @deprecated */
     htmlFor: string;
     /**
+     * The **`innerText`** property of the HTMLScriptElement interface represents the text content of the <script> element. It behaves in the same way as the textContent and text properties.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/innerText)
+     */
+    innerText: string;
+    /**
      * The **`integrity`** property of the HTMLScriptElement interface is a string that contains inline metadata that a browser can use to verify that a fetched resource has been delivered without unexpected manipulation.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/integrity)
@@ -20983,6 +21000,12 @@ interface HTMLScriptElement extends HTMLElement {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/text)
      */
     text: string;
+    /**
+     * The **`textContent`** property of the HTMLScriptElement interface represents the inline text content of the <script> element. It behaves in the same way as the text and innerText properties.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/textContent)
+     */
+    textContent: string | null;
     /**
      * The **`type`** property of the HTMLScriptElement interface is a string that reflects the type of the script.
      *
@@ -27117,7 +27140,7 @@ interface Notification extends EventTarget {
      */
     readonly dir: NotificationDirection;
     /**
-     * The **`icon`** read-only property of the Notification interface contains the URL of an icon to be displayed as part of the notification, as specified in the icon option of the Notification() constructor.
+     * The **`icon`** read-only property of the Notification interface returns a string containing the URL of a small image that reinforces the notification — for example, an app logo or a photo of the message sender. It is displayed alongside the notification title and body.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Notification/icon)
      */
@@ -35021,6 +35044,9 @@ interface SVGTextPathElement extends SVGTextContentElement, SVGURIReference {
     readonly TEXTPATH_SPACINGTYPE_UNKNOWN: 0;
     readonly TEXTPATH_SPACINGTYPE_AUTO: 1;
     readonly TEXTPATH_SPACINGTYPE_EXACT: 2;
+    readonly TEXTPATH_SIDETYPE_UNKNOWN: 0;
+    readonly TEXTPATH_SIDETYPE_LEFT: 1;
+    readonly TEXTPATH_SIDETYPE_RIGHT: 2;
     addEventListener<K extends keyof SVGElementEventMap>(type: K, listener: (this: SVGTextPathElement, ev: SVGElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
     addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
     removeEventListener<K extends keyof SVGElementEventMap>(type: K, listener: (this: SVGTextPathElement, ev: SVGElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
@@ -35036,6 +35062,9 @@ declare var SVGTextPathElement: {
     readonly TEXTPATH_SPACINGTYPE_UNKNOWN: 0;
     readonly TEXTPATH_SPACINGTYPE_AUTO: 1;
     readonly TEXTPATH_SPACINGTYPE_EXACT: 2;
+    readonly TEXTPATH_SIDETYPE_UNKNOWN: 0;
+    readonly TEXTPATH_SIDETYPE_LEFT: 1;
+    readonly TEXTPATH_SIDETYPE_RIGHT: 2;
 };
 
 /**
@@ -41980,7 +42009,11 @@ interface WebTransport {
 declare var WebTransport: {
     prototype: WebTransport;
     new(url: string | URL, options?: WebTransportOptions): WebTransport;
-    /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/supportsReliableOnly_static) */
+    /**
+     * The **`supportsReliableOnly`** static read-only property of the WebTransport interface returns a boolean value that indicates whether the browser supports WebTransport sessions over exclusively reliable transports, such as HTTP/2. Such sessions can't send unreliable datagrams, which need HTTP/3 over QUIC.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/supportsReliableOnly_static)
+     */
     readonly supportsReliableOnly: boolean;
 };
 
