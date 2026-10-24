@@ -1769,7 +1769,7 @@ interface CSSNumericValue extends CSSStyleValue {
      */
     div(...values: CSSNumberish[]): CSSNumericValue;
     /**
-     * The **`equals()`** method of the CSSNumericValue interface returns a boolean indicating whether the passed values are strictly equal. To return a value of true, all passed values must be of the same type and value and must be in the same order. This allows structural equality to be tested quickly.
+     * The **`equals()`** method of the CSSNumericValue interface returns true if every value passed to it is the same as the CSSNumericValue, and false otherwise.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CSSNumericValue/equals)
      */
@@ -3424,6 +3424,11 @@ interface EXT_float_blend {
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/EXT_frag_depth)
  */
 interface EXT_frag_depth {
+}
+
+interface EXT_polygon_offset_clamp {
+    polygonOffsetClampEXT(factor: GLfloat, units: GLfloat, clamp: GLfloat): void;
+    readonly POLYGON_OFFSET_CLAMP_EXT: 0x8E1B;
 }
 
 /**
@@ -6735,7 +6740,7 @@ interface Notification extends EventTarget {
      */
     readonly dir: NotificationDirection;
     /**
-     * The **`icon`** read-only property of the Notification interface contains the URL of an icon to be displayed as part of the notification, as specified in the icon option of the Notification() constructor.
+     * The **`icon`** read-only property of the Notification interface returns a string containing the URL of a small image that reinforces the notification — for example, an app logo or a photo of the message sender. It is displayed alongside the notification title and body.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Notification/icon)
      */
@@ -11959,7 +11964,11 @@ interface WebTransport {
 declare var WebTransport: {
     prototype: WebTransport;
     new(url: string | URL, options?: WebTransportOptions): WebTransport;
-    /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/supportsReliableOnly_static) */
+    /**
+     * The **`supportsReliableOnly`** static read-only property of the WebTransport interface returns a boolean value that indicates whether the browser supports WebTransport sessions over exclusively reliable transports, such as HTTP/2. Such sessions can't send unreliable datagrams, which need HTTP/3 over QUIC.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/supportsReliableOnly_static)
+     */
     readonly supportsReliableOnly: boolean;
 };
 

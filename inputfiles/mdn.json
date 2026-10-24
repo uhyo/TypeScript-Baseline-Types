@@ -2992,7 +2992,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/after",
     "pageType": "web-api-instance-method",
-    "summary": "The after() method of the CharacterData interface\ninserts a set of Node objects or strings in the children list of the\nobject's parent, just after the object itself."
+    "summary": "The after() method of the CharacterData interface inserts a set of Node objects or strings in the children list of the CharacterData's parent, just after the CharacterData. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/appendData",
@@ -3002,7 +3002,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/before",
     "pageType": "web-api-instance-method",
-    "summary": "The before() method of the CharacterData interface\ninserts a set of Node objects and strings\nin the children list of the CharacterData's parent, just before the CharacterData node."
+    "summary": "The before() method of the CharacterData interface inserts a set of Node objects or strings in the children list of this CharacterData's parent, just before this CharacterData. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/data",
@@ -3037,7 +3037,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/remove",
     "pageType": "web-api-instance-method",
-    "summary": "The remove() method of the CharacterData removes it from its parent node.\nIf it has no parent node, calling remove() does nothing."
+    "summary": "The remove() method of the CharacterData interface removes the CharacterData node from its parent node. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/replaceData",
@@ -3047,7 +3047,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/replaceWith",
     "pageType": "web-api-instance-method",
-    "summary": "The replaceWith() method of the CharacterData interface\nreplaces this node in the children list of its parent\nwith a set of Node objects or string."
+    "summary": "The replaceWith() method of the CharacterData interface replaces this CharacterData in the children list of its parent with a set of Node objects or strings. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CharacterData/substringData",
@@ -3127,7 +3127,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Clipboard/read",
     "pageType": "web-api-instance-method",
-    "summary": "The read() method of the Clipboard interface requests a copy of the clipboard's contents, fulfilling the returned Promise with the data."
+    "summary": "The read() method of the Clipboard interface returns a Promise that fulfills with a copy of the clipboard's contents."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Clipboard/readText",
@@ -3137,7 +3137,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Clipboard/write",
     "pageType": "web-api-instance-method",
-    "summary": "The write() method of the Clipboard interface writes arbitrary ClipboardItem data such as images and text to the clipboard, fulfilling the returned Promise on completion.\nThis can be used to implement cut and copy functionality."
+    "summary": "The write() method of the Clipboard interface is used to write data such as images, text, and custom types, to the system clipboard."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Clipboard/writeText",
@@ -3182,7 +3182,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/ClipboardItem",
     "pageType": "web-api-interface",
-    "summary": "The ClipboardItem interface of the Clipboard API represents a single item format, used when reading or writing clipboard data using Clipboard.read() and Clipboard.write() respectively."
+    "summary": "The ClipboardItem interface of the Clipboard API represents a single item of data copied to, or read from, the clipboard, used with Clipboard.write() and Clipboard.read() respectively."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/ClipboardItem/ClipboardItem",
@@ -3378,6 +3378,11 @@
     "mdn_url": "/en-US/docs/Web/API/console/clear_static",
     "pageType": "web-api-static-method",
     "summary": "The console.clear() static method clears the console if possible."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/console/context_static",
+    "pageType": "web-api-static-method",
+    "summary": "The console.context() static method creates a new console context: an object with most of the same methods as the console object, whose messages are associated with an optional label. This lets you group and filter the messages that come from different parts of your code."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/console/count_static",
@@ -4707,7 +4712,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/equals",
     "pageType": "web-api-instance-method",
-    "summary": "The equals() method of the CSSNumericValue interface returns a boolean indicating whether the passed values are strictly equal.\nTo return a value of true, all passed values must be of the same type and value and must be in the same order.\nThis allows structural equality to be tested quickly."
+    "summary": "The equals() method of the CSSNumericValue interface returns true if every value passed to it is the same as the CSSNumericValue, and false otherwise."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/CSSNumericValue/max",
@@ -6897,12 +6902,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/DocumentType/after",
     "pageType": "web-api-instance-method",
-    "summary": "The DocumentType.after() method inserts a set of\nNode objects or strings in the children list of the\nDocumentType's parent, just after the DocumentType.\nStrings are inserted as equivalent Text nodes."
+    "summary": "The after() method of the DocumentType interface inserts a set of Node objects or strings in the children list of the DocumentType's parent, just after the DocumentType. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DocumentType/before",
     "pageType": "web-api-instance-method",
-    "summary": "The DocumentType.before() method inserts a set of\nNode objects or strings in the children list of the\nDocumentType's parent, just before the DocumentType.\nStrings are inserted as equivalent Text nodes."
+    "summary": "The before() method of the DocumentType interface inserts a set of Node objects or strings in the children list of this DocumentType's parent, just before this DocumentType. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DocumentType/name",
@@ -6917,12 +6922,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/DocumentType/remove",
     "pageType": "web-api-instance-method",
-    "summary": "The DocumentType.remove() method removes a document's doctype.\nIf it is already detached from the document, calling remove() does nothing."
+    "summary": "The remove() method of the DocumentType interface removes the DocumentType node from its parent node. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DocumentType/replaceWith",
     "pageType": "web-api-instance-method",
-    "summary": "The DocumentType.replaceWith() method replaces the document type with a set of given nodes."
+    "summary": "The replaceWith() method of the DocumentType interface replaces this DocumentType in the children list of its parent with a set of Node objects or strings. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DocumentType/systemId",
@@ -7737,7 +7742,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/after",
     "pageType": "web-api-instance-method",
-    "summary": "The Element.after() method inserts a set of\nNode objects or strings in the children list of the\nElement's parent, just after the Element.\nStrings are inserted as equivalent Text nodes."
+    "summary": "The after() method of the Element interface inserts a set of Node objects or strings in the children list of the Element's parent, just after the Element. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/afterscriptexecute_event",
@@ -8057,7 +8062,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/before",
     "pageType": "web-api-instance-method",
-    "summary": "The Element.before() method inserts a set of\nNode objects or strings in the children list of this\nElement's parent, just before this Element.\nStrings are inserted as equivalent Text nodes."
+    "summary": "The before() method of the Element interface inserts a set of Node objects or strings in the children list of this Element's parent, just before this Element. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/beforeinput_event",
@@ -8562,7 +8567,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/remove",
     "pageType": "web-api-instance-method",
-    "summary": "The Element.remove() method removes the element from its parent node.\nIf it has no parent node, calling remove() does nothing."
+    "summary": "The remove() method of the Element interface removes the element from its parent node. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/removeAttribute",
@@ -8587,7 +8592,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/replaceWith",
     "pageType": "web-api-instance-method",
-    "summary": "The Element.replaceWith() method replaces this\nElement in the children list of its parent with a set of\nNode objects or strings. Strings are inserted as equivalent Text nodes."
+    "summary": "The replaceWith() method of the Element interface replaces this Element in the children list of its parent with a set of Node objects or strings. Strings are inserted as equivalent Text nodes. Nothing happens if parentNode is null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/requestFullscreen",
@@ -12472,7 +12477,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLAnchorElement/download",
     "pageType": "web-api-instance-property",
-    "summary": "The HTMLAnchorElement.download property is a\nstring indicating that the linked resource is intended to be\ndownloaded rather than displayed in the browser. The value, if any, specifies the\ndefault file name for use in labeling the resource in a local file system. If the name\nis not a valid file name in the underlying OS, the browser will adjust it."
+    "summary": "The download property of the HTMLAnchorElement interface is a string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value, if any, represents the proposed name of the file. It reflects the download attribute of the <a> element."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLAnchorElement/hash",
@@ -12547,7 +12552,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLAnchorElement/relList",
     "pageType": "web-api-instance-property",
-    "summary": "The read-only relList property of the HTMLAnchorElement returns a live DOMTokenList object containing the set of link types indicating the relationship between the resource represented by the <a> element and the current document. It reflects the <a> element's rel content attribute."
+    "summary": "The read-only relList property of the HTMLAnchorElement returns a live DOMTokenList object containing the set of link types indicating the relationship between the resource represented by the <a> element and the current document."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLAnchorElement/search",
@@ -12597,7 +12602,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLAreaElement/download",
     "pageType": "web-api-instance-property",
-    "summary": "The download property of the HTMLAreaElement interface is a string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value represent the proposed name of the file. If the name is not a valid filename of the underlying OS, browser will adjust it accordingly."
+    "summary": "The download property of the HTMLAreaElement interface is a string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value, if any, represents the proposed name of the file. It reflects the download attribute of the <area> element."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLAreaElement/hash",
@@ -17955,6 +17960,11 @@
     "summary": "The MathMLAnchorElement interface represents MathML <a> (hyperlink) elements and provides properties for getting and setting various features of such elements."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/MathMLAnchorElement/download",
+    "pageType": "web-api-instance-property",
+    "summary": "The download property of the MathMLAnchorElement interface is a string indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value, if any, represents the proposed name of the file."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/MathMLAnchorElement/hash",
     "pageType": "web-api-instance-property",
     "summary": "The hash property of the MathMLAnchorElement interface is a string containing a \"#\" followed by the fragment identifier of the <a> element's href. If the URL does not have a fragment identifier, this property contains an empty string, \"\"."
@@ -17995,6 +18005,11 @@
     "summary": "The pathname property of the MathMLAnchorElement interface is a string containing an initial '/' followed by the path of the URL not including the query string or fragment (or the empty string if there is no path)."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/MathMLAnchorElement/ping",
+    "pageType": "web-api-instance-property",
+    "summary": "The ping property of the MathMLAnchorElement interface is a space-separated list of URLs. When the link is followed, the browser will send POST requests with the body PING to the URLs."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/MathMLAnchorElement/port",
     "pageType": "web-api-instance-property",
     "summary": "The port property of the MathMLAnchorElement interface is a string containing the port number of the <a> element's href. If the port is the default for the protocol (80 for ws: and http:, 443 for wss: and https:, and 21 for ftp:), this property contains an empty string, \"\"."
@@ -18003,6 +18018,21 @@
     "mdn_url": "/en-US/docs/Web/API/MathMLAnchorElement/protocol",
     "pageType": "web-api-instance-property",
     "summary": "The protocol property of the MathMLAnchorElement interface is a string containing the protocol or scheme of the <a> element's href, including the final \":\"."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/MathMLAnchorElement/referrerPolicy",
+    "pageType": "web-api-instance-property",
+    "summary": "The referrerPolicy property of the MathMLAnchorElement interface is a string defining how much of the referrer to send when following the link, and under what circumstances."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/MathMLAnchorElement/rel",
+    "pageType": "web-api-instance-property",
+    "summary": "The rel property of the MathMLAnchorElement interface is a string containing a space-separated list of link types indicating the relationship between the resource represented by the link and the current document."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/MathMLAnchorElement/relList",
+    "pageType": "web-api-instance-property",
+    "summary": "The relList read-only property of the MathMLAnchorElement interface returns a live DOMTokenList object containing the set of link types indicating the relationship between the resource represented by the link and the current document."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/MathMLAnchorElement/search",
@@ -20907,7 +20937,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Notification/badge",
     "pageType": "web-api-instance-property",
-    "summary": "The badge read-only property of the Notification interface returns a string containing the URL of an image to represent the notification when there is not enough space to display the notification itself such as for example, the Android Notification Bar. On Android devices, the badge should accommodate devices up to 4x resolution, about 96 by 96 px, and the image will be automatically masked."
+    "summary": "The badge read-only property of the Notification interface returns a string containing the URL of a small icon representing the web application itself. The badge is used by the platform when there is not enough space to display the full notification — for example, in a status bar. On Android, the badge should accommodate up to 4x display resolution (about 96×96px), and the image will be automatically masked to a monochrome silhouette."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Notification/body",
@@ -20947,12 +20977,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Notification/icon",
     "pageType": "web-api-instance-property",
-    "summary": "The icon read-only property of the\nNotification interface contains the URL of an icon to be displayed as\npart of the notification, as specified in the icon option of the\nNotification() constructor."
+    "summary": "The icon read-only property of the Notification interface returns a string containing the URL of a small image that reinforces the notification — for example, an app logo or a photo of the message sender. It is displayed alongside the notification title and body."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Notification/image",
     "pageType": "web-api-instance-property",
-    "summary": "The image read-only property of the\nNotification interface contains the URL of an image to be displayed as\npart of the notification, as specified in the image option of the\nNotification() constructor."
+    "summary": "The image read-only property of the Notification interface returns a string containing the URL of a large image displayed as part of the notification's content body — for example, a news photo or product thumbnail. It has the highest visual priority of the three image options (image, icon, badge)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Notification/lang",
@@ -37220,6 +37250,11 @@
     "summary": "The reliability read-only property of the WebTransport interface indicates whether the connection supports reliable transports only, or whether it also supports unreliable transports (such as UDP)."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/WebTransport/supportsReliableOnly_static",
+    "pageType": "web-api-static-property",
+    "summary": "The supportsReliableOnly static read-only property of the WebTransport interface returns a boolean value that indicates whether the browser supports WebTransport sessions over exclusively reliable transports, such as HTTP/2. Such sessions can't send unreliable datagrams, which need HTTP/3 over QUIC."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/WebTransport/WebTransport",
     "pageType": "web-api-constructor",
     "summary": "The WebTransport() constructor creates a new WebTransport object instance."
@@ -42432,7 +42467,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/overscroll-behavior",
     "pageType": "css-shorthand-property",
-    "summary": "The overscroll-behavior CSS property sets what a browser does when reaching the boundary of a scrolling area."
+    "summary": "The overscroll-behavior CSS property controls what happens when scrolling reaches the edge of a scroll container."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/overscroll-behavior-block",
