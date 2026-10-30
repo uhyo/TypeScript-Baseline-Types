@@ -36,6 +36,15 @@
                     }
                 }
             },
+            "HTMLScriptElement": {
+                "properties": {
+                    "property": {
+                        // Trusted Types redeclares it as nullable, which conflicts with
+                        // Element's non-nullable getter; inherit Element's accessors instead.
+                        "textContent": null
+                    }
+                }
+            },
             "IntersectionObserverEntry": {
                 "constructor": null // WebKit-only as of 2024-07
             },
