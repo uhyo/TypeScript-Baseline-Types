@@ -21001,12 +21001,6 @@ interface HTMLScriptElement extends HTMLElement {
      */
     text: string;
     /**
-     * The **`textContent`** property of the HTMLScriptElement interface represents the inline text content of the <script> element. It behaves in the same way as the text and innerText properties.
-     *
-     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/textContent)
-     */
-    textContent: string | null;
-    /**
      * The **`type`** property of the HTMLScriptElement interface is a string that reflects the type of the script.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLScriptElement/type)
