@@ -3756,7 +3756,7 @@ interface DOMMatrixReadOnly {
      */
     toFloat64Array(): Float64Array;
     /**
-     * The **`toJSON()`** method of the DOMMatrixReadOnly interface creates and returns a JSON object. The JSON object includes the 2D matrix elements a through f, the 16 elements of the 4X4 3D matrix, m[1-4][1-4], the boolean is2D property, and the boolean isIdentity property.
+     * The **`toJSON()`** method of the DOMMatrixReadOnly interface returns a JSON-serializable plain object representing the DOMMatrixReadOnly object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/toJSON)
      */
@@ -3878,7 +3878,7 @@ interface DOMPointReadOnly {
      */
     matrixTransform(matrix?: DOMMatrixInit): DOMPoint;
     /**
-     * The DOMPointReadOnly method **`toJSON()`** returns an object giving the JSON form of the point object.
+     * The **`toJSON()`** method of the DOMPointReadOnly interface returns a JSON-serializable plain object representing the DOMPointReadOnly object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly/toJSON)
      */
@@ -3933,7 +3933,7 @@ interface DOMQuad {
      */
     getBounds(): DOMRect;
     /**
-     * The DOMQuad method **`toJSON()`** returns a JSON representation of the DOMQuad object.
+     * The **`toJSON()`** method of the DOMQuad interface returns a JSON-serializable plain object representing the DOMQuad object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DOMQuad/toJSON)
      */
@@ -4055,7 +4055,7 @@ interface DOMRectReadOnly {
      */
     readonly y: number;
     /**
-     * The DOMRectReadOnly method **`toJSON()`** returns a JSON representation of the DOMRectReadOnly object.
+     * The **`toJSON()`** method of the DOMRectReadOnly interface returns a JSON-serializable plain object representing the DOMRectReadOnly object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/toJSON)
      */
@@ -8442,7 +8442,7 @@ interface Performance extends EventTarget {
      */
     setResourceTimingBufferSize(maxSize: number): void;
     /**
-     * The **`toJSON()`** method of the Performance interface is a serializer; it returns a JSON representation of the Performance object.
+     * The **`toJSON()`** method of the Performance interface returns a JSON-serializable plain object representing the Performance object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Performance/toJSON)
      */
@@ -8489,7 +8489,7 @@ interface PerformanceEntry {
      */
     readonly startTime: DOMHighResTimeStamp;
     /**
-     * The **`toJSON()`** method is a serializer; it returns a JSON representation of the PerformanceEntry object.
+     * The **`toJSON()`** method of the PerformanceEntry interface returns a JSON-serializable plain object representing the PerformanceEntry object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceEntry/toJSON)
      */
@@ -8632,7 +8632,7 @@ interface PerformanceResourceTiming extends PerformanceEntry {
      */
     readonly contentType: string;
     /**
-     * The **`decodedBodySize`** read-only property returns the size (in octets) received from the fetch (HTTP or cache) of the message body after removing any applied content encoding (like gzip or Brotli). If the resource is retrieved from an application cache or local resources, it returns the size of the payload after removing any applied content encoding.
+     * The **`decodedBodySize`** read-only property returns the size (in octets) received from the fetch (HTTP or cache) of the message body after removing any applied content encoding (like gzip or Brotli).
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceResourceTiming/decodedBodySize)
      */
@@ -8656,7 +8656,7 @@ interface PerformanceResourceTiming extends PerformanceEntry {
      */
     readonly domainLookupStart: DOMHighResTimeStamp;
     /**
-     * The **`encodedBodySize`** read-only property represents the size (in octets) received from the fetch (HTTP or cache) of the payload body before removing any applied content encodings (like gzip or Brotli). If the resource is retrieved from an application cache or a local resource, it must return the size of the payload body before removing any applied content encoding.
+     * The **`encodedBodySize`** read-only property represents the size (in octets) received from the fetch (HTTP or cache) of the payload body before removing any applied content encodings (like gzip or Brotli).
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceResourceTiming/encodedBodySize)
      */
@@ -8740,7 +8740,7 @@ interface PerformanceResourceTiming extends PerformanceEntry {
      */
     readonly serverTiming: ReadonlyArray<PerformanceServerTiming>;
     /**
-     * The **`transferSize`** read-only property represents the size (in octets) of the fetched resource. The size includes the response header fields plus the response payload body (as defined by RFC7230).
+     * The **`transferSize`** read-only property represents the size (in octets) of the fetched resource. This is the size of the response body plus a fixed value that stands in for the size of the response headers.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceResourceTiming/transferSize)
      */
@@ -8754,7 +8754,7 @@ interface PerformanceResourceTiming extends PerformanceEntry {
      */
     readonly workerStart: DOMHighResTimeStamp;
     /**
-     * The **`toJSON()`** method of the PerformanceResourceTiming interface is a serializer; it returns a JSON representation of the PerformanceResourceTiming object.
+     * The **`toJSON()`** method of the PerformanceResourceTiming interface returns a JSON-serializable plain object representing the PerformanceResourceTiming object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceResourceTiming/toJSON)
      */
@@ -8791,7 +8791,7 @@ interface PerformanceServerTiming {
      */
     readonly name: string;
     /**
-     * The **`toJSON()`** method of the PerformanceServerTiming interface is a serializer; it returns a JSON representation of the PerformanceServerTiming object.
+     * The **`toJSON()`** method of the PerformanceServerTiming interface returns a JSON-serializable plain object representing the PerformanceServerTiming object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceServerTiming/toJSON)
      */
@@ -9054,7 +9054,7 @@ interface PushSubscription {
      */
     getKey(name: PushEncryptionKeyName): ArrayBuffer | null;
     /**
-     * The **`toJSON()`** method of the PushSubscription interface is a standard serializer: it returns a JSON representation of the subscription properties, providing a useful shortcut.
+     * The **`toJSON()`** method of the PushSubscription interface returns a JSON-serializable plain object representing the PushSubscription object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PushSubscription/toJSON)
      */
@@ -10883,7 +10883,7 @@ interface URL {
      */
     username: string;
     /**
-     * The **`toJSON()`** method of the URL interface returns a string containing a serialized version of the URL, although in practice it seems to have the same effect as URL.toString().
+     * The **`toJSON()`** method of the URL interface returns a string representing the URL object. This is the same string that URL.toString() returns.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/URL/toJSON)
      */
@@ -11093,7 +11093,7 @@ interface VideoColorSpace {
      */
     readonly transfer: VideoTransferCharacteristics | null;
     /**
-     * The **`toJSON()`** method of the VideoColorSpace interface is a serializer that returns a JSON representation of the VideoColorSpace object.
+     * The **`toJSON()`** method of the VideoColorSpace interface returns a JSON-serializable plain object representing the VideoColorSpace object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/VideoColorSpace/toJSON)
      */

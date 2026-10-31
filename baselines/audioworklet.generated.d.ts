@@ -1339,7 +1339,7 @@ interface URL {
      */
     username: string;
     /**
-     * The **`toJSON()`** method of the URL interface returns a string containing a serialized version of the URL, although in practice it seems to have the same effect as URL.toString().
+     * The **`toJSON()`** method of the URL interface returns a string representing the URL object. This is the same string that URL.toString() returns.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/URL/toJSON)
      */
