@@ -221,22 +221,22 @@
   },
   {
     "mdn_url": "/en-US/docs/Web/API/ANGLE_instanced_arrays",
-    "pageType": "web-api-interface",
+    "pageType": "webgl-extension",
     "summary": "The ANGLE_instanced_arrays extension is part of the WebGL API and allows you to draw the same object, or groups of similar objects multiple times, if they share the same vertex data, primitive count and type."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/ANGLE_instanced_arrays/drawArraysInstancedANGLE",
-    "pageType": "web-api-instance-method",
+    "pageType": "webgl-extension-method",
     "summary": "The ANGLE_instanced_arrays.drawArraysInstancedANGLE() method of the WebGL API renders primitives from array data like the gl.drawArrays() method. In addition, it can execute multiple instances of the range of elements."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/ANGLE_instanced_arrays/drawElementsInstancedANGLE",
-    "pageType": "web-api-instance-method",
+    "pageType": "webgl-extension-method",
     "summary": "The ANGLE_instanced_arrays.drawElementsInstancedANGLE() method of the WebGL API renders primitives from array data like the gl.drawElements() method. In addition, it can execute multiple instances of a set of elements."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/ANGLE_instanced_arrays/vertexAttribDivisorANGLE",
-    "pageType": "web-api-instance-method",
+    "pageType": "webgl-extension-method",
     "summary": "The ANGLE_instanced_arrays.vertexAttribDivisorANGLE() method of the WebGL API modifies the rate at which generic vertex attributes advance when rendering multiple instances of primitives with ext.drawArraysInstancedANGLE() and ext.drawElementsInstancedANGLE()."
   },
   {
@@ -1072,7 +1072,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/AudioPlaybackStats/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the AudioPlaybackStats interface is a serializer; it returns a JSON representation of the AudioPlaybackStats object."
+    "summary": "The toJSON() method of the AudioPlaybackStats interface returns a JSON-serializable plain object representing the AudioPlaybackStats object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/AudioPlaybackStats/totalDuration",
@@ -3562,7 +3562,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/ContactAddress/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the ContactAddress interface is a standard serializer that returns a JSON representation of the ContactAddress object's properties."
+    "summary": "The toJSON() method of the ContactAddress interface returns a JSON-serializable plain object representing the ContactAddress object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/ContactsManager",
@@ -7182,7 +7182,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/DOMMatrixReadOnly/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the DOMMatrixReadOnly interface creates and returns a JSON object. The JSON object includes the 2D matrix elements a through f, the 16 elements of the 4X4 3D matrix, m[1-4][1-4], the boolean is2D property, and the boolean isIdentity property."
+    "summary": "The toJSON() method of the DOMMatrixReadOnly interface returns a JSON-serializable plain object representing the DOMMatrixReadOnly object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DOMMatrixReadOnly/toString",
@@ -7272,7 +7272,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/DOMPointReadOnly/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The DOMPointReadOnly method\ntoJSON() returns an object giving the\nJSON form of the point object."
+    "summary": "The toJSON() method of the DOMPointReadOnly interface returns a JSON-serializable plain object representing the DOMPointReadOnly object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DOMPointReadOnly/w",
@@ -7342,7 +7342,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/DOMQuad/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The DOMQuad method\ntoJSON() returns a\nJSON representation of the DOMQuad object."
+    "summary": "The toJSON() method of the DOMQuad interface returns a JSON-serializable plain object representing the DOMQuad object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DOMRect",
@@ -7432,7 +7432,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/DOMRectReadOnly/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The DOMRectReadOnly method toJSON() returns a JSON representation of the DOMRectReadOnly object."
+    "summary": "The toJSON() method of the DOMRectReadOnly interface returns a JSON-serializable plain object representing the DOMRectReadOnly object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/DOMRectReadOnly/top",
@@ -8212,7 +8212,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Element/elementTiming",
     "pageType": "web-api-instance-property",
-    "summary": "The elementTiming property of the Element interface identifies elements for observation in the PerformanceElementTiming API. The elementTiming property reflects the value of the elementtiming attribute."
+    "summary": "The elementTiming property of the Element interface identifies elements for observation in the PerformanceElementTiming API."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Element/firstElementChild",
@@ -10617,7 +10617,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Fullscreen_API",
     "pageType": "web-api-overview",
-    "summary": "The Fullscreen API adds methods to present a specific Element (and its descendants) in fullscreen mode, and to exit fullscreen mode once it is no longer needed. This makes it possible to present desired content—such as an online game—using the user's entire screen, removing all browser user interface elements and other applications from the screen until fullscreen mode is shut off."
+    "summary": "The Fullscreen API adds methods to present a specific Element (and its descendants) in fullscreen mode, and to exit fullscreen mode once it is no longer needed.\nThis makes it possible to present desired content—such as an online game—using the user's entire screen, removing all browser user interface elements and other applications from the screen until fullscreen mode is shut off."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Fullscreen_API/Guide",
@@ -10897,7 +10897,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/GeolocationCoordinates/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the GeolocationCoordinates interface is a serializer; it returns a JSON representation of the GeolocationCoordinates object."
+    "summary": "The toJSON() method of the GeolocationCoordinates interface returns a JSON-serializable plain object representing the GeolocationCoordinates object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/GeolocationPosition",
@@ -10917,7 +10917,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/GeolocationPosition/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the GeolocationPosition interface is a serializer; it returns a JSON representation of the GeolocationPosition object."
+    "summary": "The toJSON() method of the GeolocationPosition interface returns a JSON-serializable plain object representing the GeolocationPosition object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/GeolocationPositionError",
@@ -13115,6 +13115,16 @@
     "summary": "The command event of the HTMLElement interface fires on an element that is controlled via a button with valid commandForElement and command values, whenever the button is interacted with (e.g., it is clicked)."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/HTMLElement/containerTiming",
+    "pageType": "web-api-instance-property",
+    "summary": "The containerTiming property of the HTMLElement interface marks the element as a container root for observation in the Container Timing API."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/HTMLElement/containerTimingIgnore",
+    "pageType": "web-api-instance-property",
+    "summary": "The containerTimingIgnore property of the HTMLElement interface excludes the element and its descendants from contributing to the timing of any ancestor container root in the Container Timing API."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/HTMLElement/contentEditable",
     "pageType": "web-api-instance-property",
     "summary": "The contentEditable property of\nthe HTMLElement interface specifies whether or not the element is\neditable."
@@ -14132,17 +14142,17 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLInputElement/select",
     "pageType": "web-api-instance-method",
-    "summary": "The HTMLInputElement.select() method selects all the text\nin a <textarea> element or in an <input> element\nthat includes a text field."
+    "summary": "The select() method of the HTMLInputElement interface selects all the text in an <input> element that includes a text field."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLInputElement/select_event",
     "pageType": "web-api-event",
-    "summary": "The select event fires when some text has been selected."
+    "summary": "The select event of the HTMLInputElement interface fires when the selection's extent or direction is changed programmatically, or when the user selects text."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
     "pageType": "web-api-event",
-    "summary": "The selectionchange event of the Selection API is fired when the text selection within an <input> element is changed.\nThis includes both changes in the selected range of characters, or if the caret moves."
+    "summary": "The selectionchange event of the Selection API is fired when the text selection within an <input> element is changed in either extent or direction, whether the selection is a caret or a range of characters."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLInputElement/selectionDirection",
@@ -14172,7 +14182,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLInputElement/setSelectionRange",
     "pageType": "web-api-instance-method",
-    "summary": "The HTMLInputElement.setSelectionRange() method sets the start and end positions of the current text selection in an <input> or <textarea> element. This updates the selection state immediately, though the visual highlight only appears when the element is focused."
+    "summary": "The setSelectionRange() method of the HTMLInputElement interface sets the start and end positions of the current text selection in an <input> element. This updates the selection state immediately, though the visual highlight only appears when the element is focused."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLInputElement/showPicker",
@@ -15962,22 +15972,22 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTextAreaElement/select",
     "pageType": "web-api-instance-method",
-    "summary": "The select() method of the HTMLTextAreaElement interface selects the entire contents of the <textarea> element. In addition, the select event is fired. The select() method does not take any parameters and does not return a value."
+    "summary": "The select() method of the HTMLTextAreaElement interface selects all the text in a <textarea> element."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
     "pageType": "web-api-event",
-    "summary": "The select event fires when some text has been selected."
+    "summary": "The select event of the HTMLTextAreaElement interface fires when the selection's extent or direction is changed programmatically, or when the user selects text."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
     "pageType": "web-api-event",
-    "summary": "The selectionchange event of the Selection API is fired when the text selection within a <textarea> element is changed.\nThis includes both changes in the selected range of characters, or if the caret moves."
+    "summary": "The selectionchange event of the Selection API is fired when the text selection within a <textarea> element is changed in either extent or direction, whether the selection is a caret or a range of characters."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTextAreaElement/selectionDirection",
     "pageType": "web-api-instance-property",
-    "summary": "The selectionDirection property of the HTMLTextAreaElement interface specifies the current direction of the selection. The possible values are \"forward\", \"backward\", and \"none\". The forward value indicates the selection was performed in the start-to-end direction of the current locale, with backward indicating the opposite direction. The none value occurs if the direction is unknown. It can be used to both retrieve and change the direction of the <textarea>s selected text."
+    "summary": "The selectionDirection property of the HTMLTextAreaElement interface is a string that indicates the direction in which the user is selecting the text."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTextAreaElement/selectionEnd",
@@ -16002,7 +16012,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
     "pageType": "web-api-instance-method",
-    "summary": "The setSelectionRange() method of the HTMLTextAreaElement interface sets the start and end positions of the current text selection, and optionally the direction, in a <textarea> element. This updates the selection state immediately, though the visual highlight only appears when the element is focused. The direction indicates the in which selection should be considered to have occurred; for example, that the selection was set by the user clicking and dragging from the end of the selected text toward the beginning. In addition, the select and selectionchange events are fired."
+    "summary": "The setSelectionRange() method of the HTMLTextAreaElement interface sets the start and end positions of the current text selection in a <textarea> element."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLTextAreaElement/textLength",
@@ -17197,7 +17207,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/InteractionContentfulPaint/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the InteractionContentfulPaint interface is a serializer; it returns a JSON representation of the InteractionContentfulPaint object."
+    "summary": "The toJSON() method of the InteractionContentfulPaint interface returns a JSON-serializable plain object representing the InteractionContentfulPaint object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/InterestEvent",
@@ -17682,7 +17692,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/LargestContentfulPaint/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the LargestContentfulPaint interface is a serializer; it returns a JSON representation of the LargestContentfulPaint object."
+    "summary": "The toJSON() method of the LargestContentfulPaint interface returns a JSON-serializable plain object representing the LargestContentfulPaint object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/LargestContentfulPaint/url",
@@ -17742,7 +17752,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/LayoutShift/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the LayoutShift interface is a serializer; it returns a JSON representation of the LayoutShift object."
+    "summary": "The toJSON() method of the LayoutShift interface returns a JSON-serializable plain object representing the LayoutShift object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/LayoutShift/value",
@@ -17772,7 +17782,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/LayoutShiftAttribution/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the LayoutShiftAttribution interface is a serializer that returns a JSON representation of the LayoutShiftAttribution object."
+    "summary": "The toJSON() method of the LayoutShiftAttribution interface returns a JSON-serializable plain object representing the LayoutShiftAttribution object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/LinearAccelerationSensor",
@@ -18187,7 +18197,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/MediaDeviceInfo/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the MediaDeviceInfo interface is a serializer; it returns a JSON representation of the MediaDeviceInfo object."
+    "summary": "The toJSON() method of the MediaDeviceInfo interface returns a JSON-serializable plain object representing the MediaDeviceInfo object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/MediaDevices",
@@ -20532,7 +20542,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/NavigatorUAData/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the NavigatorUAData interface is a serializer that returns a JSON representation of the low entropy properties of the NavigatorUAData object."
+    "summary": "The toJSON() method of the NavigatorUAData interface returns a JSON-serializable plain object representing the NavigatorUAData object. Only the low-entropy values are included. To get high-entropy values, use NavigatorUAData.getHighEntropyValues()."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/NDEFMessage",
@@ -21097,7 +21107,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/NotRestoredReasonDetails/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the NotRestoredReasonDetails interface is a serializer; it returns a JSON representation of the NotRestoredReasonDetails object."
+    "summary": "The toJSON() method of the NotRestoredReasonDetails interface returns a JSON-serializable plain object representing the NotRestoredReasonDetails object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/NotRestoredReasons",
@@ -21132,7 +21142,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/NotRestoredReasons/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the NotRestoredReasons interface is a serializer; it returns a JSON representation of the NotRestoredReasons object."
+    "summary": "The toJSON() method of the NotRestoredReasons interface returns a JSON-serializable plain object representing the NotRestoredReasons object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/NotRestoredReasons/url",
@@ -21266,42 +21276,42 @@
   },
   {
     "mdn_url": "/en-US/docs/Web/API/OES_draw_buffers_indexed",
-    "pageType": "web-api-interface",
+    "pageType": "webgl-extension",
     "summary": "The OES_draw_buffers_indexed extension is part of the WebGL API and enables the use of different blend options when writing to multiple color buffers simultaneously."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/OES_draw_buffers_indexed/blendEquationiOES",
-    "pageType": "web-api-instance-method",
+    "pageType": "webgl-extension-method",
     "summary": "The blendEquationiOES() method of the OES_draw_buffers_indexed WebGL extension sets both the RGB blend and alpha blend equations for a particular draw buffer."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/OES_draw_buffers_indexed/blendEquationSeparateiOES",
-    "pageType": "web-api-instance-method",
+    "pageType": "webgl-extension-method",
     "summary": "The blendEquationSeparateiOES() method of the OES_draw_buffers_indexed WebGL extension sets the RGB and alpha blend equations separately for a particular draw buffer."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/OES_draw_buffers_indexed/blendFunciOES",
-    "pageType": "web-api-instance-method",
+    "pageType": "webgl-extension-method",
     "summary": "The blendFunciOES() method of the OES_draw_buffers_indexed WebGL extension defines which function is used when blending pixels for a particular draw buffer."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/OES_draw_buffers_indexed/blendFuncSeparateiOES",
-    "pageType": "web-api-instance-method",
+    "pageType": "webgl-extension-method",
     "summary": "The blendFuncSeparateiOES() method of the OES_draw_buffers_indexed WebGL extension defines which function is used when blending pixels for RGB and alpha components separately for a particular draw buffer."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/OES_draw_buffers_indexed/colorMaskiOES",
-    "pageType": "web-api-instance-method",
+    "pageType": "webgl-extension-method",
     "summary": "The colorMaskiOES() method of the OES_draw_buffers_indexed WebGL extension sets which color components to enable or to disable when drawing or rendering for a particular draw buffer. It's the indexed version of WebGL 1's WebGLRenderingContext.colorMask() method."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/OES_draw_buffers_indexed/disableiOES",
-    "pageType": "web-api-instance-method",
+    "pageType": "webgl-extension-method",
     "summary": "The disableiOES() method of the OES_draw_buffers_indexed WebGL extension enables blending for a particular draw buffer."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/OES_draw_buffers_indexed/enableiOES",
-    "pageType": "web-api-instance-method",
+    "pageType": "webgl-extension-method",
     "summary": "The enableiOES() method of the OES_draw_buffers_indexed WebGL extension enables blending for a particular draw buffer."
   },
   {
@@ -21852,7 +21862,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PaymentAddress/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the PaymentAddress interface is a standard serializer that returns a JSON representation of the PaymentAddress object's properties."
+    "summary": "The toJSON() method of the PaymentAddress interface returns a JSON-serializable plain object representing the PaymentAddress object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PaymentManager",
@@ -22097,7 +22107,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PaymentResponse/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the PaymentResponse interface is a serializer; it returns a JSON representation of the PaymentResponse object."
+    "summary": "The toJSON() method of the PaymentResponse interface returns a JSON-serializable plain object representing the PaymentResponse object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Pbkdf2Params",
@@ -22247,7 +22257,57 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Performance/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the Performance interface is a serializer; it returns a JSON representation of the Performance object."
+    "summary": "The toJSON() method of the Performance interface returns a JSON-serializable plain object representing the Performance object."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceContainerTiming",
+    "pageType": "web-api-interface",
+    "summary": "The PerformanceContainerTiming interface of the Performance API represents a single update of the timing information for the painting of elements within a container.\nA developer can observe a stream of these objects to analyze the rendering behavior of a component built from multiple elements."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceContainerTiming/firstRenderTime",
+    "pageType": "web-api-instance-property",
+    "summary": "The firstRenderTime read-only property of the PerformanceContainerTiming interface returns the time at which the rendering update ended for the first paint that contributed content to this container."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceContainerTiming/identifier",
+    "pageType": "web-api-instance-property",
+    "summary": "The identifier read-only property of the PerformanceContainerTiming interface returns the value of the containertiming attribute on the container's root element."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceContainerTiming/intersectionRect",
+    "pageType": "web-api-instance-property",
+    "summary": "The intersectionRect read-only property of the PerformanceContainerTiming interface returns the bounding rectangle of the container's accumulated painted region, calculated since the container root was registered."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceContainerTiming/lastPaintedElement",
+    "pageType": "web-api-instance-property",
+    "summary": "The lastPaintedElement read-only property of the PerformanceContainerTiming interface returns the element that contributed the largest newly painted area in the frame that generated this entry."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceContainerTiming/paintTime",
+    "pageType": "web-api-instance-property",
+    "summary": "The paintTime read-only property of the PerformanceContainerTiming interface returns a timestamp that represents when the rendering phase ended and the paint phase started."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceContainerTiming/presentationTime",
+    "pageType": "web-api-instance-property",
+    "summary": "The presentationTime read-only property of the PerformanceContainerTiming interface returns the timestamp when the container's newly painted content was actually drawn on the screen."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceContainerTiming/rootElement",
+    "pageType": "web-api-instance-property",
+    "summary": "The rootElement read-only property of the PerformanceContainerTiming interface returns the container root element.\nThis is the HTMLElement to which the containertiming attribute was applied.\nIt can be null if the entry is read after the root element has been removed from the document and garbage collected."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceContainerTiming/size",
+    "pageType": "web-api-instance-property",
+    "summary": "The size read-only property of the PerformanceContainerTiming interface returns the total area of the container's accumulated painted region, calculated since the container root was registered."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/API/PerformanceContainerTiming/toJSON",
+    "pageType": "web-api-instance-method",
+    "summary": "The toJSON() method of the PerformanceContainerTiming interface is a serializer; it returns a JSON representation of the PerformanceContainerTiming object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceElementTiming",
@@ -22307,7 +22367,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceElementTiming/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the PerformanceElementTiming interface is a serializer; it returns a JSON representation of the PerformanceElementTiming object."
+    "summary": "The toJSON() method of the PerformanceElementTiming interface returns a JSON-serializable plain object representing the PerformanceElementTiming object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceElementTiming/url",
@@ -22347,7 +22407,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceEntry/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method is a serializer; it returns a JSON representation of the PerformanceEntry object."
+    "summary": "The toJSON() method of the PerformanceEntry interface returns a JSON-serializable plain object representing the PerformanceEntry object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceEventTiming",
@@ -22382,7 +22442,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceEventTiming/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the PerformanceEventTiming interface is a serializer; it returns a JSON representation of the PerformanceEventTiming object."
+    "summary": "The toJSON() method of the PerformanceEventTiming interface returns a JSON-serializable plain object representing the PerformanceEventTiming object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceLongAnimationFrameTiming",
@@ -22427,7 +22487,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceLongAnimationFrameTiming/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the PerformanceLongAnimationFrameTiming interface is a serializer; it returns a JSON representation of the PerformanceLongAnimationFrameTiming object."
+    "summary": "The toJSON() method of the PerformanceLongAnimationFrameTiming interface returns a JSON-serializable plain object representing the PerformanceLongAnimationFrameTiming object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceLongTaskTiming",
@@ -22442,7 +22502,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceLongTaskTiming/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the PerformanceLongTaskTiming interface is a serializer; it returns a JSON representation of the PerformanceLongTaskTiming object."
+    "summary": "The toJSON() method of the PerformanceLongTaskTiming interface returns a JSON-serializable plain object representing the PerformanceLongTaskTiming object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceMark",
@@ -22482,7 +22542,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceNavigation/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the PerformanceNavigation interface is a serializer; it returns a JSON representation of the PerformanceNavigation object."
+    "summary": "The toJSON() method of the PerformanceNavigation interface returns a JSON-serializable plain object representing the PerformanceNavigation object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceNavigation/type",
@@ -22552,7 +22612,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceNavigationTiming/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the PerformanceNavigationTiming interface is a serializer; it returns a JSON representation of the PerformanceNavigationTiming object."
+    "summary": "The toJSON() method of the PerformanceNavigationTiming interface returns a JSON-serializable plain object representing the PerformanceNavigationTiming object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceNavigationTiming/type",
@@ -22637,7 +22697,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformancePaintTiming/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the PerformancePaintTiming interface is a serializer; it returns a JSON representation of the PerformancePaintTiming object."
+    "summary": "The toJSON() method of the PerformancePaintTiming interface returns a JSON-serializable plain object representing the PerformancePaintTiming object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceResourceTiming",
@@ -22667,7 +22727,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceResourceTiming/decodedBodySize",
     "pageType": "web-api-instance-property",
-    "summary": "The decodedBodySize read-only property returns the size (in octets) received from the fetch (HTTP or cache) of the message body after removing any applied content encoding (like gzip or Brotli). If the resource is retrieved from an application cache or local resources, it returns the size of the payload after removing any applied content encoding."
+    "summary": "The decodedBodySize read-only property returns the size (in octets) received from the fetch (HTTP or cache) of the message body after removing any applied content encoding (like gzip or Brotli)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceResourceTiming/deliveryType",
@@ -22687,7 +22747,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceResourceTiming/encodedBodySize",
     "pageType": "web-api-instance-property",
-    "summary": "The encodedBodySize read-only property represents the size (in octets) received from the fetch (HTTP or cache) of the payload body before removing any applied content encodings (like gzip or Brotli). If the resource is retrieved from an application cache or a local resource, it must\nreturn the size of the payload body before removing any applied content encoding."
+    "summary": "The encodedBodySize read-only property represents the size (in octets) received from the fetch (HTTP or cache) of the payload body before removing any applied content encodings (like gzip or Brotli)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceResourceTiming/fetchStart",
@@ -22762,12 +22822,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceResourceTiming/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the PerformanceResourceTiming interface is a serializer; it returns a JSON representation of the PerformanceResourceTiming object."
+    "summary": "The toJSON() method of the PerformanceResourceTiming interface returns a JSON-serializable plain object representing the PerformanceResourceTiming object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceResourceTiming/transferSize",
     "pageType": "web-api-instance-property",
-    "summary": "The transferSize read-only property represents the size (in octets) of the fetched resource. The size includes the response header fields plus the response payload body (as defined by RFC7230)."
+    "summary": "The transferSize read-only property represents the size (in octets) of the fetched resource.\nThis is the size of the response body plus a fixed value that stands in for the size of the response headers."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceResourceTiming/workerStart",
@@ -22822,7 +22882,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceScriptTiming/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the PerformanceScriptTiming interface is a serializer; it returns a JSON representation of the PerformanceScriptTiming object."
+    "summary": "The toJSON() method of the PerformanceScriptTiming interface returns a JSON-serializable plain object representing the PerformanceScriptTiming object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceScriptTiming/window",
@@ -22857,7 +22917,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceServerTiming/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the PerformanceServerTiming interface is a serializer; it returns a JSON representation of the PerformanceServerTiming object."
+    "summary": "The toJSON() method of the PerformanceServerTiming interface returns a JSON-serializable plain object representing the PerformanceServerTiming object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceSoftNavigation",
@@ -22892,7 +22952,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceSoftNavigation/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the PerformanceSoftNavigation interface is a serializer; it returns a JSON representation of the PerformanceSoftNavigation object."
+    "summary": "The toJSON() method of the PerformanceSoftNavigation interface returns a JSON-serializable plain object representing the PerformanceSoftNavigation object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceTiming",
@@ -22997,7 +23057,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceTiming/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The legacy toJSON() method of the PerformanceTiming interface is a serializer; it returns a JSON representation of the PerformanceTiming object."
+    "summary": "The toJSON() method of the PerformanceTiming interface returns a JSON-serializable plain object representing the PerformanceTiming object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceTiming/unloadEventEnd",
@@ -23022,7 +23082,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceTimingConfidence/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the PerformanceTimingConfidence interface is a serializer that returns a JSON representation of the PerformanceTimingConfidence object."
+    "summary": "The toJSON() method of the PerformanceTimingConfidence interface returns a JSON-serializable plain object representing the PerformanceTimingConfidence object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PerformanceTimingConfidence/value",
@@ -23587,7 +23647,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PressureRecord/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method is a serializer; it returns a JSON representation of the PressureRecord object."
+    "summary": "The toJSON() method of the PressureRecord interface returns a JSON-serializable plain object representing the PressureRecord object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Prioritized_Task_Scheduling_API",
@@ -23777,7 +23837,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PublicKeyCredential/isConditionalMediationAvailable_static",
     "pageType": "web-api-static-method",
-    "summary": "The isConditionalMediationAvailable() static method of the PublicKeyCredential interface returns a Promise which resolves to true if conditional mediation is available."
+    "summary": "The isConditionalMediationAvailable() static method of the PublicKeyCredential interface returns a Promise which resolves to true if the device supports conditional get."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PublicKeyCredential/isUserVerifyingPlatformAuthenticatorAvailable_static",
@@ -23822,7 +23882,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PublicKeyCredential/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the PublicKeyCredential interface returns a JSON type representation of a PublicKeyCredential."
+    "summary": "The toJSON() method of the PublicKeyCredential interface returns a JSON-serializable plain object representing the PublicKeyCredential object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PublicKeyCredentialCreationOptions",
@@ -23967,7 +24027,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/PushSubscription/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the PushSubscription interface is a\nstandard serializer: it returns a JSON representation of the subscription properties,\nproviding a useful shortcut."
+    "summary": "The toJSON() method of the PushSubscription interface returns a JSON-serializable plain object representing the PushSubscription object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/PushSubscription/unsubscribe",
@@ -25372,7 +25432,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/RTCIceCandidate/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The RTCIceCandidate method toJSON() converts the RTCIceCandidate on which it's called into JSON."
+    "summary": "The toJSON() method of the RTCIceCandidate interface returns a JSON-serializable plain object representing the RTCIceCandidate object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/RTCIceCandidate/type",
@@ -26862,7 +26922,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/RTCSessionDescription/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The RTCSessionDescription.toJSON() method generates a\nJSON description of the object. Both properties,\ntype and\nsdp, are contained in the generated JSON."
+    "summary": "The toJSON() method of the RTCSessionDescription interface returns a JSON-serializable plain object representing the RTCSessionDescription object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/RTCSessionDescription/type",
@@ -32502,7 +32562,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/TaskAttributionTiming/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the TaskAttributionTiming interface is a serializer; it returns a JSON representation of the TaskAttributionTiming object."
+    "summary": "The toJSON() method of the TaskAttributionTiming interface returns a JSON-serializable plain object representing the TaskAttributionTiming object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/TaskController",
@@ -33457,7 +33517,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/TrustedHTML/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the TrustedHTML interface returns a JSON representation of the stored data."
+    "summary": "The toJSON() method of the TrustedHTML interface returns a string representing the TrustedHTML object. This is the same string that TrustedHTML.toString() returns."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/TrustedHTML/toString",
@@ -33472,7 +33532,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/TrustedScript/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the TrustedScript interface returns a JSON representation of the stored data."
+    "summary": "The toJSON() method of the TrustedScript interface returns a string representing the TrustedScript object. This is the same string that TrustedScript.toString() returns."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/TrustedScript/toString",
@@ -33487,7 +33547,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/TrustedScriptURL/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the TrustedScriptURL interface returns a JSON representation of the stored data."
+    "summary": "The toJSON() method of the TrustedScriptURL interface returns a string representing the TrustedScriptURL object. This is the same string that TrustedScriptURL.toString() returns."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/TrustedScriptURL/toString",
@@ -33722,7 +33782,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/URL/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the URL interface\nreturns a string containing a serialized version of the URL,\nalthough in practice it seems to have the same effect as\nURL.toString()."
+    "summary": "The toJSON() method of the URL interface returns a string representing the URL object. This is the same string that URL.toString() returns."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/URL/toString",
@@ -34267,7 +34327,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/VideoColorSpace/toJSON",
     "pageType": "web-api-instance-method",
-    "summary": "The toJSON() method of the VideoColorSpace interface is a serializer that returns a JSON representation of the VideoColorSpace object."
+    "summary": "The toJSON() method of the VideoColorSpace interface returns a JSON-serializable plain object representing the VideoColorSpace object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/VideoColorSpace/transfer",
@@ -37832,7 +37892,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/Window/getSelection",
     "pageType": "web-api-instance-method",
-    "summary": "The getSelection() method of the Window interface returns the Selection object associated with the window's document, representing the range of text selected by the user or the current position of the caret."
+    "summary": "The getSelection() method of the Window interface returns the Selection object associated with the window's document, representing the range of text selected by the user, or the current position of the caret."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/Window/hashchange_event",
