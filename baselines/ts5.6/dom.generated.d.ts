@@ -12228,7 +12228,7 @@ interface DOMMatrixReadOnly {
      */
     toFloat64Array(): Float64Array;
     /**
-     * The **`toJSON()`** method of the DOMMatrixReadOnly interface creates and returns a JSON object. The JSON object includes the 2D matrix elements a through f, the 16 elements of the 4X4 3D matrix, m[1-4][1-4], the boolean is2D property, and the boolean isIdentity property.
+     * The **`toJSON()`** method of the DOMMatrixReadOnly interface returns a JSON-serializable plain object representing the DOMMatrixReadOnly object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DOMMatrixReadOnly/toJSON)
      */
@@ -12373,7 +12373,7 @@ interface DOMPointReadOnly {
      */
     matrixTransform(matrix?: DOMMatrixInit): DOMPoint;
     /**
-     * The DOMPointReadOnly method **`toJSON()`** returns an object giving the JSON form of the point object.
+     * The **`toJSON()`** method of the DOMPointReadOnly interface returns a JSON-serializable plain object representing the DOMPointReadOnly object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DOMPointReadOnly/toJSON)
      */
@@ -12428,7 +12428,7 @@ interface DOMQuad {
      */
     getBounds(): DOMRect;
     /**
-     * The DOMQuad method **`toJSON()`** returns a JSON representation of the DOMQuad object.
+     * The **`toJSON()`** method of the DOMQuad interface returns a JSON-serializable plain object representing the DOMQuad object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DOMQuad/toJSON)
      */
@@ -12579,7 +12579,7 @@ interface DOMRectReadOnly {
      */
     readonly y: number;
     /**
-     * The DOMRectReadOnly method **`toJSON()`** returns a JSON representation of the DOMRectReadOnly object.
+     * The **`toJSON()`** method of the DOMRectReadOnly interface returns a JSON-serializable plain object representing the DOMRectReadOnly object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/toJSON)
      */
@@ -17198,7 +17198,7 @@ interface GeolocationCoordinates {
      */
     readonly speed: number | null;
     /**
-     * The **`toJSON()`** method of the GeolocationCoordinates interface is a serializer; it returns a JSON representation of the GeolocationCoordinates object.
+     * The **`toJSON()`** method of the GeolocationCoordinates interface returns a JSON-serializable plain object representing the GeolocationCoordinates object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/GeolocationCoordinates/toJSON)
      */
@@ -17230,7 +17230,7 @@ interface GeolocationPosition {
      */
     readonly timestamp: EpochTimeStamp;
     /**
-     * The **`toJSON()`** method of the GeolocationPosition interface is a serializer; it returns a JSON representation of the GeolocationPosition object.
+     * The **`toJSON()`** method of the GeolocationPosition interface returns a JSON-serializable plain object representing the GeolocationPosition object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/GeolocationPosition/toJSON)
      */
@@ -19578,7 +19578,7 @@ interface HTMLInputElement extends HTMLElement, PopoverTargetAttributes {
      */
     reportValidity(): boolean;
     /**
-     * The **`HTMLInputElement.select()`** method selects all the text in a <textarea> element or in an <input> element that includes a text field.
+     * The **`select()`** method of the HTMLInputElement interface selects all the text in an <input> element that includes a text field.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/select)
      */
@@ -19597,7 +19597,7 @@ interface HTMLInputElement extends HTMLElement, PopoverTargetAttributes {
     setRangeText(replacement: string): void;
     setRangeText(replacement: string, start: number, end: number, selectionMode?: SelectionMode): void;
     /**
-     * The **`HTMLInputElement.setSelectionRange()`** method sets the start and end positions of the current text selection in an <input> or <textarea> element. This updates the selection state immediately, though the visual highlight only appears when the element is focused.
+     * The **`setSelectionRange()`** method of the HTMLInputElement interface sets the start and end positions of the current text selection in an <input> element. This updates the selection state immediately, though the visual highlight only appears when the element is focused.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/setSelectionRange)
      */
@@ -22022,7 +22022,7 @@ interface HTMLTextAreaElement extends HTMLElement {
      */
     rows: number;
     /**
-     * The **`selectionDirection`** property of the HTMLTextAreaElement interface specifies the current direction of the selection. The possible values are "forward", "backward", and "none". The forward value indicates the selection was performed in the start-to-end direction of the current locale, with backward indicating the opposite direction. The none value occurs if the direction is unknown. It can be used to both retrieve and change the direction of the <textarea>s selected text.
+     * The **`selectionDirection`** property of the HTMLTextAreaElement interface is a string that indicates the direction in which the user is selecting the text.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/selectionDirection)
      */
@@ -22094,7 +22094,7 @@ interface HTMLTextAreaElement extends HTMLElement {
      */
     reportValidity(): boolean;
     /**
-     * The **`select()`** method of the HTMLTextAreaElement interface selects the entire contents of the <textarea> element. In addition, the select event is fired. The select() method does not take any parameters and does not return a value.
+     * The **`select()`** method of the HTMLTextAreaElement interface selects all the text in a <textarea> element.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/select)
      */
@@ -22113,7 +22113,7 @@ interface HTMLTextAreaElement extends HTMLElement {
     setRangeText(replacement: string): void;
     setRangeText(replacement: string, start: number, end: number, selectionMode?: SelectionMode): void;
     /**
-     * The **`setSelectionRange()`** method of the HTMLTextAreaElement interface sets the start and end positions of the current text selection, and optionally the direction, in a <textarea> element. This updates the selection state immediately, though the visual highlight only appears when the element is focused. The direction indicates the in which selection should be considered to have occurred; for example, that the selection was set by the user clicking and dragging from the end of the selected text toward the beginning. In addition, the select and selectionchange events are fired.
+     * The **`setSelectionRange()`** method of the HTMLTextAreaElement interface sets the start and end positions of the current text selection in a <textarea> element.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTextAreaElement/setSelectionRange)
      */
@@ -24031,7 +24031,7 @@ interface LargestContentfulPaint extends PerformanceEntry, PaintTimingMixin {
      */
     readonly url: string;
     /**
-     * The **`toJSON()`** method of the LargestContentfulPaint interface is a serializer; it returns a JSON representation of the LargestContentfulPaint object.
+     * The **`toJSON()`** method of the LargestContentfulPaint interface returns a JSON-serializable plain object representing the LargestContentfulPaint object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/LargestContentfulPaint/toJSON)
      */
@@ -24508,7 +24508,7 @@ interface MediaDeviceInfo {
      */
     readonly label: string;
     /**
-     * The **`toJSON()`** method of the MediaDeviceInfo interface is a serializer; it returns a JSON representation of the MediaDeviceInfo object.
+     * The **`toJSON()`** method of the MediaDeviceInfo interface returns a JSON-serializable plain object representing the MediaDeviceInfo object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaDeviceInfo/toJSON)
      */
@@ -27932,7 +27932,7 @@ interface PaymentAddress {
      */
     readonly sortingCode: string;
     /**
-     * The **`toJSON()`** method of the ContactAddress interface is a standard serializer that returns a JSON representation of the ContactAddress object's properties.
+     * The **`toJSON()`** method of the ContactAddress interface returns a JSON-serializable plain object representing the ContactAddress object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/ContactAddress/toJSON)
      */
@@ -28147,7 +28147,7 @@ interface PaymentResponse extends EventTarget {
      */
     retry(errorFields?: PaymentValidationErrors): Promise<void>;
     /**
-     * The **`toJSON()`** method of the PaymentResponse interface is a serializer; it returns a JSON representation of the PaymentResponse object.
+     * The **`toJSON()`** method of the PaymentResponse interface returns a JSON-serializable plain object representing the PaymentResponse object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PaymentResponse/toJSON)
      */
@@ -28268,7 +28268,7 @@ interface Performance extends EventTarget {
      */
     setResourceTimingBufferSize(maxSize: number): void;
     /**
-     * The **`toJSON()`** method of the Performance interface is a serializer; it returns a JSON representation of the Performance object.
+     * The **`toJSON()`** method of the Performance interface returns a JSON-serializable plain object representing the Performance object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Performance/toJSON)
      */
@@ -28315,7 +28315,7 @@ interface PerformanceEntry {
      */
     readonly startTime: DOMHighResTimeStamp;
     /**
-     * The **`toJSON()`** method is a serializer; it returns a JSON representation of the PerformanceEntry object.
+     * The **`toJSON()`** method of the PerformanceEntry interface returns a JSON-serializable plain object representing the PerformanceEntry object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceEntry/toJSON)
      */
@@ -28364,7 +28364,7 @@ interface PerformanceEventTiming extends PerformanceEntry {
      */
     readonly target: Node | null;
     /**
-     * The **`toJSON()`** method of the PerformanceEventTiming interface is a serializer; it returns a JSON representation of the PerformanceEventTiming object.
+     * The **`toJSON()`** method of the PerformanceEventTiming interface returns a JSON-serializable plain object representing the PerformanceEventTiming object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceEventTiming/toJSON)
      */
@@ -28436,7 +28436,7 @@ interface PerformanceNavigation {
      */
     readonly type: number;
     /**
-     * The **`toJSON()`** method of the PerformanceNavigation interface is a serializer; it returns a JSON representation of the PerformanceNavigation object.
+     * The **`toJSON()`** method of the PerformanceNavigation interface returns a JSON-serializable plain object representing the PerformanceNavigation object.
      * @deprecated
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceNavigation/toJSON)
@@ -28525,7 +28525,7 @@ interface PerformanceNavigationTiming extends PerformanceResourceTiming {
      */
     readonly unloadEventStart: DOMHighResTimeStamp;
     /**
-     * The **`toJSON()`** method of the PerformanceNavigationTiming interface is a serializer; it returns a JSON representation of the PerformanceNavigationTiming object.
+     * The **`toJSON()`** method of the PerformanceNavigationTiming interface returns a JSON-serializable plain object representing the PerformanceNavigationTiming object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceNavigationTiming/toJSON)
      */
@@ -28612,7 +28612,7 @@ declare var PerformanceObserverEntryList: {
  */
 interface PerformancePaintTiming extends PerformanceEntry, PaintTimingMixin {
     /**
-     * The **`toJSON()`** method of the PerformancePaintTiming interface is a serializer; it returns a JSON representation of the PerformancePaintTiming object.
+     * The **`toJSON()`** method of the PerformancePaintTiming interface returns a JSON-serializable plain object representing the PerformancePaintTiming object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformancePaintTiming/toJSON)
      */
@@ -28649,7 +28649,7 @@ interface PerformanceResourceTiming extends PerformanceEntry {
      */
     readonly contentType: string;
     /**
-     * The **`decodedBodySize`** read-only property returns the size (in octets) received from the fetch (HTTP or cache) of the message body after removing any applied content encoding (like gzip or Brotli). If the resource is retrieved from an application cache or local resources, it returns the size of the payload after removing any applied content encoding.
+     * The **`decodedBodySize`** read-only property returns the size (in octets) received from the fetch (HTTP or cache) of the message body after removing any applied content encoding (like gzip or Brotli).
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceResourceTiming/decodedBodySize)
      */
@@ -28673,7 +28673,7 @@ interface PerformanceResourceTiming extends PerformanceEntry {
      */
     readonly domainLookupStart: DOMHighResTimeStamp;
     /**
-     * The **`encodedBodySize`** read-only property represents the size (in octets) received from the fetch (HTTP or cache) of the payload body before removing any applied content encodings (like gzip or Brotli). If the resource is retrieved from an application cache or a local resource, it must return the size of the payload body before removing any applied content encoding.
+     * The **`encodedBodySize`** read-only property represents the size (in octets) received from the fetch (HTTP or cache) of the payload body before removing any applied content encodings (like gzip or Brotli).
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceResourceTiming/encodedBodySize)
      */
@@ -28757,7 +28757,7 @@ interface PerformanceResourceTiming extends PerformanceEntry {
      */
     readonly serverTiming: ReadonlyArray<PerformanceServerTiming>;
     /**
-     * The **`transferSize`** read-only property represents the size (in octets) of the fetched resource. The size includes the response header fields plus the response payload body (as defined by RFC7230).
+     * The **`transferSize`** read-only property represents the size (in octets) of the fetched resource. This is the size of the response body plus a fixed value that stands in for the size of the response headers.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceResourceTiming/transferSize)
      */
@@ -28771,7 +28771,7 @@ interface PerformanceResourceTiming extends PerformanceEntry {
      */
     readonly workerStart: DOMHighResTimeStamp;
     /**
-     * The **`toJSON()`** method of the PerformanceResourceTiming interface is a serializer; it returns a JSON representation of the PerformanceResourceTiming object.
+     * The **`toJSON()`** method of the PerformanceResourceTiming interface returns a JSON-serializable plain object representing the PerformanceResourceTiming object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceResourceTiming/toJSON)
      */
@@ -28808,7 +28808,7 @@ interface PerformanceServerTiming {
      */
     readonly name: string;
     /**
-     * The **`toJSON()`** method of the PerformanceServerTiming interface is a serializer; it returns a JSON representation of the PerformanceServerTiming object.
+     * The **`toJSON()`** method of the PerformanceServerTiming interface returns a JSON-serializable plain object representing the PerformanceServerTiming object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceServerTiming/toJSON)
      */
@@ -28975,7 +28975,7 @@ interface PerformanceTiming {
      */
     readonly unloadEventStart: number;
     /**
-     * The legacy **`toJSON()`** method of the PerformanceTiming interface is a serializer; it returns a JSON representation of the PerformanceTiming object.
+     * The **`toJSON()`** method of the PerformanceTiming interface returns a JSON-serializable plain object representing the PerformanceTiming object.
      * @deprecated
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceTiming/toJSON)
@@ -29429,7 +29429,7 @@ interface PublicKeyCredential extends Credential {
      */
     getClientExtensionResults(): AuthenticationExtensionsClientOutputs;
     /**
-     * The **`toJSON()`** method of the PublicKeyCredential interface returns a JSON type representation of a PublicKeyCredential.
+     * The **`toJSON()`** method of the PublicKeyCredential interface returns a JSON-serializable plain object representing the PublicKeyCredential object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PublicKeyCredential/toJSON)
      */
@@ -29446,7 +29446,7 @@ declare var PublicKeyCredential: {
      */
     getClientCapabilities(): Promise<PublicKeyCredentialClientCapabilities>;
     /**
-     * The **`isConditionalMediationAvailable()`** static method of the PublicKeyCredential interface returns a Promise which resolves to true if conditional mediation is available.
+     * The **`isConditionalMediationAvailable()`** static method of the PublicKeyCredential interface returns a Promise which resolves to true if the device supports conditional get.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PublicKeyCredential/isConditionalMediationAvailable_static)
      */
@@ -29565,7 +29565,7 @@ interface PushSubscription {
      */
     getKey(name: PushEncryptionKeyName): ArrayBuffer | null;
     /**
-     * The **`toJSON()`** method of the PushSubscription interface is a standard serializer: it returns a JSON representation of the subscription properties, providing a useful shortcut.
+     * The **`toJSON()`** method of the PushSubscription interface returns a JSON-serializable plain object representing the PushSubscription object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PushSubscription/toJSON)
      */
@@ -30097,7 +30097,7 @@ interface RTCIceCandidate {
      */
     readonly usernameFragment: string | null;
     /**
-     * The RTCIceCandidate method **`toJSON()`** converts the RTCIceCandidate on which it's called into JSON.
+     * The **`toJSON()`** method of the RTCIceCandidate interface returns a JSON-serializable plain object representing the RTCIceCandidate object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/RTCIceCandidate/toJSON)
      */
@@ -30743,7 +30743,7 @@ interface RTCSessionDescription {
      */
     readonly type: RTCSdpType;
     /**
-     * The **`RTCSessionDescription.toJSON()`** method generates a JSON description of the object. Both properties, type and sdp, are contained in the generated JSON.
+     * The **`toJSON()`** method of the RTCSessionDescription interface returns a JSON-serializable plain object representing the RTCSessionDescription object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/RTCSessionDescription/toJSON)
      */
@@ -38309,7 +38309,7 @@ interface URL {
      */
     username: string;
     /**
-     * The **`toJSON()`** method of the URL interface returns a string containing a serialized version of the URL, although in practice it seems to have the same effect as URL.toString().
+     * The **`toJSON()`** method of the URL interface returns a string representing the URL object. This is the same string that URL.toString() returns.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/URL/toJSON)
      */
@@ -38770,7 +38770,7 @@ interface VideoColorSpace {
      */
     readonly transfer: VideoTransferCharacteristics | null;
     /**
-     * The **`toJSON()`** method of the VideoColorSpace interface is a serializer that returns a JSON representation of the VideoColorSpace object.
+     * The **`toJSON()`** method of the VideoColorSpace interface returns a JSON-serializable plain object representing the VideoColorSpace object.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/VideoColorSpace/toJSON)
      */
@@ -42631,7 +42631,7 @@ interface Window extends EventTarget, AnimationFrameProvider, GlobalEventHandler
      */
     getComputedStyle(elt: Element, pseudoElt?: string | null): CSSStyleDeclaration;
     /**
-     * The **`getSelection()`** method of the Window interface returns the Selection object associated with the window's document, representing the range of text selected by the user or the current position of the caret.
+     * The **`getSelection()`** method of the Window interface returns the Selection object associated with the window's document, representing the range of text selected by the user, or the current position of the caret.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/getSelection)
      */
@@ -44891,7 +44891,7 @@ declare function focus(): void;
  */
 declare function getComputedStyle(elt: Element, pseudoElt?: string | null): CSSStyleDeclaration;
 /**
- * The **`getSelection()`** method of the Window interface returns the Selection object associated with the window's document, representing the range of text selected by the user or the current position of the caret.
+ * The **`getSelection()`** method of the Window interface returns the Selection object associated with the window's document, representing the range of text selected by the user, or the current position of the caret.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/getSelection)
  */
