@@ -4,17 +4,14 @@ import type {
   SimpleSupportStatement,
   SupportBlock,
 } from "@mdn/browser-compat-data/types";
-import {
-  forceKeepAlive as baseKeepAlive,
-  forceKeepAliveFullLibOnly,
-} from "./bcd/keep-alive.ts";
+import { forceKeepAlive } from "./bcd/keep-alive.ts";
 import { mapToBcdCompat } from "./bcd/mapper.ts";
 import { hasStableImplementation } from "./bcd/stable.ts";
-import { isBaselineCut, isBaselineSuitable } from "./bcd/baseline.ts";
-
-const forceKeepAlive: Record<string, string[]> = isBaselineCut
-  ? baseKeepAlive
-  : { ...baseKeepAlive, ...forceKeepAliveFullLibOnly };
+import {
+  fullLibOnlyKeepAlive,
+  isBaselineCut,
+  isBaselineSuitable,
+} from "./bcd/baseline.ts";
 
 function hasMultipleImplementations(support: SupportBlock, prefix?: string) {
   const hasStableImpl = (
@@ -43,9 +40,12 @@ function isSuitable(
   prefix?: string,
   compatKeys?: string[],
 ) {
-  const forceAlive = parentKey
-    ? forceKeepAlive[parentKey]?.includes(key)
-    : !!forceKeepAlive[key];
+  const forceAlive =
+    isBaselineCut && fullLibOnlyKeepAlive.has(parentKey ?? key)
+      ? false
+      : parentKey
+        ? forceKeepAlive[parentKey]?.includes(key)
+        : !!forceKeepAlive[key];
   // With a Baseline cut requested, replace the upstream "supported by 2+
   // engines" rule with the target's Baseline bar -- but only when Baseline has
   // data for the item (compatKeys is only ever non-empty under a cut). When it

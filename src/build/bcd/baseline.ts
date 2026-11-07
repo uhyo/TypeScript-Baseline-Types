@@ -61,6 +61,20 @@ export const baselineTarget: BaselineTarget | null = parseBaselineTarget(
 /** True when any Baseline cut is active (year or moving). */
 export const isBaselineCut: boolean = baselineTarget !== null;
 
+/**
+ * `forceKeepAlive` entries (by interface name) that a Baseline cut ignores.
+ * They exist only to keep the full lib referentially closed where BCD drops an
+ * interface that a kept API still references. A cut doesn't need them -- its
+ * reference closure (`applyReferenceClosure`) already resurrects any removed
+ * interface a surviving API references, as a type-only shell -- and forcing
+ * them would leak a non-Baseline interface (with its constructor) into every
+ * cut.
+ */
+export const fullLibOnlyKeepAlive: ReadonlySet<string> = new Set([
+  // BCD 8.1.8+: Chrome exposes it only as webkitSpeechGrammar.
+  "SpeechGrammar",
+]);
+
 // `compute-baseline` resolves the same @mdn/browser-compat-data copy this
 // project already loads (node dedupes the JSON module), so the dates here are
 // consistent with the rest of the build. Built lazily so non-baseline builds
