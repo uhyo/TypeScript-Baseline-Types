@@ -4,10 +4,17 @@ import type {
   SimpleSupportStatement,
   SupportBlock,
 } from "@mdn/browser-compat-data/types";
-import { forceKeepAlive } from "./bcd/keep-alive.ts";
+import {
+  forceKeepAlive as baseKeepAlive,
+  forceKeepAliveFullLibOnly,
+} from "./bcd/keep-alive.ts";
 import { mapToBcdCompat } from "./bcd/mapper.ts";
 import { hasStableImplementation } from "./bcd/stable.ts";
 import { isBaselineCut, isBaselineSuitable } from "./bcd/baseline.ts";
+
+const forceKeepAlive: Record<string, string[]> = isBaselineCut
+  ? baseKeepAlive
+  : { ...baseKeepAlive, ...forceKeepAliveFullLibOnly };
 
 function hasMultipleImplementations(support: SupportBlock, prefix?: string) {
   const hasStableImpl = (

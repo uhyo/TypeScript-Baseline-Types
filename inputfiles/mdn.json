@@ -10400,6 +10400,11 @@
     "summary": "The loaded read-only property of the FontFace interface returns a Promise that resolves with the current FontFace object when the font specified in the object's constructor is done loading or rejects with a SyntaxError."
   },
   {
+    "mdn_url": "/en-US/docs/Web/API/FontFace/sizeAdjust",
+    "pageType": "web-api-instance-property",
+    "summary": "The sizeAdjust property of the FontFace interface represents a multiplier for the font's glyph outlines and metrics, such as glyph widths and line heights, used to lay out text."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/API/FontFace/status",
     "pageType": "web-api-instance-property",
     "summary": "The status read-only property of the FontFace interface returns an enumerated value indicating the status of the font, one of \"unloaded\", \"loading\", \"loaded\", or \"error\"."
@@ -10862,7 +10867,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/GeolocationCoordinates/accuracy",
     "pageType": "web-api-instance-property",
-    "summary": "The accuracy read-only property of the GeolocationCoordinates interface is a strictly positive double representing the accuracy, with a 95% confidence level, of the GeolocationCoordinates.latitude and GeolocationCoordinates.longitude properties expressed in meters."
+    "summary": "The accuracy read-only property of the GeolocationCoordinates interface is a strictly positive double representing the accuracy, with a 68% confidence level, of the GeolocationCoordinates.latitude and GeolocationCoordinates.longitude properties expressed in meters."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/GeolocationCoordinates/altitude",
@@ -10872,7 +10877,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/GeolocationCoordinates/altitudeAccuracy",
     "pageType": "web-api-instance-property",
-    "summary": "The altitudeAccuracy read-only property of the GeolocationCoordinates interface is a strictly positive double representing the accuracy, with a 95% confidence level, of the altitude expressed in meters. This value is null if the implementation doesn't support measuring altitude."
+    "summary": "The altitudeAccuracy read-only property of the GeolocationCoordinates interface is a strictly positive double representing the accuracy, with a 68% confidence level, of the altitude expressed in meters. This value is null if the implementation doesn't support measuring altitude."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/GeolocationCoordinates/heading",
@@ -14062,7 +14067,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLInputElement/labels",
     "pageType": "web-api-instance-property",
-    "summary": "The HTMLInputElement.labels read-only property returns a\nNodeList of the <label> elements associated with the\n<input> element, if the element is not hidden. If the element has the\ntype hidden, the property returns null."
+    "summary": "The HTMLInputElement.labels read-only property returns a NodeList of the <label> elements associated with the <input> element.\nIf the element has the type hidden, the property returns null."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/HTMLInputElement/list",
@@ -41430,6 +41435,11 @@
     "summary": "The column-rule-inset-junction-end CSS property can be used to offset the bottom endpoints of column rule segments that are junction endpoints; that is, endpoints at gap junctions where rule segments intersect."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-inset-junction-start",
+    "pageType": "css-property",
+    "summary": "The column-rule-inset-junction-start CSS property can be used to offset the top endpoints of column rule segments that are junction endpoints; that is, endpoints at gap junctions where rule segments intersect."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/column-rule-style",
     "pageType": "css-property",
     "summary": "The column-rule-style CSS property defines the line style of the lines drawn between columns in multi-column grid, flex, and multi-col layouts."
@@ -42778,6 +42788,16 @@
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-inset-junction",
     "pageType": "css-property",
     "summary": "The row-rule-inset-junction CSS shorthand property can be used to offset both the left and right endpoints of row rule segments that are junction endpoints; that is, endpoints at gap junctions where rule segments intersect."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-inset-junction-end",
+    "pageType": "css-property",
+    "summary": "The row-rule-inset-junction-end CSS property can be used to offset the end edge of row rule segments that are junction endpoints, that is, endpoints at gap junctions where rule segments intersect."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-inset-junction-start",
+    "pageType": "css-property",
+    "summary": "The row-rule-inset-junction-start CSS property can be used to offset the start edge of row rule segments that are junction endpoints; that is, endpoints at gap junctions where rule segments intersect."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/row-rule-style",
