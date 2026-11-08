@@ -33,6 +33,10 @@ export const forceKeepAlive: Record<string, string[]> = {
     // https://github.com/mdn/browser-compat-data/issues/15345
     "onerror",
   ],
+  SpeechGrammar: [
+    // Chrome exposes the interface object only as webkitSpeechGrammar, but
+    // SpeechGrammarList (unprefixed) is kept and its item() returns it.
+  ],
   ShadowRoot: [
     // BCD unexpectedly is removing valid event data
     // https://github.com/mdn/browser-compat-data/issues/15345
