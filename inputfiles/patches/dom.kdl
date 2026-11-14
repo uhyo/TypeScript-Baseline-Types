@@ -43,6 +43,7 @@ enum InsertPosition {
 // AbstractRange, so NodeRange is dropped as unsupported, which would leave
 // Range/StaticRange extending a missing type and lose both members.
 // Keep the shipped shape until browsers/BCD catch up.
+// Tracking removal: https://github.com/uhyo/TypeScript-Baseline-Types/issues/36
 interface AbstractRange {
   property startContainer type=Node readonly=#true mdnUrl="https://developer.mozilla.org/docs/Web/API/AbstractRange/startContainer"
   property endContainer type=Node readonly=#true mdnUrl="https://developer.mozilla.org/docs/Web/API/AbstractRange/endContainer"
