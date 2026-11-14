@@ -37,11 +37,28 @@ enum InsertPosition {
   afterend
 }
 
+// The DOM spec moved startContainer/endContainer out of AbstractRange into a new
+// intermediate NodeRange interface (whatwg/dom, picked up in @webref/idl 3.87.0).
+// No browser ships NodeRange yet and BCD still tracks these members on
+// AbstractRange, so NodeRange is dropped as unsupported, which would leave
+// Range/StaticRange extending a missing type and lose both members.
+// Keep the shipped shape until browsers/BCD catch up.
+interface AbstractRange {
+  property startContainer type=Node readonly=#true mdnUrl="https://developer.mozilla.org/docs/Web/API/AbstractRange/startContainer"
+  property endContainer type=Node readonly=#true mdnUrl="https://developer.mozilla.org/docs/Web/API/AbstractRange/endContainer"
+}
+interface Range extends=AbstractRange
+interface StaticRange extends=AbstractRange
+
 // ChildNode and ParentNode are actually defined as mixins, but because of their names they have historically been used as a sub-interface of Node.
 interface-mixin ChildNode extends=Node
 interface-mixin ParentNode extends=Node
 
-removals { 
+removals {
+  // See AbstractRange above. Removed explicitly so Baseline cuts' reference
+  // closure (which runs before patches) doesn't keep it as an orphan shell.
+  interface NodeRange
+
   interface ProcessingInstruction {
     constructor signatureIndex=0 {
       param target

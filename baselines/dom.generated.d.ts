@@ -3811,11 +3811,23 @@ interface AbstractRange {
      */
     readonly collapsed: boolean;
     /**
+     * The read-only **`endContainer`** property of the AbstractRange interface returns the Node in which the end of the range is located.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/AbstractRange/endContainer)
+     */
+    readonly endContainer: Node;
+    /**
      * The **`endOffset`** read-only property of the AbstractRange interface returns the offset into the end node of the range's end position.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/AbstractRange/endOffset)
      */
     readonly endOffset: number;
+    /**
+     * The read-only **`startContainer`** property of the AbstractRange interface returns the Node in which the start of the range is located.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/AbstractRange/startContainer)
+     */
+    readonly startContainer: Node;
     /**
      * The read-only **`startOffset`** property of the AbstractRange interface returns the offset into the start node of the range's start position.
      *
@@ -31115,7 +31127,7 @@ declare var RadioNodeList: {
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Range)
  */
-interface Range extends NodeRange {
+interface Range extends AbstractRange {
     /**
      * The **`Range.commonAncestorContainer`** read-only property returns the deepest — or furthest down the document tree — Node that contains both boundary points of the Range. This means that if startContainer and endContainer both refer to the same node, this node is the common ancestor container.
      *
@@ -37332,7 +37344,7 @@ declare var SpeechSynthesisVoice: {
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/StaticRange)
  */
-interface StaticRange extends NodeRange {
+interface StaticRange extends AbstractRange {
 }
 
 declare var StaticRange: {
