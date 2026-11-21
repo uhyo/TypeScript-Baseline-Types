@@ -28570,9 +28570,9 @@
     "summary": "The addFromString() method of the\nSpeechGrammarList interface takes a grammar present in a specific\nstring within the code base (e.g., stored in a variable) and adds it to\nthe SpeechGrammarList as a new SpeechGrammar object."
   },
   {
-    "mdn_url": "/en-US/docs/Web/API/SpeechGrammarList/addFromURI",
+    "mdn_url": "/en-US/docs/Web/API/SpeechGrammarList/addFromUri",
     "pageType": "web-api-instance-method",
-    "summary": "The addFromURI() method of the\nSpeechGrammarList interface takes a grammar present at a specific URI and\nadds it to the SpeechGrammarList as a new SpeechGrammar\nobject."
+    "summary": "The addFromUri() method of the SpeechGrammarList interface takes a grammar present at a specific URI and adds it to the SpeechGrammarList as a new SpeechGrammar object."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechGrammarList/item",
@@ -28612,12 +28612,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognition/available_static",
     "pageType": "web-api-static-method",
-    "summary": "The available() static method of the Web Speech API checks whether the specified languages are available for speech recognition at the given quality level."
+    "summary": "The available() static method of the SpeechRecognition interface checks whether the specified languages are available for speech recognition at the given quality level."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognition/continuous",
     "pageType": "web-api-instance-property",
-    "summary": "The continuous property of the\nSpeechRecognition interface controls whether continuous results are\nreturned for each recognition, or only a single result."
+    "summary": "The continuous property of the SpeechRecognition interface represents whether recognition returns a single final result, or multiple final results from consecutive recognitions."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognition/end_event",
@@ -28632,12 +28632,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognition/grammars",
     "pageType": "web-api-instance-property",
-    "summary": "The grammars property of the\nSpeechRecognition interface returns and sets a collection of\nSpeechGrammar objects that represent the grammars that will be understood\nby the current SpeechRecognition."
+    "summary": "The grammars property of the SpeechRecognition interface represents a collection of SpeechGrammar objects."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognition/install_static",
     "pageType": "web-api-static-method",
-    "summary": "The install() static method of the Web Speech API installs the required language packs for on-device speech recognition in the specified languages and quality level."
+    "summary": "The install() static method of the SpeechRecognition interface installs the language packs needed for on-device speech recognition of the specified languages, at the specified quality level.\nA language pack is the data a browser needs to recognize speech in a particular language.\nOnce it is installed, recognition in that language can run on the user's device, so audio doesn't have to be sent to a remote service."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognition/interimResults",
@@ -28672,7 +28672,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognition/result_event",
     "pageType": "web-api-event",
-    "summary": "The result event of the Web Speech API is fired when the speech recognition service returns a result — a word or phrase has been positively recognized and this has been communicated back to the app"
+    "summary": "The result event of the SpeechRecognition interface is fired when the speech recognition service returns a result.\nThis can be a final result, or an interim result that may still change (if interimResults is true)."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognition/soundend_event",
@@ -28702,17 +28702,17 @@
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognition/start",
     "pageType": "web-api-instance-method",
-    "summary": "The start() method of the Web Speech API starts the speech recognition service to listen for incoming audio (from a microphone or an audio track) and returns the results of that recognition."
+    "summary": "The start() method of the SpeechRecognition interface starts the speech recognition service listening for incoming audio (from a microphone or an audio track).\nResults are delivered through the result event."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognition/start_event",
     "pageType": "web-api-event",
-    "summary": "The start event of the Web Speech API SpeechRecognition object is fired when the speech recognition service has begun listening to incoming audio with intent to recognize grammars associated with the current SpeechRecognition."
+    "summary": "The start event of the SpeechRecognition interface is fired when the speech recognition service has begun listening to incoming audio with the intention of recognizing speech."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognition/stop",
     "pageType": "web-api-instance-method",
-    "summary": "The stop() method of the Web Speech API stops the speech recognition service from listening for incoming audio and attempts to return a SpeechRecognitionResult based on the results captured so far."
+    "summary": "The stop() method of the SpeechRecognition interface stops the speech recognition service from listening for incoming audio.\nThe service then attempts to return a result based on the audio captured so far, through a result event, or a nomatch event if nothing was recognized."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognition/unspokenPunctuation",
@@ -28722,17 +28722,17 @@
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognitionAlternative",
     "pageType": "web-api-interface",
-    "summary": "The SpeechRecognitionAlternative interface of the Web Speech API represents a single word that has been recognized by the speech recognition service."
+    "summary": "The SpeechRecognitionAlternative interface of the Web Speech API represents one possible match for what the user said, as recognized by the speech recognition service.\nA SpeechRecognitionResult contains one or more alternatives, ordered from most to least confident."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognitionAlternative/confidence",
     "pageType": "web-api-instance-property",
-    "summary": "The confidence read-only property of the\nSpeechRecognitionResult interface returns a numeric estimate of how\nconfident the speech recognition system is that the recognition is correct."
+    "summary": "The confidence read-only property of the SpeechRecognitionAlternative interface returns a numeric estimate of how confident the speech recognition system is that the recognition is correct."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognitionAlternative/transcript",
     "pageType": "web-api-instance-property",
-    "summary": "The transcript read-only property of the\nSpeechRecognitionResult interface returns a string containing the\ntranscript of the recognized word(s)."
+    "summary": "The transcript read-only property of the SpeechRecognitionAlternative interface returns a string containing the transcript of the recognized speech."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognitionErrorEvent",
@@ -28817,7 +28817,7 @@
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognitionResultList",
     "pageType": "web-api-interface",
-    "summary": "The SpeechRecognitionResultList interface of the Web Speech API represents a list of SpeechRecognitionResult objects, or a single one if results are being captured in non-continuous mode."
+    "summary": "The SpeechRecognitionResultList interface of the Web Speech API represents a collection of SpeechRecognitionResult objects.\nIf recognition isn't in continuous mode, it contains only one result."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/SpeechRecognitionResultList/item",
