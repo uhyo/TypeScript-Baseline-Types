@@ -135,6 +135,10 @@ interface CacheQueryOptions {
     ignoreVary?: boolean;
 }
 
+interface CanvasToneMapping {
+    mode?: CanvasToneMappingMode;
+}
+
 interface ClientQueryOptions {
     includeUncontrolled?: boolean;
     type?: ClientTypes;
@@ -144,6 +148,31 @@ interface CloseEventInit extends EventInit {
     code?: number;
     reason?: string;
     wasClean?: boolean;
+}
+
+interface ConstrainBooleanOrDOMStringParameters {
+    exact?: boolean | string;
+    ideal?: boolean | string;
+}
+
+interface ConstrainBooleanParameters {
+    exact?: boolean;
+    ideal?: boolean;
+}
+
+interface ConstrainDOMStringParameters {
+    exact?: string | string[];
+    ideal?: string | string[];
+}
+
+interface ConstrainDoubleRange extends DoubleRange {
+    exact?: number;
+    ideal?: number;
+}
+
+interface ConstrainULongRange extends ULongRange {
+    exact?: number;
+    ideal?: number;
 }
 
 interface CookieInit {
@@ -230,6 +259,11 @@ interface DOMRectInit {
     width?: number;
     x?: number;
     y?: number;
+}
+
+interface DoubleRange {
+    max?: number;
+    min?: number;
 }
 
 interface EcKeyGenParams extends Algorithm {
@@ -418,13 +452,9 @@ interface GPUCanvasConfiguration {
     colorSpace?: PredefinedColorSpace;
     device: GPUDevice;
     format: GPUTextureFormat;
-    toneMapping?: GPUCanvasToneMapping;
+    toneMapping?: CanvasToneMapping;
     usage?: GPUTextureUsageFlags;
     viewFormats?: GPUTextureFormat[];
-}
-
-interface GPUCanvasToneMapping {
-    mode?: GPUCanvasToneMappingMode;
 }
 
 interface GPUColorDict {
@@ -902,6 +932,68 @@ interface MediaEncodingConfiguration extends MediaConfiguration {
 
 interface MediaStreamTrackProcessorInit {
     maxBufferSize?: number;
+    track: MediaStreamTrackOrHandle;
+}
+
+interface MediaTrackCapabilities {
+    aspectRatio?: DoubleRange;
+    autoGainControl?: boolean[];
+    backgroundBlur?: boolean[];
+    channelCount?: ULongRange;
+    deviceId?: string;
+    displaySurface?: string;
+    echoCancellation?: (boolean | string)[];
+    facingMode?: string[];
+    frameRate?: DoubleRange;
+    groupId?: string;
+    height?: ULongRange;
+    noiseSuppression?: boolean[];
+    sampleRate?: ULongRange;
+    sampleSize?: ULongRange;
+    width?: ULongRange;
+}
+
+interface MediaTrackConstraintSet {
+    aspectRatio?: ConstrainDouble;
+    autoGainControl?: ConstrainBoolean;
+    backgroundBlur?: ConstrainBoolean;
+    channelCount?: ConstrainULong;
+    deviceId?: ConstrainDOMString;
+    displaySurface?: ConstrainDOMString;
+    echoCancellation?: ConstrainBooleanOrDOMString;
+    facingMode?: ConstrainDOMString;
+    frameRate?: ConstrainDouble;
+    groupId?: ConstrainDOMString;
+    height?: ConstrainULong;
+    noiseSuppression?: ConstrainBoolean;
+    sampleRate?: ConstrainULong;
+    sampleSize?: ConstrainULong;
+    width?: ConstrainULong;
+}
+
+interface MediaTrackConstraints extends MediaTrackConstraintSet {
+    advanced?: MediaTrackConstraintSet[];
+}
+
+interface MediaTrackSettings {
+    aspectRatio?: number;
+    autoGainControl?: boolean;
+    backgroundBlur?: boolean;
+    channelCount?: number;
+    deviceId?: string;
+    displaySurface?: string;
+    echoCancellation?: boolean | string;
+    facingMode?: string;
+    frameRate?: number;
+    groupId?: string;
+    height?: number;
+    noiseSuppression?: boolean;
+    sampleRate?: number;
+    sampleSize?: number;
+    torch?: boolean;
+    whiteBalanceMode?: string;
+    width?: number;
+    zoom?: number;
 }
 
 interface MessageEventInit<T = any> extends EventInit {
@@ -1326,6 +1418,11 @@ interface Transformer<I = any, O = any> {
     start?: TransformerStartCallback<O>;
     transform?: TransformerTransformCallback<I, O>;
     writableType?: undefined;
+}
+
+interface ULongRange {
+    max?: number;
+    min?: number;
 }
 
 interface URLPatternComponentResult {
@@ -4212,6 +4309,13 @@ interface EXT_color_buffer_half_float {
     readonly UNSIGNED_NORMALIZED_EXT: 0x8C17;
 }
 
+interface EXT_conservative_depth {
+}
+
+interface EXT_depth_clamp {
+    readonly DEPTH_CLAMP_EXT: 0x864F;
+}
+
 /**
  * The WebGL API's **`EXT_float_blend`** extension allows blending and draw buffers with 32-bit floating-point components.
  *
@@ -4241,6 +4345,9 @@ interface EXT_polygon_offset_clamp {
      */
     polygonOffsetClampEXT(factor: GLfloat, units: GLfloat, clamp: GLfloat): void;
     readonly POLYGON_OFFSET_CLAMP_EXT: 0x8E1B;
+}
+
+interface EXT_render_snorm {
 }
 
 /**
@@ -7753,6 +7860,113 @@ declare var MediaSourceHandle: {
     new(): MediaSourceHandle;
 };
 
+interface MediaStreamTrackEventMap {
+    "ended": Event;
+    "mute": Event;
+    "unmute": Event;
+}
+
+/**
+ * The **`MediaStreamTrack`** interface of the Media Capture and Streams API represents a single media track within a stream; typically, these are audio or video tracks, but other track types may exist as well.
+ *
+ * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack)
+ */
+interface MediaStreamTrack extends EventTarget {
+    /**
+     * The **`contentHint`** property of the MediaStreamTrack interface is a string that hints at the type of content the track contains. Allowable values depend on the value of the MediaStreamTrack.kind property.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/contentHint)
+     */
+    contentHint: string;
+    /**
+     * The **`enabled`** property of the MediaStreamTrack interface is a Boolean value which is true if the track is allowed to render the source stream or false if it is not. This can be used to intentionally mute a track.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/enabled)
+     */
+    enabled: boolean;
+    /**
+     * The **`id`** read-only property of the MediaStreamTrack interface returns a string containing a unique identifier (GUID) for the track, which is generated by the user agent.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/id)
+     */
+    readonly id: string;
+    /**
+     * The **`kind`** read-only property of the MediaStreamTrack interface returns a string set to "audio" if the track is an audio track and to "video" if it is a video track. It doesn't change if the track is disassociated from its source.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/kind)
+     */
+    readonly kind: string;
+    /**
+     * The **`label`** read-only property of the MediaStreamTrack interface returns a string containing a user agent-assigned label that identifies the track source, as in "internal microphone".
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/label)
+     */
+    readonly label: string;
+    /**
+     * The **`muted`** read-only property of the MediaStreamTrack interface returns a boolean value indicating whether or not the track is currently unable to provide media output.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/muted)
+     */
+    readonly muted: boolean;
+    /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/ended_event) */
+    onended: ((this: MediaStreamTrack, ev: Event) => any) | null;
+    /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/mute_event) */
+    onmute: ((this: MediaStreamTrack, ev: Event) => any) | null;
+    /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/unmute_event) */
+    onunmute: ((this: MediaStreamTrack, ev: Event) => any) | null;
+    /**
+     * The **`readyState`** read-only property of the MediaStreamTrack interface returns an enumerated value giving the status of the track.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/readyState)
+     */
+    readonly readyState: MediaStreamTrackState;
+    /**
+     * The **`applyConstraints()`** method of the MediaStreamTrack interface applies a set of constraints to the track; these constraints let the website or app establish ideal values and acceptable ranges of values for the constrainable properties of the track, such as frame rate, dimensions, echo cancellation, and so forth.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/applyConstraints)
+     */
+    applyConstraints(constraints?: MediaTrackConstraints): Promise<void>;
+    /**
+     * The **`clone()`** method of the MediaStreamTrack interface creates a duplicate of the MediaStreamTrack. This new MediaStreamTrack object is identical except for its unique id.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/clone)
+     */
+    clone(): MediaStreamTrack;
+    /**
+     * The **`getCapabilities()`** method of the MediaStreamTrack interface returns an object detailing the accepted values or value range for each constrainable property of the associated MediaStreamTrack, based upon the platform and user agent.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/getCapabilities)
+     */
+    getCapabilities(): MediaTrackCapabilities;
+    /**
+     * The **`getConstraints()`** method of the MediaStreamTrack interface returns a MediaTrackConstraints object containing the set of constraints most recently established for the track using a prior call to applyConstraints(). These constraints indicate values and ranges of values that the website or application has specified are required or acceptable for the included constrainable properties.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/getConstraints)
+     */
+    getConstraints(): MediaTrackConstraints;
+    /**
+     * The **`getSettings()`** method of the MediaStreamTrack interface returns an object containing the current values of each of the constrainable properties for the current MediaStreamTrack.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/getSettings)
+     */
+    getSettings(): MediaTrackSettings;
+    /**
+     * The **`stop()`** method of the MediaStreamTrack interface stops the track.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MediaStreamTrack/stop)
+     */
+    stop(): void;
+    addEventListener<K extends keyof MediaStreamTrackEventMap>(type: K, listener: (this: MediaStreamTrack, ev: MediaStreamTrackEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+    addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+    removeEventListener<K extends keyof MediaStreamTrackEventMap>(type: K, listener: (this: MediaStreamTrack, ev: MediaStreamTrackEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+    removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+}
+
+declare var MediaStreamTrack: {
+    prototype: MediaStreamTrack;
+    new(): MediaStreamTrack;
+};
+
 /**
  * The **`MediaStreamTrackProcessor`** interface of the Insertable Streams for MediaStreamTrack API consumes a video MediaStreamTrack object's source and generates a stream of VideoFrame objects.
  *
@@ -7898,6 +8112,9 @@ declare var MessagePort: {
     prototype: MessagePort;
     new(): MessagePort;
 };
+
+interface NV_shader_noperspective_interpolation {
+}
 
 /**
  * The **`NavigationPreloadManager`** interface of the Service Worker API provides methods for managing the preloading of resources in parallel with service worker bootup.
@@ -8205,6 +8422,15 @@ interface OES_element_index_uint {
 interface OES_fbo_render_mipmap {
 }
 
+interface OES_sample_variables {
+}
+
+interface OES_shader_multisample_interpolation {
+    readonly MIN_FRAGMENT_INTERPOLATION_OFFSET_OES: 0x8E5B;
+    readonly MAX_FRAGMENT_INTERPOLATION_OFFSET_OES: 0x8E5C;
+    readonly FRAGMENT_INTERPOLATION_OFFSET_BITS_OES: 0x8E5D;
+}
+
 /**
  * The **`OES_standard_derivatives`** extension is part of the WebGL API and adds the GLSL derivative functions dFdx, dFdy, and fwidth.
  *
@@ -8384,6 +8610,25 @@ declare var Origin: {
     prototype: Origin;
     new(): Origin;
     from(value: any): Origin;
+};
+
+/**
+ * The **`OverconstrainedError`** interface of the Media Capture and Streams API indicates that the set of desired capabilities for the current MediaStreamTrack cannot currently be met. When this event is thrown on a MediaStreamTrack, it is muted until either the current constraints can be established or until satisfiable constraints are applied.
+ *
+ * [MDN Reference](https://developer.mozilla.org/docs/Web/API/OverconstrainedError)
+ */
+interface OverconstrainedError extends DOMException {
+    /**
+     * The **`constraint`** read-only property of the OverconstrainedError interface returns the constraint that was supplied in the constructor, meaning the constraint that was not satisfied.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/OverconstrainedError/constraint)
+     */
+    readonly constraint: string;
+}
+
+declare var OverconstrainedError: {
+    prototype: OverconstrainedError;
+    new(constraint: string, message?: string): OverconstrainedError;
 };
 
 /**
@@ -11669,6 +11914,22 @@ interface WEBGL_multi_draw {
     multiDrawElementsWEBGL(mode: GLenum, countsList: Int32Array | GLsizei[], countsOffset: number, type: GLenum, offsetsList: Int32Array | GLsizei[], offsetsOffset: number, drawcount: GLsizei): void;
 }
 
+interface WEBGL_polygon_mode {
+    polygonModeWEBGL(face: GLenum, mode: GLenum): void;
+    readonly POLYGON_MODE_WEBGL: 0x0B40;
+    readonly POLYGON_OFFSET_LINE_WEBGL: 0x2A02;
+    readonly LINE_WEBGL: 0x1B01;
+    readonly FILL_WEBGL: 0x1B02;
+}
+
+interface WEBGL_render_shared_exponent {
+}
+
+interface WEBGL_stencil_texturing {
+    readonly DEPTH_STENCIL_TEXTURE_MODE_WEBGL: 0x90EA;
+    readonly STENCIL_INDEX_WEBGL: 0x1901;
+}
+
 /**
  * The **`WGSLLanguageFeatures`** interface of the WebGPU API is a setlike object that reports the WGSL language extensions supported by the WebGPU implementation.
  * Available only in secure contexts.
@@ -14024,9 +14285,17 @@ declare var WebSocket: {
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport)
  */
 interface WebTransport {
-    /** The **`anticipatedConcurrentIncomingBidirectionalStreams`** property of the WebTransport interface represents the number of incoming bidirectional streams that the application expects the server to have open at the same time. */
+    /**
+     * The **`anticipatedConcurrentIncomingBidirectionalStreams`** property of the WebTransport interface represents the number of incoming bidirectional streams that the application expects the server to have open at the same time.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/anticipatedConcurrentIncomingBidirectionalStreams)
+     */
     anticipatedConcurrentIncomingBidirectionalStreams: number | null;
-    /** The **`anticipatedConcurrentIncomingUnidirectionalStreams`** property of the WebTransport interface represents the number of incoming unidirectional streams that the application expects the server to have open at the same time. */
+    /**
+     * The **`anticipatedConcurrentIncomingUnidirectionalStreams`** property of the WebTransport interface represents the number of incoming unidirectional streams that the application expects the server to have open at the same time.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/anticipatedConcurrentIncomingUnidirectionalStreams)
+     */
     anticipatedConcurrentIncomingUnidirectionalStreams: number | null;
     /**
      * The **`closed`** read-only property of the WebTransport interface returns a promise that resolves when the transport is closed.
@@ -14082,7 +14351,11 @@ interface WebTransport {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/reliability)
      */
     readonly reliability: WebTransportReliabilityMode;
-    /** The **`responseHeaders`** read-only property of the WebTransport interface returns the HTTP headers from the server's response to the request that set up the session. */
+    /**
+     * The **`responseHeaders`** read-only property of the WebTransport interface returns the HTTP headers from the server's response to the request that set up the session.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/responseHeaders)
+     */
     readonly responseHeaders: Headers | null;
     /**
      * The **`close()`** method of the WebTransport interface closes an ongoing WebTransport session.
@@ -14178,7 +14451,11 @@ interface WebTransportDatagramDuplexStream {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/incomingMaxAge)
      */
     incomingMaxAge: number | null;
-    /** The **`incomingMaxBufferedDatagrams`** property of the WebTransportDatagramDuplexStream interface represents the maximum number of incoming datagrams that can be queued while waiting to be read from the readable stream. */
+    /**
+     * The **`incomingMaxBufferedDatagrams`** property of the WebTransportDatagramDuplexStream interface represents the maximum number of incoming datagrams that can be queued while waiting to be read from the readable stream.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/incomingMaxBufferedDatagrams)
+     */
     incomingMaxBufferedDatagrams: number;
     /**
      * The **`maxDatagramSize`** read-only property of the WebTransportDatagramDuplexStream interface returns the maximum allowable size of outgoing datagrams, in bytes, that can be written to writable.
@@ -14198,7 +14475,11 @@ interface WebTransportDatagramDuplexStream {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/outgoingMaxAge)
      */
     outgoingMaxAge: number;
-    /** The **`outgoingMaxBufferedDatagrams`** property of the WebTransportDatagramDuplexStream interface represents the maximum number of outgoing datagrams that can be queued for sending on each WebTransportDatagramsWritable before backpressure is applied. */
+    /**
+     * The **`outgoingMaxBufferedDatagrams`** property of the WebTransportDatagramDuplexStream interface represents the maximum number of outgoing datagrams that can be queued for sending on each WebTransportDatagramsWritable before backpressure is applied.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/outgoingMaxBufferedDatagrams)
+     */
     outgoingMaxBufferedDatagrams: number;
     /**
      * The **`readable`** read-only property of the WebTransportDatagramDuplexStream interface returns a ReadableStream instance that can be used to unreliably read incoming datagrams from the stream.
@@ -15627,6 +15908,11 @@ type CSSNumberish = number | CSSNumericValue;
 type CSSPerspectiveValue = CSSNumericValue | CSSKeywordish;
 type CSSUnparsedSegment = string | CSSVariableReferenceValue;
 type CanvasImageSource = ImageBitmap | OffscreenCanvas | VideoFrame;
+type ConstrainBoolean = boolean | ConstrainBooleanParameters;
+type ConstrainBooleanOrDOMString = boolean | string | ConstrainBooleanOrDOMStringParameters;
+type ConstrainDOMString = string | string[] | ConstrainDOMStringParameters;
+type ConstrainDouble = number | ConstrainDoubleRange;
+type ConstrainULong = number | ConstrainULongRange;
 type CookieList = CookieListItem[];
 type DOMHighResTimeStamp = number;
 type EpochTimeStamp = number;
@@ -15678,6 +15964,7 @@ type ImageBitmapSource = CanvasImageSource | Blob | ImageData;
 type ImageBufferSource = AllowSharedBufferSource | ReadableStream;
 type ImageDataArray = Uint8ClampedArray;
 type Int32List = Int32Array | GLint[];
+type MediaStreamTrackOrHandle = MediaStreamTrack;
 type MessageEventSource = MessagePort | ServiceWorker;
 type NamedCurve = string;
 type OffscreenRenderingContext = OffscreenCanvasRenderingContext2D | ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext | GPUCanvasContext;
@@ -15692,7 +15979,7 @@ type RequestInfo = Request | string;
 type RouterSource = RouterSourceDict | RouterSourceEnum;
 type TexImageSource = ImageBitmap | ImageData | OffscreenCanvas | VideoFrame;
 type TimerHandler = string | Function;
-type Transferable = OffscreenCanvas | ImageBitmap | MessagePort | MediaSourceHandle | ReadableStream | WritableStream | TransformStream | AudioData | VideoFrame | RTCDataChannel | WebTransportDatagramsWritable | ArrayBuffer;
+type Transferable = OffscreenCanvas | ImageBitmap | MessagePort | MediaSourceHandle | MediaStreamTrack | ReadableStream | WritableStream | TransformStream | AudioData | VideoFrame | RTCDataChannel | WebTransportDatagramsWritable | ArrayBuffer;
 type URLPatternCompatible = string | URLPatternInit | URLPattern;
 type URLPatternInput = string | URLPatternInit;
 type Uint32List = Uint32Array | GLuint[];
@@ -15715,6 +16002,7 @@ type CanvasLineJoin = "bevel" | "miter" | "round";
 type CanvasTextAlign = "center" | "end" | "left" | "right" | "start";
 type CanvasTextBaseline = "alphabetic" | "bottom" | "hanging" | "ideographic" | "middle" | "top";
 type CanvasTextRendering = "auto" | "geometricPrecision" | "optimizeLegibility" | "optimizeSpeed";
+type CanvasToneMappingMode = "extended" | "standard";
 type ClientTypes = "all" | "sharedworker" | "window" | "worker";
 type CodecState = "closed" | "configured" | "unconfigured";
 type ColorGamut = "p3" | "rec2020" | "srgb";
@@ -15738,7 +16026,6 @@ type GPUBlendOperation = "add" | "max" | "min" | "reverse-subtract" | "subtract"
 type GPUBufferBindingType = "read-only-storage" | "storage" | "uniform";
 type GPUBufferMapState = "mapped" | "pending" | "unmapped";
 type GPUCanvasAlphaMode = "opaque" | "premultiplied";
-type GPUCanvasToneMappingMode = "extended" | "standard";
 type GPUCompareFunction = "always" | "equal" | "greater" | "greater-equal" | "less" | "less-equal" | "never" | "not-equal";
 type GPUCompilationMessageType = "error" | "info" | "warning";
 type GPUCullMode = "back" | "front" | "none";
@@ -15783,6 +16070,7 @@ type LockMode = "exclusive" | "shared";
 type MediaDecodingType = "file" | "media-source" | "webrtc";
 type MediaEncodingType = "record" | "webrtc";
 type MediaKeysRequirement = "not-allowed" | "optional" | "required";
+type MediaStreamTrackState = "ended" | "live";
 type NotificationDirection = "auto" | "ltr" | "rtl";
 type NotificationPermission = "default" | "denied" | "granted";
 type OffscreenRenderingContextId = "2d" | "bitmaprenderer" | "webgl" | "webgl2" | "webgpu";

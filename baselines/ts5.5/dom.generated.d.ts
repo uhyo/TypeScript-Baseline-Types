@@ -895,13 +895,9 @@ interface GPUCanvasConfiguration {
     colorSpace?: PredefinedColorSpace;
     device: GPUDevice;
     format: GPUTextureFormat;
-    toneMapping?: GPUCanvasToneMapping;
+    toneMapping?: CanvasToneMapping;
     usage?: GPUTextureUsageFlags;
     viewFormats?: GPUTextureFormat[];
-}
-
-interface GPUCanvasToneMapping {
-    mode?: GPUCanvasToneMappingMode;
 }
 
 interface GPUColorDict {
@@ -14240,6 +14236,13 @@ interface EXT_color_buffer_half_float {
     readonly UNSIGNED_NORMALIZED_EXT: 0x8C17;
 }
 
+interface EXT_conservative_depth {
+}
+
+interface EXT_depth_clamp {
+    readonly DEPTH_CLAMP_EXT: 0x864F;
+}
+
 /**
  * The WebGL API's **`EXT_float_blend`** extension allows blending and draw buffers with 32-bit floating-point components.
  *
@@ -14269,6 +14272,9 @@ interface EXT_polygon_offset_clamp {
      */
     polygonOffsetClampEXT(factor: GLfloat, units: GLfloat, clamp: GLfloat): void;
     readonly POLYGON_OFFSET_CLAMP_EXT: 0x8E1B;
+}
+
+interface EXT_render_snorm {
 }
 
 /**
@@ -26187,6 +26193,9 @@ declare var MutationRecord: {
     new(): MutationRecord;
 };
 
+interface NV_shader_noperspective_interpolation {
+}
+
 /**
  * The **`NamedNodeMap`** interface represents a collection of Attr objects. Objects inside a NamedNodeMap are not in any particular order, unlike NodeList, although they may be accessed by an index as in an array.
  *
@@ -27529,6 +27538,15 @@ interface OES_element_index_uint {
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/OES_fbo_render_mipmap)
  */
 interface OES_fbo_render_mipmap {
+}
+
+interface OES_sample_variables {
+}
+
+interface OES_shader_multisample_interpolation {
+    readonly MIN_FRAGMENT_INTERPOLATION_OFFSET_OES: 0x8E5B;
+    readonly MAX_FRAGMENT_INTERPOLATION_OFFSET_OES: 0x8E5C;
+    readonly FRAGMENT_INTERPOLATION_OFFSET_BITS_OES: 0x8E5D;
 }
 
 /**
@@ -36742,9 +36760,10 @@ interface SpeechGrammarList {
      */
     addFromString(string: string, weight?: number): void;
     /**
+     * The **`addFromUri()`** method of the SpeechGrammarList interface takes a grammar present at a specific URI and adds it to the SpeechGrammarList as a new SpeechGrammar object.
      * @deprecated
      *
-     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SpeechGrammarList/addFromURI)
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SpeechGrammarList/addFromUri)
      */
     addFromUri(src: string, weight?: number): void;
     /**
@@ -36785,13 +36804,13 @@ interface SpeechRecognitionEventMap {
  */
 interface SpeechRecognition extends EventTarget {
     /**
-     * The **`continuous`** property of the SpeechRecognition interface controls whether continuous results are returned for each recognition, or only a single result.
+     * The **`continuous`** property of the SpeechRecognition interface represents whether recognition returns a single final result, or multiple final results from consecutive recognitions.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SpeechRecognition/continuous)
      */
     continuous: boolean;
     /**
-     * The **`grammars`** property of the SpeechRecognition interface returns and sets a collection of SpeechGrammar objects that represent the grammars that will be understood by the current SpeechRecognition.
+     * The **`grammars`** property of the SpeechRecognition interface represents a collection of SpeechGrammar objects.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SpeechRecognition/grammars)
      */
@@ -36861,14 +36880,14 @@ interface SpeechRecognition extends EventTarget {
      */
     abort(): void;
     /**
-     * The **`start()`** method of the Web Speech API starts the speech recognition service to listen for incoming audio (from a microphone or an audio track) and returns the results of that recognition.
+     * The **`start()`** method of the SpeechRecognition interface starts the speech recognition service listening for incoming audio (from a microphone or an audio track). Results are delivered through the result event.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SpeechRecognition/start)
      */
     start(): void;
     start(audioTrack: MediaStreamTrack): void;
     /**
-     * The **`stop()`** method of the Web Speech API stops the speech recognition service from listening for incoming audio and attempts to return a SpeechRecognitionResult based on the results captured so far.
+     * The **`stop()`** method of the SpeechRecognition interface stops the speech recognition service from listening for incoming audio. The service then attempts to return a result based on the audio captured so far, through a result event, or a nomatch event if nothing was recognized.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SpeechRecognition/stop)
      */
@@ -36883,13 +36902,13 @@ declare var SpeechRecognition: {
     prototype: SpeechRecognition;
     new(): SpeechRecognition;
     /**
-     * The **`available()`** static method of the Web Speech API checks whether the specified languages are available for speech recognition at the given quality level.
+     * The **`available()`** static method of the SpeechRecognition interface checks whether the specified languages are available for speech recognition at the given quality level.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SpeechRecognition/available_static)
      */
     available(options: SpeechRecognitionOptions): Promise<SpeechRecognitionAvailabilityStatus>;
     /**
-     * The **`install()`** static method of the Web Speech API installs the required language packs for on-device speech recognition in the specified languages and quality level.
+     * The **`install()`** static method of the SpeechRecognition interface installs the language packs needed for on-device speech recognition of the specified languages, at the specified quality level. A language pack is the data a browser needs to recognize speech in a particular language. Once it is installed, recognition in that language can run on the user's device, so audio doesn't have to be sent to a remote service.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SpeechRecognition/install_static)
      */
@@ -36897,20 +36916,20 @@ declare var SpeechRecognition: {
 };
 
 /**
- * The **`SpeechRecognitionAlternative`** interface of the Web Speech API represents a single word that has been recognized by the speech recognition service.
+ * The **`SpeechRecognitionAlternative`** interface of the Web Speech API represents one possible match for what the user said, as recognized by the speech recognition service. A SpeechRecognitionResult contains one or more alternatives, ordered from most to least confident.
  * Available only in secure contexts.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SpeechRecognitionAlternative)
  */
 interface SpeechRecognitionAlternative {
     /**
-     * The **`confidence`** read-only property of the SpeechRecognitionResult interface returns a numeric estimate of how confident the speech recognition system is that the recognition is correct.
+     * The **`confidence`** read-only property of the SpeechRecognitionAlternative interface returns a numeric estimate of how confident the speech recognition system is that the recognition is correct.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SpeechRecognitionAlternative/confidence)
      */
     readonly confidence: number;
     /**
-     * The **`transcript`** read-only property of the SpeechRecognitionResult interface returns a string containing the transcript of the recognized word(s).
+     * The **`transcript`** read-only property of the SpeechRecognitionAlternative interface returns a string containing the transcript of the recognized speech.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SpeechRecognitionAlternative/transcript)
      */
@@ -37034,7 +37053,7 @@ declare var SpeechRecognitionResult: {
 };
 
 /**
- * The **`SpeechRecognitionResultList`** interface of the Web Speech API represents a list of SpeechRecognitionResult objects, or a single one if results are being captured in non-continuous mode.
+ * The **`SpeechRecognitionResultList`** interface of the Web Speech API represents a collection of SpeechRecognitionResult objects. If recognition isn't in continuous mode, it contains only one result.
  * Available only in secure contexts.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SpeechRecognitionResultList)
@@ -39983,6 +40002,22 @@ interface WEBGL_multi_draw {
     multiDrawElementsWEBGL(mode: GLenum, countsList: Int32Array | GLsizei[], countsOffset: number, type: GLenum, offsetsList: Int32Array | GLsizei[], offsetsOffset: number, drawcount: GLsizei): void;
 }
 
+interface WEBGL_polygon_mode {
+    polygonModeWEBGL(face: GLenum, mode: GLenum): void;
+    readonly POLYGON_MODE_WEBGL: 0x0B40;
+    readonly POLYGON_OFFSET_LINE_WEBGL: 0x2A02;
+    readonly LINE_WEBGL: 0x1B01;
+    readonly FILL_WEBGL: 0x1B02;
+}
+
+interface WEBGL_render_shared_exponent {
+}
+
+interface WEBGL_stencil_texturing {
+    readonly DEPTH_STENCIL_TEXTURE_MODE_WEBGL: 0x90EA;
+    readonly STENCIL_INDEX_WEBGL: 0x1901;
+}
+
 /**
  * The **`WGSLLanguageFeatures`** interface of the WebGPU API is a setlike object that reports the WGSL language extensions supported by the WebGPU implementation.
  * Available only in secure contexts.
@@ -42427,9 +42462,17 @@ declare var WebSocket: {
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport)
  */
 interface WebTransport {
-    /** The **`anticipatedConcurrentIncomingBidirectionalStreams`** property of the WebTransport interface represents the number of incoming bidirectional streams that the application expects the server to have open at the same time. */
+    /**
+     * The **`anticipatedConcurrentIncomingBidirectionalStreams`** property of the WebTransport interface represents the number of incoming bidirectional streams that the application expects the server to have open at the same time.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/anticipatedConcurrentIncomingBidirectionalStreams)
+     */
     anticipatedConcurrentIncomingBidirectionalStreams: number | null;
-    /** The **`anticipatedConcurrentIncomingUnidirectionalStreams`** property of the WebTransport interface represents the number of incoming unidirectional streams that the application expects the server to have open at the same time. */
+    /**
+     * The **`anticipatedConcurrentIncomingUnidirectionalStreams`** property of the WebTransport interface represents the number of incoming unidirectional streams that the application expects the server to have open at the same time.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/anticipatedConcurrentIncomingUnidirectionalStreams)
+     */
     anticipatedConcurrentIncomingUnidirectionalStreams: number | null;
     /**
      * The **`closed`** read-only property of the WebTransport interface returns a promise that resolves when the transport is closed.
@@ -42485,7 +42528,11 @@ interface WebTransport {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/reliability)
      */
     readonly reliability: WebTransportReliabilityMode;
-    /** The **`responseHeaders`** read-only property of the WebTransport interface returns the HTTP headers from the server's response to the request that set up the session. */
+    /**
+     * The **`responseHeaders`** read-only property of the WebTransport interface returns the HTTP headers from the server's response to the request that set up the session.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransport/responseHeaders)
+     */
     readonly responseHeaders: Headers | null;
     /**
      * The **`close()`** method of the WebTransport interface closes an ongoing WebTransport session.
@@ -42581,7 +42628,11 @@ interface WebTransportDatagramDuplexStream {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/incomingMaxAge)
      */
     incomingMaxAge: number | null;
-    /** The **`incomingMaxBufferedDatagrams`** property of the WebTransportDatagramDuplexStream interface represents the maximum number of incoming datagrams that can be queued while waiting to be read from the readable stream. */
+    /**
+     * The **`incomingMaxBufferedDatagrams`** property of the WebTransportDatagramDuplexStream interface represents the maximum number of incoming datagrams that can be queued while waiting to be read from the readable stream.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/incomingMaxBufferedDatagrams)
+     */
     incomingMaxBufferedDatagrams: number;
     /**
      * The **`maxDatagramSize`** read-only property of the WebTransportDatagramDuplexStream interface returns the maximum allowable size of outgoing datagrams, in bytes, that can be written to writable.
@@ -42601,7 +42652,11 @@ interface WebTransportDatagramDuplexStream {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/outgoingMaxAge)
      */
     outgoingMaxAge: number;
-    /** The **`outgoingMaxBufferedDatagrams`** property of the WebTransportDatagramDuplexStream interface represents the maximum number of outgoing datagrams that can be queued for sending on each WebTransportDatagramsWritable before backpressure is applied. */
+    /**
+     * The **`outgoingMaxBufferedDatagrams`** property of the WebTransportDatagramDuplexStream interface represents the maximum number of outgoing datagrams that can be queued for sending on each WebTransportDatagramsWritable before backpressure is applied.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebTransportDatagramDuplexStream/outgoingMaxBufferedDatagrams)
+     */
     outgoingMaxBufferedDatagrams: number;
     /**
      * The **`readable`** read-only property of the WebTransportDatagramDuplexStream interface returns a ReadableStream instance that can be used to unreliably read incoming datagrams from the stream.
@@ -45954,7 +46009,7 @@ type SanitizerPI = string | SanitizerProcessingInstruction;
 type SelectionDirection = "forward" | "backward" | "none";
 type TexImageSource = ImageBitmap | ImageData | HTMLImageElement | HTMLCanvasElement | HTMLVideoElement | OffscreenCanvas | VideoFrame;
 type TimerHandler = string | Function;
-type Transferable = OffscreenCanvas | ImageBitmap | MessagePort | MediaSourceHandle | ReadableStream | WritableStream | TransformStream | AudioData | VideoFrame | RTCDataChannel | WebTransportDatagramsWritable | ArrayBuffer;
+type Transferable = OffscreenCanvas | ImageBitmap | MessagePort | MediaSourceHandle | MediaStreamTrack | ReadableStream | WritableStream | TransformStream | AudioData | VideoFrame | RTCDataChannel | WebTransportDatagramsWritable | ArrayBuffer;
 type URLPatternInput = string | URLPatternInit;
 type Uint32List = Uint32Array | GLuint[];
 type VibratePattern = number | number[];
@@ -46036,7 +46091,6 @@ type GPUBlendOperation = "add" | "max" | "min" | "reverse-subtract" | "subtract"
 type GPUBufferBindingType = "read-only-storage" | "storage" | "uniform";
 type GPUBufferMapState = "mapped" | "pending" | "unmapped";
 type GPUCanvasAlphaMode = "opaque" | "premultiplied";
-type GPUCanvasToneMappingMode = "extended" | "standard";
 type GPUCompareFunction = "always" | "equal" | "greater" | "greater-equal" | "less" | "less-equal" | "never" | "not-equal";
 type GPUCompilationMessageType = "error" | "info" | "warning";
 type GPUCullMode = "back" | "front" | "none";
