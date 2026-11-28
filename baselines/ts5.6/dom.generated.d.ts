@@ -8738,7 +8738,7 @@ interface CSSStyleProperties extends CSSStyleDeclarationBase {
      */
     marginTop: string;
     /**
-     * The margin-trim property allows the container to trim the margins of its children where they adjoin the container's edges.
+     * The margin-trim CSS property allows a container to trim the block-axis margins of its children where they adjoin the container's edges.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/margin-trim)
      */
@@ -15819,6 +15819,7 @@ interface FontFace {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/FontFace/weight)
      */
     weight: string;
+    width: string;
     /**
      * The **`load()`** method of the FontFace interface requests and loads a font whose source was specified as a URL. It returns a Promise that resolves with the current FontFace object.
      *
@@ -16098,13 +16099,13 @@ interface GPUAdapterInfo {
      */
     readonly isFallbackAdapter: boolean;
     /**
-     * The **`subgroupMaxSize`** read-only property of the GPUAdapterInfo interface returns the maximum supported subgroup size for the GPUAdapter. This can be used along with the subgroups feature.
+     * The **`subgroupMaxSize`** read-only property of the GPUAdapterInfo interface returns the maximum supported subgroup size for the GPUAdapter. This can be used along with the subgroups and subgroup-size-control features.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/GPUAdapterInfo/subgroupMaxSize)
      */
     readonly subgroupMaxSize: number;
     /**
-     * The **`subgroupMinSize`** read-only property of the GPUAdapterInfo interface returns the minimum supported subgroup size for the GPUAdapter. This can be used along with the subgroups feature.
+     * The **`subgroupMinSize`** read-only property of the GPUAdapterInfo interface returns the minimum supported subgroup size for the GPUAdapter. This can be used along with the subgroups and subgroup-size-control features.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/GPUAdapterInfo/subgroupMinSize)
      */
@@ -18638,6 +18639,8 @@ interface HTMLElement extends Element, ElementCSSInlineStyle, ElementContentEdit
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)
      */
     draggable: boolean;
+    headingOffset: number;
+    headingReset: boolean;
     /**
      * The HTMLElement property **`hidden`** reflects the value of the element's hidden attribute.
      *
@@ -29008,6 +29011,12 @@ interface PerformanceResourceTiming extends PerformanceEntry {
      */
     readonly redirectStart: DOMHighResTimeStamp;
     /**
+     * The **`renderBlockingStatus`** read-only property returns the render-blocking status of the resource.
+     *
+     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceResourceTiming/renderBlockingStatus)
+     */
+    readonly renderBlockingStatus: RenderBlockingStatusType;
+    /**
      * The **`requestStart`** read-only property returns a timestamp of the time immediately before the browser starts requesting the resource from the server, cache, or local resource. If the transport connection fails and the browser retries the request, the value returned will be the start of the retry request.
      *
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/PerformanceResourceTiming/requestStart)
@@ -29050,6 +29059,8 @@ interface PerformanceResourceTiming extends PerformanceEntry {
      */
     readonly transferSize: number;
     readonly workerCacheLookupStart: DOMHighResTimeStamp;
+    readonly workerFinalRouterSource: string;
+    readonly workerMatchedRouterSource: string;
     readonly workerRouterEvaluationStart: DOMHighResTimeStamp;
     /**
      * The **`workerStart`** read-only property of the PerformanceResourceTiming interface returns a DOMHighResTimeStamp immediately before dispatching the FetchEvent if a Service Worker thread is already running, or immediately before starting the Service Worker thread if it is not already running. If the resource is not intercepted by a Service Worker the property will always return 0.
@@ -35752,6 +35763,7 @@ interface Sanitizer {
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Sanitizer/setDataAttributes)
      */
     setDataAttributes(allow: boolean): boolean;
+    setJavascriptURLs(allow: boolean): boolean;
 }
 
 declare var Sanitizer: {
@@ -39776,6 +39788,14 @@ declare var VisualViewport: {
     prototype: VisualViewport;
     new(): VisualViewport;
 };
+
+interface WEBGL_blend_func_extended {
+    readonly SRC1_COLOR_WEBGL: 0x88F9;
+    readonly SRC1_ALPHA_WEBGL: 0x8589;
+    readonly ONE_MINUS_SRC1_COLOR_WEBGL: 0x88FA;
+    readonly ONE_MINUS_SRC1_ALPHA_WEBGL: 0x88FB;
+    readonly MAX_DUAL_SOURCE_DRAW_BUFFERS_WEBGL: 0x88FC;
+}
 
 /**
  * The **`WEBGL_color_buffer_float`** extension is part of the WebGL API and adds the ability to render to 32-bit floating-point color buffers.
@@ -46240,6 +46260,7 @@ type RecordingState = "inactive" | "paused" | "recording";
 type RedEyeReduction = "always" | "controllable" | "never";
 type ReferrerPolicy = "" | "no-referrer" | "no-referrer-when-downgrade" | "origin" | "origin-when-cross-origin" | "same-origin" | "strict-origin" | "strict-origin-when-cross-origin" | "unsafe-url";
 type RemotePlaybackState = "connected" | "connecting" | "disconnected";
+type RenderBlockingStatusType = "blocking" | "non-blocking";
 type RequestCache = "default" | "force-cache" | "no-cache" | "no-store" | "only-if-cached" | "reload";
 type RequestCredentials = "include" | "omit" | "same-origin";
 type RequestDestination = "" | "audio" | "audioworklet" | "document" | "embed" | "font" | "frame" | "iframe" | "image" | "json" | "manifest" | "object" | "paintworklet" | "report" | "script" | "sharedworker" | "style" | "track" | "video" | "worker" | "xslt";
