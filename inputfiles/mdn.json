@@ -11047,12 +11047,12 @@
   {
     "mdn_url": "/en-US/docs/Web/API/GPUAdapterInfo/subgroupMaxSize",
     "pageType": "web-api-instance-property",
-    "summary": "The subgroupMaxSize read-only property of the GPUAdapterInfo interface returns the maximum supported subgroup size for the GPUAdapter. This can be used along with the subgroups feature."
+    "summary": "The subgroupMaxSize read-only property of the GPUAdapterInfo interface returns the maximum supported subgroup size for the GPUAdapter. This can be used along with the subgroups and subgroup-size-control features."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/GPUAdapterInfo/subgroupMinSize",
     "pageType": "web-api-instance-property",
-    "summary": "The subgroupMinSize read-only property of the GPUAdapterInfo interface returns the minimum supported subgroup size for the GPUAdapter. This can be used along with the subgroups feature."
+    "summary": "The subgroupMinSize read-only property of the GPUAdapterInfo interface returns the minimum supported subgroup size for the GPUAdapter. This can be used along with the subgroups and subgroup-size-control features."
   },
   {
     "mdn_url": "/en-US/docs/Web/API/GPUAdapterInfo/vendor",
@@ -42045,6 +42045,11 @@
     "summary": "The hyphenate-limit-chars CSS property specifies the minimum word length to allow hyphenation of words as well as the minimum number of characters before and after the hyphen."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/hyphenate-limit-lines",
+    "pageType": "css-property",
+    "summary": "The hyphenate-limit-lines CSS property specifies the maximum number of consecutive hyphenated lines in an element."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/hyphens",
     "pageType": "css-property",
     "summary": "The hyphens CSS property specifies how words should be hyphenated when text wraps across multiple lines."
@@ -42272,7 +42277,7 @@
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/margin-trim",
     "pageType": "css-property",
-    "summary": "The margin-trim property allows the container to trim the margins of its children where they adjoin the container's edges."
+    "summary": "The margin-trim CSS property allows a container to trim the block-axis margins of its children where they adjoin the container's edges."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/marker",
@@ -43205,6 +43210,11 @@
     "summary": "The text-autospace CSS property allows you to specify the space applied between Chinese/Japanese/Korean (CJK) and non-CJK characters."
   },
   {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/text-autospace-size",
+    "pageType": "css-property",
+    "summary": "The text-autospace-size CSS property sets the size of space that the text-autospace property adds between Chinese/Japanese/Korean (CJK) characters and non-CJK letters and numbers."
+  },
+  {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/text-box",
     "pageType": "css-shorthand-property",
     "summary": "The text-box CSS shorthand property corresponds to the text-box-trim and text-box-edge properties, which together specify the amount of space to trim from the block-start edge and block-end edge of a text element's block container."
@@ -43578,6 +43588,11 @@
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/word-spacing",
     "pageType": "css-property",
     "summary": "The word-spacing CSS property sets the spacing between words and between tags."
+  },
+  {
+    "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/wrap-inside",
+    "pageType": "css-property",
+    "summary": "The wrap-inside CSS property specifies whether line breaks are allowed inside an inline box, or should be avoided if possible."
   },
   {
     "mdn_url": "/en-US/docs/Web/CSS/Reference/Properties/writing-mode",
